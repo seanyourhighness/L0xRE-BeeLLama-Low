@@ -5,9 +5,7 @@
 #include <cstring>
 #include <mutex>
 
-#if !defined(_WIN32)
-#include <dlfcn.h>
-#endif
+#include "escha-dl-shim.cuh"
 
 // Optional Sprint GDN chunk bridge.  This is deliberately separate from the
 // Escha code-GEMM bridge: it only replaces the chunked GDN prefill operator and
@@ -32,25 +30,21 @@ static const escha_gdn_chunk_api & escha_gdn_chunk_load() {
     static escha_gdn_chunk_api api;
     static std::once_flag once;
     std::call_once(once, [] {
-#if defined(_WIN32)
-        GGML_ABORT("ESCHA GDN chunk bridge is not supported on Windows");
-#else
         const char * path = std::getenv("ESCHA_GDN_CHUNK_BRIDGE_LIBRARY");
         if (path == nullptr || path[0] == '\0') {
             GGML_ABORT("ESCHA_GDN_CHUNK_BRIDGE_LIBRARY is required");
         }
-        void * handle = dlopen(path, RTLD_NOW | RTLD_LOCAL);
+        void * handle = escha_dl_open(path);
         if (handle == nullptr) {
-            GGML_ABORT("failed to load GDN chunk bridge '%s': %s", path, dlerror());
+            GGML_ABORT("failed to load GDN chunk bridge '%s': %s", path, escha_dl_error());
         }
         api.prefill = reinterpret_cast<escha_gdn_chunk_prefill_fn>(
-            dlsym(handle, "escha_gdn_chunk_prefill"));
+            escha_dl_sym(handle, "escha_gdn_chunk_prefill"));
         api.error = reinterpret_cast<escha_gdn_chunk_error_fn>(
-            dlsym(handle, "escha_gdn_chunk_error"));
+            escha_dl_sym(handle, "escha_gdn_chunk_error"));
         if (api.prefill == nullptr || api.error == nullptr) {
             GGML_ABORT("GDN chunk bridge '%s' is missing its C ABI", path);
         }
-#endif
     });
     return api;
 }

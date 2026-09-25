@@ -19,10 +19,8 @@
 #include <utility>
 #include <vector>
 
-#if defined(_WIN32)
-#include <process.h>
-#else
-#include <dlfcn.h>
+#include "escha-dl-shim.cuh"
+#if !defined(_WIN32)
 #include <unistd.h>
 #endif
 
@@ -243,34 +241,30 @@ static const escha_official_bridge_api & escha_official_bridge_load() {
     static escha_official_bridge_api api;
     static std::once_flag once;
     std::call_once(once, [] {
-#if defined(_WIN32)
-        GGML_ABORT("escha: ESCHA_OFFICIAL_BRIDGE is not supported on Windows");
-#else
         const char * path = std::getenv("ESCHA_OFFICIAL_BRIDGE_LIBRARY");
         if (path == nullptr || path[0] == '\0') {
             GGML_ABORT("escha: ESCHA_OFFICIAL_BRIDGE_LIBRARY must name the lab bridge library");
         }
-        void * handle = dlopen(path, RTLD_NOW | RTLD_LOCAL);
+        void * handle = escha_dl_open(path);
         if (handle == nullptr) {
-            GGML_ABORT("escha: failed to load official bridge '%s': %s", path, dlerror());
+            GGML_ABORT("escha: failed to load official bridge '%s': %s", path, escha_dl_error());
         }
         api.gemm = reinterpret_cast<escha_official_code_gemm_fn>(
-            dlsym(handle, "escha_official_code_gemm"));
+            escha_dl_sym(handle, "escha_official_code_gemm"));
         api.pretransformed = reinterpret_cast<escha_official_code_gemm_pretransformed_fn>(
-            dlsym(handle, "escha_official_code_gemm_pretransformed"));
+            escha_dl_sym(handle, "escha_official_code_gemm_pretransformed"));
         api.decode = reinterpret_cast<escha_official_decode_gemv_raw_fn>(
-            dlsym(handle, "escha_official_decode_gemv_raw"));
+            escha_dl_sym(handle, "escha_official_decode_gemv_raw"));
         api.decode_main = reinterpret_cast<escha_official_decode_gemv_main_raw_fn>(
-            dlsym(handle, "escha_official_decode_gemv_main_raw"));
+            escha_dl_sym(handle, "escha_official_decode_gemv_main_raw"));
         api.decode_main_f32 = reinterpret_cast<escha_official_decode_gemv_main_f32_raw_fn>(
-            dlsym(handle, "escha_official_decode_gemv_main_f32_raw"));
+            escha_dl_sym(handle, "escha_official_decode_gemv_main_f32_raw"));
         api.error = reinterpret_cast<escha_official_bridge_error_fn>(
-            dlsym(handle, "escha_official_bridge_error"));
+            escha_dl_sym(handle, "escha_official_bridge_error"));
         if (api.gemm == nullptr || api.pretransformed == nullptr || api.decode == nullptr ||
             api.decode_main == nullptr || api.error == nullptr) {
             GGML_ABORT("escha: official bridge '%s' is missing its C ABI", path);
         }
-#endif
     });
     return api;
 }
