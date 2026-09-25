@@ -1,0 +1,43 @@
+--- a/ggml/src/ggml-cuda/mmvf.cu
++++ b/ggml/src/ggml-cuda/mmvf.cu
+@@ -1,5 +1,6 @@
+ #include "ggml.h"
+ #include "common.cuh"
++#include <cstdlib>
+ #include "unary.cuh"
+ #include "mmvf.cuh"
+ #include "convert.cuh"
+@@ -795,6 +796,23 @@
+     return ggml_cuda_is_aligned(src1, 2*sizeof(float));
+ }
+ 
++// ESCHA MTP-0071 opt-in: allow the native F16 vector kernel to serve small multi-row batches
++// (ncols_dst = ne11) when the GEMM output width ("N", src0 rows) is tiny.
++//
++// On tensor-core NVIDIA GPUs ggml_cuda_should_use_mmvf() restricts the F16 vector kernel to a
++// single RHS column (ne11 == 1) because batched cuBLAS GEMM normally wins for anything wider.
++// For a very thin output with a small batch that GEMM degenerates into a launch/latency-bound
++// CUTLASS WMMA tile per projection, while mul_mat_vec_f<..., ncols_dst> already covers
++// ncols_dst = 1..MMVF_MAX_BATCH_SIZE and writes one dst column per thread. Unset = today's
++// behaviour; when set, only thin outputs are relaxed, so wide matmuls never leave cuBLAS.
++static bool escha_mmvf_small_n_multirow(const int64_t ne11, const int64_t nrows_out) {
++    static const char * const env = std::getenv("ESCHA_F16_SMALL_N_NATIVE");
++    if (env == nullptr || ne11 < 2 || ne11 > MMVF_MAX_BATCH_SIZE) {
++        return false;
++    }
++    return nrows_out <= 64;
++}
++
+ bool ggml_cuda_should_use_mmvf(enum ggml_type type, int cc, const int64_t * src0_ne, const size_t * src0_nb,
+         const ggml_tensor * src1, int64_t ne11) {
+     if (src0_ne[0] % 2 != 0) {
+@@ -837,7 +855,8 @@
+             if (GGML_CUDA_CC_IS_NVIDIA(cc)) {
+                 const bool src0_small = (src0_ne[1] <= 512 || src0_ne[2]*src0_ne[3] == 1);
+                 if (ampere_mma_available(cc)) {
+-                    return src0_small && ne11 == 1;
++                    // ESCHA MTP-0071: see escha_mmvf_small_n_multirow() above.
++                    return src0_small && (ne11 == 1 || escha_mmvf_small_n_multirow(ne11, src0_ne[1]));
+                 }
+                 if (cc >= GGML_CUDA_CC_ADA_LOVELACE) {
+                     return src0_small && ne11 <= 4;
