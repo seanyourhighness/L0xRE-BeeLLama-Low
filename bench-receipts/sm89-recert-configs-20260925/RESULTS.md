@@ -10,3 +10,10 @@ Lead model: escha-e3-firstclass-v2 (non-MTP, L0xRE-27b-Low). Runtime: build-sm89
 
 Pre-port rc046-era baselines: 12GB ~78.6, 16GB ~78.2 (club-decode-r5).
 Port yields +47% / +37% on the certified geometries.
+
+## Addendum: 16 GiB config with Q4_K_M drafter (same day)
+
+Same 256K geometry, drafter swapped Q2_K -> Q4_K_M (draft KV q4_0):
+decode 116.3 ± 2.9 (was 107.4 ± 3.5 with Q2_K), acceptance 0.849 len 3.5
+(was 0.709 len 3.1), VRAM 14.5 GiB. Q4_K_M is the better drafter for BOTH
+certified configs; Q2_K remains the fallback when VRAM is tight.
