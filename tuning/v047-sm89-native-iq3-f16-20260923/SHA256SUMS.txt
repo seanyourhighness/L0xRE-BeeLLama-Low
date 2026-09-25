@@ -1,0 +1,4 @@
+ad85e40a28aafd907eebb6ff6b21786b897dd750b0918427f1243d6d84ebcc72  /mnt/storage/ai-models/escha-baselines/Qwen3.8-27B-LowGPU-NoMTP-IQ3XXXS.gguf
+12954fb794aa6c920202691ba8dc929f65596f9d9a4e931539bb4f4261465f91  /home/sean/work/escha-beellama-v047-candidate/build-sm89/bin/llama-bench
+34b79eff3ded96aafc80467ff01e039102a6e0464f6c95f7e58bd4a845a1f7f8  /home/sean/work/escha-beellama-v047-candidate/build-sm89/bin/libllama.so
+58f9fc4a8362c2056d1af3522b90334c6ef28694bb5d3bdf466de53345228610  /home/sean/work/escha-beellama-v047-candidate/build-sm89/bin/libggml-cuda.so

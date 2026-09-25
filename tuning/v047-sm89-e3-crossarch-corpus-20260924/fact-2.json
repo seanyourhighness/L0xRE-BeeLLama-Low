@@ -1,0 +1,327 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Paris"
+      },
+      "logprobs": {
+        "content": [
+          {
+            "id": 57590,
+            "token": "Paris",
+            "bytes": [
+              80,
+              97,
+              114,
+              105,
+              115
+            ],
+            "logprob": -0.0005003273254260421,
+            "top_logprobs": [
+              {
+                "id": 57590,
+                "token": "Paris",
+                "bytes": [
+                  80,
+                  97,
+                  114,
+                  105,
+                  115
+                ],
+                "logprob": -0.0005003273254260421
+              },
+              {
+                "id": 11751,
+                "token": " Paris",
+                "bytes": [
+                  32,
+                  80,
+                  97,
+                  114,
+                  105,
+                  115
+                ],
+                "logprob": -7.660679340362549
+              },
+              {
+                "id": 4132,
+                "token": "Par",
+                "bytes": [
+                  80,
+                  97,
+                  114
+                ],
+                "logprob": -10.82055377960205
+              },
+              {
+                "id": 109705,
+                "token": "\u5df4\u9ece",
+                "bytes": [
+                  229,
+                  183,
+                  180,
+                  233,
+                  187,
+                  142
+                ],
+                "logprob": -12.4949312210083
+              },
+              {
+                "id": 47358,
+                "token": "France",
+                "bytes": [
+                  70,
+                  114,
+                  97,
+                  110,
+                  99,
+                  101
+                ],
+                "logprob": -13.302502632141113
+              },
+              {
+                "id": 36870,
+                "token": "Washington",
+                "bytes": [
+                  87,
+                  97,
+                  115,
+                  104,
+                  105,
+                  110,
+                  103,
+                  116,
+                  111,
+                  110
+                ],
+                "logprob": -14.587264060974121
+              },
+              {
+                "id": 218787,
+                "token": "Madrid",
+                "bytes": [
+                  77,
+                  97,
+                  100,
+                  114,
+                  105,
+                  100
+                ],
+                "logprob": -14.708086967468262
+              },
+              {
+                "id": 217707,
+                "token": " PARIS",
+                "bytes": [
+                  32,
+                  80,
+                  65,
+                  82,
+                  73,
+                  83
+                ],
+                "logprob": -14.751124382019043
+              },
+              {
+                "id": 91149,
+                "token": "Berlin",
+                "bytes": [
+                  66,
+                  101,
+                  114,
+                  108,
+                  105,
+                  110
+                ],
+                "logprob": -14.771466255187988
+              },
+              {
+                "id": 39509,
+                "token": " paris",
+                "bytes": [
+                  32,
+                  112,
+                  97,
+                  114,
+                  105,
+                  115
+                ],
+                "logprob": -15.071845054626465
+              },
+              {
+                "id": 198528,
+                "token": " \u041f\u0430\u0440\u0438",
+                "bytes": [
+                  32,
+                  208,
+                  159,
+                  208,
+                  176,
+                  209,
+                  128,
+                  208,
+                  184
+                ],
+                "logprob": -15.1751708984375
+              },
+              {
+                "id": 38261,
+                "token": "London",
+                "bytes": [
+                  76,
+                  111,
+                  110,
+                  100,
+                  111,
+                  110
+                ],
+                "logprob": -15.262838363647461
+              },
+              {
+                "id": 760,
+                "token": "The",
+                "bytes": [
+                  84,
+                  104,
+                  101
+                ],
+                "logprob": -15.699231147766113
+              },
+              {
+                "id": 49,
+                "token": "R",
+                "bytes": [
+                  82
+                ],
+                "logprob": -15.771761894226074
+              },
+              {
+                "id": 200360,
+                "token": " \u0628\u0627\u0631\u064a\u0633",
+                "bytes": [
+                  32,
+                  216,
+                  168,
+                  216,
+                  167,
+                  216,
+                  177,
+                  217,
+                  138,
+                  216,
+                  179
+                ],
+                "logprob": -15.8104887008667
+              },
+              {
+                "id": 248046,
+                "token": "",
+                "bytes": [],
+                "logprob": -15.90532112121582
+              },
+              {
+                "id": 43,
+                "token": "L",
+                "bytes": [
+                  76
+                ],
+                "logprob": -16.13437271118164
+              },
+              {
+                "id": 227964,
+                "token": "\u30d1\u30ea",
+                "bytes": [
+                  227,
+                  131,
+                  145,
+                  227,
+                  131,
+                  170
+                ],
+                "logprob": -16.1550235748291
+              },
+              {
+                "id": 40768,
+                "token": "Paragraph",
+                "bytes": [
+                  80,
+                  97,
+                  114,
+                  97,
+                  103,
+                  114,
+                  97,
+                  112,
+                  104
+                ],
+                "logprob": -16.176616668701172
+              },
+              {
+                "id": 34,
+                "token": "C",
+                "bytes": [
+                  67
+                ],
+                "logprob": -16.237714767456055
+              }
+            ]
+          },
+          {
+            "id": 248046,
+            "token": "",
+            "bytes": [],
+            "logprob": 0.0,
+            "top_logprobs": []
+          }
+        ]
+      }
+    }
+  ],
+  "created": 1790235763,
+  "model": "escha-v047-crossarch",
+  "system_fingerprint": "b0-unknown-dirty",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 2,
+    "prompt_tokens": 24,
+    "total_tokens": 26,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "visible_tokens": 4
+    }
+  },
+  "id": "chatcmpl-7cQMBEg2dxqTrwGQi6ATQfGIuyvNfEIN",
+  "timings": {
+    "cache_n": 0,
+    "cache_lcp_n": 24,
+    "cache_planned_n": 0,
+    "cache_reprocessed_n": 24,
+    "cache_source": "none",
+    "cache_reason": "no_restorable_kvarn_boundary",
+    "cache_slot_ms": 133.591,
+    "cache_ram_save_ms": 133.57,
+    "cache_ram_load_ms": 0.005,
+    "cache_ram_restore_prepare_ms": 0.0,
+    "cache_ram_restore_commit_ms": 0.0,
+    "cache_ram_update_ms": 0.001,
+    "cache_checkpoint_restore_ms": 0.0,
+    "cache_checkpoint_prepare_ms": 0.0,
+    "cache_checkpoint_commit_ms": 0.0,
+    "prompt_n": 24,
+    "prompt_ms": 119.863,
+    "prompt_per_token_ms": 4.994291666666666,
+    "prompt_per_second": 200.22859431183934,
+    "predicted_n": 2,
+    "predicted_ms": 41.813,
+    "predicted_per_token_ms": 41.813,
+    "predicted_per_second": 23.916006983474038,
+    "draft_n": 2,
+    "draft_n_accepted": 2
+  }
+}

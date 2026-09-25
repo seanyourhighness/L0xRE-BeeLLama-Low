@@ -1,0 +1,5 @@
+model=/mnt/storage/ai-models/escha-baselines/Qwen3.8-27B-LowGPU-NoMTP-IQ3XXXS.gguf
+binary=/home/sean/work/escha-beellama-v047-candidate/build-sm89/bin/llama-bench
+reps=5
+kv_k=f16
+kv_v=f16

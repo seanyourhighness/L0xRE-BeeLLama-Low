@@ -1,0 +1,9 @@
+12954fb794aa6c920202691ba8dc929f65596f9d9a4e931539bb4f4261465f91  /home/sean/work/escha-beellama-v047-candidate/build-sm89/bin/llama-bench
+34b79eff3ded96aafc80467ff01e039102a6e0464f6c95f7e58bd4a845a1f7f8  /home/sean/work/escha-beellama-v047-candidate/build-sm89/bin/libllama.so
+58f9fc4a8362c2056d1af3522b90334c6ef28694bb5d3bdf466de53345228610  /home/sean/work/escha-beellama-v047-candidate/build-sm89/bin/libggml-cuda.so
+746bd40841fb18b9c1918923e89c007df70b5e4f3de64290d1399593e70c96b0  /home/sean/escha-assets/escha-e3-with-mtp.gguf
+3f93cbe77a20f1fa7272741757596cac66a66457d7ecaed1e5a6e4baa409535e  /home/sean/escha-assets/escha-w2-with-mtp.gguf
+90a5debbbb7f6add7a68642045bc1101b08d5b45eb8390181f3da5311e31eb6f  /home/sean/kernel-lab/escha-sprint-rc-sm89-fast/bridge/libescha_official_bridge_cuda_sm89.so
+824efcce6778ac52fc184af1b7ca8233551e12d4a697f03c7d123546420d3917  /home/sean/kernel-lab/escha-sprint-rc-sm89-fast/bridge/code-gemm-sm89.cubin
+824efcce6778ac52fc184af1b7ca8233551e12d4a697f03c7d123546420d3917  /home/sean/kernel-lab/escha-sprint-rc-sm89-fast/bridge/code-gemm-sm89.cubin
+43d5309a5606a244da8d402dad0f64e4365153ce65551619aedd570d276f852d  /home/sean/kernel-lab/escha-sprint-rc-sm89-fast/bridge/libescha_gdn_chunk_bridge_sm89_ported.so

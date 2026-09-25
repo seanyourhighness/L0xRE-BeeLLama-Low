@@ -1,0 +1,10 @@
+{
+  "model": "/mnt/storage/ai-models/escha-baselines/Qwen3.8-27B-LowGPU-NoMTP-IQ3XXXS.gguf",
+  "model_sha256": "ad85e40a28aafd907eebb6ff6b21786b897dd750b0918427f1243d6d84ebcc72",
+  "binary": "/home/sean/work/escha-beellama-v047-candidate/build-sm89/bin/llama-bench",
+  "binary_sha256": "12954fb794aa6c920202691ba8dc929f65596f9d9a4e931539bb4f4261465f91",
+  "gdn_bridge": "0",
+  "reps": 5,
+  "k": "kvarn3",
+  "v": "kvarn2"
+}

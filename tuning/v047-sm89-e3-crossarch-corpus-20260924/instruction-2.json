@@ -1,0 +1,284 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "maple"
+      },
+      "logprobs": {
+        "content": [
+          {
+            "id": 2117,
+            "token": "map",
+            "bytes": [
+              109,
+              97,
+              112
+            ],
+            "logprob": -0.003953632898628712,
+            "top_logprobs": [
+              {
+                "id": 2117,
+                "token": "map",
+                "bytes": [
+                  109,
+                  97,
+                  112
+                ],
+                "logprob": -0.003953632898628712
+              },
+              {
+                "id": 2155,
+                "token": "Map",
+                "bytes": [
+                  77,
+                  97,
+                  112
+                ],
+                "logprob": -6.3672404289245605
+              },
+              {
+                "id": 1931,
+                "token": "ced",
+                "bytes": [
+                  99,
+                  101,
+                  100
+                ],
+                "logprob": -6.809123516082764
+              },
+              {
+                "id": 52556,
+                "token": " maple",
+                "bytes": [
+                  32,
+                  109,
+                  97,
+                  112,
+                  108,
+                  101
+                ],
+                "logprob": -7.808094501495361
+              },
+              {
+                "id": 248046,
+                "token": "",
+                "bytes": [],
+                "logprob": -9.061561584472656
+              },
+              {
+                "id": 13974,
+                "token": "will",
+                "bytes": [
+                  119,
+                  105,
+                  108,
+                  108
+                ],
+                "logprob": -9.077600479125977
+              },
+              {
+                "id": 760,
+                "token": "The",
+                "bytes": [
+                  84,
+                  104,
+                  101
+                ],
+                "logprob": -9.288443565368652
+              },
+              {
+                "id": 1,
+                "token": "\"",
+                "bytes": [
+                  34
+                ],
+                "logprob": -10.696065902709961
+              },
+              {
+                "id": 1667,
+                "token": "ma",
+                "bytes": [
+                  109,
+                  97
+                ],
+                "logprob": -10.8096923828125
+              },
+              {
+                "id": 2336,
+                "token": " map",
+                "bytes": [
+                  32,
+                  109,
+                  97,
+                  112
+                ],
+                "logprob": -10.936925888061523
+              },
+              {
+                "id": 25034,
+                "token": "-map",
+                "bytes": [
+                  45,
+                  109,
+                  97,
+                  112
+                ],
+                "logprob": -11.178600311279297
+              },
+              {
+                "id": 17114,
+                "token": "maps",
+                "bytes": [
+                  109,
+                  97,
+                  112,
+                  115
+                ],
+                "logprob": -11.204283714294434
+              },
+              {
+                "id": 5437,
+                "token": "mar",
+                "bytes": [
+                  109,
+                  97,
+                  114
+                ],
+                "logprob": -11.29461669921875
+              },
+              {
+                "id": 36780,
+                "token": "pine",
+                "bytes": [
+                  112,
+                  105,
+                  110,
+                  101
+                ],
+                "logprob": -11.491048812866211
+              },
+              {
+                "id": 66,
+                "token": "c",
+                "bytes": [
+                  99
+                ],
+                "logprob": -11.529770851135254
+              },
+              {
+                "id": 78,
+                "token": "o",
+                "bytes": [
+                  111
+                ],
+                "logprob": -11.535377502441406
+              },
+              {
+                "id": 341,
+                "token": "ce",
+                "bytes": [
+                  99,
+                  101
+                ],
+                "logprob": -11.559885025024414
+              },
+              {
+                "id": 34,
+                "token": "C",
+                "bytes": [
+                  67
+                ],
+                "logprob": -11.569921493530273
+              },
+              {
+                "id": 9651,
+                "token": "Will",
+                "bytes": [
+                  87,
+                  105,
+                  108,
+                  108
+                ],
+                "logprob": -11.773059844970703
+              },
+              {
+                "id": 1719,
+                "token": "the",
+                "bytes": [
+                  116,
+                  104,
+                  101
+                ],
+                "logprob": -12.086956977844238
+              }
+            ]
+          },
+          {
+            "id": 273,
+            "token": "le",
+            "bytes": [
+              108,
+              101
+            ],
+            "logprob": 0.0,
+            "top_logprobs": []
+          },
+          {
+            "id": 248046,
+            "token": "",
+            "bytes": [],
+            "logprob": 0.0,
+            "top_logprobs": []
+          }
+        ]
+      }
+    }
+  ],
+  "created": 1790235766,
+  "model": "escha-v047-crossarch",
+  "system_fingerprint": "b0-unknown-dirty",
+  "object": "chat.completion",
+  "usage": {
+    "completion_tokens": 3,
+    "prompt_tokens": 28,
+    "total_tokens": 31,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "visible_tokens": 4
+    }
+  },
+  "id": "chatcmpl-wnMkQO3o9pZUtLjxVFOzD5aMJx2zQU80",
+  "timings": {
+    "cache_n": 0,
+    "cache_lcp_n": 28,
+    "cache_planned_n": 0,
+    "cache_reprocessed_n": 28,
+    "cache_source": "none",
+    "cache_reason": "no_restorable_kvarn_boundary",
+    "cache_slot_ms": 133.833,
+    "cache_ram_save_ms": 133.818,
+    "cache_ram_load_ms": 0.005,
+    "cache_ram_restore_prepare_ms": 0.0,
+    "cache_ram_restore_commit_ms": 0.0,
+    "cache_ram_update_ms": 0.001,
+    "cache_checkpoint_restore_ms": 0.0,
+    "cache_checkpoint_prepare_ms": 0.0,
+    "cache_checkpoint_commit_ms": 0.0,
+    "prompt_n": 28,
+    "prompt_ms": 101.57,
+    "prompt_per_token_ms": 3.6275,
+    "prompt_per_second": 275.67195037904895,
+    "predicted_n": 3,
+    "predicted_ms": 40.605,
+    "predicted_per_token_ms": 20.3025,
+    "predicted_per_second": 49.25501785494398,
+    "draft_n": 2,
+    "draft_n_accepted": 2
+  }
+}

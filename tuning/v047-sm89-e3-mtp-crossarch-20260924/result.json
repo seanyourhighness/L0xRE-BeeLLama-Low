@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "mode": "mtp",
+  "model": "/home/sean/escha-assets/escha-e3-with-mtp.gguf",
+  "answers": [
+    "PARITY_OK",
+    "PARITY_OK"
+  ],
+  "control_pass": true,
+  "bridge_mapped": true,
+  "gpu_after_control": "NVIDIA GeForce RTX 4090, 610.57.04, 10284 MiB, 13825 MiB, P2",
+  "gpu-after.txt": "NVIDIA GeForce RTX 4090, 610.57.04, 4 MiB, 24104 MiB, P0"
+}

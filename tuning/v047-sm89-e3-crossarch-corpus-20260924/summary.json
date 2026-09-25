@@ -1,0 +1,99 @@
+{
+  "status": "passed",
+  "prompt_names": [
+    "control",
+    "fact",
+    "arithmetic",
+    "structured",
+    "code",
+    "instruction"
+  ],
+  "bridge_mapped": true,
+  "responses": {
+    "control": [
+      {
+        "repeat": 1,
+        "content": "PARITY_OK",
+        "finish_reason": "stop",
+        "completion_tokens": 4
+      },
+      {
+        "repeat": 2,
+        "content": "PARITY_OK",
+        "finish_reason": "stop",
+        "completion_tokens": 4
+      }
+    ],
+    "fact": [
+      {
+        "repeat": 1,
+        "content": "Paris",
+        "finish_reason": "stop",
+        "completion_tokens": 2
+      },
+      {
+        "repeat": 2,
+        "content": "Paris",
+        "finish_reason": "stop",
+        "completion_tokens": 2
+      }
+    ],
+    "arithmetic": [
+      {
+        "repeat": 1,
+        "content": "703",
+        "finish_reason": "stop",
+        "completion_tokens": 4
+      },
+      {
+        "repeat": 2,
+        "content": "703",
+        "finish_reason": "stop",
+        "completion_tokens": 4
+      }
+    ],
+    "structured": [
+      {
+        "repeat": 1,
+        "content": "{\"a\":3,\"b\":true}",
+        "finish_reason": "stop",
+        "completion_tokens": 10
+      },
+      {
+        "repeat": 2,
+        "content": "{\"a\":3,\"b\":true}",
+        "finish_reason": "stop",
+        "completion_tokens": 10
+      }
+    ],
+    "code": [
+      {
+        "repeat": 1,
+        "content": "```python\ndef square(x):\n    return x * x\n```",
+        "finish_reason": "stop",
+        "completion_tokens": 16
+      },
+      {
+        "repeat": 2,
+        "content": "```python\ndef square(x):\n    return x * x\n```",
+        "finish_reason": "stop",
+        "completion_tokens": 16
+      }
+    ],
+    "instruction": [
+      {
+        "repeat": 1,
+        "content": "maple",
+        "finish_reason": "stop",
+        "completion_tokens": 3
+      },
+      {
+        "repeat": 2,
+        "content": "maple",
+        "finish_reason": "stop",
+        "completion_tokens": 3
+      }
+    ]
+  },
+  "gpu_after": "4 MiB"
+}
