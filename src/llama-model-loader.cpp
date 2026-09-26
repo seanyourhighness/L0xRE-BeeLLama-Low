@@ -839,7 +839,7 @@ std::string llama_model_loader::get_arch_name() const {
 }
 
 enum llm_arch llama_model_loader::get_arch() const {
-    return llm_kv.arch;
+    return this->llm_kv.arch;
 }
 
 const llama_model_loader::llama_tensor_weight * llama_model_loader::get_weight(const char * name) const {
@@ -1348,7 +1348,7 @@ struct ggml_tensor * llama_model_loader::create_tensor(
                 // CPU causes all three sidecars (~507 MB) to cross PCIe on every
                 // request. Reuse the output placement policy so the unchanged packed
                 // tensors can remain resident when offloaded.
-                if (llm_kv.arch == LLM_ARCH_ESCHA && op == GGML_OP_LOWGPU_GET_ROWS) {
+                if (this->llm_kv.arch == LLM_ARCH_ESCHA && op == GGML_OP_LOWGPU_GET_ROWS) {
                     const char * resident = std::getenv("ESCHA_E3_EMBED_GPU");
                     if (resident != nullptr && strcmp(resident, "1") == 0) {
                         buft_list = buft_list_output;
