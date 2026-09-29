@@ -413,10 +413,10 @@ static __global__ void lowgpu_packed_gemv_mrow_kernel(
 // the compiler then spilled acc[][] and the activation window to local memory, and the spill traffic
 // cost more than the reuse saved (measured: rt2 +1.35 ms, rt4 +4.19 ms over mrow at M=4).
 //
-// Arithmetic per output is unchanged: same 3-byte code decode, same __float2half rounding of the
-// reconstructed weight, same ascending 8-term dot, same accumulation over t with thread stride
-// blockDim.x, same 256-thread binary-tree reduction over the same partial[tid] order.
-template <int R, int T>
+// Both block sizes use the same 3-byte code decode, __float2half weight rounding, and
+// ascending 8-term dot. Changing blockDim.x changes the reduction order, so validate
+// generated output when selecting the 128-thread variant.
+template <int R, int T, int BLOCK_THREADS = 256>
 static __global__ void lowgpu_packed_gemv_rt_kernel(
         const uint8_t * __restrict__ codes,
         const half    * __restrict__ scales,
@@ -504,7 +504,7 @@ static __global__ void lowgpu_packed_gemv_rt_kernel(
         }
     }
 
-    __shared__ float partial[256][R*T];
+    __shared__ float partial[BLOCK_THREADS][R*T];
 #pragma unroll
     for (int rr = 0; rr < R; ++rr) {
 #pragma unroll
@@ -810,6 +810,7 @@ void ggml_cuda_op_lowgpu_mul_mat(ggml_backend_cuda_context & ctx, ggml_tensor * 
         if (rt_rows == 2) {
             if      (T == 2) lowgpu_packed_gemv_rt_kernel<2,2><<<g2, 256, 0, ctx.stream()>>>(rc, rs, rz, xh_rt.ptr, rd, KB, G, ntri, n_embd, V);
             else if (T == 3) lowgpu_packed_gemv_rt_kernel<2,3><<<g2, 256, 0, ctx.stream()>>>(rc, rs, rz, xh_rt.ptr, rd, KB, G, ntri, n_embd, V);
+            else if (T == 4 && std::getenv("ESCHA_E3_HEAD_RT_BLOCK128") != nullptr) lowgpu_packed_gemv_rt_kernel<2,4,128><<<g2, 128, 0, ctx.stream()>>>(rc, rs, rz, xh_rt.ptr, rd, KB, G, ntri, n_embd, V);
             else if (T == 4) lowgpu_packed_gemv_rt_kernel<2,4><<<g2, 256, 0, ctx.stream()>>>(rc, rs, rz, xh_rt.ptr, rd, KB, G, ntri, n_embd, V);
             else if (T == 5) lowgpu_packed_gemv_rt_kernel<2,5><<<g2, 256, 0, ctx.stream()>>>(rc, rs, rz, xh_rt.ptr, rd, KB, G, ntri, n_embd, V);
             else if (T == 6) lowgpu_packed_gemv_rt_kernel<2,6><<<g2, 256, 0, ctx.stream()>>>(rc, rs, rz, xh_rt.ptr, rd, KB, G, ntri, n_embd, V);
