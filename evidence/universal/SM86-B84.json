@@ -1,0 +1,77 @@
+{
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 3060",
+    "compute_capability": "8.6",
+    "vram_mib": 12288,
+    "host": "Z840"
+  },
+  "runtime": {
+    "version": "BeeLlama v0.4.7 SM86 B74 champion",
+    "server_sha256": "e36639081643e7f3be37e1de0008823ff71a899352c05380e0a9072535bcbfee",
+    "cuda_backend_sha256": "b3f117d779d3059232dc09ecbdb26923564464d40d8a99e075f535de198de27d",
+    "bridge_sha256": "2b03be5f77ea7dd866a2da3180807e9df9746e5d1b685d2b5153355b56575ffc",
+    "k3_vector_cubin_sha256": "fe1069f84644825c37d92bb39a1295a063bb25f2ba53e99dba93c1d9c13a7059"
+  },
+  "model": {
+    "repo": "YourHighnessLA/L0xRE-27b-Low",
+    "file": "L0xRE-27b-Low.gguf",
+    "sha256": "b0849250c633aa93853bf119a877dbdafdd7b1a4ebb672bd6b6a1439906f3543",
+    "revision": "9b74c81c19f8372888c2968b5334f42b0354d8b1"
+  },
+  "draft": {
+    "repo": "YourHighnessLA/L0xRE-27b-Low",
+    "file": "Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+    "sha256": "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd"
+  },
+  "profile": {
+    "context": 98304,
+    "slots": 1,
+    "batch": 1024,
+    "target_ubatch": 256,
+    "target_kv": [
+      "kvarn3",
+      "kvarn2"
+    ],
+    "tail_tokens": 128,
+    "draft": "DFlash2 N3",
+    "draft_kv": [
+      "q2_0",
+      "q2_0"
+    ],
+    "window_chunk": 16384,
+    "fit_target_mib": 768
+  },
+  "results": {
+    "deterministic_code_800_tokens_tps": {
+      "mean": 39.046,
+      "runs": 2
+    },
+    "deterministic_narrative_800_tokens_tps": {
+      "mean": 29.422,
+      "runs": 2
+    },
+    "long_context_prompt_tokens": 92879,
+    "greedy_completion_tokens": 128,
+    "long_context_output_sha256": "8f9908604bc899ee40ed5dcb4136c70807edca6438c7320f050e5be99c9b69d2",
+    "long_context_min_free_vram_mib": 215,
+    "long_context_prefill_tps": 272.6,
+    "long_context_decode_tps": 21.06,
+    "long_context_ttft_s": 340.713
+  },
+  "limits": [
+    "Two measured decode runs per prompt; not a broad workload benchmark.",
+    "The long-context completion matches the established B74 greedy output; this is a runtime correctness check, not a general model-quality evaluation.",
+    "Measured only on one RTX 3060; results do not transfer to all SM86 GPUs or Windows."
+  ],
+  "methodology": {
+    "temperature": 0,
+    "seed": 0,
+    "output_tokens": 800,
+    "measured_runs_per_prompt": 2,
+    "sampling_scope": "deterministic short decode; no broad workload claim",
+    "original_model_basename": "escha-e3-firstclass-v2.gguf",
+    "model_identity": "Byte-identical to public L0xRE-27b-Low.gguf SHA-256",
+    "original_launcher_sha256": "d7f4e2c882172ca3470a747d286ce00838f06f7ceec8c5f2f58c7df714f6ceec",
+    "launcher_note": "Original Bash launcher hash; NOT an executable hash. Portable launcher changes paths and incorporates B84 overrides; executable and CUDA/bridge/cubin hashes match benchmark."
+  }
+}

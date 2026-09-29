@@ -1,0 +1,77 @@
+{
+  "product": "L0xRE-BeeLLama-Low",
+  "version": "0.4.7-sm86-b84-universal-windows-r1",
+  "status": "release-candidate",
+  "platform": "Windows AMD64",
+  "supported_compute_capabilities": [
+    "8.6",
+    "8.9",
+    "12.0"
+  ],
+  "minimum_vram_target_gb": 12,
+  "toolchain": {
+    "cuda": "13.3",
+    "msvc": "19.44.35228.0",
+    "architecture_flags": "86;89;120; backend uses120a"
+  },
+  "source_commit": "be302741801080a4fa2ea713fdf9409e2ef599d5",
+  "source_export_audit": {
+    "files": 1604,
+    "differences": 0
+  },
+  "build_method": "Verified matching universal object cache; rebuilt lowgpu.cu/backend; source-built B74 bridge; relinked affected host tools with explicit verified source metadata",
+  "components": {
+    "bin/llama-server.exe": "687997ea2d183204ca08543abe946337a1ffdaa6a73be0709887362c83aa0934",
+    "bin/llama-server-impl.dll": "b17add7404c1654c7d192ece47e77e64ed327fdc485882e85335c334c07ac87d",
+    "bin/ggml-cuda.dll": "5c6eaeca916bdebdda023c961d2fd4c266b92c79535562d32af05481d9221157",
+    "bridge/sm86/bridge-b74-k3-vector.dll": "0c4b87fb0805c74fd230596ab86e4121a589b506a7a380bc568243b6e5888d11",
+    "bridge/sm86/k3-vector-all.cubin": "fe1069f84644825c37d92bb39a1295a063bb25f2ba53e99dba93c1d9c13a7059"
+  },
+  "model": {
+    "revision": "9b74c81c19f8372888c2968b5334f42b0354d8b1",
+    "sha256": "b0849250c633aa93853bf119a877dbdafdd7b1a4ebb672bd6b6a1439906f3543"
+  },
+  "drafter": {
+    "sha256": "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd"
+  },
+  "sm86_profile": {
+    "context": 98304,
+    "batch": 1024,
+    "ubatch": 256,
+    "target_kv": [
+      "kvarn3",
+      "kvarn2"
+    ],
+    "draft_kv": [
+      "q2_0",
+      "q2_0"
+    ],
+    "dflash_depth": 3,
+    "kv_tail_tokens": 128,
+    "head128": true,
+    "b74_vector_bridge": true
+  },
+  "validation": {
+    "pe_files": 70,
+    "local_imports_checked": 4835,
+    "cuda_backend_cubin_entries": {
+      "sm86": 235,
+      "sm89": 235,
+      "sm120": 235
+    },
+    "b74_bridge_exports": 10,
+    "b74_bridge_elf_entries": {
+      "sm86": 2,
+      "sm89": 2,
+      "sm120": 2
+    },
+    "b74_bridge_compiler_linker_warnings": 0,
+    "version": "0.4.7-dev build11 commitbe302741801080a4fa2ea713fdf9409e2ef599d5; no dirty suffix",
+    "gpu_execution": false
+  },
+  "qualification_limits": [
+    "No Windows GPU execution/performance measurement",
+    "Linux measurements do not transfer to Windows",
+    "Nominal12GB VRAM does not guarantee96K context fits under all display/driver loads"
+  ]
+}

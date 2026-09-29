@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+if [[ $# -eq 0 || "${1:-}" == --help || "${1:-}" == -h ]]; then
+  cat <<'USAGE'
+L0xRE BeeLLama universal Linux / WSL runtime
+Usage: ./l0xre serve --profile 12gb -m models/L0xRE-27b-Low.gguf \
+         -md models/Qwen3.8-27B-DFlash2-Q4_K_M.gguf [server options]
+Select GPU with CUDA_VISIBLE_DEVICES=<index or UUID>.
+Override routing with L0XRE_ARCH=sm86|sm89|sm120.
+SM86: 12gb / 12gb-b84 (96K); SM89: 12gb (80K), 16gb, full32k.
+SM120: 12gb (8K), dflash-8k, ordinary-8k, ordinary-32k.
+Models are separate downloads. See README.md for checksums and test scope.
+USAGE
+  exit 0
+fi
+if [[ -n "${L0XRE_ARCH:-}" ]]; then
+  arch="${L0XRE_ARCH,,}"; arch="${arch#sm}"
+else
+  query=(nvidia-smi --query-gpu=compute_cap --format=csv,noheader)
+  if [[ -v CUDA_VISIBLE_DEVICES ]]; then
+    selected="${CUDA_VISIBLE_DEVICES%%,*}"
+    [[ -n "$selected" && "$selected" != -1 ]] || { echo 'CUDA_VISIBLE_DEVICES exposes no GPU.' >&2; exit 2; }
+    query+=(-i "$selected")
+  fi
+  cap="$("${query[@]}" 2>/dev/null | head -n1 | tr -d ' .\r')" || { echo 'GPU detection failed; check nvidia-smi and the NVIDIA driver.' >&2; exit 2; }
+  arch="$cap"
+fi
+case "$arch" in
+  86) exec "$ROOT/architectures/sm86/l0xre" "$@" ;;
+  89) exec "$ROOT/architectures/sm89/l0xre" "$@" ;;
+  120) exec "$ROOT/architectures/sm120/l0xre" "$@" ;;
+  *) echo "Unsupported compute capability: $arch (supported: SM86, SM89, SM120)." >&2; exit 2 ;;
+esac

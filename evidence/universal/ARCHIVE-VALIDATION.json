@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-29",
+  "archives": {
+    "l0xre-beellama-low-v0.4.7-sm86-b84-wsl-linux-x86_64-universal.tar.zst": {
+      "bytes": 1757644944,
+      "sha256": "bf3ce28083d70a137db8695e45962c69f08f602c7878e863a342eb1f9e3d1ba6",
+      "internal_checksums_verified": 238,
+      "checks": "all regular-file hashes, safe paths/symlinks, clean-extract launcher help",
+      "passed": true
+    },
+    "l0xre-win-universal-b84-r1.zip": {
+      "bytes": 890347032,
+      "sha256": "79e1d3d5ed8edef046e4a857ba28657ba2a08b43a4a72dd4a69901e416226d6e",
+      "internal_checksums_verified": 130,
+      "checks": "ZIP CRC, unique safe paths, all file hashes, clean-extract PE imports",
+      "passed": true
+    }
+  },
+  "gpu_execution": false
+}

@@ -1,0 +1,58 @@
+{
+  "date": "2026-09-29",
+  "source_commit": "be302741801080a4fa2ea713fdf9409e2ef599d5",
+  "source_clean": true,
+  "source_audit": {
+    "compiled_source_files": 1604,
+    "differences": 0,
+    "normalization": "CRLF to LF"
+  },
+  "cpu_regression_tests": {
+    "passed": 4,
+    "total": 4,
+    "names": [
+      "test-kvarn",
+      "test-lowgpu",
+      "test-kv-tail-request",
+      "test-fit-kvarn-tail"
+    ]
+  },
+  "launcher_integration": {
+    "linux_passed": 11,
+    "windows_passed": 9,
+    "method": "stub servers/executable; no CUDA execution"
+  },
+  "linux_payload_checks": {
+    "elf_dependency_check": "all three payloads resolved",
+    "version_command": "all three exited0 with CUDA disabled"
+  },
+  "windows": {
+    "pe_files": 70,
+    "local_imports_checked": 4835,
+    "cuda_backend_cubin_entries": {
+      "sm86": 235,
+      "sm89": 235,
+      "sm120": 235
+    },
+    "b74_bridge_exports": 10,
+    "b74_bridge_elf_entries": {
+      "sm86": 2,
+      "sm89": 2,
+      "sm120": 2
+    },
+    "b74_bridge_compiler_linker_warnings": 0,
+    "version": "0.4.7-dev build11 commitbe302741801080a4fa2ea713fdf9409e2ef599d5; no dirty suffix",
+    "gpu_execution": false
+  },
+  "models": {
+    "hf_revision": "9b74c81c19f8372888c2968b5334f42b0354d8b1",
+    "remote_lfs_sha256_verified": true,
+    "weights_changed": false
+  },
+  "pending_hardware_checks": [
+    "Windows inference/performance on SM86/89/120",
+    "Linux SM120 common CLI with non-MTP Low target",
+    "SM86 clean-extract portable-wrapper inference"
+  ],
+  "archive_round_trip": "Recorded separately after sealing in ARCHIVE-VALIDATION.json"
+}

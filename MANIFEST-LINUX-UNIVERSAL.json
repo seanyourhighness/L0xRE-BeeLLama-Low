@@ -1,0 +1,82 @@
+{
+  "product": "L0xRE-BeeLLama-Low",
+  "version": "0.4.7-sm86-b84-universal-linux-r1",
+  "platform": "Linux x86_64; Linux under WSL2",
+  "supported_compute_capabilities": [
+    "8.6",
+    "8.9",
+    "12.0"
+  ],
+  "minimum_vram_gib": 12,
+  "model": {
+    "repo": "YourHighnessLA/L0xRE-27b-Low",
+    "file": "L0xRE-27b-Low.gguf",
+    "bytes": 8619127680,
+    "sha256": "b0849250c633aa93853bf119a877dbdafdd7b1a4ebb672bd6b6a1439906f3543",
+    "revision": "9b74c81c19f8372888c2968b5334f42b0354d8b1"
+  },
+  "draft_model": {
+    "repo": "YourHighnessLA/L0xRE-27b-Low",
+    "file": "Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+    "bytes": 1143006816,
+    "sha256": "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd"
+  },
+  "payloads": {
+    "sm86": {
+      "runtime": "BeeLlama v0.4.7; source baseline commit ab1698c",
+      "cuda_toolkit": "12.8",
+      "profile": "B84: 98304 context, batch 1024, ubatch 256, one slot, DFlash2 N3, draft K/V q2_0",
+      "runtime_server_sha256": "e36639081643e7f3be37e1de0008823ff71a899352c05380e0a9072535bcbfee",
+      "cuda_backend_sha256": "b3f117d779d3059232dc09ecbdb26923564464d40d8a99e075f535de198de27d",
+      "bridge_sha256": "2b03be5f77ea7dd866a2da3180807e9df9746e5d1b685d2b5153355b56575ffc",
+      "k3_vector_cubin_sha256": "fe1069f84644825c37d92bb39a1295a063bb25f2ba53e99dba93c1d9c13a7059",
+      "qualification": "Z840 RTX3060 12GB, identical model/server/CUDA/bridge/cubin hashes to B84 benchmark; portable launcher and defaults updated. Clean-extract checks recorded separately."
+    },
+    "sm89": {
+      "runtime_release": "beellama-sm89-v0.4.7-r1",
+      "source_commit": "0930bd1",
+      "qualification": "Retained from the existing SM89 r1 package and receipts"
+    },
+    "sm120": {
+      "runtime_release": "beellama-sm120-v0.4.7-r9",
+      "qualification": "Retained from the existing SM120 r9 package and receipts",
+      "new_low_target_path": "Common CLI adapter accepts released non-MTP Low target; hardware qualification pending; historical r9 model differs"
+    }
+  },
+  "sm86_source_material": {
+    "base_commit": "ab1698c",
+    "files": {
+      "source/patches/head128-lowgpu.patch": "12d37efc44a609d43624d599040b1f809c5e27ec1d0ef940b9bdfe5afc1dbea5",
+      "source/bridge/official_bridge_b74_k3_vector.cu": "40b162dd48d41ca585968043a492d632ec0395be2029f3535c797474b3ce59c8"
+    },
+    "note": "The matching runtime, CUDA backend, bridge shared object, and cubin hashes are recorded in the SM86 payload and evidence entries."
+  },
+  "shared_dependencies": {
+    "cuda_12_8": {
+      "files": [
+        "shared/cuda-12.8/libcublas.so.12.8.4.1",
+        "shared/cuda-12.8/libcublasLt.so.12.8.4.1",
+        "shared/cuda-12.8/libcudart.so.12.8.90"
+      ],
+      "sha256": {
+        "libcublas.so.12.8.4.1": "031ce6c2cbfbb9468f040527cab5c599069ce5609e73e28f87503881063eac21",
+        "libcublasLt.so.12.8.4.1": "10b5e6631cf8115c661eb895ed1533826308b58f7956466f53d236a40c9b622c",
+        "libcudart.so.12.8.90": "c3a75b33af334a3486d197dbd1584a2985183ba4688d237a2be5f2f679329920"
+      },
+      "used_by": [
+        "sm86",
+        "sm89"
+      ]
+    }
+  },
+  "qualification_limits": [
+    "Only the SM86 payload uses the B84 96K profile and its measured results.",
+    "Do not transfer SM86 throughput claims to SM89 or SM120.",
+    "Windows is a separate build and is not covered by this Linux/WSL package.",
+    "SM86 measurements are deterministic two-run short decode and one long-context canary; only215MiB minimum free VRAM at92879 prompt tokens.",
+    "SM120 historical r9 receipts use E3 with MTP tensors, a different model file from the released non-MTP Low target."
+  ],
+  "minimum_vram_note": "12 GB is the intended VRAM floor, not system RAM; only stated GPU/profile combinations have hardware receipts.",
+  "release_source_commit": "be302741801080a4fa2ea713fdf9409e2ef599d5",
+  "launchers": "Common CLI, GPU visibility routing and SM86 isolation verified with11 stub integration cases"
+}

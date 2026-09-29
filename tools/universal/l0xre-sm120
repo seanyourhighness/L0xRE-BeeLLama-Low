@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# Common CLI adapter for the retained SM120 r9 runtime.
+set -euo pipefail
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+MODEL=''; DRAFT=''; PROFILE=12gb; EXTRAS=()
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    serve) shift ;;
+    --profile|-m|--model|--model-path|-md|--draft-model|--spec-draft-model|--draft-path)
+      [[ $# -ge 2 ]] || { echo "Missing value for $1" >&2; exit 2; }
+      case "$1" in
+        --profile) PROFILE="$2" ;;
+        -m|--model|--model-path) MODEL="$2" ;;
+        *) DRAFT="$2" ;;
+      esac
+      shift 2 ;;
+    *) EXTRAS+=("$1"); shift ;;
+  esac
+done
+[[ -r "$MODEL" ]] || { echo "Model unreadable: $MODEL" >&2; exit 2; }
+case "$PROFILE" in
+  12gb) if [[ -n "$DRAFT" ]]; then PROFILE=dflash-8k; else PROFILE=ordinary-8k; fi ;;
+  ordinary-32k|ordinary-8k|dflash-8k) ;;
+  *) echo "Unsupported SM120 profile: $PROFILE (12gb, dflash-8k, ordinary-8k, ordinary-32k)." >&2; exit 2 ;;
+esac
+# The r9 doctor accepts only its original MTP-containing E3 model hash.
+# This adapter also supports the separately released Low non-MTP target;
+# historical r9 throughput qualification remains tied to its original model.
+set -a
+source "$ROOT/profiles/escha-sm120-bridge.env"
+set +a
+export LD_LIBRARY_PATH="$ROOT/bin${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export ESCHA_BRIDGE_ROOT="$ROOT/bridge"
+export ESCHA_GDN_CHUNK_BRIDGE_LIBRARY="$ROOT/bridge/libescha_gdn_chunk_bridge_sm120_sglangprefix2045.so"
+export ESCHA_GDN_SGLANG_CUBIN_ROOT="$ROOT/bridge/gdn-sm120-matched"
+export ESCHA_GDN_CHUNK_K1_LIBRARY="$ROOT/bridge/libescha_gdn_chunk_k1_full2048.so"
+export ESCHA_E3_HEAD_RT=2 ESCHA_E3_HEAD_MROW=8
+export ESCHA_GDN_CHUNK_BRIDGE=1 ESCHA_GDN_CHUNK_K1=1
+unset ESCHA_E3_HEAD_RT_BLOCK128 L0XRE_K3_VECTOR_CUBIN
+CTX=8192; UB=2048; SPEC=()
+case "$PROFILE" in
+  ordinary-32k) CTX=32768; UB=1024 ;;
+  ordinary-8k) ;;
+  dflash-8k)
+    [[ -r "$DRAFT" ]] || { echo "Drafter unreadable: $DRAFT" >&2; exit 2; }
+    UB=512
+    SPEC=(--spec-type draft-dflash --spec-draft-model "$DRAFT" --spec-draft-n-max 4 -ctkd q4_0 -ctvd q4_0) ;;
+esac
+if [[ -n "$DRAFT" && "$PROFILE" != dflash-8k ]]; then
+  echo 'A drafter requires --profile dflash-8k or 12gb on SM120.' >&2; exit 2
+fi
+exec "$ROOT/bin/llama-server" -m "$MODEL" -c "$CTX" -b 2048 -ub "$UB" -np 1 -t 8 -ngl 99 -fa on \
+  -ctk kvarn3 -ctv kvarn2 "${SPEC[@]}" --jinja --reasoning off \
+  --host 127.0.0.1 --port 8080 --no-webui "${EXTRAS[@]}"
