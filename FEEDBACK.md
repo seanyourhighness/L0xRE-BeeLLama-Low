@@ -1,27 +1,25 @@
-# Experimental SM120 feedback
+# Runtime feedback
 
-For install or startup trouble, run:
+Report issues in [L0xRE-BeeLLama-Low](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/issues). Include the archive name, OS/version, GPU model and VRAM, NVIDIA driver version, selected profile, context length, model hashes, exact launch command, expected behavior, and relevant startup error/output.
+
+First verify the archive against `CHECKSUMS.txt` and the extracted files:
 
 ```bash
-./escha doctor --model e3 --model-path /path/to/model.gguf --report doctor.json
+# Linux / WSL, from the extracted package directory
+sha256sum -c SHA256SUMS
+nvidia-smi
 ```
 
-Attach `doctor.json` to an install issue. The report stays local until you
-attach it and contains hashes, GPU/driver details, startup health, a short
-control pass, and observed memory use. It excludes prompts, generated text,
-credentials, full paths, GPU serials, and IP addresses. Choose W2 in place of
-E3 if that is the model you installed.
+```powershell
+# Windows, from the extracted package directory
+powershell -NoProfile -ExecutionPolicy Bypass -File .\verify.ps1
+nvidia-smi
+```
 
-**Install issue fields:** E3 or W2; Linux distribution or WSL; GPU and VRAM;
-install step that failed; exact error category shown by doctor; expected and
-actual behavior; whether an older immutable asset still starts.
+Record any `CUDA_VISIBLE_DEVICES` or `L0XRE_ARCH` selection, especially on multi-GPU machines. `--help` shows the supported profiles. The server should become ready at `/health`; the default API base is `http://127.0.0.1:8080/v1`.
 
-**Quality or performance issue fields:** E3 or W2; model SHA-256; profile and
-context length; prompt and generated token counts; median prefill/decode over
-five warm runs; draft acceptance; `cache_n` and `cache_reason` for repeated
-prompts; observed peak VRAM; expected and actual
-behavior. Share a prompt or output only if you choose to disclose it. Mention
-the comparison runtime and its model hash when claiming a speed difference.
+For a performance comparison, include input/output token counts, sampling settings, warmup and measured-run counts, acceptance statistics, memory headroom and the exact comparison model/runtime hashes. Separate prefill and decode measurements. The published SM86 numbers are deterministic, workload-specific receipts; Windows GPU performance and the new SM120 non-MTP Low common-CLI path remain unmeasured.
 
-Rollback: stop the server with Ctrl-C and run your previous installed asset
-from its own directory. This archive does not replace or remove prior assets.
+Share prompts or generated output only if you choose to disclose them. The retained SM120 `escha doctor` tool is for the original r9 model hashes, including its MTP-containing E3 file; it is not a universal validator for the new Low target or Windows.
+
+To roll back, stop the server with Ctrl+C and run the earlier immutable release from its own directory with the unchanged model files. These installation instructions do not replace services or convert model weights.
