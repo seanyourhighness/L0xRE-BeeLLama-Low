@@ -1,5 +1,5 @@
 param(
-    [Parameter(Mandatory=$true)][int]$CudaArch,
+    [Parameter(Mandatory=$true)][string]$CudaArch,
     [string]$OutputDir = "release-packages",
     [string]$PackageName = "",
     [string]$BuildName = "",
@@ -68,8 +68,9 @@ if ($AllTests) {
 }
 
 # Persistent Windows build/package folders. These names do not depend on git commit/hash.
-if (-not $PackageName) { $PackageName = "l0xre-win-sm$cudaArch" }
-if (-not $BuildName) { $BuildName = "build-win-sm$cudaArch" }
+$archTag = ($cudaArch -replace "[^0-9]+", "-").Trim("-")
+if (-not $PackageName) { $PackageName = "l0xre-win-sm$archTag" }
+if (-not $BuildName) { $BuildName = "build-win-sm$archTag" }
 $buildDir = Join-Path $repoRoot $BuildName
 $pkgDir = Join-Path $repoRoot "$OutputDir\$PackageName"
 $binDir = Join-Path $buildDir "bin"
