@@ -20,6 +20,8 @@ $VisionArguments = @(
     "serve", "--profile", "12gb-b84",
     "-m", (Join-Path $ModelsDirectory "L0xRE-27b-Low.gguf"),
     "-md", (Join-Path $ModelsDirectory "Qwen3.8-27B-DFlash2-Q4_K_M.gguf"),
+    "-c", "81920", "-ctk", "kvarn3", "-ctv", "kvarn3",
+    "--spec-draft-type-k", "q4_0", "--spec-draft-type-v", "q4_0", "--fit", "off",
     "--mmproj", (Join-Path $ModelsDirectory "mmproj-Qwen3.8-27B-Q8_0.gguf"),
     "--no-mmproj-offload", "--image-min-tokens", "1024", "--image-max-tokens", "1024",
     "-t", "$Workers", "-tb", "$Workers", "--reasoning-effort", "medium",

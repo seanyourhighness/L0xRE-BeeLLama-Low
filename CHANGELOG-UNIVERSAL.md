@@ -1,3 +1,12 @@
+# v0.4.7 universal r3 — 80K quality-first 12 GB defaults
+
+- `12gb` and `12gb-quality` select 81,920 context, target KVarN3/3, Q4_0/Q4_0 draft KV, DFlash2 N3, batch/ubatch 1024/256, exact tail 128, and window chunk 16384 on every universal route. The drafter weights remain Q4_K_M.
+- Use 32 generation/batch CPU workers, medium reasoning with an 8,192-token budget, cache RAM disabled, and automatic memory fitting disabled. Users can explicitly override worker/context settings.
+- A supplied vision projector runs on CPU with min/max 1024 image tokens; Q8_0 is recommended. Vision remains opt-in. Include the vision examples, Hermes80K native config, and smoke client in both packages.
+- SM86 retains the B74 bridge and head128 choices. The `12gb-b84` name remains a compatibility alias on SM86, now selecting the80K preset. Explicit non-12GB legacy profiles keep their settings.
+- Sean selected this less aggressive cache quantization after reporting better everyday results. Linux SM86 code/vision and 29,762-token retrieval passed; minimum free VRAM 243 MiB vs19MiB for 96K with the same upgraded caches. This is not a general quality score or full 80K qualification.
+- Configurations are aligned on SM89/SM120 and Windows; new-profile inference, throughput and memory qualification remain pending on those routes. Compiled binaries, CUDA kernels, bridges and model weights are unchanged from r2. Older releases remain immutable rollback options.
+
 # v0.4.7 universal r2 — model naming and documentation
 
 - Public model documentation uses L0xRE-27b-Low consistently.

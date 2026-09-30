@@ -1,6 +1,6 @@
 {
   "product": "L0xRE-BeeLLama-Low",
-  "version": "0.4.7-universal-r2",
+  "version": "0.4.7-universal-r3",
   "status": "release-candidate",
   "platform": "Windows AMD64",
   "supported_compute_capabilities": [
@@ -35,19 +35,42 @@
     "sha256": "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd"
   },
   "sm86_profile": {
-    "context": 98304,
+    "context": 81920,
+    "slots": 1,
     "batch": 1024,
-    "ubatch": 256,
+    "target_ubatch": 256,
     "target_kv": [
       "kvarn3",
-      "kvarn2"
+      "kvarn3"
     ],
+    "draft_weights": "Q4_K_M",
     "draft_kv": [
-      "q2_0",
-      "q2_0"
+      "q4_0",
+      "q4_0"
     ],
     "dflash_depth": 3,
+    "draft_gpu_layers": 99,
     "kv_tail_tokens": 128,
+    "window_chunk": 16384,
+    "cache_ram_mib": 0,
+    "fit": "off",
+    "threads": 32,
+    "threads_batch": 32,
+    "reasoning": "on",
+    "reasoning_effort": "medium",
+    "reasoning_budget": 8192,
+    "sampling": {
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "top_k": 20
+    },
+    "vision": {
+      "enabled_by": "--mmproj FILE (opt-in)",
+      "projector": "mmproj-Qwen3.8-27B-Q8_0.gguf",
+      "offload": "CPU",
+      "image_min_tokens": 1024,
+      "image_max_tokens": 1024
+    },
     "head128": true,
     "b74_vector_bridge": true
   },
@@ -70,11 +93,52 @@
     "gpu_execution": false
   },
   "qualification_limits": [
-    "No Windows GPU execution/performance measurement",
-    "Linux measurements do not transfer to Windows",
-    "Nominal12GB VRAM does not guarantee96K context fits under all display/driver loads"
+    "Current 80K code/vision and29,762-token retrieval tested only on Linux SM86",
+    "Windows and new SM89/SM120 profile inference/headroom remain pending",
+    "Older throughput receipts describe their historical settings, not this configuration",
+    "Configured 80K context has not had full-context qualification"
   ],
   "model_display_name": "L0xRE-27b-Low",
-  "documentation_update": "Canonical model naming and clearer installation; model weights and compiled binaries unchanged",
-  "api_model_alias": "L0xRE-27b-Low"
+  "documentation_update": "r3 updates launcher configuration and docs; compiled components and model weights match r2",
+  "api_model_alias": "L0xRE-27b-Low",
+  "default_12gb_profile": {
+    "context": 81920,
+    "slots": 1,
+    "batch": 1024,
+    "target_ubatch": 256,
+    "target_kv": [
+      "kvarn3",
+      "kvarn3"
+    ],
+    "draft_weights": "Q4_K_M",
+    "draft_kv": [
+      "q4_0",
+      "q4_0"
+    ],
+    "dflash_depth": 3,
+    "draft_gpu_layers": 99,
+    "kv_tail_tokens": 128,
+    "window_chunk": 16384,
+    "cache_ram_mib": 0,
+    "fit": "off",
+    "threads": 32,
+    "threads_batch": 32,
+    "reasoning": "on",
+    "reasoning_effort": "medium",
+    "reasoning_budget": 8192,
+    "sampling": {
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "top_k": 20
+    },
+    "vision": {
+      "enabled_by": "--mmproj FILE (opt-in)",
+      "projector": "mmproj-Qwen3.8-27B-Q8_0.gguf",
+      "offload": "CPU",
+      "image_min_tokens": 1024,
+      "image_max_tokens": 1024
+    },
+    "draft_ubatch": 128
+  },
+  "configuration_release": "beellama-v0.4.7-universal-r3"
 }

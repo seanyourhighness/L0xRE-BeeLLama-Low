@@ -42,20 +42,26 @@ while [[ $# -gt 0 ]]; do
     *) ARGS+=("$1"); shift;;
   esac
 done
-case "$PROFILE" in 12gb|16gb|full32k) ;; *) echo "Unsupported SM89 profile: $PROFILE" >&2; exit 2 ;; esac
+case "$PROFILE" in 12gb|12gb-quality|16gb|full32k) ;; *) echo "Unsupported SM89 profile: $PROFILE" >&2; exit 2 ;; esac
 CTX=(); NMAX=3
+CPU=(-t 8); EFFORT=low; QUALITY=()
 case "$PROFILE" in
-  12gb)    CTX=(-c 81920 -b 1024 -ub 64 -ctk kvarn3 -ctv kvarn2); NMAX=3;;
+  12gb|12gb-quality)
+           export GGML_KVARN_WINDOW_CHUNK=16384
+           CTX=(-c 81920 -b 1024 -ub 256 -ctk kvarn3 -ctv kvarn3 --kv-tail-tokens 128)
+           CPU=(-t 32 -tb 32); EFFORT=medium
+           QUALITY=(--cache-ram 0 --fit off --no-mmproj-offload --image-min-tokens 1024 --image-max-tokens 1024)
+           NMAX=3;;
   16gb)    export GGML_KVARN_WINDOW_CHUNK=16384
            CTX=(-c 262144 -b 1024 -ub 512 -ctk kvarn3 -ctv kvarn3); NMAX=3;;
   full32k) CTX=(-c 32768 -b 2048 -ub 1024 -ctk kvarn3 -ctv kvarn2); NMAX=5;;
 esac
 SPEC=()
 if [[ "$HAVE_DRAFT" == 1 ]]; then
-  SPEC=(--spec-type draft-dflash --spec-draft-n-max "$NMAX" --spec-draft-ngl 99 \
+  SPEC=(--spec-type draft-dflash --spec-draft-n-max "$NMAX" --spec-draft-ngl 99 --spec-draft-ubatch-size 128 \
         --spec-draft-type-k q4_0 --spec-draft-type-v q4_0)
 fi
-exec "$ROOT/bin/llama-server" --alias L0xRE-27b-Low -np 1 -t 8 -ngl 99 -fa on \
-  --jinja --reasoning on --reasoning-effort low --reasoning-budget 8192 \
+exec "$ROOT/bin/llama-server" --alias L0xRE-27b-Low -np 1 "${CPU[@]}" -ngl 99 -fa on \
+  --jinja --reasoning on --reasoning-effort "$EFFORT" --reasoning-budget 8192 \
   --temp 0.7 --top-p 0.95 --top-k 20 --no-webui \
-  "${CTX[@]}" "${SPEC[@]}" "${ARGS[@]}"
+  "${CTX[@]}" "${SPEC[@]}" "${QUALITY[@]}" "${ARGS[@]}"

@@ -1,12 +1,14 @@
 # Universal B84 source and build provenance
 
-Release: `beellama-v0.4.7-universal-r2`.
+Release: `beellama-v0.4.7-universal-r3`.
+
+r3 changes the portable launchers, 12 GB defaults, examples and documentation. It reuses the verified r2 compiled payloads without rebuilding kernels or changing weights. The executable build/commit metadata below describes those retained binaries; configuration provenance is the r3 tag. The new 80K profile is tested on Linux SM86, with other architecture/Windows profile inference still pending.
 
 The [committed SM86 / Windows source](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/tree/be302741801080a4fa2ea713fdf9409e2ef599d5) is `be302741801080a4fa2ea713fdf9409e2ef599d5` on `release/sm86-b84-universal`. It contains the opt-in head128 patch, B74 CUDA bridge and PTX reconstruction inputs, Windows export/build support, and the universal architecture-list build-script fix. The source worktree was clean when published.
 
 ## Linux / WSL
 
-SM86 preserves the measured champion: BeeLLama baseline `ab1698c739b3bc13b9e06fb8febdc774ff106d23` plus the opt-in model-head patch, B74 bridge and vector cubin. The server itself remains the measured baseline executable; the head change resides in its CUDA backend. The portable launcher incorporates the B84 Q4-drafter overrides. Every component hash is in the Linux manifest and SM86 receipt.
+SM86 preserves the measured champion: BeeLLama baseline `ab1698c739b3bc13b9e06fb8febdc774ff106d23` plus the opt-in model-head patch, B74 bridge and vector cubin. The server itself remains the measured baseline executable; the head change resides in its CUDA backend. The portable launcher incorporates the current 80K/KVarN3/3/Q4-draft-cache defaults. Every component hash is in the Linux manifest and SM86 receipt.
 
 Original SM86 compiler: CUDA 12.8.93 / GCC 13.3.0; Release, shared libraries, `CMAKE_CUDA_ARCHITECTURES=86`, `GGML_CUDA_FA=ON`, `GGML_CUDA_KVARN=ON`, `GGML_BACKEND_DL=OFF`, `GGML_NATIVE=ON`, prebuilt UI enabled. The original host was Z840. Native CPU compilation is a portability constraint; the release target requires AVX2-capable x86-64 hosts.
 

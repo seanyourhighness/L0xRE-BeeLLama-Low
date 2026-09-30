@@ -1,0 +1,32 @@
+name: Launcher configuration checks
+on:
+  push:
+    paths:
+      - 'tools/universal/**'
+      - 'profiles/**'
+      - 'examples/vision/**'
+      - '.github/workflows/launcher-configs.yml'
+  pull_request:
+    paths:
+      - 'tools/universal/**'
+      - 'profiles/**'
+      - 'examples/vision/**'
+      - '.github/workflows/launcher-configs.yml'
+permissions:
+  contents: read
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check shell syntax and launcher arguments
+        run: |
+          bash -n tools/universal/l0xre tools/universal/l0xre-sm86 tools/universal/l0xre-sm89 tools/universal/l0xre-sm120 examples/vision/serve-cpu-sm86.sh
+          python3 tools/universal/test-linux-launchers.py
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check Windows launcher arguments with a stub executable
+        shell: powershell
+        run: .\tools\universal\test-windows-launcher.ps1

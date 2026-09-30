@@ -19,9 +19,9 @@ while [[ $# -gt 0 ]]; do
 done
 [[ -r "$MODEL" ]] || { echo "Model unreadable: $MODEL" >&2; exit 2; }
 case "$PROFILE" in
-  12gb) if [[ -n "$DRAFT" ]]; then PROFILE=dflash-8k; else PROFILE=ordinary-8k; fi ;;
+  12gb|12gb-quality) PROFILE=12gb-quality ;;
   ordinary-32k|ordinary-8k|dflash-8k) ;;
-  *) echo "Unsupported SM120 profile: $PROFILE (12gb, dflash-8k, ordinary-8k, ordinary-32k)." >&2; exit 2 ;;
+  *) echo "Unsupported SM120 profile: $PROFILE (12gb, 12gb-quality, dflash-8k, ordinary-8k, ordinary-32k)." >&2; exit 2 ;;
 esac
 # The r9 doctor accepts only its original MTP-containing E3 model hash.
 # This adapter also supports the separately released Low non-MTP target;
@@ -37,8 +37,18 @@ export ESCHA_GDN_CHUNK_K1_LIBRARY="$ROOT/bridge/libescha_gdn_chunk_k1_full2048.s
 export ESCHA_E3_HEAD_RT=2 ESCHA_E3_HEAD_MROW=8
 export ESCHA_GDN_CHUNK_BRIDGE=1 ESCHA_GDN_CHUNK_K1=1
 unset ESCHA_E3_HEAD_RT_BLOCK128 L0XRE_K3_VECTOR_CUBIN
-CTX=8192; UB=2048; SPEC=()
+CTX=8192; BATCH=2048; UB=2048; SPEC=(); CPU=(-t 8); VALUE_CACHE=kvarn2
+REASONING=(--reasoning off); QUALITY=()
 case "$PROFILE" in
+  12gb-quality)
+    export GGML_KVARN_WINDOW_CHUNK=16384
+    CTX=81920; BATCH=1024; UB=256; CPU=(-t 32 -tb 32); VALUE_CACHE=kvarn3
+    REASONING=(--reasoning on --reasoning-effort medium --reasoning-budget 8192)
+    QUALITY=(--kv-tail-tokens 128 --cache-ram 0 --fit off --no-mmproj-offload --image-min-tokens 1024 --image-max-tokens 1024)
+    if [[ -n "$DRAFT" ]]; then
+      [[ -r "$DRAFT" ]] || { echo "Drafter unreadable: $DRAFT" >&2; exit 2; }
+      SPEC=(--spec-type draft-dflash --spec-draft-model "$DRAFT" --spec-draft-ngl 99 --spec-draft-ubatch-size 128 --spec-draft-n-max 3 -ctkd q4_0 -ctvd q4_0)
+    fi ;;
   ordinary-32k) CTX=32768; UB=1024 ;;
   ordinary-8k) ;;
   dflash-8k)
@@ -46,9 +56,9 @@ case "$PROFILE" in
     UB=512
     SPEC=(--spec-type draft-dflash --spec-draft-model "$DRAFT" --spec-draft-n-max 4 -ctkd q4_0 -ctvd q4_0) ;;
 esac
-if [[ -n "$DRAFT" && "$PROFILE" != dflash-8k ]]; then
+if [[ -n "$DRAFT" && "$PROFILE" != dflash-8k && "$PROFILE" != 12gb-quality ]]; then
   echo 'A drafter requires --profile dflash-8k or 12gb on SM120.' >&2; exit 2
 fi
-exec "$ROOT/bin/llama-server" --alias L0xRE-27b-Low -m "$MODEL" -c "$CTX" -b 2048 -ub "$UB" -np 1 -t 8 -ngl 99 -fa on \
-  -ctk kvarn3 -ctv kvarn2 "${SPEC[@]}" --jinja --reasoning off \
+exec "$ROOT/bin/llama-server" --alias L0xRE-27b-Low -m "$MODEL" -c "$CTX" -b "$BATCH" -ub "$UB" -np 1 "${CPU[@]}" -ngl 99 -fa on \
+  -ctk kvarn3 -ctv "$VALUE_CACHE" "${SPEC[@]}" --jinja "${REASONING[@]}" "${QUALITY[@]}" \
   --host 127.0.0.1 --port 8080 --no-webui "${EXTRAS[@]}"

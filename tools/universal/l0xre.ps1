@@ -5,7 +5,8 @@ $ROOT = $PSScriptRoot
 if (-not $Rest -or $Rest[0] -in @("--help", "-h", "help")) {
     Write-Host "L0xRE BeeLLama universal Windows runtime"
     Write-Host '.\l0xre.cmd serve --profile 12gb -m models\L0xRE-27b-Low.gguf -md models\Qwen3.8-27B-DFlash2-Q4_K_M.gguf'
-    Write-Host "Profiles: 12gb (SM86=B84 96K; SM89/SM120=80K), 12gb-b84 (SM86 only), 16gb, full32k."
+    Write-Host "12gb / 12gb-quality: 80K, KVarN3/3, draft Q4_0/Q4_0, 32 workers, medium reasoning, CPU projector."
+    Write-Host "12gb-b84 is a compatibility alias on SM86. Other profiles: 16gb, full32k."
     Write-Host "See README.md for model downloads, verification, and hardware test scope."
     exit 0
 }
@@ -72,16 +73,18 @@ while ($i -lt $Rest.Count) {
     if ($a -in @("-md","--draft-model","--spec-draft-model")) { $HaveDraft = $true }
     $ServerArgs += $a; $i++
 }
-if ($Profile -eq "12gb" -and $ARCH -eq "sm86") { $Profile = "12gb-b84" }
-$Ctx = @(); $NMax = 3; $DraftKV = "q4_0"; $Fit = @()
+if ($Profile -eq "12gb-b84" -and $ARCH -ne "sm86") { throw "12gb-b84 is supported only on SM86." }
+if ($Profile -in @("12gb", "12gb-quality", "12gb-b84")) { $Profile = "12gb-quality" }
+$Ctx = @(); $NMax = 3; $DraftKV = "q4_0"; $Fit = @(); $Vision = @()
+$Cpu = @("-t", "8"); $Effort = "low"
 switch ($Profile) {
-    "12gb-b84" {
-        if ($ARCH -ne "sm86") { throw "12gb-b84 is supported only on SM86." }
+    "12gb-quality" {
         $env:GGML_KVARN_WINDOW_CHUNK = "16384"
-        $Ctx = @("-c","98304","-b","1024","-ub","256","-ctk","kvarn3","-ctv","kvarn2","--kv-tail-tokens","128")
-        $DraftKV = "q2_0"; $Fit = @("--cache-ram","0","--fit","on","--fit-target","768")
+        $Ctx = @("-c","81920","-b","1024","-ub","256","-ctk","kvarn3","-ctv","kvarn3","--kv-tail-tokens","128")
+        $Cpu = @("-t", "32", "-tb", "32"); $Effort = "medium"
+        $Fit = @("--cache-ram","0","--fit","off")
+        $Vision = @("--no-mmproj-offload", "--image-min-tokens", "1024", "--image-max-tokens", "1024")
     }
-    "12gb" { $Ctx = @("-c","81920","-b","1024","-ub","64","-ctk","kvarn3","-ctv","kvarn2") }
     "16gb" {
         $env:GGML_KVARN_WINDOW_CHUNK = "16384"
         $Ctx = @("-c","262144","-b","1024","-ub","512","-ctk","kvarn3","-ctv","kvarn3")
@@ -91,13 +94,13 @@ switch ($Profile) {
 }
 $Spec = @()
 if ($HaveDraft) {
-    $Spec = @("--spec-type","draft-dflash","--spec-draft-n-max","$NMax","--spec-draft-ngl","99","--spec-draft-type-k",$DraftKV,"--spec-draft-type-v",$DraftKV)
+    $Spec = @("--spec-type","draft-dflash","--spec-draft-n-max","$NMax","--spec-draft-ngl","99","--spec-draft-ubatch-size","128","--spec-draft-type-k",$DraftKV,"--spec-draft-type-v",$DraftKV)
 }
 $required = @("$ROOT\bin\llama-server.exe",$env:ESCHA_OFFICIAL_BRIDGE_LIBRARY,$env:ESCHA_OFFICIAL_CODE_GEMM_CUBIN,$env:ESCHA_GDN_CHUNK_BRIDGE_LIBRARY)
 if ($ARCH -eq "sm86") { $required += $env:L0XRE_K3_VECTOR_CUBIN }
 foreach ($file in $required) { if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { throw "Package component missing: $file. Re-extract the complete ZIP." } }
 Write-Host "L0xRE: $ARCH / $Profile" -ForegroundColor DarkGray
-& "$ROOT\bin\llama-server.exe" --alias L0xRE-27b-Low -np 1 -t 8 -ngl 99 -fa on `
-    --jinja --reasoning on --reasoning-effort low --reasoning-budget 8192 `
-    --temp 0.7 --top-p 0.95 --top-k 20 --no-webui @Ctx @Spec @Fit @ServerArgs
+& "$ROOT\bin\llama-server.exe" --alias L0xRE-27b-Low -np 1 @Cpu -ngl 99 -fa on `
+    --jinja --reasoning on --reasoning-effort $Effort --reasoning-budget 8192 `
+    --temp 0.7 --top-p 0.95 --top-k 20 --no-webui @Ctx @Spec @Fit @Vision @ServerArgs
 exit $LASTEXITCODE

@@ -1,0 +1,71 @@
+{
+  "date_utc": "2026-09-30",
+  "hardware": {
+    "host": "HPZ840",
+    "gpu": "RTX3060 12GB",
+    "cpu": "2xXeonE5-2620v4"
+  },
+  "profile": {
+    "context": 81920,
+    "slots": 1,
+    "batch": 1024,
+    "target_ubatch": 256,
+    "target_kv": [
+      "kvarn3",
+      "kvarn3"
+    ],
+    "draft_weights": "Q4_K_M",
+    "draft_kv": [
+      "q4_0",
+      "q4_0"
+    ],
+    "dflash_depth": 3,
+    "draft_gpu_layers": 99,
+    "kv_tail_tokens": 128,
+    "window_chunk": 16384,
+    "cache_ram_mib": 0,
+    "fit": "off",
+    "threads": 32,
+    "threads_batch": 32,
+    "reasoning": "on",
+    "reasoning_effort": "medium",
+    "reasoning_budget": 8192,
+    "sampling": {
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "top_k": 20
+    },
+    "vision": {
+      "enabled_by": "--mmproj FILE (opt-in)",
+      "projector": "mmproj-Qwen3.8-27B-Q8_0.gguf",
+      "offload": "CPU",
+      "image_min_tokens": 1024,
+      "image_max_tokens": 1024
+    }
+  },
+  "results": {
+    "minimum_free_vram_mib": 243,
+    "code": {
+      "decode_tps": 40.32148367514292,
+      "functional_canary_passed": true,
+      "answer_sha256": "3c1b578cf583e53f540b2b3de98ab678b95cd43ecbcf12e843962068dea9bd0a"
+    },
+    "vision": {
+      "passed": true,
+      "image_prompt_seconds": 16.869276999999997
+    },
+    "retrieval": {
+      "passed": true,
+      "prompt_tokens": 29762,
+      "answer_sha256": "1a6aaa03c6c2a144e1e2433b983a474b1b092efeee5d4fe5e2f9686c4ceb182f"
+    }
+  },
+  "selection_basis": "Sean reports better results than the original96K targetKVarN3/2/draftQ2-cache configuration; no controlled broad quality benchmark is claimed.",
+  "limits": [
+    "Single LinuxSM86 host; Windows and newSM89/SM120 defaults await inference/headroom qualification",
+    "29,762-token retrieval is not full80K qualification",
+    "Code prompt is a short binary_search canary, not the historical800-token benchmark",
+    "Capped prose sample produced no visible answer and is excluded from quality conclusions"
+  ],
+  "same_upgraded_caches_at_96k_min_free_mib": 19
+}

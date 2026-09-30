@@ -1,6 +1,6 @@
 {
   "product": "L0xRE-BeeLLama-Low",
-  "version": "0.4.7-universal-r2",
+  "version": "0.4.7-universal-r3",
   "platform": "Linux x86_64; Linux under WSL2",
   "supported_compute_capabilities": [
     "8.6",
@@ -25,22 +25,24 @@
     "sm86": {
       "runtime": "BeeLlama v0.4.7; source baseline commit ab1698c",
       "cuda_toolkit": "12.8",
-      "profile": "B84: 98304 context, batch 1024, ubatch 256, one slot, DFlash2 N3, draft K/V q2_0",
+      "profile": "80K quality: KVarN3/3, Q4_K_M drafter / Q4_0 draft KV, N3, UB256, 32 workers, medium, CPU vision when supplied",
       "runtime_server_sha256": "e36639081643e7f3be37e1de0008823ff71a899352c05380e0a9072535bcbfee",
       "cuda_backend_sha256": "b3f117d779d3059232dc09ecbdb26923564464d40d8a99e075f535de198de27d",
       "bridge_sha256": "2b03be5f77ea7dd866a2da3180807e9df9746e5d1b685d2b5153355b56575ffc",
       "k3_vector_cubin_sha256": "fe1069f84644825c37d92bb39a1295a063bb25f2ba53e99dba93c1d9c13a7059",
-      "qualification": "Z840 RTX3060 12GB, identical model/server/CUDA/bridge/cubin hashes to B84 benchmark; portable launcher and defaults updated. Clean-extract checks recorded separately."
+      "qualification": "SM86: code/vision/29,762-token retrieval tested at80K; SM89/SM120: launch arguments checked, new profile inference/headroom pending"
     },
     "sm89": {
       "runtime_release": "beellama-sm89-v0.4.7-r1",
       "source_commit": "0930bd1",
-      "qualification": "Retained from the existing SM89 r1 package and receipts"
+      "qualification": "SM86: code/vision/29,762-token retrieval tested at80K; SM89/SM120: launch arguments checked, new profile inference/headroom pending",
+      "profile": "80K quality: KVarN3/3, Q4_K_M drafter / Q4_0 draft KV, N3, UB256, 32 workers, medium, CPU vision when supplied"
     },
     "sm120": {
       "runtime_release": "beellama-sm120-v0.4.7-r9",
-      "qualification": "Retained from the existing SM120 r9 package and receipts",
-      "new_low_target_path": "Common CLI adapter accepts released non-MTP Low target; hardware qualification pending; historical r9 model differs"
+      "qualification": "SM86: code/vision/29,762-token retrieval tested at80K; SM89/SM120: launch arguments checked, new profile inference/headroom pending",
+      "new_low_target_path": "Common CLI adapter accepts released non-MTP Low target; hardware qualification pending; historical r9 model differs",
+      "profile": "80K quality: KVarN3/3, Q4_K_M drafter / Q4_0 draft KV, N3, UB256, 32 workers, medium, CPU vision when supplied"
     }
   },
   "sm86_source_material": {
@@ -70,16 +72,55 @@
     }
   },
   "qualification_limits": [
-    "Only the SM86 payload uses the B84 96K profile and its measured results.",
-    "Do not transfer SM86 throughput claims to SM89 or SM120.",
-    "Windows is a separate build and is not covered by this Linux/WSL package.",
-    "SM86 measurements are deterministic two-run short decode and one long-context canary; only215MiB minimum free VRAM at92879 prompt tokens.",
-    "SM120 historical r9 receipts use E3 with MTP tensors, a different model file from the released non-MTP Low target."
+    "Current 80K code/vision and 29,762-token retrieval tested only on Linux SM86",
+    "Windows and new SM89/SM120 profile inference/headroom remain pending",
+    "Older throughput receipts describe their historical settings, not this configuration",
+    "Configured 80K context has not had full-context qualification"
   ],
   "minimum_vram_note": "12 GB is the intended VRAM floor, not system RAM; only stated GPU/profile combinations have hardware receipts.",
   "release_source_commit": "be302741801080a4fa2ea713fdf9409e2ef599d5",
-  "launchers": "Common CLI, GPU visibility routing and SM86 isolation verified with11 stub integration cases",
+  "launchers": "Common CLI, GPU visibility routing and SM86 isolation verified with25 Linux stub integration cases",
   "model_display_name": "L0xRE-27b-Low",
-  "documentation_update": "Canonical model naming and clearer installation; model weights and compiled binaries unchanged",
-  "api_model_alias": "L0xRE-27b-Low"
+  "documentation_update": "r3 updates launcher configuration and docs; compiled components and model weights match r2",
+  "api_model_alias": "L0xRE-27b-Low",
+  "default_12gb_profile": {
+    "context": 81920,
+    "slots": 1,
+    "batch": 1024,
+    "target_ubatch": 256,
+    "target_kv": [
+      "kvarn3",
+      "kvarn3"
+    ],
+    "draft_weights": "Q4_K_M",
+    "draft_kv": [
+      "q4_0",
+      "q4_0"
+    ],
+    "dflash_depth": 3,
+    "draft_gpu_layers": 99,
+    "kv_tail_tokens": 128,
+    "window_chunk": 16384,
+    "cache_ram_mib": 0,
+    "fit": "off",
+    "threads": 32,
+    "threads_batch": 32,
+    "reasoning": "on",
+    "reasoning_effort": "medium",
+    "reasoning_budget": 8192,
+    "sampling": {
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "top_k": 20
+    },
+    "vision": {
+      "enabled_by": "--mmproj FILE (opt-in)",
+      "projector": "mmproj-Qwen3.8-27B-Q8_0.gguf",
+      "offload": "CPU",
+      "image_min_tokens": 1024,
+      "image_max_tokens": 1024
+    },
+    "draft_ubatch": 128
+  },
+  "configuration_release": "beellama-v0.4.7-universal-r3"
 }

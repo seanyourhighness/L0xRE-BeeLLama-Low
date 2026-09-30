@@ -3,6 +3,7 @@
 model:
   default: L0xRE-27b-Low
   provider: custom:l0xre-sm86
+  max_tokens: 4096
 agent:
   image_input_mode: native
   reasoning_effort: medium
@@ -13,7 +14,7 @@ custom_providers:
     key_env: ''
     api_mode: openai
     model: L0xRE-27b-Low
-    context_length: 98304
+    context_length: 81920
     models:
       L0xRE-27b-Low:
         supports_vision: true
@@ -23,3 +24,4 @@ auxiliary:
     model: L0xRE-27b-Low
     base_url: http://127.0.0.1:8080/v1
     timeout: 900
+    temperature: 0.1

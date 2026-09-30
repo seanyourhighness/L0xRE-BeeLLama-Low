@@ -4,16 +4,16 @@ Run **L0xRE-27b-Low** with the BeeLLama runtime on NVIDIA RTX 30, 40, and 50 ser
 
 **Image input:** see the [opt-in CPU vision setup](#vision-start-with-the-projector-on-cpu), including Q8_0, worker settings and a native Hermes config.
 
-The intended minimum is **12 GB of GPU VRAM**, not 12 GB of system RAM. Cards with less VRAM are outside this release target. Available VRAM, context length, display use, and driver overhead still matter; the measured RTX 3060 long-context run had only 215 MiB free at its lowest point.
+The intended minimum is **12 GB of GPU VRAM**, not 12 GB of system RAM. Cards with less VRAM are outside this release target. Available VRAM, context length, display use, and driver overhead still matter; the current 80K upgraded-cache test reached243MiB free on theRTX3060; this is a measured workload, not a guarantee for every12GB card.
 
 ## Downloads
 
-**[Universal release candidate](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/beellama-v0.4.7-universal-r2)** · [Archive checksums](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r2/CHECKSUMS.txt)
+**[Universal release candidate](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/beellama-v0.4.7-universal-r3)** · [Archive checksums](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r3/CHECKSUMS.txt)
 
 | Platform | Download | GPU code included | Status |
 | --- | --- | --- | --- |
-| Linux x86-64 / WSL2 | [Universal `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r2/l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r2.tar.zst) | Separate SM86 / SM89 / SM120 payloads | SM86 champion components tested on RTX 3060; inherited SM89 and SM120 receipts included; common launcher validated separately |
-| Windows x64 | [Universal `.zip`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r2/l0xre-win-universal-r2.zip) | One rebuilt CUDA backend with SM86 / SM89 / SM120 code, architecture-specific bridge cubins | Build, PE dependency, architecture and launcher checks passed; GPU execution and throughput pending |
+| Linux x86-64 / WSL2 | [Universal `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r3/l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r3.tar.zst) | Separate SM86 / SM89 / SM120 payloads | SM86 champion components tested on RTX 3060; inherited SM89 and SM120 receipts included; common launcher validated separately |
+| Windows x64 | [Universal `.zip`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r3/l0xre-win-universal-r3.zip) | One rebuilt CUDA backend with SM86 / SM89 / SM120 code, architecture-specific bridge cubins | Build, PE dependency, architecture and launcher checks passed; GPU execution and throughput pending |
 | Model + drafter | [L0xRE-27b-Low on Hugging Face](https://huggingface.co/YourHighnessLA/L0xRE-27b-Low) | `L0xRE-27b-Low.gguf` + `Qwen3.8-27B-DFlash2-Q4_K_M.gguf` | Existing weights unchanged; SHA-256 identities below |
 
 This is a release candidate because the Windows GPU paths and the new SM120 common-CLI path with the non-MTP Low target have not had hardware execution tests. Architecture coverage is distinct from performance qualification. Older architecture-specific releases remain available as rollback options.
@@ -33,8 +33,8 @@ Download the Linux archive and `CHECKSUMS.txt` above into one directory. Install
 
 ```bash
 sha256sum --ignore-missing -c CHECKSUMS.txt
-tar --zstd -xf l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r2.tar.zst
-cd l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r2
+tar --zstd -xf l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r3.tar.zst
+cd l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r3
 sha256sum -c SHA256SUMS
 mkdir -p models
 curl -fL --retry 3 -o models/L0xRE-27b-Low.gguf \
@@ -53,9 +53,9 @@ The launcher detects the first visible GPU. On a machine with multiple GPUs, set
 Download the Windows ZIP and `CHECKSUMS.txt` above into one directory. Open PowerShell there, compare the ZIP's `Get-FileHash` result with its line in `CHECKSUMS.txt`, and extract:
 
 ```powershell
-Get-FileHash .\l0xre-win-universal-r2.zip -Algorithm SHA256
-Expand-Archive .\l0xre-win-universal-r2.zip -DestinationPath .
-Set-Location .\l0xre-win-universal-r2
+Get-FileHash .\l0xre-win-universal-r3.zip -Algorithm SHA256
+Expand-Archive .\l0xre-win-universal-r3.zip -DestinationPath .
+Set-Location .\l0xre-win-universal-r3
 powershell -NoProfile -ExecutionPolicy Bypass -File .\verify.ps1
 New-Item -ItemType Directory -Force models | Out-Null
 curl.exe -fL --retry 3 -o models\L0xRE-27b-Low.gguf https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/L0xRE-27b-Low.gguf
@@ -77,21 +77,25 @@ Downloads are pinned to HF revision `9b74c81c19f8372888c2968b5334f42b0354d8b1`, 
 
 ## Profiles
 
+**Updated 12 GB default:** `12gb` (or `12gb-quality`) now uses **80K context, target KVarN3/3, Q4_0/Q4_0 DFlash2 caches**, Q4_K_M drafter weights, and medium reasoning. The earlier SM86 96K/KVarN3/2/Q2-cache default is superseded. Sean selected the new configuration after reporting better everyday results; the lower context budget makes room for less aggressive cache quantization. This is a configuration recommendation, not a broad accuracy benchmark.
+
+The matching settings are: one slot, batch 1024 / target ubatch 256, draft ubatch 128, DFlash2 depth 3, GPU target/draft layers 99, FlashAttention on, exact KV tail 128, window chunk 16384, cache RAM 0, automatic memory fitting off, 32 generation/batch CPU workers, and medium thinking with an 8,192-token reasoning budget. Sampling remains temperature 0.7 / top-p 0.95 / top-k 20. A supplied projector is placed on CPU with min/max 1024 image tokens; Q8_0 is recommended. Vision still requires `--mmproj FILE` and its separate download.
+
 | Platform / GPU | `12gb` selection | Other options |
 | --- | --- | --- |
-| Linux / SM86 | B84: 98,304 context, batch/ubatch 1024/256, one slot, KVarN3/2, exact tail 128, Q4_K_M DFlash2 depth 3, draft KV q2_0/q2_0 | `12gb-b84` explicit alias; append `-c 32768` if less context is needed |
-| Linux / SM89 | Retained r1 81,920-context profile | `16gb` (262,144 context), `full32k`; original receipts included |
-| Linux / SM120 | Retained r9 8,192-context DFlash2 depth 4 with drafter; ordinary 8K without drafter | `dflash-8k`, `ordinary-8k`, `ordinary-32k`; historical r9 measurements used a separate MTP-containing checkpoint |
-| Windows / SM86 | New B84 settings, head128 and B74 vector bridge | `12gb-b84` alias; GPU headroom and throughput unmeasured |
-| Windows / SM89 / SM120 | Existing 81,920-context preset with rebuilt universal CUDA backend | `16gb`, `full32k`; all Windows profiles await GPU qualification |
+| Linux / SM86 | 80K quality: 81,920 context, batch/ubatch 1024/256, KVarN3/3, exact tail 128, Q4_K_M DFlash2 N3, draft KV Q4_0/Q4_0 | `12gb-quality`; `12gb-b84` compatibility alias now selects 80K; append `-c 65536` for less context |
+| Linux / SM89 | Same 80K quality defaults, retained architecture-specific binaries/bridges | `16gb`, `full32k` retain their prior settings; new 12 GB preset inference/headroom pending |
+| Linux / SM120 | Same 80K quality defaults with DFlash2 N3 when a drafter is supplied | Explicit `dflash-8k`, `ordinary-8k`, `ordinary-32k` retain r9 settings; new 80K preset inference/headroom pending |
+| Windows / SM86 | Same 80K quality defaults with head128 and B74 vector bridge | `12gb-quality` / `12gb-b84`; Windows GPU headroom and throughput unmeasured |
+| Windows / SM89 / SM120 | Same 80K quality defaults with architecture-specific bridge selection | `16gb`, `full32k` retain prior settings; all Windows profiles await GPU qualification |
 
-A profile name is a memory/configuration target, not a guarantee that every card of that capacity will fit it. Only the SM86 route enables the new 128-thread head and K3 vector cubin. Reduce context if available VRAM is insufficient.
+A profile name is a memory/configuration target, not a guarantee that every card of that capacity will fit it. Only the SM86 route enables the 128-thread head and K3 vector cubin. The 80K profile is hardware-tested on Linux SM86; changing defaults on other routes does not create a performance or memory qualification. Override `-t/-tb` for your CPU, and reduce context if available VRAM is insufficient.
 
 ## Vision: start with the projector on CPU
 
 For a 12 GB SM86 setup, start with **CPU vision offload**: keep the Low language model and DFlash2 drafter on the GPU, and run the separate image encoder/projector in system RAM with `--no-mmproj-offload`. On our RTX 3060, an 80K GPU-vision configuration loaded the weights but failed when processing an image because its working buffers did not fit. The projector file size alone does not determine GPU fit.
 
-The recommended projector for this CPU recipe is **Q8_0**. On the tested Z840, Q8_0 with 32 workers processed an image plus prompt in **16.94–17.02 seconds**, with complete replies taking **20.46–20.55 seconds**. Q5_K-MIX is smaller on disk, but was slower on this CPU. These are measurements on one machine, not promised latency on other CPUs.
+The recommended projector for this CPU recipe is **Q8_0**. On the tested Z840, the current 80K Q8_0/32-worker setting processed the image plus prompt in **16.87 seconds** in the cache test and **17.10 seconds** in the live deployment check (20.98 seconds for the full reply). Earlier 96K format comparisons measured 16.94–17.02 seconds for image plus prompt. Q5_K-MIX is smaller on disk, but was slower on this CPU. These are measurements on one machine, not promised latency on other CPUs.
 
 ### Download and verify the optional projector
 
@@ -107,10 +111,10 @@ On Windows, use `curl.exe` with the same pinned URL and output file, then compar
 
 ### Opt-in SM86 configuration
 
-Stop your existing server before starting a replacement on the same GPU and port. This command reproduces the tested 96K / 1,024-image-token / 32-worker setting:
+Stop your existing server before starting a replacement on the same GPU and port. This command reproduces the current tested80K / KVarN3/3 / Q4-draft-cache / 1,024-image-token / 32-worker setting:
 
 ```bash
-./l0xre serve --profile 12gb-b84 \
+./l0xre serve --profile 12gb-quality \
   -m models/L0xRE-27b-Low.gguf \
   -md models/Qwen3.8-27B-DFlash2-Q4_K_M.gguf \
   --mmproj models/mmproj-Qwen3.8-27B-Q8_0.gguf --no-mmproj-offload \
@@ -121,7 +125,7 @@ Stop your existing server before starting a replacement on the same GPU and port
 For Windows, the matching command is below. Its arguments mirror Linux, but Windows vision inference and performance remain untested:
 
 ```powershell
-.\l0xre.cmd serve --profile 12gb-b84 `
+.\l0xre.cmd serve --profile 12gb-quality `
   -m models\L0xRE-27b-Low.gguf `
   -md models\Qwen3.8-27B-DFlash2-Q4_K_M.gguf `
   --mmproj models\mmproj-Qwen3.8-27B-Q8_0.gguf --no-mmproj-offload `
@@ -131,7 +135,7 @@ For Windows, the matching command is below. Its arguments mirror Linux, but Wind
 
 **Worker count is hardware-specific.** The tested Z840 has two Xeon E5-2620 v4 CPUs: 16 physical cores / 32 logical threads. On smaller machines, start with the physical-core count and compare timings; 32 workers is not a universal default. Here, 16 workers with Q5_K-MIX took 20.82 seconds, 32 took about 18.15 seconds, and Q8_0/32 took about 16.98 seconds. NUMA tuning gave little benefit; confining work to one socket was slower. The 1,024-token setting preserves the tested image resolution; reducing it to 512 was faster but needs separate OCR/grounding quality checks.
 
-Reusable configs live in this repository: [Linux / WSL launcher](examples/vision/serve-cpu-sm86.sh), [Windows launcher](examples/vision/serve-cpu-sm86.ps1), and [Hermes config fragment](examples/vision/hermes-native.yaml). They are optional examples and are **not inside the already-published universal-r2 archives**. With a repository checkout and an extracted runtime, use:
+Reusable configs live in this repository: [Linux / WSL launcher](examples/vision/serve-cpu-sm86.sh), [Windows launcher](examples/vision/serve-cpu-sm86.ps1), and [Hermes config fragment](examples/vision/hermes-native.yaml). The r3 archives include these examples under `examples/vision/`. With a repository checkout or the bundled examples and an extracted runtime, use:
 
 ```bash
 VISION_RUNTIME_DIR=/path/to/extracted/runtime VISION_WORKERS=32 \
@@ -155,20 +159,20 @@ python3 /path/to/L0xRE-BeeLLama-Low/examples/vision/check-vision.py
 
 It sends the included [smoke image](examples/vision/smoke.png) through `/v1/chat/completions` and checks `VISION 742` plus the red box, blue circle and green triangle. It prints image-plus-prompt and complete-response timings separately. For an actual Hermes check, attach the same image in a chat; the current CLI also supports `hermes chat --image /path/to/smoke.png -q "Read the text and describe the shapes." --oneshot`.
 
-[Measured CPU-vision results and qualification limits](evidence/vision/SM86-CPU-VISION.json) cover Linux SM86 only. CPU vision with a short image prompt worked at the configured 96K context; a full-context vision memory test has not been performed. The text-only launch commands above remain unchanged. To return to text-only operation, stop the vision server and launch without `--mmproj` and the vision-specific flags; switch Hermes back to its previous image routing if needed.
+[Measured CPU-vision results and qualification limits](evidence/vision/SM86-CPU-VISION.json) cover Linux SM86 only. The current 80K cache preset passed code, vision and a 29,762-token retrieval canary, with 243 MiB minimum free VRAM; a full 80K memory/quality qualification has not been performed. See [current 80K cache evidence](evidence/quality/SM86-80K-QUALITY.json). The text-only launch commands above remain unchanged. To return to text-only operation, stop the vision server and launch without `--mmproj` and the vision-specific flags; switch Hermes back to its previous image routing if needed.
 
 ## Test results and measured performance
 
 | Build / hardware | Result | Scope and receipt |
 | --- | --- | --- |
-| Linux SM86 / Z840 RTX 3060 12 GB | Code **39.046 tok/s**; narrative **29.422 tok/s** | B84, temperature 0, seed 0, exactly 800 output tokens, two measured runs per prompt; [component hashes and method](evidence/universal/SM86-B84.json), raw receipts in the Linux archive |
-| Linux SM86 / long context | 92,879 input + 128 greedy output tokens; prefill **272.60 tok/s**, decode **21.06 tok/s**, minimum free VRAM **215 MiB** | Output SHA matched the B74 reference; a narrow correctness canary, not a broad quality test |
-| Linux SM89 / RTX 4090, retained r1 | 12gb profile code **115.4 ± 2.4 tok/s** | Inherited result; original command, model and workload receipts retained under `architectures/sm89/receipts/` |
+| Previous r2 Linux SM86 / Z840 RTX 3060 12 GB | Code **39.046 tok/s**; narrative **29.422 tok/s** | B84, temperature 0, seed 0, exactly 800 output tokens, two measured runs per prompt; [component hashes and method](evidence/universal/SM86-B84.json), raw receipts in the Linux archive |
+| Previous r2 Linux SM86 / long context | 92,879 input + 128 greedy output tokens; prefill **272.60 tok/s**, decode **21.06 tok/s**, minimum free VRAM **215 MiB** | Output SHA matched the B74 reference; a narrow correctness canary, not a broad quality test |
+| Historical Linux SM89 / RTX 4090 r1 settings | 12gb profile code **115.4 ± 2.4 tok/s** | Inherited result; original command, model and workload receipts retained under `architectures/sm89/receipts/` |
 | Linux SM120 / RTX 5090 | Current L0xRE-27b-Low common-CLI path awaits hardware qualification | Included GPU runtime payload; no measured throughput is claimed for this model/path combination |
 | Windows universal | **235 CUDA cubin entries per architecture** (SM86, SM89, SM120) | CUDA 13.3 / MSVC; new head128 backend and B74 bridge included; no GPU tokens/s result |
-| Release source and launchers | **4/4 CPU tests**, **11 Linux launcher checks passed**; nine earlier Windows launcher checks remain recorded | Stub launcher checks verify routing, arguments and environment isolation; they do not execute CUDA. The Windows model-name alias refresh was reviewed statically; the managed workspace cannot execute its PowerShell integration test. PE and package checks are in [validation](evidence/universal/VALIDATION.json); [archive round trips](evidence/universal/ARCHIVE-VALIDATION.json) verified 238 Linux and 131 Windows regular files and repeated the Windows PE check (70 files, 4,835 local imports) |
+| Release source and launchers | **4/4 inherited CPU tests**, **25 current Linux launcher checks passed**; nine earlier Windows launcher checks remain recorded | Stub launcher checks verify routing, arguments and environment isolation; they do not execute CUDA. The Windows model-name alias refresh was reviewed statically; the managed workspace cannot execute its PowerShell integration test. PE and package checks are in [validation](evidence/universal/VALIDATION.json); [archive round trips](evidence/universal/ARCHIVE-VALIDATION.json) verified 238 Linux and 131 Windows regular files and repeated the Windows PE check (70 files, 4,835 local imports) |
 
-The L0xRE-27b-Low target, executable, CUDA backend, bridge, and vector-cubin hashes match the original B84 measurements. The universal launcher changes portable paths and incorporates preset overrides. Interactive defaults use temperature 0.7; benchmark sampling differs. Do not compare rows as a controlled GPU comparison: workloads, models and protocols differ.
+The target and compiled-component hashes match the original B84 measurements, but the r3 configuration differs. The rows explicitly labeled previous/historical do not measure the new 80K default. Current Linux SM86 evidence is in [SM86-80K-QUALITY.json](evidence/quality/SM86-80K-QUALITY.json): code 40.32 tok/s on a short binary-search canary, correct code/vision/retrieval outputs, and243MiB minimum free VRAM. These are not the historical 800-token prompts or a broad quality benchmark. The universal launcher changes portable paths and incorporates preset overrides. Interactive defaults use temperature 0.7; benchmark sampling differs. Do not compare rows as a controlled GPU comparison: workloads, models and protocols differ.
 
 ## Source, build and rollback
 
