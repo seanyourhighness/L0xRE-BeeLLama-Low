@@ -2,6 +2,8 @@
 
 Run **L0xRE-27b-Low** with the BeeLLama runtime on NVIDIA RTX 30, 40, and 50 series GPUs. Download **one Linux / WSL archive** or **one Windows ZIP**; each contains the matching SM86, SM89, and SM120 runtime paths. Model weights are a separate download.
 
+**Image input:** see the [opt-in CPU vision setup](#vision-start-with-the-projector-on-cpu), including Q8_0, worker settings and a native Hermes config.
+
 The intended minimum is **12 GB of GPU VRAM**, not 12 GB of system RAM. Cards with less VRAM are outside this release target. Available VRAM, context length, display use, and driver overhead still matter; the measured RTX 3060 long-context run had only 215 MiB free at its lowest point.
 
 ## Downloads
@@ -84,6 +86,76 @@ Downloads are pinned to HF revision `9b74c81c19f8372888c2968b5334f42b0354d8b1`, 
 | Windows / SM89 / SM120 | Existing 81,920-context preset with rebuilt universal CUDA backend | `16gb`, `full32k`; all Windows profiles await GPU qualification |
 
 A profile name is a memory/configuration target, not a guarantee that every card of that capacity will fit it. Only the SM86 route enables the new 128-thread head and K3 vector cubin. Reduce context if available VRAM is insufficient.
+
+## Vision: start with the projector on CPU
+
+For a 12 GB SM86 setup, start with **CPU vision offload**: keep the Low language model and DFlash2 drafter on the GPU, and run the separate image encoder/projector in system RAM with `--no-mmproj-offload`. On our RTX 3060, an 80K GPU-vision configuration loaded the weights but failed when processing an image because its working buffers did not fit. The projector file size alone does not determine GPU fit.
+
+The recommended projector for this CPU recipe is **Q8_0**. On the tested Z840, Q8_0 with 32 workers processed an image plus prompt in **16.94–17.02 seconds**, with complete replies taking **20.46–20.55 seconds**. Q5_K-MIX is smaller on disk, but was slower on this CPU. These are measurements on one machine, not promised latency on other CPUs.
+
+### Download and verify the optional projector
+
+After downloading the target and drafter as above, run this from the extracted runtime directory:
+
+```bash
+curl -fL --retry 3 -o models/mmproj-Qwen3.8-27B-Q8_0.gguf \
+  https://huggingface.co/ggml-org/Qwen3.8-27B-GGUF/resolve/71bc7b627595dc8a91039addd9c791ae548d6747/mmproj-Qwen3.8-27B-Q8_0.gguf
+printf '%s\n' '2e968a6af97ce35d8971890b257b9b7edabf20ad91450501fa53162a19ee33eb  models/mmproj-Qwen3.8-27B-Q8_0.gguf' | sha256sum -c -
+```
+
+On Windows, use `curl.exe` with the same pinned URL and output file, then compare `Get-FileHash .\models\mmproj-Qwen3.8-27B-Q8_0.gguf -Algorithm SHA256` with the hash above. The projector is **629,247,008 bytes (about 600 MiB)**. Allow additional system RAM for image-processing buffers; the measured Q8/32-worker test service peaked at about 1.8 GiB of RAM, which is a whole-service measurement, not the projector's incremental requirement.
+
+### Opt-in SM86 configuration
+
+Stop your existing server before starting a replacement on the same GPU and port. This command reproduces the tested 96K / 1,024-image-token / 32-worker setting:
+
+```bash
+./l0xre serve --profile 12gb-b84 \
+  -m models/L0xRE-27b-Low.gguf \
+  -md models/Qwen3.8-27B-DFlash2-Q4_K_M.gguf \
+  --mmproj models/mmproj-Qwen3.8-27B-Q8_0.gguf --no-mmproj-offload \
+  --image-min-tokens 1024 --image-max-tokens 1024 \
+  -t 32 -tb 32 --reasoning-effort medium --host 127.0.0.1 --port 8080
+```
+
+For Windows, the matching command is below. Its arguments mirror Linux, but Windows vision inference and performance remain untested:
+
+```powershell
+.\l0xre.cmd serve --profile 12gb-b84 `
+  -m models\L0xRE-27b-Low.gguf `
+  -md models\Qwen3.8-27B-DFlash2-Q4_K_M.gguf `
+  --mmproj models\mmproj-Qwen3.8-27B-Q8_0.gguf --no-mmproj-offload `
+  --image-min-tokens 1024 --image-max-tokens 1024 `
+  -t 32 -tb 32 --reasoning-effort medium --host 127.0.0.1 --port 8080
+```
+
+**Worker count is hardware-specific.** The tested Z840 has two Xeon E5-2620 v4 CPUs: 16 physical cores / 32 logical threads. On smaller machines, start with the physical-core count and compare timings; 32 workers is not a universal default. Here, 16 workers with Q5_K-MIX took 20.82 seconds, 32 took about 18.15 seconds, and Q8_0/32 took about 16.98 seconds. NUMA tuning gave little benefit; confining work to one socket was slower. The 1,024-token setting preserves the tested image resolution; reducing it to 512 was faster but needs separate OCR/grounding quality checks.
+
+Reusable configs live in this repository: [Linux / WSL launcher](examples/vision/serve-cpu-sm86.sh), [Windows launcher](examples/vision/serve-cpu-sm86.ps1), and [Hermes config fragment](examples/vision/hermes-native.yaml). They are optional examples and are **not inside the already-published universal-r2 archives**. With a repository checkout and an extracted runtime, use:
+
+```bash
+VISION_RUNTIME_DIR=/path/to/extracted/runtime VISION_WORKERS=32 \
+  bash /path/to/L0xRE-BeeLLama-Low/examples/vision/serve-cpu-sm86.sh
+```
+
+```powershell
+& C:\path\to\L0xRE-BeeLLama-Low\examples\vision\serve-cpu-sm86.ps1 `
+  -RuntimeDirectory C:\path\to\extracted\runtime -Workers 32
+```
+
+### Hermes native vision and verification
+
+Merge [hermes-native.yaml](examples/vision/hermes-native.yaml) into your existing Hermes config. It sets `agent.image_input_mode: native`, declares the local model's vision capability, and routes both the main model and `auxiliary.vision` to `http://127.0.0.1:8080/v1`. Use the server's published `L0xRE-27b-Low` alias; change both `base_url` values if the server is at another address. Restart Hermes after editing its config. This sends native image parts to your local runtime rather than asking a cloud vision model to describe them first.
+
+Wait for `curl -fsS http://127.0.0.1:8080/health` to return `{"status":"ok"}`, then run the Python-standard-library smoke client from your repository checkout:
+
+```bash
+python3 /path/to/L0xRE-BeeLLama-Low/examples/vision/check-vision.py
+```
+
+It sends the included [smoke image](examples/vision/smoke.png) through `/v1/chat/completions` and checks `VISION 742` plus the red box, blue circle and green triangle. It prints image-plus-prompt and complete-response timings separately. For an actual Hermes check, attach the same image in a chat; the current CLI also supports `hermes chat --image /path/to/smoke.png -q "Read the text and describe the shapes." --oneshot`.
+
+[Measured CPU-vision results and qualification limits](evidence/vision/SM86-CPU-VISION.json) cover Linux SM86 only. CPU vision with a short image prompt worked at the configured 96K context; a full-context vision memory test has not been performed. The text-only launch commands above remain unchanged. To return to text-only operation, stop the vision server and launch without `--mmproj` and the vision-specific flags; switch Hermes back to its previous image routing if needed.
 
 ## Test results and measured performance
 

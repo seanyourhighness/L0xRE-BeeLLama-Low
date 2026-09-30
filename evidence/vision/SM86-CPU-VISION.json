@@ -1,0 +1,138 @@
+{
+  "date_utc": "2026-09-30",
+  "hardware": {
+    "host": "HP Z840",
+    "gpu": "RTX 3060 12 GB",
+    "cpu": "2 x Intel Xeon E5-2620 v4",
+    "physical_cores": 16,
+    "logical_threads": 32
+  },
+  "runtime": {
+    "version": "BeeLlama v0.4.7 SM86 B74 champion",
+    "server_sha256": "e36639081643e7f3be37e1de0008823ff71a899352c05380e0a9072535bcbfee",
+    "cuda_backend_sha256": "b3f117d779d3059232dc09ecbdb26923564464d40d8a99e075f535de198de27d",
+    "bridge_sha256": "2b03be5f77ea7dd866a2da3180807e9df9746e5d1b685d2b5153355b56575ffc",
+    "k3_vector_cubin_sha256": "fe1069f84644825c37d92bb39a1295a063bb25f2ba53e99dba93c1d9c13a7059"
+  },
+  "model": "L0xRE-27b-Low.gguf",
+  "draft": "Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+  "context": 98304,
+  "target_ubatch": 256,
+  "projector_device": "CPU",
+  "fixture": {
+    "path": "examples/vision/smoke.png",
+    "dimensions": [
+      448,
+      448
+    ],
+    "sha256": "145534c3b1df9de079da2c59eefeea210a6013578f0355ce31a9af0ca7331c5f",
+    "expected": [
+      "VISION 742",
+      "red box (rectangle/square)",
+      "blue circle",
+      "green triangle"
+    ]
+  },
+  "protocol": {
+    "prompt": "Read the printed text exactly, then list the shapes and their colors. Be concise.",
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 512,
+    "reasoning_effort": "medium"
+  },
+  "q8_projector": {
+    "repo": "ggml-org/Qwen3.8-27B-GGUF",
+    "revision": "71bc7b627595dc8a91039addd9c791ae548d6747",
+    "file": "mmproj-Qwen3.8-27B-Q8_0.gguf",
+    "bytes": 629247008,
+    "sha256": "2e968a6af97ce35d8971890b257b9b7edabf20ad91450501fa53162a19ee33eb"
+  },
+  "runs": [
+    {
+      "variant": "baseline16",
+      "prompt_seconds": 20.817007,
+      "elapsed_seconds": 24.883,
+      "prompt_tokens": 1053,
+      "correct": true
+    },
+    {
+      "variant": "threads32",
+      "prompt_seconds": 18.302006000000002,
+      "elapsed_seconds": 22.338,
+      "prompt_tokens": 1053,
+      "correct": true
+    },
+    {
+      "variant": "numa16",
+      "prompt_seconds": 19.892677,
+      "elapsed_seconds": 23.95,
+      "prompt_tokens": 1053,
+      "correct": true
+    },
+    {
+      "variant": "socket8",
+      "prompt_seconds": 34.815242,
+      "elapsed_seconds": 38.841,
+      "prompt_tokens": 1053,
+      "correct": true
+    },
+    {
+      "variant": "tokens512",
+      "prompt_seconds": 10.56901,
+      "elapsed_seconds": 13.017,
+      "prompt_tokens": 558,
+      "correct": true
+    },
+    {
+      "variant": "threads32",
+      "prompt_seconds": 17.9922,
+      "elapsed_seconds": 22.021,
+      "prompt_tokens": 1053,
+      "correct": true
+    },
+    {
+      "variant": "q8_32",
+      "prompt_seconds": 16.940026000000003,
+      "elapsed_seconds": 20.455,
+      "prompt_tokens": 1053,
+      "correct": true
+    },
+    {
+      "variant": "bf16_32",
+      "prompt_seconds": 17.417619,
+      "elapsed_seconds": 21.029,
+      "prompt_tokens": 1053,
+      "correct": true
+    },
+    {
+      "variant": "q8_32",
+      "prompt_seconds": 17.022634999999998,
+      "elapsed_seconds": 20.55,
+      "prompt_tokens": 1053,
+      "correct": true
+    }
+  ],
+  "deployed_native_smoke_prompt_seconds": 17.218,
+  "limits": [
+    "Image + prompt times include GPU language-model prefill; they are not isolated encoder timings or total reply latency.",
+    "Functional image/OCR smoke tests on one Linux SM86 installation, not a general vision-quality benchmark.",
+    "Same server binary hash as the SM86 B84 component receipt; new example argument wiring is separately checked with stubs.",
+    "Vision enabled at 96K context was tested with short prompts; no full-context vision memory qualification.",
+    "Windows and SM89/SM120 vision inference have not been tested.",
+    "The 512-token variant reduces image detail; the published recipe retains 1024."
+  ],
+  "gpu_attempts": [
+    {
+      "context": 81920,
+      "target_ubatch": 256,
+      "image_tokens": 1024,
+      "result": "248.10 MiB CUDA vision-buffer allocation failed; first image request disconnected."
+    },
+    {
+      "context": 81920,
+      "target_ubatch": 128,
+      "image_tokens": 1024,
+      "result": "Loaded with 31 MiB free, then first image request failed with CUDA out of memory."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+# Merge these fields into your existing Hermes config; do not replace the whole file.
+# This example uses the published runtime's L0xRE-27b-Low model alias.
+model:
+  default: L0xRE-27b-Low
+  provider: custom:l0xre-sm86
+agent:
+  image_input_mode: native
+  reasoning_effort: medium
+custom_providers:
+  # Add this entry to your existing custom_providers list.
+  - name: l0xre-sm86
+    base_url: http://127.0.0.1:8080/v1
+    key_env: ''
+    api_mode: openai
+    model: L0xRE-27b-Low
+    context_length: 98304
+    models:
+      L0xRE-27b-Low:
+        supports_vision: true
+auxiliary:
+  vision:
+    provider: custom:l0xre-sm86
+    model: L0xRE-27b-Low
+    base_url: http://127.0.0.1:8080/v1
+    timeout: 900
