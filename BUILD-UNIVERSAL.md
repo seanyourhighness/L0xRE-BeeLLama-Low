@@ -55,9 +55,13 @@ The new bridge's CUDA source matches Linux SHA-256 `40b162dd48d41ca585968043a492
 
 Package the new bridge at `bridge/sm86/bridge-b74-k3-vector.dll` and the SM86 vector cubin alongside it. The packaged SM86 launcher selects the optimized GPU head and the SM86 vector cubin. The other architectures use their retained bridge paths. Bundle the CUDA, MSVC and OpenMP runtime DLLs, including `vcomp140.dll`.
 
+## Reproduce the r3 launcher defaults
+
+The compiled source commit above intentionally stays pinned. The r3 configuration is in `tools/universal/` at tag `beellama-v0.4.7-universal-r3`. After building a runtime, use that tag's common `l0xre` plus the corresponding `l0xre-sm86`, `l0xre-sm89` or `l0xre-sm120` as the architecture-directory launcher. For Windows, use that tag's `l0xre.ps1` and `l0xre.cmd`. The older source-build packaging templates are not evidence of the current 12 GB defaults. Include the r3 manifests and `examples/vision/` alongside the compiled components and reseal package checksums.
+
 ## Validation and release gates
 
-See [VALIDATION.json](evidence/universal/VALIDATION.json). CPU regression checks cover KVarN, model-format metadata, KV-tail requests and fit/tail logic. Launcher integration tests use stub executables and test routing, arguments, paths with spaces, invalid input and architecture isolation. ELF dependency/version and PE import/export/architecture checks are separate from GPU execution.
+See [VALIDATION.json](evidence/universal/VALIDATION.json). CPU regression checks cover KVarN, model-format metadata, KV-tail requests and fit/tail logic. Current launcher integration tests passed 25 Linux and 15 Windows cases on GitHub runners, using stub executables to check routing, arguments, paths with spaces, invalid input and architecture isolation. ELF dependency/version and PE import/export/architecture checks are separate from GPU execution.
 
 Archive integrity checks run after sealing: clean extraction, internal file SHA-256 verification, safe paths/symlinks, and exact archive checksums. Public model LFS hashes are checked at the pinned HF revision. No model weights are changed by this release.
 

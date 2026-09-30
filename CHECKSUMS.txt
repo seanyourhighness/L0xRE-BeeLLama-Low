@@ -1,2 +1,2 @@
-9fc684540c8bdcfa303d694edb823b62b8f13c06ff45d72b61462d4ded6a5400  l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r2.tar.zst
-38cecc30636d7fe3513b1f42e7385203341d87fb5c657fd3aa202d756b6193a4  l0xre-win-universal-r2.zip
+c93f1a73bbcd216e498bfae781ffae8abb5b2c9fe8d9743cea3a99250f1a0e81  l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r3.tar.zst
+35819ef2e615d349b290e9a7f43cb246873888c2489ea94e18a2e09375cf4a2c  l0xre-win-universal-r3.zip

@@ -1,20 +1,31 @@
 {
-  "date": "2026-09-30",
+  "date_utc": "2026-09-30",
+  "release": "beellama-v0.4.7-universal-r3",
   "archives": {
-    "l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r2.tar.zst": {
-      "bytes": 1757720561,
-      "sha256": "9fc684540c8bdcfa303d694edb823b62b8f13c06ff45d72b61462d4ded6a5400",
-      "internal_checksums_verified": 238,
-      "checks": "all regular-file hashes, safe paths/symlinks, clean-extract launcher help",
+    "l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r3.tar.zst": {
+      "bytes": 1758974050,
+      "sha256": "c93f1a73bbcd216e498bfae781ffae8abb5b2c9fe8d9743cea3a99250f1a0e81",
+      "root_checksums_verified": 247,
+      "safe_paths_symlinks": true,
       "passed": true
     },
-    "l0xre-win-universal-r2.zip": {
-      "bytes": 890345612,
-      "sha256": "38cecc30636d7fe3513b1f42e7385203341d87fb5c657fd3aa202d756b6193a4",
-      "internal_checksums_verified": 131,
-      "checks": "ZIP CRC, unique safe paths, all file hashes, clean-extract PE imports",
+    "l0xre-win-universal-r3.zip": {
+      "bytes": 887672744,
+      "sha256": "35819ef2e615d349b290e9a7f43cb246873888c2489ea94e18a2e09375cf4a2c",
+      "root_checksums_verified": 140,
+      "safe_paths_symlinks": true,
       "passed": true
     }
   },
-  "gpu_execution": false
+  "configuration_only": true,
+  "compiled_payloads_unchanged_from_verified_r2": true,
+  "launcher_ci": {
+    "linux_cases": 25,
+    "windows_cases": 15,
+    "run_id": 36674140854
+  },
+  "gpu_inference": {
+    "current_profile_hardware": "Linux SM86 serving install only",
+    "windows_sm89_sm120_new_profile": "pending"
+  }
 }

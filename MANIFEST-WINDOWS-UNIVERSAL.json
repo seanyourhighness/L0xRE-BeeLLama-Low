@@ -90,7 +90,9 @@
     },
     "b74_bridge_compiler_linker_warnings": 0,
     "version": "0.4.7-dev build11 commitbe302741801080a4fa2ea713fdf9409e2ef599d5; no dirty suffix",
-    "gpu_execution": false
+    "gpu_execution": false,
+    "launcher_cases_passed": 15,
+    "launcher_ci_run": 36674140854
   },
   "qualification_limits": [
     "Current 80K code/vision and29,762-token retrieval tested only on Linux SM86",

@@ -18,9 +18,10 @@
     ]
   },
   "launcher_integration": {
-    "linux_passed": 11,
-    "windows_passed": 9,
-    "method": "stub servers/executable; no CUDA execution"
+    "linux_passed": 25,
+    "windows_passed": 15,
+    "method": "stub executables on actual Linux/Windows GitHub runners; no GPU inference",
+    "github_actions_run": 36674140854
   },
   "linux_payload_checks": {
     "elf_dependency_check": "all three payloads resolved",
@@ -54,5 +55,8 @@
     "Linux SM120 common CLI with non-MTP Low target",
     "SM86 clean-extract portable-wrapper inference"
   ],
-  "archive_round_trip": "Recorded separately after sealing in ARCHIVE-VALIDATION.json"
+  "archive_round_trip": "Recorded separately after sealing in ARCHIVE-VALIDATION.json",
+  "configuration_release": "beellama-v0.4.7-universal-r3",
+  "new_profile_hardware": "Linux SM86 80K code/vision/29,762-token retrieval tests; other new-profile GPU routes pending",
+  "compiled_components": "Reused unchanged from verified r2 archives"
 }
