@@ -1,7 +1,14 @@
+# v0.4.7 universal r2 — model naming and documentation
+
+- Public model documentation uses L0xRE-27b-Low consistently.
+- The model card explains download sizes, the optional drafter, required runtime, measured configurations and qualification limits.
+- Current Linux and Windows launchers advertise L0xRE-27b-Low as the API model name.
+- Compiled runtime binaries, CUDA kernels and model weights are unchanged from the verified universal build.
+
 # v0.4.7 B84 universal release candidate — September 29, 2026
 
 - One Linux/WSL archive and one Windows ZIP cover NVIDIA SM86, SM89 and SM120.
-- Linux SM86 includes the B74 vector bridge, opt-in 128-thread E3 head, and B84 96K Q4-drafter configuration. Model weights remain unchanged.
+- Linux SM86 includes the B74 vector bridge, opt-in 128-thread model head, and B84 96K Q4-drafter configuration. Model weights remain unchanged.
 - Windows rebuild includes the head patch, a warning-free B74 bridge DLL, its SM86 vector cubin, and an SM86-only B84 preset.
 - Portable launchers fix the Windows package-root bug and translate the common Linux CLI into the SM120 route. GPU selection respects `CUDA_VISIBLE_DEVICES`; invalid profiles fail clearly; SM86 environment choices are cleared for other architectures.
 - Pin model downloads by HF revision and exact SHA-256. Add raw SM86 receipts, source references, compiler/dependency/architecture/test records, checksum verification and applicable third-party notices.

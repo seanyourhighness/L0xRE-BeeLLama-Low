@@ -1,21 +1,14 @@
-# Model assets (not included in this archive)
+# L0xRE-27b-Low model files
 
-Download or build these separately, then pass them to `./escha` by path.
-`doctor` verifies the SHA-256 of the target model you pass to it.
+[Download the model](https://huggingface.co/YourHighnessLA/L0xRE-27b-Low). The recommended setup uses these two files:
 
-| Role | File | SHA-256 |
-| --- | --- | --- |
-| Escha E3 target | escha-e3-with-mtp.gguf | 746bd40841fb18b9c1918923e89c007df70b5e4f3de64290d1399593e70c96b0 |
-| Escha W2 target | escha-w2-with-mtp.gguf | 3f93cbe77a20f1fa7272741757596cac66a66457d7ecaed1e5a6e4baa409535e |
-| Matched native control | IQ3 GGUF, Qwen3.8-27B family | ad85e40a28aa (see MANIFEST.json for the full value) |
-| DFlash2 drafter | Qwen3.8-27B-DFlash2-Q4_K_M.gguf | 1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd |
+| File | Role | Bytes |
+| --- | --- | ---: |
+| `L0xRE-27b-Low.gguf` | Main 27-billion-parameter model | 8,619,127,680 |
+| `Qwen3.8-27B-DFlash2-Q4_K_M.gguf` | Optional drafter, recommended for token-generation speed | 1,143,006,816 |
 
-The E3 and W2 targets are the merged Escha GGUFs used for every measurement in
-`PARITY.md`. They are intentionally a different quantization from the native
-control; that difference is inherent to the comparison and is not corrected
-for. No model weights are modified by this runtime, and no weight
-requantization happens at load time.
+The drafter is a helper file; it is not another name for the main model. The recommended pair is 9.76 GB of downloads, separate from the runtime.
 
-The DFlash2 drafter is a stock upstream artifact and must be the exact file
-above for the speculative results in `PARITY.md` to apply.
+Verify against [MODEL-SHA256SUMS](MODEL-SHA256SUMS) and follow [installation](README.md). A card with at least12GB GPU VRAM is the intended minimum; available context depends on the selected GPU/profile.
 
+[L0xRE-27b-Low-MTP](https://huggingface.co/YourHighnessLA/L0xRE-27b-Low-MTP) is a separate checkpoint with its own file hash and qualification. Historical measurements from that checkpoint do not establish performance of the current model path.

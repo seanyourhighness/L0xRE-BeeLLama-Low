@@ -1,6 +1,6 @@
 {
   "product": "L0xRE-BeeLLama-Low",
-  "version": "0.4.7-sm86-b84-universal-windows-r1",
+  "version": "0.4.7-universal-r2",
   "status": "release-candidate",
   "platform": "Windows AMD64",
   "supported_compute_capabilities": [
@@ -73,5 +73,8 @@
     "No Windows GPU execution/performance measurement",
     "Linux measurements do not transfer to Windows",
     "Nominal12GB VRAM does not guarantee96K context fits under all display/driver loads"
-  ]
+  ],
+  "model_display_name": "L0xRE-27b-Low",
+  "documentation_update": "Canonical model naming and clearer installation; model weights and compiled binaries unchanged",
+  "api_model_alias": "L0xRE-27b-Low"
 }

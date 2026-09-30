@@ -26,7 +26,11 @@ with tempfile.TemporaryDirectory(prefix='l0xre-launcher-') as tmp:
         if extra:e.update(extra)
         r=subprocess.run([str(root/'l0xre'),*args],env=e,text=True,capture_output=True)
         assert r.returncode==code,(arch,args,r.returncode,r.stderr)
-        return json.loads(r.stdout) if code==0 else None
+        if code==0:
+            data=json.loads(r.stdout)
+            assert data['args'][data['args'].index('--alias')+1]=='L0xRE-27b-Low'
+            return data
+        return None
     def value(data,key):return data['args'][data['args'].index(key)+1]
     args=['serve','--profile','12gb','-m',str(model),'-md',str(draft),'--port','9099']
     d=run('sm86',args);assert value(d,'-c')=='98304' and value(d,'-ub')=='256' and value(d,'--spec-draft-type-k')=='q2_0' and d['env']['ESCHA_E3_HEAD_RT_BLOCK128']=='1' and value(d,'--port')=='9099'

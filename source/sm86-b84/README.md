@@ -1,6 +1,6 @@
 # SM86 B74 bridge and B84 configuration source
 
-Pinned Linux runtime baseline: ab1698c739b3bc13b9e06fb8febdc774ff106d23. The release source branch also contains the existing Windows loader/build fixes through eed82efdd415ad8afc8032e193a598c3172f035a. The opt-in 128-thread E3 head patch is committed in ggml/src/ggml-cuda/lowgpu.cu. It changes reduction order and is enabled only by ESCHA_E3_HEAD_RT_BLOCK128; keep it disabled outside the measured SM86 path.
+Pinned Linux runtime baseline: ab1698c739b3bc13b9e06fb8febdc774ff106d23. The release source branch also contains the existing Windows loader/build fixes through eed82efdd415ad8afc8032e193a598c3172f035a. The opt-in 128-thread model head patch is committed in the model-specific CUDA source. It changes reduction order and is enabled only by the packaged SM86 head selection; keep it disabled outside the measured SM86 path.
 
 B74 routes K3 raw decode through the vector cubin, rounding FP32 input via FP16 first. K2 retains the official cubin route. Buffer caches are keyed by device, stream, and length. The C bridge ABI is unchanged. The retained PTX and kernels require the third-party notices included in the release archive.
 

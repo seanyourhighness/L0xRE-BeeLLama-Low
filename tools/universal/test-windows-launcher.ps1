@@ -40,7 +40,7 @@ $count=0
 try {
  $params=@('serve','--profile','12gb','-m','model with spaces.gguf','-md','draft with spaces.gguf','--port','9099')
  $lines=Run-Case 'sm86' $params
- if ((Arg-Value $lines '-c') -ne '98304' -or (Arg-Value $lines '-ub') -ne '256' -or (Arg-Value $lines '--spec-draft-type-k') -ne 'q2_0' -or 'HEAD:1' -notin $lines -or (Arg-Value $lines '-m') -ne 'model with spaces.gguf') { throw 'SM86 B84 routing failed' };$count++
+ if ((Arg-Value $lines '--alias') -ne 'L0xRE-27b-Low' -or (Arg-Value $lines '-c') -ne '98304' -or (Arg-Value $lines '-ub') -ne '256' -or (Arg-Value $lines '--spec-draft-type-k') -ne 'q2_0' -or 'HEAD:1' -notin $lines -or (Arg-Value $lines '-m') -ne 'model with spaces.gguf') { throw 'SM86 B84 routing failed' };$count++
  foreach ($arch in @('sm89','sm120')) {
   $lines=Run-Case $arch $params
   if ((Arg-Value $lines '-c') -ne '81920' -or 'HEAD:' -notin $lines -or 'VECTOR:' -notin $lines) { throw "$arch profile/isolation failed" };$count++

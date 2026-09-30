@@ -97,7 +97,7 @@ $required = @("$ROOT\bin\llama-server.exe",$env:ESCHA_OFFICIAL_BRIDGE_LIBRARY,$e
 if ($ARCH -eq "sm86") { $required += $env:L0XRE_K3_VECTOR_CUBIN }
 foreach ($file in $required) { if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { throw "Package component missing: $file. Re-extract the complete ZIP." } }
 Write-Host "L0xRE: $ARCH / $Profile" -ForegroundColor DarkGray
-& "$ROOT\bin\llama-server.exe" -np 1 -t 8 -ngl 99 -fa on `
+& "$ROOT\bin\llama-server.exe" --alias L0xRE-27b-Low -np 1 -t 8 -ngl 99 -fa on `
     --jinja --reasoning on --reasoning-effort low --reasoning-budget 8192 `
     --temp 0.7 --top-p 0.95 --top-k 20 --no-webui @Ctx @Spec @Fit @ServerArgs
 exit $LASTEXITCODE

@@ -10,11 +10,11 @@
   "cpu_regression_tests": {
     "passed": 4,
     "total": 4,
-    "names": [
-      "test-kvarn",
-      "test-lowgpu",
-      "test-kv-tail-request",
-      "test-fit-kvarn-tail"
+    "coverage": [
+      "KVarN",
+      "model-format metadata",
+      "KV-tail requests",
+      "fit and KV-tail logic"
     ]
   },
   "launcher_integration": {

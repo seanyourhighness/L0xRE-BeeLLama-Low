@@ -1,6 +1,6 @@
 {
   "product": "L0xRE-BeeLLama-Low",
-  "version": "0.4.7-sm86-b84-universal-linux-r1",
+  "version": "0.4.7-universal-r2",
   "platform": "Linux x86_64; Linux under WSL2",
   "supported_compute_capabilities": [
     "8.6",
@@ -78,5 +78,8 @@
   ],
   "minimum_vram_note": "12 GB is the intended VRAM floor, not system RAM; only stated GPU/profile combinations have hardware receipts.",
   "release_source_commit": "be302741801080a4fa2ea713fdf9409e2ef599d5",
-  "launchers": "Common CLI, GPU visibility routing and SM86 isolation verified with11 stub integration cases"
+  "launchers": "Common CLI, GPU visibility routing and SM86 isolation verified with11 stub integration cases",
+  "model_display_name": "L0xRE-27b-Low",
+  "documentation_update": "Canonical model naming and clearer installation; model weights and compiled binaries unchanged",
+  "api_model_alias": "L0xRE-27b-Low"
 }

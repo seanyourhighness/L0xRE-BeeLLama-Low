@@ -49,6 +49,6 @@ esac
 if [[ -n "$DRAFT" && "$PROFILE" != dflash-8k ]]; then
   echo 'A drafter requires --profile dflash-8k or 12gb on SM120.' >&2; exit 2
 fi
-exec "$ROOT/bin/llama-server" -m "$MODEL" -c "$CTX" -b 2048 -ub "$UB" -np 1 -t 8 -ngl 99 -fa on \
+exec "$ROOT/bin/llama-server" --alias L0xRE-27b-Low -m "$MODEL" -c "$CTX" -b 2048 -ub "$UB" -np 1 -t 8 -ngl 99 -fa on \
   -ctk kvarn3 -ctv kvarn2 "${SPEC[@]}" --jinja --reasoning off \
   --host 127.0.0.1 --port 8080 --no-webui "${EXTRAS[@]}"

@@ -20,6 +20,6 @@ Record any `CUDA_VISIBLE_DEVICES` or `L0XRE_ARCH` selection, especially on multi
 
 For a performance comparison, include input/output token counts, sampling settings, warmup and measured-run counts, acceptance statistics, memory headroom and the exact comparison model/runtime hashes. Separate prefill and decode measurements. The published SM86 numbers are deterministic, workload-specific receipts; Windows GPU performance and the new SM120 non-MTP Low common-CLI path remain unmeasured.
 
-Share prompts or generated output only if you choose to disclose them. The retained SM120 `escha doctor` tool is for the original r9 model hashes, including its MTP-containing E3 file; it is not a universal validator for the new Low target or Windows.
+Share prompts or generated output only if you choose to disclose them. The historical SM120 diagnostic tool validates its original checkpoint hashes; use the universal verification steps above for the current model and Windows package.
 
 To roll back, stop the server with Ctrl+C and run the earlier immutable release from its own directory with the unchanged model files. These installation instructions do not replace services or convert model weights.

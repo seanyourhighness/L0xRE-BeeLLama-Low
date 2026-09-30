@@ -69,8 +69,7 @@
     "output_tokens": 800,
     "measured_runs_per_prompt": 2,
     "sampling_scope": "deterministic short decode; no broad workload claim",
-    "original_model_basename": "escha-e3-firstclass-v2.gguf",
-    "model_identity": "Byte-identical to public L0xRE-27b-Low.gguf SHA-256",
+    "model_identity": "Benchmark target and public L0xRE-27b-Low.gguf have the same SHA-256",
     "original_launcher_sha256": "d7f4e2c882172ca3470a747d286ce00838f06f7ceec8c5f2f58c7df714f6ceec",
     "launcher_note": "Original Bash launcher hash; NOT an executable hash. Portable launcher changes paths and incorporates B84 overrides; executable and CUDA/bridge/cubin hashes match benchmark."
   }

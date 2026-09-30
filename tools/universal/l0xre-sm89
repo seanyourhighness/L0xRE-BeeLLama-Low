@@ -55,7 +55,7 @@ if [[ "$HAVE_DRAFT" == 1 ]]; then
   SPEC=(--spec-type draft-dflash --spec-draft-n-max "$NMAX" --spec-draft-ngl 99 \
         --spec-draft-type-k q4_0 --spec-draft-type-v q4_0)
 fi
-exec "$ROOT/bin/llama-server" -np 1 -t 8 -ngl 99 -fa on \
+exec "$ROOT/bin/llama-server" --alias L0xRE-27b-Low -np 1 -t 8 -ngl 99 -fa on \
   --jinja --reasoning on --reasoning-effort low --reasoning-budget 8192 \
   --temp 0.7 --top-p 0.95 --top-k 20 --no-webui \
   "${CTX[@]}" "${SPEC[@]}" "${ARGS[@]}"

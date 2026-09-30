@@ -6,7 +6,7 @@ runtime package.
 ## Purpose
 
 The v0.4.7 SM86 champion is not a preset-only change. It pairs the head128
-`lowgpu.cu` tuning with a bridge that can route K3 decode to the vectorized
+the model-specific CUDA source tuning with a bridge that can route K3 decode to the vectorized
 FP32-input cubin selected by `L0XRE_K3_VECTOR_CUBIN`. This directory builds that
 bridge for Windows and verifies the result before it is packaged.
 
@@ -100,7 +100,6 @@ retained `bridge\escha_official_bridge_cuda.dll`. The SM86 profile of the
 launcher sets:
 
 ```powershell
-$env:ESCHA_OFFICIAL_BRIDGE_LIBRARY = "$BRIDGE\sm86\bridge-b74-k3-vector.dll"
 $env:L0XRE_K3_VECTOR_CUBIN          = "$BRIDGE\sm86\k3-vector-all.cubin"
 ```
 
