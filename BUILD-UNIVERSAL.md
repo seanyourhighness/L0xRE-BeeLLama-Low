@@ -4,7 +4,7 @@ Release: `beellama-v0.4.7-universal-r3`.
 
 r3 changes the portable launchers, 12 GB defaults, examples and documentation. It reuses the verified r2 compiled payloads without rebuilding kernels or changing weights. The executable build/commit metadata below describes those retained binaries; configuration provenance is the r3 tag. The new 80K profile is tested on Linux SM86, with other architecture/Windows profile inference still pending.
 
-The [committed SM86 / Windows source](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/tree/be302741801080a4fa2ea713fdf9409e2ef599d5) is `be302741801080a4fa2ea713fdf9409e2ef599d5` on `release/sm86-b84-universal`. It contains the opt-in head128 patch, B74 CUDA bridge and PTX reconstruction inputs, Windows export/build support, and the universal architecture-list build-script fix. The source worktree was clean when published.
+The [committed SM86 / Windows source](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/tree/be302741801080a4fa2ea713fdf9409e2ef599d5) is `be302741801080a4fa2ea713fdf9409e2ef599d5` on `release/sm86-b84-universal`. It contains the opt-in head128 backend change in `ggml/src/ggml-cuda/lowgpu.cu`, the B74 CUDA bridge and PTX reconstruction inputs, Windows export/build support, and the universal architecture-list build-script fix. The source worktree was clean when published.
 
 ## Linux / WSL
 
@@ -31,7 +31,7 @@ python3 b72_vectorize_half.py
   official_bridge_b74_k3_vector.cu -o libbridge-b74-k3-vector.so -lcuda
 ```
 
-This gives a new build for qualification; it does not promise byte identity to the retained champion. The exact original head-backend relink replaced only the patched model-specific CUDA object, kept the original object list/flags, and compared stripped rebuilt loadable code/data. The package carries the source patch and bridge reconstruction material, not compiler caches.
+This gives a new build for qualification; it does not promise byte identity to the retained champion. The exact original head-backend relink replaced only the patched model-specific CUDA object, kept the original object list/flags, and compared stripped rebuilt loadable code/data. The pinned source commit carries the backend change in its full source tree; this release checkout carries the bridge/PTX reconstruction material under `source/sm86-b84/`, not compiler caches.
 
 SM89 uses the existing `beellama-sm89-v0.4.7-r1` payload and receipts; SM120 uses `beellama-sm120-v0.4.7-r9`. Their original build notes, source patches, model identities and license notices remain under their architecture directories. See the pinned historical source records for that separate baseline. The SM120 historical reference checkpoint includes MTP tensors; the new Low adapter does not inherit a throughput claim for its different target file.
 
@@ -61,7 +61,7 @@ The compiled source commit above intentionally stays pinned. The r3 configuratio
 
 ## Validation and release gates
 
-See [VALIDATION.json](evidence/universal/VALIDATION.json). CPU regression checks cover KVarN, model-format metadata, KV-tail requests and fit/tail logic. Current launcher integration tests passed 25 Linux and 15 Windows cases on GitHub runners, using stub executables to check routing, arguments, paths with spaces, invalid input and architecture isolation. ELF dependency/version and PE import/export/architecture checks are separate from GPU execution.
+See [VALIDATION.json](evidence/universal/VALIDATION.json) for the r3 release-time record. Its launcher checks passed 25 Linux and 15 Windows cases on GitHub runners. The current source adds four Linux checks for empty and non-empty `LD_LIBRARY_PATH`; all 29 Linux stub cases pass locally, and the workflow runs them on pull requests. These tests cover routing, arguments, paths with spaces, invalid input and architecture isolation; they do not execute CUDA. ELF dependency/version and PE import/export/architecture checks are separate from GPU execution.
 
 Archive integrity checks run after sealing: clean extraction, internal file SHA-256 verification, safe paths/symlinks, and exact archive checksums. Public model LFS hashes are checked at the pinned HF revision. No model weights are changed by this release.
 

@@ -10,14 +10,6 @@ import time
 import urllib.request
 from pathlib import Path
 
-MODELS = {
-    "e3": "/home/sean/kernel-lab5090/escha-mtp/escha-e3-with-mtp.gguf",
-    "w2": "/home/sean/kernel-lab5090/escha-mtp/escha-w2-with-mtp.gguf",
-    "native": "/home/sean/work/escha-v047-native-iq3-control.gguf",
-}
-DRAFT = "/home/sean/models/qwen3.8-27b-dflash2/Qwen3.8-27B-DFlash2-Q4_K_M.gguf"
-
-
 def ask(port, prompt, max_tokens=64, seed=1234, timeout=600, force_tokens=None):
     body = {"messages": [{"role": "user", "content": prompt}],
             "temperature": 0, "seed": seed, "max_tokens": max_tokens}
@@ -40,17 +32,22 @@ def needle(port, repeats, code):
               + filler
               + "Question: what is the vault access code? Answer with the code only.")
     text, _ = ask(port, prompt, max_tokens=64)
-    return code in text, text[:120].replace("\n", " ")
+    return needle_answer_matches(text, code), text[:120].replace("\n", " ")
 
 
-def run(launcher, model, profile, port, checks, workspace):
+def needle_answer_matches(text, code):
+    """Require the requested code as the complete answer, not a substring."""
+    return text.strip() == code
+
+
+def run(launcher, models, draft, model, profile, port, checks, workspace):
     # The filler appears twice around the needle, so keep the prompt inside the
     # profile's context: about 4K tokens for 8K profiles, 18K for 32K.
     needle_repeats = 900 if profile.endswith("32k") else 180
-    command = [str(launcher), "serve", "--model", model, "--model-path", MODELS[model],
+    command = [str(launcher), "serve", "--model", model, "--model-path", str(models[model]),
                "--profile", profile, "--port", str(port)]
     if profile == "dflash-8k":
-        command += ["--draft-path", DRAFT]
+        command += ["--draft-path", str(draft)]
     log_path = workspace / f"server-{model}-{profile}.log"
     with log_path.open("w") as log:
         process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT)
@@ -105,7 +102,21 @@ def main() -> int:
     parser.add_argument("--launcher", required=True)
     parser.add_argument("--workspace", required=True)
     parser.add_argument("--out", required=True)
+    parser.add_argument("--model-e3", required=True, type=Path,
+                        help="path to the E3 model GGUF")
+    parser.add_argument("--model-w2", required=True, type=Path,
+                        help="path to the W2 model GGUF")
+    parser.add_argument("--model-native", required=True, type=Path,
+                        help="path to the native IQ3 control GGUF")
+    parser.add_argument("--draft", required=True, type=Path,
+                        help="path to the DFlash2 drafter GGUF")
     args = parser.parse_args()
+    models = {"e3": args.model_e3.resolve(), "w2": args.model_w2.resolve(),
+              "native": args.model_native.resolve()}
+    draft = args.draft.resolve()
+    for label, path in [*models.items(), ("draft", draft)]:
+        if not path.is_file():
+            parser.error(f"{label} model file does not exist: {path}")
     launcher = Path(args.launcher).resolve()
     workspace = Path(args.workspace)
     workspace.mkdir(parents=True, exist_ok=True)
@@ -117,7 +128,7 @@ def main() -> int:
     port = 18095
     for model, profile in plan:
         print(">>>", model, profile, flush=True)
-        run(launcher, model, profile, port, checks, workspace)
+        run(launcher, models, draft, model, profile, port, checks, workspace)
         port += 1
     failures = [c for c in checks if not c["ok"]]
     result = {"launcher": str(launcher), "checks": checks, "failures": failures,

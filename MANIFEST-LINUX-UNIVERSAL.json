@@ -46,12 +46,31 @@
     }
   },
   "sm86_source_material": {
-    "base_commit": "ab1698c",
+    "base_commit": "ab1698c739b3bc13b9e06fb8febdc774ff106d23",
+    "source_repository": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low",
+    "source_commit": "be302741801080a4fa2ea713fdf9409e2ef599d5",
     "files": {
-      "source/patches/head128-lowgpu.patch": "12d37efc44a609d43624d599040b1f809c5e27ec1d0ef940b9bdfe5afc1dbea5",
-      "source/bridge/official_bridge_b74_k3_vector.cu": "40b162dd48d41ca585968043a492d632ec0395be2029f3535c797474b3ce59c8"
+      "source/sm86-b84/README.md": "ebf0d6f99f595afc0687b1412f1e9db9bf5b28d5a2cbbd27d60da5e9bd904b22",
+      "source/sm86-b84/b71_vectorize_f32.py": "efae81283135b0c6e13a64b6cbb0c5899284b5046bf1307170a87189c6125412",
+      "source/sm86-b84/b72_vectorize_half.py": "da092348d65c792d884e1ca12a9484255986f1c43eaeaa679ea797d32d77b0b5",
+      "source/sm86-b84/escha_official_bridge_v1.h": "6cc9fae65e2d68cacdf78a001c8eda78004594277fcd820815dc3d894fa423db",
+      "source/sm86-b84/k2k3-sm86-baseline.ptx": "74b317290fc7a8dae8316a323d3ae8a0a1dc513c25baa2cf6d90ac8242f21a39",
+      "source/sm86-b84/k2k3-sm86-k3-f32-v4-half-v4.ptx": "6467918a8d3bef5e0067a4522d5f8a98c01061168e2bd1446f437772cfbfc2db",
+      "source/sm86-b84/k2k3-sm86-k3-f32-v4.ptx": "e4d9be211f33cd383048418bad781f28e676bd0bf478336f9b9ce8fcf643a5da",
+      "source/sm86-b84/k3-vector-all.cubin": "fe1069f84644825c37d92bb39a1295a063bb25f2ba53e99dba93c1d9c13a7059",
+      "source/sm86-b84/official_bridge_b74_k3_vector.cu": "40b162dd48d41ca585968043a492d632ec0395be2029f3535c797474b3ce59c8",
+      "source/sm86-b84/windows/README.md": "321b5e0f61d9e50a1726ffd5d496d7fe0a3c9d8645dfa0f86531bdf80e0b71ef",
+      "source/sm86-b84/windows/bridge-b74-k3-vector.def": "4e2580b05536b332514bc05514b2651da001c22c905a70e6314590be92492fa9",
+      "source/sm86-b84/windows/build.ps1": "c68f24cf1058b318027a17d0b1c4a3b37067f76eba397874b14b87786a10432b",
+      "source/sm86-b84/windows/escha_official_bridge_v1.h": "6cc9fae65e2d68cacdf78a001c8eda78004594277fcd820815dc3d894fa423db",
+      "source/sm86-b84/windows/official_bridge_b74_k3_vector.cu": "40b162dd48d41ca585968043a492d632ec0395be2029f3535c797474b3ce59c8"
     },
-    "note": "The matching runtime, CUDA backend, bridge shared object, and cubin hashes are recorded in the SM86 payload and evidence entries."
+    "head128_backend_implementation": {
+      "path": "ggml/src/ggml-cuda/lowgpu.cu",
+      "sha256": "d74db48a1f125404f65a4d31461f172a64761d69b7c5eac9202807b9e1cb0e38",
+      "standalone_patch_included": false
+    },
+    "note": "The bridge/PTX reconstruction artifacts listed here are included in this checkout. The full source tree, including the head128 backend implementation, is pinned separately at source_commit; the earlier manifest path names for a standalone patch and bridge file did not exist."
   },
   "shared_dependencies": {
     "cuda_12_8": {
@@ -79,7 +98,7 @@
   ],
   "minimum_vram_note": "12 GB is the intended VRAM floor, not system RAM; only stated GPU/profile combinations have hardware receipts.",
   "release_source_commit": "be302741801080a4fa2ea713fdf9409e2ef599d5",
-  "launchers": "Common CLI, GPU visibility routing and SM86 isolation verified with25 Linux stub integration cases",
+  "launchers": "r3 release-time checks: 25 Linux and 15 Windows stub cases; current source adds four LD_LIBRARY_PATH isolation cases (29 Linux cases pass locally); stub tests do not execute CUDA",
   "model_display_name": "L0xRE-27b-Low",
   "documentation_update": "r3 updates launcher configuration and docs; compiled components and model weights match r2",
   "api_model_alias": "L0xRE-27b-Low",

@@ -1,0 +1,128 @@
+{
+  "date_utc": "2026-10-01",
+  "benchmark": "Club-3090 full quality 8-pack",
+  "runtime": {
+    "name": "L0xRE BeeLLama",
+    "version": "0.4.7",
+    "release_tag": "beellama-v0.4.7-universal-r3",
+    "architecture": "SM86",
+    "runner": "benchlocal-cli",
+    "runner_version": "0.9.9",
+    "components": {
+      "server_sha256": "e36639081643e7f3be37e1de0008823ff71a899352c05380e0a9072535bcbfee",
+      "cuda_backend_sha256": "b3f117d779d3059232dc09ecbdb26923564464d40d8a99e075f535de198de27d",
+      "bridge_sha256": "2b03be5f77ea7dd866a2da3180807e9df9746e5d1b685d2b5153355b56575ffc",
+      "k3_vector_cubin_sha256": "fe1069f84644825c37d92bb39a1295a063bb25f2ba53e99dba93c1d9c13a7059"
+    }
+  },
+  "hardware": {
+    "host": "Z840",
+    "gpu": "NVIDIA GeForce RTX 3060"
+  },
+  "model": {
+    "name": "L0xRE-27b-Low (E3)",
+    "file": "L0xRE-27b-Low.gguf",
+    "sha256": "b0849250c633aa93853bf119a877dbdafdd7b1a4ebb672bd6b6a1439906f3543"
+  },
+  "protocol": {
+    "scenarios": 150,
+    "packs": 8,
+    "external_repeats": 1,
+    "thinking": "forced off",
+    "sampling": "pack-default canonical sampling and token budgets; no server-sampling override",
+    "primary_metric": "pass@1",
+    "pass_at_3_note": "Harness retry-credit metric, not three independent full-suite runs",
+    "hermes_preflight": {
+      "container_image": "benchlocal-sandbox-hermes:latest",
+      "models_http_status": 200,
+      "chat_completions_http_status": 200,
+      "thinking_off_probe": "HERMES_PACK_OK",
+      "hermesagent_transport_failures": 0
+    }
+  },
+  "results": {
+    "pass_at_1": {
+      "passed": 118,
+      "total": 150,
+      "score": 0.7866666667
+    },
+    "pass_at_3": {
+      "passed": 119,
+      "total": 150,
+      "credited_flaky": 1
+    },
+    "packs": [
+      {"id": "toolcall-15", "passed": 15, "total": 15},
+      {"id": "instructfollow-15", "passed": 13, "total": 15},
+      {"id": "structoutput-15", "passed": 15, "total": 15},
+      {"id": "dataextract-15", "passed": 11, "total": 15},
+      {"id": "reasonmath-15", "passed": 11, "total": 15},
+      {"id": "bugfind-15", "passed": 13, "total": 15},
+      {"id": "hermesagent-20", "passed": 14, "total": 20},
+      {"id": "cli-40", "passed": 26, "total": 40}
+    ],
+    "warnings": [
+      "The harness noted that the BugFind and Hermes Docker images predated the installed CLI update; this heuristic does not establish that image age caused any failures."
+    ]
+  },
+  "lowgpu_iq3_xxs_thinking_off_controls": [
+    {
+      "date": "2026-09-03/04",
+      "runtime": "BeeLlama 0.4.4-dev build 11313, commit be6bf478d",
+      "hardware": "RTX 5090",
+      "profile": "32K context, F16 KV, one slot, full CUDA offload",
+      "thinking": "off",
+      "target": "Qwen3.8-27B-LowGPU-NoMTP-IQ3XXXS.gguf",
+      "pass_at_1": 112,
+      "pass_at_3": 113,
+      "packs": [14, 13, 15, 12, 12, 12, 14, 20]
+    },
+    {
+      "date": "2026-09-04",
+      "runtime": "BeeLlama 0.4.4-dev build 1, commit a7417e8-dirty",
+      "hardware": "not recorded in the saved benchmark note",
+      "profile": "81,920 context, target KVarN3/KVarN2, 128-token exact tail; DFlash2 N3 with Q2_K_S-MIX drafter and q2_0 draft KV",
+      "thinking": "off",
+      "target": "Qwen3.8-27B-LowGPU-NoMTP-IQ3XXXS.gguf",
+      "pass_at_1": 112,
+      "pass_at_3": 114,
+      "packs": [14, 14, 15, 13, 12, 12, 13, 19]
+    }
+  ],
+  "comparison": {
+    "observed_pass_at_1_delta_vs_each_iq3_run": 6,
+    "interpretation": "E3 scored six more scenarios than either saved IQ3_XXS run. This is directional evidence, not a controlled model-only comparison: the IQ3 runs used BeeLlama 0.4.4-dev and different hardware/profile settings.",
+    "same_runtime_iq3_quality_run_found": false,
+    "same_runtime_performance_control": {
+      "date": "2026-09-28",
+      "hardware": "RTX 3060",
+      "runtime": "same L0xRE SM86 runtime binary and matched code-benchmark setup",
+      "scope": "code decode throughput only; not an 8-pack quality run",
+      "measured_runs": 5,
+      "e3_decode_tokens_per_second_mean_sd": "34.25 ± 0.64",
+      "iq3_xxs_decode_tokens_per_second_mean_sd": "33.88 ± 0.93"
+    },
+    "historical_same_run_temp0_quality_control": {
+      "date": "2026-09-20",
+      "hardware": "RTX 4090",
+      "runtime": "older release binary; frozen E3 artifact SHA-256 746bd40841fb18b9c1918923e89c007df70b5e4f3de64290d1399593e70c96b",
+      "results": {
+        "e3_pass_at_1": 120,
+        "native_iq3_xxs_pass_at_1": 112,
+        "e3_cli": "27/40",
+        "native_iq3_xxs_cli": "20/40"
+      },
+      "interpretation": "Same-run controlled historical result; runtime, GPU, and E3 artifact differ from the October 1 deployment."
+    }
+  },
+  "limits": [
+    "The October 1 result is one external full-suite run; it demonstrates broad task-suite performance, not a universal intelligence guarantee or run-to-run variance estimate.",
+    "The benchmark runner result does not record the server context/profile settings; no full-context 80K memory qualification is claimed here.",
+    "IQ3_XXS comparisons are cross-runtime and cross-configuration. The 32K IQ3 run was on RTX 5090; the hardware for the 80K IQ3 run was not recorded in its saved note.",
+    "Earlier IQ3 attempts scoring 98/150 are excluded because HermesAgent could not reach the server, producing an artificial 0/20."
+  ],
+  "raw_receipt": {
+    "included_in_repository": false,
+    "note": "The full scenario-level runner JSON is retained with the Club-3090 local benchmark artifacts; this file publishes the summary and comparison."
+  }
+}

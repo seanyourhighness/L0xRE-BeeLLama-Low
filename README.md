@@ -4,7 +4,7 @@ Run **L0xRE-27b-Low** with the BeeLLama runtime on NVIDIA RTX 30, 40, and 50 ser
 
 **Image input:** see the [opt-in CPU vision setup](#vision-start-with-the-projector-on-cpu), including Q8_0, worker settings and a native Hermes config.
 
-The intended minimum is **12 GB of GPU VRAM**, not 12 GB of system RAM. Cards with less VRAM are outside this release target. Available VRAM, context length, display use, and driver overhead still matter; the current 80K upgraded-cache test reached243MiB free on theRTX3060; this is a measured workload, not a guarantee for every12GB card.
+The intended minimum is **12 GB of GPU VRAM**, not 12 GB of system RAM. Cards with less VRAM are outside this release target. Available VRAM, context length, display use, and driver overhead still matter; the current 80K upgraded-cache test reached 243 MiB free on the RTX 3060. This is a measured workload, not a guarantee for every 12 GB card.
 
 ## Downloads
 
@@ -111,7 +111,7 @@ On Windows, use `curl.exe` with the same pinned URL and output file, then compar
 
 ### Opt-in SM86 configuration
 
-Stop your existing server before starting a replacement on the same GPU and port. This command reproduces the current tested80K / KVarN3/3 / Q4-draft-cache / 1,024-image-token / 32-worker setting:
+Stop your existing server before starting a replacement on the same GPU and port. This command reproduces the current tested 80K / KVarN3/3 / Q4-draft-cache / 1,024-image-token / 32-worker setting:
 
 ```bash
 ./l0xre serve --profile 12gb-quality \
@@ -159,7 +159,7 @@ python3 /path/to/L0xRE-BeeLLama-Low/examples/vision/check-vision.py
 
 It sends the included [smoke image](examples/vision/smoke.png) through `/v1/chat/completions` and checks `VISION 742` plus the red box, blue circle and green triangle. It prints image-plus-prompt and complete-response timings separately. For an actual Hermes check, attach the same image in a chat; the current CLI also supports `hermes chat --image /path/to/smoke.png -q "Read the text and describe the shapes." --oneshot`.
 
-[Measured CPU-vision results and qualification limits](evidence/vision/SM86-CPU-VISION.json) cover Linux SM86 only. The current 80K cache preset passed code, vision and a 29,762-token retrieval canary, with 243 MiB minimum free VRAM; a full 80K memory/quality qualification has not been performed. See [current 80K cache evidence](evidence/quality/SM86-80K-QUALITY.json). The text-only launch commands above remain unchanged. To return to text-only operation, stop the vision server and launch without `--mmproj` and the vision-specific flags; switch Hermes back to its previous image routing if needed.
+[Measured CPU-vision results and qualification limits](evidence/vision/SM86-CPU-VISION.json) cover Linux SM86 only. The current 80K cache preset passed code, vision and a 29,762-token retrieval canary, with 243 MiB minimum free VRAM; full-context memory qualification has not been performed. See [current 80K cache evidence](evidence/quality/SM86-80K-QUALITY.json). A separate thinking-off full 8-pack result is now available below. The text-only launch commands above remain unchanged. To return to text-only operation, stop the vision server and launch without `--mmproj` and the vision-specific flags; switch Hermes back to its previous image routing if needed.
 
 ## Test results and measured performance
 
@@ -169,10 +169,11 @@ It sends the included [smoke image](examples/vision/smoke.png) through `/v1/chat
 | Previous r2 Linux SM86 / long context | 92,879 input + 128 greedy output tokens; prefill **272.60 tok/s**, decode **21.06 tok/s**, minimum free VRAM **215 MiB** | Output SHA matched the B74 reference; a narrow correctness canary, not a broad quality test |
 | Historical Linux SM89 / RTX 4090 r1 settings | 12gb profile code **115.4 ± 2.4 tok/s** | Inherited result; original command, model and workload receipts retained under `architectures/sm89/receipts/` |
 | Linux SM120 / RTX 5090 | Current L0xRE-27b-Low common-CLI path awaits hardware qualification | Included GPU runtime payload; no measured throughput is claimed for this model/path combination |
+| Linux SM86 / Z840 RTX 3060, L0xRE-27b-Low (E3) | **118/150 pass@1 (78.7%)**; 119/150 pass@3 | Club-3090 full 8-pack, one external run, thinking forced off. Six more pass@1 scenarios than each of two saved LowGPU IQ3_XXS runs; those controls used BeeLlama 0.4.4-dev and different hardware/profile settings, so this is directional rather than a model-only comparison. [Scores, protocol and limits](evidence/quality/SM86-3060-FULL8-THINKING-OFF-2026-10-01.json) |
 | Windows universal | **235 CUDA cubin entries per architecture** (SM86, SM89, SM120) | CUDA 13.3 / MSVC; new head128 backend and B74 bridge included; no GPU tokens/s result |
-| Release source and launchers | **25 Linux and 15 Windows launcher checks passed**; 4/4 inherited compiled CPU tests | Current launcher checks ran on Linux and a Windows GitHub runner with stub executables; they do not execute CUDA. [Validation](evidence/universal/VALIDATION.json) records the checks. Archive checksums and clean-extract PE/dependency checks are recorded separately in [archive validation](evidence/universal/ARCHIVE-VALIDATION.json). |
+| Release source and launchers | **29 Linux stub cases pass locally**; r3 release validation recorded 25 Linux / 15 Windows cases and 4/4 inherited compiled CPU tests | Stub checks do not execute CUDA. The four added Linux cases cover empty and non-empty `LD_LIBRARY_PATH`; CI is configured to run them. [Release validation](evidence/universal/VALIDATION.json) and [current launcher tests](tools/universal/test-linux-launchers.py). Archive checksums and clean-extract PE/dependency checks are in [archive validation](evidence/universal/ARCHIVE-VALIDATION.json). |
 
-The target and compiled-component hashes match the original B84 measurements, but the r3 configuration differs. The rows explicitly labeled previous/historical do not measure the new 80K default. Current Linux SM86 evidence is in [SM86-80K-QUALITY.json](evidence/quality/SM86-80K-QUALITY.json): code 40.32 tok/s on a short binary-search canary, correct code/vision/retrieval outputs, and 243 MiB minimum free VRAM. These are not the historical 800-token prompts or a broad quality benchmark. The universal launcher changes portable paths and incorporates preset overrides. Interactive defaults use temperature 0.7; benchmark sampling differs. Do not compare rows as a controlled GPU comparison: workloads, models and protocols differ.
+The target and compiled-component hashes match the original B84 measurements, but the r3 configuration differs. The rows explicitly labeled previous/historical do not measure the new 80K default. Current Linux SM86 evidence is in [SM86-80K-QUALITY.json](evidence/quality/SM86-80K-QUALITY.json): code 40.32 tok/s on a short binary-search canary, correct code/vision/retrieval outputs, and 243 MiB minimum free VRAM. Those are not the historical 800-token prompts or a broad quality benchmark. The October 1 8-pack result adds broad task coverage for one thinking-off run: 15/15 ToolCall, 15/15 StructOutput, 14/20 HermesAgent and 26/40 CLI. It supports capability across the tested task types, not a universal intelligence guarantee or run-to-run variance estimate. The full 8-pack test did not qualify full-context 80K memory behavior. Interactive defaults use temperature 0.7; benchmark sampling differs. Cross-model quality comparisons remain directional where runtime, GPU or profile differs.
 
 ## Source, build and rollback
 
