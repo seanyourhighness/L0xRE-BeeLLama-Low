@@ -146,6 +146,17 @@ def main() -> int:
     if bool(args.model) != bool(args.model_path):
         parser.error("--model and --model-path must be supplied together")
     manifest = json.loads((ROOT / "MANIFEST.json").read_text())
+    required_manifest_keys = {
+        "files", "host_abi", "build", "models", "release", "architecture"
+    }
+    missing_manifest_keys = sorted(required_manifest_keys - manifest.keys())
+    if missing_manifest_keys:
+        parser.error(
+            "expected the package-specific SM120 MANIFEST.json from an extracted "
+            "runtime; the repository release manifest is missing "
+            + ", ".join(missing_manifest_keys)
+            + ". Verify a universal source checkout with SHA256SUMS instead."
+        )
     failures = []
     payload = {}
     for name, expected in manifest["files"].items():

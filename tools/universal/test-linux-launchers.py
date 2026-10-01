@@ -16,11 +16,11 @@ with tempfile.TemporaryDirectory(prefix='l0xre-launcher-') as tmp:
         if arch=='sm120':
             shutil.copytree(profile_source,d/'profiles')
         server=d/'bin/llama-server'
-        server.write_text('#!/usr/bin/python3\nimport sys,os,json\nprint(json.dumps({"args":sys.argv[1:],"env":{k:v for k,v in os.environ.items() if k.startswith(("ESCHA_","L0XRE_","GGML_"))}}))\n')
+        server.write_text('#!/usr/bin/python3\nimport sys,os,json\nprint(json.dumps({"args":sys.argv[1:],"env":{k:v for k,v in os.environ.items() if k.startswith(("ESCHA_","L0XRE_","GGML_")) or k == "LD_LIBRARY_PATH"}}))\n')
         server.chmod(0o755)
     model=root/'model with spaces.gguf';model.touch()
     draft=root/'draft with spaces.gguf';draft.touch()
-    env=dict(os.environ,PATH='/usr/bin:/bin',ESCHA_E3_HEAD_RT_BLOCK128='1',L0XRE_K3_VECTOR_CUBIN='wrong-sm86.cubin')
+    env=dict(os.environ,PATH='/usr/bin:/bin',LD_LIBRARY_PATH='',ESCHA_E3_HEAD_RT_BLOCK128='1',L0XRE_K3_VECTOR_CUBIN='wrong-sm86.cubin')
     def run(arch,args,code=0,extra=None):
         e=dict(env,L0XRE_ARCH=arch)
         if extra:e.update(extra)
@@ -33,6 +33,12 @@ with tempfile.TemporaryDirectory(prefix='l0xre-launcher-') as tmp:
         return None
     def value(data,key):return data['args'][data['args'].index(key)+1]
     args=['serve','--profile','12gb','-m',str(model),'-md',str(draft),'--port','9099']
+    for arch in ('sm86','sm89'):
+        d=run(arch,args)
+        expected=str(root/'architectures'/arch/'bin')
+        assert d['env']['LD_LIBRARY_PATH']==expected,(arch,d['env'].get('LD_LIBRARY_PATH'))
+        d=run(arch,args,extra={'LD_LIBRARY_PATH':'/opt/safe-libs'})
+        assert d['env']['LD_LIBRARY_PATH']==expected+':/opt/safe-libs',(arch,d['env'].get('LD_LIBRARY_PATH'))
     d=run('sm86',args);assert value(d,'-c')=='81920' and value(d,'-ub')=='256' and value(d,'--spec-draft-type-k')=='q4_0' and d['env']['ESCHA_E3_HEAD_RT_BLOCK128']=='1' and value(d,'--port')=='9099'
     d=run('sm89',args);assert value(d,'-c')=='81920' and value(d,'-ub')=='256' and 'ESCHA_E3_HEAD_RT_BLOCK128' not in d['env'] and 'L0XRE_K3_VECTOR_CUBIN' not in d['env']
     d=run('sm120',args);assert value(d,'-c')=='81920' and value(d,'-ub')=='256' and value(d,'--spec-draft-n-max')=='3' and value(d,'-m')==str(model) and 'ESCHA_E3_HEAD_RT_BLOCK128' not in d['env']
@@ -65,4 +71,4 @@ with tempfile.TemporaryDirectory(prefix='l0xre-launcher-') as tmp:
     fake=root/'nvidia-smi';fake.write_text('#!/bin/sh\ncase "$*" in *"-i 1"*) echo 8.9;; *) echo 12.0;; esac\n');fake.chmod(0o755)
     d=run('',args,extra={'PATH':str(root)+':/usr/bin:/bin','CUDA_VISIBLE_DEVICES':'1'});assert value(d,'-c')=='81920'
     run('',args,2,{'CUDA_VISIBLE_DEVICES':''})
-print('PASS: 25 Linux launcher integration cases (stub servers; no GPU execution).')
+print('PASS: 29 Linux launcher integration cases (stub servers; no GPU execution).')
