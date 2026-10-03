@@ -1,0 +1,213 @@
+{
+  "status": "completed_for_review",
+  "started_unix_s": 1791036684.5560253,
+  "promotes_production": false,
+  "original_receipt_sha256": "8c4849d3e4ea071192b5e4dd60742ae3c6a0e7742ccae9695897ed7ba8f8387b",
+  "blocks": {
+    "A1-production": {
+      "prose": {
+        "all_rates": [
+          28.835186231635248,
+          28.955453574858783,
+          28.710108714294137,
+          28.445972322674166
+        ],
+        "decode_mean": 28.736680210865583,
+        "n": 4
+      },
+      "code": {
+        "all_rates": [
+          40.26353212465469,
+          40.48833082219537
+        ],
+        "decode_mean": 40.37593147342503,
+        "n": 2
+      }
+    },
+    "B1-contextgate": {
+      "prose": {
+        "all_rates": [
+          28.835120671732,
+          28.667443235053877,
+          28.799619599918138,
+          28.787326831528816
+        ],
+        "decode_mean": 28.772377584558207,
+        "n": 4
+      },
+      "code": {
+        "all_rates": [
+          40.24211550434023,
+          40.60695144252256
+        ],
+        "decode_mean": 40.424533473431396,
+        "n": 2
+      }
+    },
+    "C1-gdnfp16": {
+      "prose": {
+        "all_rates": [
+          28.86879105560306,
+          28.775374099671126,
+          28.525705838065956,
+          28.814794835595364
+        ],
+        "decode_mean": 28.746166457233876,
+        "n": 4
+      },
+      "code": {
+        "all_rates": [
+          40.4308665326494,
+          40.42973110332584
+        ],
+        "decode_mean": 40.43029881798762,
+        "n": 2
+      }
+    },
+    "C2-gdnfp16": {
+      "prose": {
+        "all_rates": [
+          28.49728874512242,
+          28.722948931603362,
+          28.609122228088463,
+          28.11655469662238
+        ],
+        "decode_mean": 28.486478650359157,
+        "n": 4
+      },
+      "code": {
+        "all_rates": [
+          40.468959776031916,
+          40.19584987660025
+        ],
+        "decode_mean": 40.33240482631608,
+        "n": 2
+      }
+    },
+    "B2-contextgate": {
+      "prose": {
+        "all_rates": [
+          28.48746567554531,
+          28.77912193206096,
+          28.747589151257113,
+          28.831864904923044
+        ],
+        "decode_mean": 28.711510415946606,
+        "n": 4
+      },
+      "code": {
+        "all_rates": [
+          39.87882427443499,
+          40.387228092607764
+        ],
+        "decode_mean": 40.13302618352138,
+        "n": 2
+      }
+    },
+    "A2-production": {
+      "prose": {
+        "all_rates": [
+          28.884652232221466,
+          28.89772956072449,
+          28.708774881956273,
+          28.838928843498316
+        ],
+        "decode_mean": 28.832521379600138,
+        "n": 4
+      },
+      "code": {
+        "all_rates": [
+          40.220999036256536,
+          40.48637770202867
+        ],
+        "decode_mean": 40.3536883691426,
+        "n": 2
+      }
+    }
+  },
+  "candidates": {
+    "contextgate": {
+      "decode": {
+        "pp8192": {
+          "change_pct": 0.21334040940281795,
+          "paired_change_pct": [
+            0.569837472057011,
+            -0.141219401520698
+          ],
+          "passed": true
+        },
+        "quality_code": {
+          "change_pct": 1.2373930380025433,
+          "paired_change_pct": [
+            2.411685123067797,
+            0.08617102575168012
+          ],
+          "passed": true
+        },
+        "code": {
+          "change_pct": -0.21313142059926626,
+          "paired_change_pct": [
+            0.12037369351678429,
+            -0.5468203639842684
+          ],
+          "passed": true,
+          "includes_original_samples": true
+        },
+        "prose": {
+          "change_pct": -0.1481931095168143,
+          "paired_change_pct": [
+            0.12422232989572901,
+            -0.41970302236262746
+          ],
+          "passed": true,
+          "includes_original_samples": true
+        }
+      },
+      "status": "qualified_for_long_and_quality"
+    },
+    "gdnfp16": {
+      "decode": {
+        "pp8192": {
+          "change_pct": 0.2758084012962403,
+          "paired_change_pct": [
+            0.54370979409335,
+            0.009362819755986962
+          ],
+          "passed": true
+        },
+        "quality_code": {
+          "change_pct": 0.44821859015784504,
+          "paired_change_pct": [
+            1.8850097819834932,
+            -0.9603454869354322
+          ],
+          "passed": true
+        },
+        "code": {
+          "change_pct": 0.04098099532809929,
+          "paired_change_pct": [
+            0.13465285524960624,
+            -0.05274249687371446
+          ],
+          "passed": true,
+          "includes_original_samples": true
+        },
+        "prose": {
+          "change_pct": -0.5846120383375841,
+          "paired_change_pct": [
+            0.033010933408750276,
+            -1.200181991318372
+          ],
+          "passed": false,
+          "includes_original_samples": true
+        }
+      },
+      "status": "held"
+    }
+  },
+  "restoration": "{\"status\":\"ok\"}",
+  "restored_health": {
+    "status": "ok"
+  },
+  "finished_unix_s": 1791037537.2995365
+}

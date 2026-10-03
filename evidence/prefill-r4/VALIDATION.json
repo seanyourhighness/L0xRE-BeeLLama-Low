@@ -1,0 +1,13 @@
+{
+  "linux_launcher_cases": 29,
+  "windows_launcher_cases": 15,
+  "release_correctness_tests": 6,
+  "shell_syntax": "passed",
+  "Windows_structure": "WINDOWS-STRUCTURE.json",
+  "archives": "ARCHIVE-VALIDATION.json",
+  "source_commit": "5073ba0",
+  "Linux_measured_performance": "long-abba.json",
+  "Windows_GPU_performance": "not tested",
+  "models_unchanged": true,
+  "GDN_materialization_excluded": true
+}

@@ -1,0 +1,35 @@
+{
+  "release": "beellama-v0.4.7-universal-r4",
+  "scope": "Linux SM86 RTX3060 12GB; Windows port build/structure only",
+  "context": 81920,
+  "target_kv": [
+    "kvarn4",
+    "kvarn4"
+  ],
+  "DFlash2": true,
+  "GGUF_modified": false,
+  "fresh_prompt_tokens": 77824,
+  "prefill_tps": 429.048729350804,
+  "decode_tps": 28.312904146214485,
+  "attention_prefill_change_pct": 11.981603126751072,
+  "attention_decode_change_pct": 0.3804764973569963,
+  "int8_prefill_tps_before": 284.918241,
+  "int8_prefill_tps_after": 382.649712,
+  "int8_decode_before": 26.577698,
+  "int8_decode_after": 28.220993,
+  "capacity_input": 77820,
+  "capacity_output": 4096,
+  "capacity_min_free_mib": 305,
+  "unqualified_excluded": [
+    "GDN prefix variants",
+    "materialization experiment",
+    "direct F32 output bridge"
+  ],
+  "goal_1000_achieved": false,
+  "windows_gpu_execution": false,
+  "notes": [
+    "Short-domain means and both paired decode blocks pass revised <=1% regression gate with all recorded samples retained.",
+    "Separate prior/current runs are not one simultaneous cumulative A/B benchmark.",
+    "No broad full150 accuracy claim. Frozen15 answers unchanged vs INT8 baseline (12/15)."
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "cases": {
+    "A1-production": {
+      "completed": true,
+      "error": null,
+      "min_free_mib": 243,
+      "prefill_tps": 285.3983425068794,
+      "decode_tps": 26.588198700529105,
+      "measured_generated": 512,
+      "draft_generated": 438,
+      "draft_accepted": 365,
+      "ttft_s": 272.7653954029083,
+      "complete_tokens": 801,
+      "complete_sha256": "6e64b7eae33ffca501b91c835ee063b8a6752df84c21a60129de0afb87466f6c",
+      "continuation_cache_n": 78335
+    },
+    "B1-allproj512": {
+      "completed": true,
+      "error": null,
+      "min_free_mib": 325,
+      "prefill_tps": 382.6762372965591,
+      "decode_tps": 28.142397446983388,
+      "measured_generated": 512,
+      "draft_generated": 408,
+      "draft_accepted": 375,
+      "ttft_s": 203.44230389595032,
+      "complete_tokens": 879,
+      "complete_sha256": "eb1aa9218da1e78277926648d8718e7da3e367577408bd000179d2f881eb24e2",
+      "continuation_cache_n": 78335
+    },
+    "B2-allproj512": {
+      "completed": true,
+      "error": null,
+      "min_free_mib": 325,
+      "prefill_tps": 382.623186472465,
+      "decode_tps": 28.29958796686013,
+      "measured_generated": 512,
+      "draft_generated": 408,
+      "draft_accepted": 375,
+      "ttft_s": 203.467218875885,
+      "complete_tokens": 879,
+      "complete_sha256": "eb1aa9218da1e78277926648d8718e7da3e367577408bd000179d2f881eb24e2",
+      "continuation_cache_n": 78335
+    },
+    "A2-production": {
+      "completed": true,
+      "error": null,
+      "min_free_mib": 243,
+      "prefill_tps": 284.43813919110306,
+      "decode_tps": 26.567198244589274,
+      "measured_generated": 512,
+      "draft_generated": 438,
+      "draft_accepted": 365,
+      "ttft_s": 273.6551556587219,
+      "complete_tokens": 801,
+      "complete_sha256": "6e64b7eae33ffca501b91c835ee063b8a6752df84c21a60129de0afb87466f6c",
+      "continuation_cache_n": 78335
+    }
+  },
+  "scope": "fresh77824 prefix, first512 sustained decode tokens; cache continuation for correctness",
+  "mean_comparison": {
+    "prefill_tps": {
+      "production": 284.9182408489912,
+      "candidate": 382.64971188451204,
+      "change_pct": 34.30158446307383
+    },
+    "decode_tps": {
+      "production": 26.57769847255919,
+      "candidate": 28.22099270692176,
+      "change_pct": 6.1829817057305725
+    }
+  },
+  "restored_health": {
+    "status": "ok"
+  }
+}

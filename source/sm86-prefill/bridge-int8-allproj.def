@@ -1,0 +1,14 @@
+LIBRARY bridge-int8-allproj
+EXPORTS
+    escha_official_bridge_abi_version
+    escha_official_bridge_error
+    escha_official_bridge_probe
+    escha_official_code_gemm
+    escha_official_code_gemm_pretransformed
+    escha_official_decode_gemv_main_batch_v1
+    escha_official_decode_gemv_main_desc_v1
+    escha_official_decode_gemv_main_f32_raw
+    escha_official_decode_gemv_main_raw
+    escha_official_decode_gemv_raw
+
+    l0xre_int8_prefill_init_v1

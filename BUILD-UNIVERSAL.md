@@ -1,6 +1,14 @@
+# Universal r4 prefill build and provenance
+
+Linux SM86 retains its qualified original server/CUDA backend and loads the exact promoted INT8 bridge plus libqk16-context-gate.so using LD_PRELOAD. The original backend is retained to preserve measured decode. The new source is in source/sm86-prefill and the full-source branch release/sm86-prefill-80k; commit `5073ba019cbaec387530b64d33e73b7fc6a41338` is pinned in the manifests. build-linux.sh reconstructs bridge/interposer against the full source and a matching retained backend; a fresh compilation needs independent qualification.
+
+Windows rebuilds only ggml-cuda.cu, escha-moe.cu and fattn-kvarn-dispatch.cu from the retained CUDA13.3/MSVC universal object cache. The qualifying attention branch runs before the original dispatch; fallback follows the original implementation. INT8 scratch/cuBLAS initialization is an explicit export called by the backend during initialization, before graph capture, never from DllMain. The separate bridge DLL carries SM86 device code; other architecture routes use their original bridges. Existing executable provenance remains be30274; changed backend/bridge source identity is pinned separately in the r4 manifest. Build/PE/launcher/architecture checks do not imply Windows GPU performance.
+
+r4 updates only SM86 optimization/config defaults. SM89/SM120 keep r3 payloads/settings. No GGUF changes. Roll back by extracting the earlier immutable release into a separate directory and using the same model files. Z840 production uses the qualified staged paths and retains its prior launcher for rollback.
+
 # Universal B84 source and build provenance
 
-Release: `beellama-v0.4.7-universal-r3`.
+Historical retained payload provenance follows.
 
 r3 changes the portable launchers, 12 GB defaults, examples and documentation. It reuses the verified r2 compiled payloads without rebuilding kernels or changing weights. The executable build/commit metadata below describes those retained binaries; configuration provenance is the r3 tag. The new 80K profile is tested on Linux SM86, with other architecture/Windows profile inference still pending.
 

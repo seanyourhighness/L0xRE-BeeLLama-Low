@@ -13,7 +13,7 @@ export ESCHA_OFFICIAL_RAW_DECODE_K3_SPLIT_DIV2=0
 export ESCHA_OFFICIAL_BRIDGE_ACCUMULATION=mixed
 export ESCHA_OFFICIAL_CODE_GEMM_CUBIN="$BRIDGE/code-gemm-sm86.cubin"
 export ESCHA_OFFICIAL_F32_DECODE_CUBIN="$BRIDGE/code-gemm-sm86.cubin"
-export ESCHA_OFFICIAL_BRIDGE_LIBRARY="$BRIDGE/libbridge-b74-k3-vector.so"
+export ESCHA_OFFICIAL_BRIDGE_LIBRARY="$BRIDGE/libbridge-int8-allproj.so"
 export L0XRE_K3_VECTOR_CUBIN="$BRIDGE/k3-vector-all.cubin"
 export ESCHA_GDN_CHUNK_BRIDGE=1
 export ESCHA_GDN_CHUNK_BRIDGE_LIBRARY="$BRIDGE/libescha_gdn_chunk_bridge_sm86_ported.so"
@@ -31,6 +31,11 @@ export ESCHA_E3_HEAD_MROW=8
 export ESCHA_E3_HEAD_RT=2
 export ESCHA_E3_HEAD_RT_BLOCK128=1
 export ESCHA_F16_SMALL_N_NATIVE=1
+export L0XRE_INT8_PREFILL=1
+export L0XRE_INT8_PROJ_MASK=255
+export L0XRE_KVARN_QK_FP16_ACC=2
+export L0XRE_KVARN_PREFILL_HEAD_TILE=0
+export L0XRE_GDN_MASKED_PREFILL=0
 
 PROFILE=12gb
 HAVE_DRAFT=0
@@ -47,7 +52,7 @@ done
 case "$PROFILE" in
   12gb|12gb-quality|12gb-b84)
     export GGML_KVARN_WINDOW_CHUNK=16384
-    CTX=(-c 81920 -b 1024 -ub 256 -ctk kvarn3 -ctv kvarn3 --kv-tail-tokens 128)
+    CTX=(-c 81920 -b 1024 -ub 512 -ctk kvarn4 -ctv kvarn4 --kv-tail-tokens 128)
     DRAFT_KV=(--spec-draft-type-k q4_0 --spec-draft-type-v q4_0)
     NMAX=3
     ;;
@@ -55,10 +60,18 @@ case "$PROFILE" in
 esac
 SPEC=()
 if [[ "$HAVE_DRAFT" == 1 ]]; then
-  SPEC=(--spec-type draft-dflash --spec-draft-n-max "$NMAX" --spec-draft-ngl 99 --spec-draft-ubatch-size 128 "${DRAFT_KV[@]}")
+  SPEC=(--spec-type draft-dflash --spec-draft-n-max "$NMAX" --spec-draft-ngl 99 --spec-draft-ubatch-size 32 "${DRAFT_KV[@]}")
 fi
+for component in "$BRIDGE/libbridge-int8-allproj.so" "$BRIDGE/libqk16-context-gate.so"; do
+  [[ -f "$component" ]] || { echo "Package component missing: $component" >&2; exit 2; }
+done
+# Help/version must work without allocating CUDA scratch or a visible GPU.
+for argument in "${ARGS[@]}"; do
+  case "$argument" in --help|-h|--version) export L0XRE_INT8_PREFILL=0 L0XRE_KVARN_QK_FP16_ACC=0;; esac
+done
+export LD_PRELOAD="$BRIDGE/libqk16-context-gate.so:$BRIDGE/libbridge-int8-allproj.so${LD_PRELOAD:+:$LD_PRELOAD}"
 exec "$ROOT/bin/llama-server" --alias L0xRE-27b-Low -np 1 -t 32 -tb 32 -ngl 99 -fa on \
   --jinja --reasoning on --reasoning-effort medium --reasoning-budget 8192 \
   --temp 0.7 --top-p 0.95 --top-k 20 --no-webui \
-  "${CTX[@]}" "${SPEC[@]}" --cache-ram 0 --fit off \
+  "${CTX[@]}" "${SPEC[@]}" -ot 'token_embd.lowgpu_.*=CPU' --no-op-offload --cache-ram 0 --fit off --fit-target 768 \
   --no-mmproj-offload --image-min-tokens 1024 --image-max-tokens 1024 "${ARGS[@]}"

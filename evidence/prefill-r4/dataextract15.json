@@ -1,0 +1,710 @@
+{
+  "scope": "frozen single-attempt DataExtract15 replay; no full150 claim",
+  "runner_version": "0.9.9",
+  "scorer_sha256": "852d176b1b918b586cf3d31572b3fd4699115f0cd0974fd6e95272848e33dee0",
+  "cases": {
+    "A1-production": {
+      "passed": 11,
+      "total": 15,
+      "scenarios": [
+        {
+          "scenario_id": "DE-01",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "10/10 atomic fields correct (100%). top-level shape mismatch: expected object, received array",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 100,
+            "correct_fields": 10,
+            "total_fields": 10,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [
+              "top-level shape mismatch: expected object, received array"
+            ],
+            "comparison_notes": [],
+            "scored_after_shape_realign": true,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-02",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "16/16 atomic fields correct (100%). top-level shape mismatch: expected object, received array",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 100,
+            "correct_fields": 16,
+            "total_fields": 16,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [
+              "top-level shape mismatch: expected object, received array"
+            ],
+            "comparison_notes": [],
+            "scored_after_shape_realign": true,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-03",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "11/12 atomic fields correct (92%). work_model: expected string \"Hybrid\", received string \"Hybrid - 3 days in office\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 92,
+            "correct_fields": 11,
+            "total_fields": 12,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "work_model: expected string \"Hybrid\", received string \"Hybrid - 3 days in office\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-04",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "6/7 atomic fields correct (86%). room: expected string \"Maple\", received string \"Maple room\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 86,
+            "correct_fields": 6,
+            "total_fields": 7,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "room: expected string \"Maple\", received string \"Maple room\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-05",
+          "passed": false,
+          "failure_mode": "verifier_fail",
+          "detail": "11/14 atomic fields correct (79%). competitor_2_name: expected string \"Bose QC45s\", received string \"Bose QC45\" | product_name: expected string \"XR-7500 Pro\", received string \"XR-7500 Pro noise-cancelling headphones\" | recommendation: expected string \"Yeah, especially at the sale price.\", received string \"Yeah, especially at the sale price. Best value under $300 IMO.\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 79,
+            "correct_fields": 11,
+            "total_fields": 14,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "competitor_2_name: expected string \"Bose QC45s\", received string \"Bose QC45\"",
+              "product_name: expected string \"XR-7500 Pro\", received string \"XR-7500 Pro noise-cancelling headphones\"",
+              "recommendation: expected string \"Yeah, especially at the sale price.\", received string \"Yeah, especially at the sale price. Best value under $300 IMO.\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-06",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "14/15 atomic fields correct (93%). referral: expected null null, received string \"none at this time\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 93,
+            "correct_fields": 14,
+            "total_fields": 15,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "referral: expected null null, received string \"none at this time\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-07",
+          "passed": false,
+          "failure_mode": "verifier_fail",
+          "detail": "16/21 atomic fields correct (76%). location: expected string \"NYC\", received string \"NYC office\" | note: expected string \"taking over the Acme rebrand from Sarah. He'll be on-site in Chicago next week\", received string \"taking over the Acme rebrand from Sarah. He'll be on-site in Chicago next week.\" | location: expected string \"LA\", received string \"LA office\" | note: expected string \"transitioning to the Globex account effective April 1. She's relocating from Chicago to the LA office\", received string \"transitioning to the Globex account effective April 1. She's relocating from Chicago to the LA office.\" | note: expected string \"works US East Coast hours\", received string \"hired for Acme. Her portfolio is at priyadesai.com. She's based in Toronto but works US East Coast hours.\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 76,
+            "correct_fields": 16,
+            "total_fields": 21,
+            "status_threshold": "pass >= 85 and top-level shape matches",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "location: expected string \"NYC\", received string \"NYC office\"",
+              "note: expected string \"taking over the Acme rebrand from Sarah. He'll be on-site in Chicago next week\", received string \"taking over the Acme rebrand from Sarah. He'll be on-site in Chicago next week.\"",
+              "location: expected string \"LA\", received string \"LA office\"",
+              "note: expected string \"transitioning to the Globex account effective April 1. She's relocating from Chicago to the LA office\", received string \"transitioning to the Globex account effective April 1. She's relocating from Chicago to the LA office.\"",
+              "note: expected string \"works US East Coast hours\", received string \"hired for Acme. Her portfolio is at priyadesai.com. She's based in Toronto but works US East Coast hours.\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": true
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-08",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "10/10 atomic fields correct (100%).",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 100,
+            "correct_fields": 10,
+            "total_fields": 10,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-09",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "10/10 atomic fields correct (100%).",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 100,
+            "correct_fields": 10,
+            "total_fields": 10,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-10",
+          "passed": false,
+          "failure_mode": "verifier_fail",
+          "detail": "6/10 atomic fields correct (60%). cuisine_type: expected string \"Sushi\", received null null | neighborhood: expected null null, received string \"Nob Hill\" | restaurant_name: expected string \"Sakura Sushi\", received string \"SakuraSushi\" | visit_duration: expected string \"about 2 hours\", received string \"2 hours\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 60,
+            "correct_fields": 6,
+            "total_fields": 10,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "cuisine_type: expected string \"Sushi\", received null null",
+              "neighborhood: expected null null, received string \"Nob Hill\"",
+              "restaurant_name: expected string \"Sakura Sushi\", received string \"SakuraSushi\"",
+              "visit_duration: expected string \"about 2 hours\", received string \"2 hours\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-11",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "7/7 atomic fields correct (100%).",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 100,
+            "correct_fields": 7,
+            "total_fields": 7,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-12",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "14/14 atomic fields correct (100%).",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 100,
+            "correct_fields": 14,
+            "total_fields": 14,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-13",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "36/37 atomic fields correct (97%). payment_method: expected string \"Wire transfer\", received string \"Wire transfer to Account #****4521 (Chase Bank)\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 97,
+            "correct_fields": 36,
+            "total_fields": 37,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "payment_method: expected string \"Wire transfer\", received string \"Wire transfer to Account #****4521 (Chase Bank)\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-14",
+          "passed": false,
+          "failure_mode": "verifier_fail",
+          "detail": "13/17 atomic fields correct (76%). anc_type: expected string \"Adaptive\", received string \"\u30a2\u30c0\u30d7\u30c6\u30a3\u30d6 / Adaptive\" | array values did not match expected set | driver_size: expected string \"10mm\", received string \"10mm \u30c0\u30a4\u30ca\u30df\u30c3\u30af / 10mm Dynamic\" | array values did not match expected set",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 76,
+            "correct_fields": 13,
+            "total_fields": 17,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "anc_type: expected string \"Adaptive\", received string \"\u30a2\u30c0\u30d7\u30c6\u30a3\u30d6 / Adaptive\"",
+              "array values did not match expected set",
+              "driver_size: expected string \"10mm\", received string \"10mm \u30c0\u30a4\u30ca\u30df\u30c3\u30af / 10mm Dynamic\"",
+              "array values did not match expected set"
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-15",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "10/10 atomic fields correct (100%).",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 100,
+            "correct_fields": 10,
+            "total_fields": 10,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        }
+      ]
+    },
+    "B-allproj512": {
+      "passed": 12,
+      "total": 15,
+      "scenarios": [
+        {
+          "scenario_id": "DE-01",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "10/10 atomic fields correct (100%).",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 100,
+            "correct_fields": 10,
+            "total_fields": 10,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-02",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "16/16 atomic fields correct (100%).",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 100,
+            "correct_fields": 16,
+            "total_fields": 16,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-03",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "11/12 atomic fields correct (92%). work_model: expected string \"Hybrid\", received string \"Hybrid - 3 days in office\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 92,
+            "correct_fields": 11,
+            "total_fields": 12,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "work_model: expected string \"Hybrid\", received string \"Hybrid - 3 days in office\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-04",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "6/7 atomic fields correct (86%). room: expected string \"Maple\", received string \"Maple room\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 86,
+            "correct_fields": 6,
+            "total_fields": 7,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "room: expected string \"Maple\", received string \"Maple room\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-05",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "12/14 atomic fields correct (86%). product_name: expected string \"XR-7500 Pro\", received string \"XR-7500 Pro noise-cancelling headphones\" | recommendation: expected string \"Yeah, especially at the sale price.\", received string \"Yeah, especially at the sale price. Best value under $300 IMO.\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 86,
+            "correct_fields": 12,
+            "total_fields": 14,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "product_name: expected string \"XR-7500 Pro\", received string \"XR-7500 Pro noise-cancelling headphones\"",
+              "recommendation: expected string \"Yeah, especially at the sale price.\", received string \"Yeah, especially at the sale price. Best value under $300 IMO.\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-06",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "14/15 atomic fields correct (93%). referral: expected null null, received string \"none at this time\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 93,
+            "correct_fields": 14,
+            "total_fields": 15,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "referral: expected null null, received string \"none at this time\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-07",
+          "passed": false,
+          "failure_mode": "verifier_fail",
+          "detail": "16/21 atomic fields correct (76%). location: expected string \"NYC\", received string \"NYC office\" | note: expected string \"taking over the Acme rebrand from Sarah. He'll be on-site in Chicago next week\", received string \"taking over the Acme rebrand from Sarah. He'll be on-site in Chicago next week.\" | location: expected string \"LA\", received string \"LA office\" | note: expected string \"transitioning to the Globex account effective April 1. She's relocating from Chicago to the LA office\", received string \"transitioning to the Globex account effective April 1. She's relocating from Chicago to the LA office.\" | note: expected string \"works US East Coast hours\", received string \"hired for Acme. Her portfolio is at priyadesai.com. She's based in Toronto but works US East Coast hours.\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 76,
+            "correct_fields": 16,
+            "total_fields": 21,
+            "status_threshold": "pass >= 85 and top-level shape matches",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "location: expected string \"NYC\", received string \"NYC office\"",
+              "note: expected string \"taking over the Acme rebrand from Sarah. He'll be on-site in Chicago next week\", received string \"taking over the Acme rebrand from Sarah. He'll be on-site in Chicago next week.\"",
+              "location: expected string \"LA\", received string \"LA office\"",
+              "note: expected string \"transitioning to the Globex account effective April 1. She's relocating from Chicago to the LA office\", received string \"transitioning to the Globex account effective April 1. She's relocating from Chicago to the LA office.\"",
+              "note: expected string \"works US East Coast hours\", received string \"hired for Acme. Her portfolio is at priyadesai.com. She's based in Toronto but works US East Coast hours.\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": true
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-08",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "10/10 atomic fields correct (100%).",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 100,
+            "correct_fields": 10,
+            "total_fields": 10,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-09",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "10/10 atomic fields correct (100%).",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 100,
+            "correct_fields": 10,
+            "total_fields": 10,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-10",
+          "passed": false,
+          "failure_mode": "verifier_fail",
+          "detail": "6/10 atomic fields correct (60%). cuisine_type: expected string \"Sushi\", received null null | neighborhood: expected null null, received string \"Nob Hill\" | restaurant_name: expected string \"Sakura Sushi\", received string \"SakuraSushi\" | visit_duration: expected string \"about 2 hours\", received string \"2 hours\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 60,
+            "correct_fields": 6,
+            "total_fields": 10,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "cuisine_type: expected string \"Sushi\", received null null",
+              "neighborhood: expected null null, received string \"Nob Hill\"",
+              "restaurant_name: expected string \"Sakura Sushi\", received string \"SakuraSushi\"",
+              "visit_duration: expected string \"about 2 hours\", received string \"2 hours\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-11",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "7/7 atomic fields correct (100%).",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 100,
+            "correct_fields": 7,
+            "total_fields": 7,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-12",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "13/14 atomic fields correct (93%). product_name: expected string \"ZenBook Pro 15\", received string \"ZenBook Pro 15 laptop\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 93,
+            "correct_fields": 13,
+            "total_fields": 14,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "product_name: expected string \"ZenBook Pro 15\", received string \"ZenBook Pro 15 laptop\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-13",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "36/37 atomic fields correct (97%). payment_method: expected string \"Wire transfer\", received string \"Wire transfer to Account #****4521 (Chase Bank)\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 97,
+            "correct_fields": 36,
+            "total_fields": 37,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "payment_method: expected string \"Wire transfer\", received string \"Wire transfer to Account #****4521 (Chase Bank)\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-14",
+          "passed": false,
+          "failure_mode": "verifier_fail",
+          "detail": "13/17 atomic fields correct (76%). anc_type: expected string \"Adaptive\", received string \"\u30a2\u30c0\u30d7\u30c6\u30a3\u30d6\" | array values did not match expected set | array values did not match expected set | product_type: expected string \"Wireless Earbuds\", received string \"\u30ef\u30a4\u30e4\u30ec\u30b9\u30a4\u30e4\u30db\u30f3\"",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 76,
+            "correct_fields": 13,
+            "total_fields": 17,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [
+              "anc_type: expected string \"Adaptive\", received string \"\u30a2\u30c0\u30d7\u30c6\u30a3\u30d6\"",
+              "array values did not match expected set",
+              "array values did not match expected set",
+              "product_type: expected string \"Wireless Earbuds\", received string \"\u30ef\u30a4\u30e4\u30ec\u30b9\u30a4\u30e4\u30db\u30f3\""
+            ],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        },
+        {
+          "scenario_id": "DE-15",
+          "passed": true,
+          "failure_mode": "passed",
+          "detail": "10/10 atomic fields correct (100%).",
+          "latency_seconds": 0.0,
+          "tokens_completion": null,
+          "verifier_trace": {
+            "upstream_style_score": 100,
+            "correct_fields": 10,
+            "total_fields": 10,
+            "status_threshold": "pass >= 85",
+            "compliance_notes": [],
+            "comparison_notes": [],
+            "scored_after_shape_realign": false,
+            "top_level_shape_enforced": false
+          },
+          "pass_rate": null,
+          "passed_count": null,
+          "total_count": null
+        }
+      ]
+    }
+  }
+}

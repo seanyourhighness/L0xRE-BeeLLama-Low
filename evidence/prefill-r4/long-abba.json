@@ -1,0 +1,80 @@
+{
+  "status": "qualified_for_capacity",
+  "reasons": [],
+  "cases": {
+    "A1-production": {
+      "name": "A1-production",
+      "prefill_tps": 383.2391587019978,
+      "decode_tps": 28.23204575867656,
+      "min_free_mib": 325,
+      "complete_tokens": 879,
+      "complete_sha256": "eb1aa9218da1e78277926648d8718e7da3e367577408bd000179d2f881eb24e2",
+      "continuation_cache_n": 78335
+    },
+    "B1-candidate": {
+      "name": "B1-candidate",
+      "prefill_tps": 428.96115495586196,
+      "decode_tps": 28.302348169948566,
+      "min_free_mib": 327,
+      "complete_tokens": 879,
+      "complete_sha256": "eb1aa9218da1e78277926648d8718e7da3e367577408bd000179d2f881eb24e2",
+      "continuation_cache_n": 78335
+    },
+    "B2-candidate": {
+      "name": "B2-candidate",
+      "prefill_tps": 429.1363037457461,
+      "decode_tps": 28.3234601224804,
+      "min_free_mib": 327,
+      "complete_tokens": 879,
+      "complete_sha256": "eb1aa9218da1e78277926648d8718e7da3e367577408bd000179d2f881eb24e2",
+      "continuation_cache_n": 78335
+    },
+    "A2-production": {
+      "name": "A2-production",
+      "prefill_tps": 383.0451547403937,
+      "decode_tps": 28.179131263301336,
+      "min_free_mib": 325,
+      "complete_tokens": 879,
+      "complete_sha256": "eb1aa9218da1e78277926648d8718e7da3e367577408bd000179d2f881eb24e2",
+      "continuation_cache_n": 78335
+    }
+  },
+  "performance": {
+    "prefill_mean": {
+      "baseline": 383.14215672119576,
+      "candidate": 429.048729350804,
+      "change_pct": 11.981603126751072
+    },
+    "decode_mean": {
+      "baseline": 28.205588510988946,
+      "candidate": 28.312904146214485,
+      "change_pct": 0.3804764973569963
+    },
+    "paired_decode_deltas": [
+      {
+        "pair": "A1-production/B1-candidate",
+        "delta": 0.07030241127200654,
+        "ratio": 1.002490163549356,
+        "change_pct": 0.24901635493559393
+      },
+      {
+        "pair": "A2-production/B2-candidate",
+        "delta": 0.14432885917906546,
+        "ratio": 1.0051218349434012,
+        "change_pct": 0.5121834943401238
+      }
+    ]
+  },
+  "code_gate": {
+    "passed": true,
+    "status": "passed",
+    "detail": "all four cases passed code checks"
+  },
+  "sameness": {
+    "all_identical": true,
+    "unique_count": 1
+  },
+  "restored_health": {
+    "status": "ok"
+  }
+}

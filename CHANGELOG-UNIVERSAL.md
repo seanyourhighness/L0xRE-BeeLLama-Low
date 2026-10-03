@@ -1,3 +1,12 @@
+# Universal r4 — October 3, 2026
+
+- SM86 12gb/12gb-quality/12gb-b84: 81920 targetKVarN4/4, B1024/UB512, draftUB32/ngl99, CPUembedding/no-op-offload, fit-target768.
+- All-projection INT8 prefill replaces the B74 bridge for qualifying M256–512 shapes; small/decode requests retain B74 arithmetic.
+- Qualified gated long-context FP16 QK attention; short contexts and decode stay on the original route.
+- Linux ships exact qualified libraries. Windows adds a native backend entry and an explicit bridge initializer outside DLL loader lock; no Windows speed claim.
+- DFlash2, CPU vision, caches, loop guard and GGUF weights preserved. Held GDN/materialization experiments excluded.
+- Fresh77K429.05t/s, sustained decode28.31t/s on Linux RTX3060; fullcapacity+recovery passed. See evidence/prefill-r4/.
+
 # v0.4.7 universal r3 — 80K quality-first 12 GB defaults
 
 - `12gb` and `12gb-quality` select 81,920 context, target KVarN3/3, Q4_0/Q4_0 draft KV, DFlash2 N3, batch/ubatch 1024/256, exact tail 128, and window chunk 16384 on every universal route. The drafter weights remain Q4_K_M.

@@ -1,0 +1,31 @@
+{
+  "date_utc": "2026-10-03",
+  "release": "beellama-v0.4.7-universal-r4",
+  "archives": {
+    "l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r4.tar.zst": {
+      "bytes": 1763315402,
+      "sha256": "82c30ba3cf2e47c19b465615d08cb47e9aef497c983da3837fa2f64b4421cf71",
+      "root_files_sealed": 278,
+      "root_checksums_verified": 278,
+      "safe_paths_symlinks": true,
+      "passed": true
+    },
+    "l0xre-win-universal-r4.zip": {
+      "bytes": 893474386,
+      "sha256": "ff36b7a227148a68915b8b008758816c135e0e02ad47a03c3b2ce75339e57651",
+      "root_files_sealed": 170,
+      "root_checksums_verified": 170,
+      "safe_paths_symlinks": true,
+      "passed": true
+    }
+  },
+  "configuration_only": false,
+  "Linux_qualified_exact_binaries": true,
+  "Windows_GPU_execution": false,
+  "launcher_checks": {
+    "linux": 29,
+    "windows": 15
+  },
+  "GPU_portable_wrapper_smoke": "Passed Z840 clean-extracted archive: actual argv/maps/hashes,391, fresh8K+32K retrieval, QK/INT8 execution attestations, CPU OCR. See repository evidence/prefill-r4/PORTABLE-SMOKE.json",
+  "weights_unchanged": true
+}

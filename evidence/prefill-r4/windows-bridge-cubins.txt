@@ -1,0 +1,2 @@
+ELF file    1: bridge-int8-allproj.1.sm_86.cubin
+ELF file    2: bridge-int8-allproj.2.sm_86.cubin

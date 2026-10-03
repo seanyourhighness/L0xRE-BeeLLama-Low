@@ -1,0 +1,9 @@
+{
+  "contextgate": {
+    "passed": true,
+    "additional_cases": 504,
+    "emitted_asserts": 10,
+    "contract": "correct returned sort; in-place or nonmutating both allowed by prompt",
+    "sha256": "35ff4a823e62e6917a4998f5126c11dfcee37725394d03e0ecaad1aff2c5675c"
+  }
+}

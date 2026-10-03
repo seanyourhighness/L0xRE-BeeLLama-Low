@@ -1,6 +1,6 @@
 {
   "product": "L0xRE-BeeLLama-Low",
-  "version": "0.4.7-universal-r3",
+  "version": "0.4.7-universal-r4",
   "status": "release-candidate",
   "platform": "Windows AMD64",
   "supported_compute_capabilities": [
@@ -19,13 +19,14 @@
     "files": 1604,
     "differences": 0
   },
-  "build_method": "Verified matching universal object cache; rebuilt lowgpu.cu/backend; source-built B74 bridge; relinked affected host tools with explicit verified source metadata",
+  "build_method": "Retained universal cache; rebuilt ggml-cuda.cu/escha-moe.cu/fattn-kvarn-dispatch.cu and CUDA backend; new SM86 INT8 bridge with explicit init export. Host executable metadata retained from be30274; new backend source separately pinned.",
   "components": {
     "bin/llama-server.exe": "687997ea2d183204ca08543abe946337a1ffdaa6a73be0709887362c83aa0934",
     "bin/llama-server-impl.dll": "b17add7404c1654c7d192ece47e77e64ed327fdc485882e85335c334c07ac87d",
-    "bin/ggml-cuda.dll": "5c6eaeca916bdebdda023c961d2fd4c266b92c79535562d32af05481d9221157",
+    "bin/ggml-cuda.dll": "1185187e4f8c4e9d096e373e1f641d6767a14329486486a1d735fe7c2ac186d4",
     "bridge/sm86/bridge-b74-k3-vector.dll": "0c4b87fb0805c74fd230596ab86e4121a589b506a7a380bc568243b6e5888d11",
-    "bridge/sm86/k3-vector-all.cubin": "fe1069f84644825c37d92bb39a1295a063bb25f2ba53e99dba93c1d9c13a7059"
+    "bridge/sm86/k3-vector-all.cubin": "fe1069f84644825c37d92bb39a1295a063bb25f2ba53e99dba93c1d9c13a7059",
+    "bridge/sm86/bridge-int8-allproj.dll": "453beeafb99204da03e80569ec80005ec41d4723c296c00970e92294f172d123"
   },
   "model": {
     "revision": "9b74c81c19f8372888c2968b5334f42b0354d8b1",
@@ -95,22 +96,22 @@
     "launcher_ci_run": 36674140854
   },
   "qualification_limits": [
-    "Current 80K code/vision and29,762-token retrieval tested only on Linux SM86",
-    "Windows and new SM89/SM120 profile inference/headroom remain pending",
-    "Older throughput receipts describe their historical settings, not this configuration",
-    "Configured 80K context has not had full-context qualification"
+    "Performance/capacity measured only on Linux RTX3060 SM86",
+    "Windows native port inference and throughput pending",
+    "SM89/SM120 retain prior settings and receipts",
+    "Narrow15-case extraction/code/retrieval checks are not broad full150 accuracy proof"
   ],
   "model_display_name": "L0xRE-27b-Low",
-  "documentation_update": "r3 updates launcher configuration and docs; compiled components and model weights match r2",
+  "documentation_update": "SM86 qualified prefill optimization release; see evidence/prefill-r4/QUALIFICATION.json",
   "api_model_alias": "L0xRE-27b-Low",
   "default_12gb_profile": {
     "context": 81920,
     "slots": 1,
     "batch": 1024,
-    "target_ubatch": 256,
+    "target_ubatch": 512,
     "target_kv": [
-      "kvarn3",
-      "kvarn3"
+      "kvarn4",
+      "kvarn4"
     ],
     "draft_weights": "Q4_K_M",
     "draft_kv": [
@@ -140,7 +141,186 @@
       "image_min_tokens": 1024,
       "image_max_tokens": 1024
     },
-    "draft_ubatch": 128
+    "draft_ubatch": 32,
+    "cpu_token_embeddings": true,
+    "no_op_offload": true,
+    "fit_target": 768
   },
-  "configuration_release": "beellama-v0.4.7-universal-r3"
+  "configuration_release": "beellama-v0.4.7-universal-r3",
+  "default_12gb_profile_by_arch": {
+    "sm86": {
+      "context": 81920,
+      "slots": 1,
+      "batch": 1024,
+      "target_ubatch": 512,
+      "target_kv": [
+        "kvarn4",
+        "kvarn4"
+      ],
+      "draft_weights": "Q4_K_M",
+      "draft_kv": [
+        "q4_0",
+        "q4_0"
+      ],
+      "dflash_depth": 3,
+      "draft_gpu_layers": 99,
+      "kv_tail_tokens": 128,
+      "window_chunk": 16384,
+      "cache_ram_mib": 0,
+      "fit": "off",
+      "threads": 32,
+      "threads_batch": 32,
+      "reasoning": "on",
+      "reasoning_effort": "medium",
+      "reasoning_budget": 8192,
+      "sampling": {
+        "temperature": 0.7,
+        "top_p": 0.95,
+        "top_k": 20
+      },
+      "vision": {
+        "enabled_by": "--mmproj FILE (opt-in)",
+        "projector": "mmproj-Qwen3.8-27B-Q8_0.gguf",
+        "offload": "CPU",
+        "image_min_tokens": 1024,
+        "image_max_tokens": 1024
+      },
+      "draft_ubatch": 32,
+      "cpu_token_embeddings": true,
+      "no_op_offload": true,
+      "fit_target": 768
+    },
+    "sm89": {
+      "context": 81920,
+      "slots": 1,
+      "batch": 1024,
+      "target_ubatch": 256,
+      "target_kv": [
+        "kvarn3",
+        "kvarn3"
+      ],
+      "draft_weights": "Q4_K_M",
+      "draft_kv": [
+        "q4_0",
+        "q4_0"
+      ],
+      "dflash_depth": 3,
+      "draft_gpu_layers": 99,
+      "kv_tail_tokens": 128,
+      "window_chunk": 16384,
+      "cache_ram_mib": 0,
+      "fit": "off",
+      "threads": 32,
+      "threads_batch": 32,
+      "reasoning": "on",
+      "reasoning_effort": "medium",
+      "reasoning_budget": 8192,
+      "sampling": {
+        "temperature": 0.7,
+        "top_p": 0.95,
+        "top_k": 20
+      },
+      "vision": {
+        "enabled_by": "--mmproj FILE (opt-in)",
+        "projector": "mmproj-Qwen3.8-27B-Q8_0.gguf",
+        "offload": "CPU",
+        "image_min_tokens": 1024,
+        "image_max_tokens": 1024
+      },
+      "draft_ubatch": 128
+    },
+    "sm120": {
+      "context": 81920,
+      "slots": 1,
+      "batch": 1024,
+      "target_ubatch": 256,
+      "target_kv": [
+        "kvarn3",
+        "kvarn3"
+      ],
+      "draft_weights": "Q4_K_M",
+      "draft_kv": [
+        "q4_0",
+        "q4_0"
+      ],
+      "dflash_depth": 3,
+      "draft_gpu_layers": 99,
+      "kv_tail_tokens": 128,
+      "window_chunk": 16384,
+      "cache_ram_mib": 0,
+      "fit": "off",
+      "threads": 32,
+      "threads_batch": 32,
+      "reasoning": "on",
+      "reasoning_effort": "medium",
+      "reasoning_budget": 8192,
+      "sampling": {
+        "temperature": 0.7,
+        "top_p": 0.95,
+        "top_k": 20
+      },
+      "vision": {
+        "enabled_by": "--mmproj FILE (opt-in)",
+        "projector": "mmproj-Qwen3.8-27B-Q8_0.gguf",
+        "offload": "CPU",
+        "image_min_tokens": 1024,
+        "image_max_tokens": 1024
+      },
+      "draft_ubatch": 128
+    }
+  },
+  "prefill_qualification": {
+    "release": "beellama-v0.4.7-universal-r4",
+    "scope": "Linux SM86 RTX3060 12GB; Windows port build/structure only",
+    "context": 81920,
+    "target_kv": [
+      "kvarn4",
+      "kvarn4"
+    ],
+    "DFlash2": true,
+    "GGUF_modified": false,
+    "fresh_prompt_tokens": 77824,
+    "prefill_tps": 429.048729350804,
+    "decode_tps": 28.312904146214485,
+    "attention_prefill_change_pct": 11.981603126751072,
+    "attention_decode_change_pct": 0.3804764973569963,
+    "int8_prefill_tps_before": 284.918241,
+    "int8_prefill_tps_after": 382.649712,
+    "int8_decode_before": 26.577698,
+    "int8_decode_after": 28.220993,
+    "capacity_input": 77820,
+    "capacity_output": 4096,
+    "capacity_min_free_mib": 305,
+    "unqualified_excluded": [
+      "GDN prefix variants",
+      "materialization experiment",
+      "direct F32 output bridge"
+    ],
+    "goal_1000_achieved": false,
+    "windows_gpu_execution": false,
+    "notes": [
+      "Short-domain means and both paired decode blocks pass revised <=1% regression gate with all recorded samples retained.",
+      "Separate prior/current runs are not one simultaneous cumulative A/B benchmark.",
+      "No broad full150 accuracy claim. Frozen15 answers unchanged vs INT8 baseline (12/15)."
+    ]
+  },
+  "launchers": "r4 tests distinguish SM86 optimized defaults from unchanged SM89/SM120; stub checks do not execute CUDA",
+  "prefill_source_commit": "5073ba019cbaec387530b64d33e73b7fc6a41338",
+  "prefill_source_branch": "release/sm86-prefill-80k",
+  "prefill_source_files": {
+    "source/sm86-prefill/qk16-kernels.cu": "7cc5bba5b936be9f3ef648b73f3aa651db7f1756323a5875d74c1720f2e9af9a",
+    "source/sm86-prefill/attention-wide-oracle.cpp": "723a57f038d1c58eff7e54adca30e20dd035088e3cafe92a788241cda33726d6",
+    "source/sm86-prefill/qk16-native-entry.cuh": "767682e7992362d7ec1ca5f986b4ee7d4772c87f531fb73e02ae4aa0186ac336",
+    "source/sm86-prefill/windows-source-build-audit.json": "8b7b50eeb0478c9fe78cf505b0074cb4d4706c0571063219120ca267a90f14ae",
+    "source/sm86-prefill/graph-oracle.cu": "1aed950a92b6ffd59c237a9b21ae879d05ae307c6ac4e42e2e46e1064b299909",
+    "source/sm86-prefill/fattn-qk16-prefill.cuh": "b4aa3636b407cca348038b4e576d3e094d5432afb2be7699c8b56b011d9a2267",
+    "source/sm86-prefill/qk16-host-wrapper.cu": "5d813e99dc9bf28655f1f213de94e13819511aea9bde9f9eb824a3394d1c7489",
+    "source/sm86-prefill/bridge-int8-allproj.def": "5615bcd98bc057cabb54764e68e7c6ed3213943518691bb68d93d07196255b32",
+    "source/sm86-prefill/build-linux.sh": "cb68ad1f9dd136b1eafd88a51f6dce6951b3168f43a28e7081ce399edb66457e",
+    "source/sm86-prefill/bridge.cu": "c2bef7e504987bfe270ecbd6007a35e24ddfab7f2a87d2e0d67f0b3ee6724d35",
+    "source/sm86-prefill/escha_official_bridge_v1.h": "6cc9fae65e2d68cacdf78a001c8eda78004594277fcd820815dc3d894fa423db",
+    "source/sm86-prefill/build-windows-bridge.ps1": "4a9265af7af9cf00c17b6114a2870506fb7594e2133a27da8a9506b59af977ba",
+    "source/sm86-prefill/int8-prefill-helpers.cuh": "9033c8be43718d2089767a408d4319d2c922bf62be8c90ee8305bce8a552d359",
+    "source/sm86-prefill/README.md": "7708d30d8c51ef210d31791caa0a9c872a5e13c608cc570703000a6e7dfc2bbb"
+  }
 }

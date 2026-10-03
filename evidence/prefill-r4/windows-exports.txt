@@ -1,0 +1,37 @@
+
+Dump of file C:\work\l0xre-prefill-r4-build\bridge-int8-allproj.dll
+
+File Type: DLL
+
+  Section contains the following exports for bridge-int8-allproj.dll
+
+    00000000 characteristics
+    FFFFFFFF time date stamp
+        0.00 version
+           1 ordinal base
+          11 number of functions
+          11 number of names
+
+    ordinal hint RVA      name
+
+          1    0 00006E90 escha_official_bridge_abi_version
+          2    1 00006EA0 escha_official_bridge_error
+          3    2 00006EF0 escha_official_bridge_probe
+          4    3 00006F10 escha_official_code_gemm
+          5    4 00006F20 escha_official_code_gemm_pretransformed
+          6    5 000072F0 escha_official_decode_gemv_main_batch_v1
+          7    6 00007500 escha_official_decode_gemv_main_desc_v1
+          8    7 00007610 escha_official_decode_gemv_main_f32_raw
+          9    8 000077A0 escha_official_decode_gemv_main_raw
+         10    9 000077B0 escha_official_decode_gemv_raw
+         11    A 00007810 l0xre_int8_prefill_init_v1
+
+  Summary
+
+        C000 .data
+        1000 .nvFatBi
+       14000 .nv_fatb
+        1000 .pdata
+       10000 .rdata
+        1000 .reloc
+       16000 .text

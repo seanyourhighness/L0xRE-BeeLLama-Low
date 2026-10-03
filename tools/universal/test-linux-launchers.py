@@ -13,6 +13,8 @@ with tempfile.TemporaryDirectory(prefix='l0xre-launcher-') as tmp:
         d=root/'architectures'/arch
         (d/'bin').mkdir(parents=True)
         shutil.copy2(source/('l0xre-'+arch),d/'l0xre')
+        (d/'bridge').mkdir()
+        for name in ('libbridge-int8-allproj.so','libqk16-context-gate.so'):(d/'bridge'/name).touch()
         if arch=='sm120':
             shutil.copytree(profile_source,d/'profiles')
         server=d/'bin/llama-server'
@@ -39,17 +41,23 @@ with tempfile.TemporaryDirectory(prefix='l0xre-launcher-') as tmp:
         assert d['env']['LD_LIBRARY_PATH']==expected,(arch,d['env'].get('LD_LIBRARY_PATH'))
         d=run(arch,args,extra={'LD_LIBRARY_PATH':'/opt/safe-libs'})
         assert d['env']['LD_LIBRARY_PATH']==expected+':/opt/safe-libs',(arch,d['env'].get('LD_LIBRARY_PATH'))
-    d=run('sm86',args);assert value(d,'-c')=='81920' and value(d,'-ub')=='256' and value(d,'--spec-draft-type-k')=='q4_0' and d['env']['ESCHA_E3_HEAD_RT_BLOCK128']=='1' and value(d,'--port')=='9099'
+    d=run('sm86',args);assert value(d,'-c')=='81920' and value(d,'-ub')=='512' and value(d,'--spec-draft-type-k')=='q4_0' and d['env']['ESCHA_E3_HEAD_RT_BLOCK128']=='1' and value(d,'--port')=='9099'
     d=run('sm89',args);assert value(d,'-c')=='81920' and value(d,'-ub')=='256' and 'ESCHA_E3_HEAD_RT_BLOCK128' not in d['env'] and 'L0XRE_K3_VECTOR_CUBIN' not in d['env']
     d=run('sm120',args);assert value(d,'-c')=='81920' and value(d,'-ub')=='256' and value(d,'--spec-draft-n-max')=='3' and value(d,'-m')==str(model) and 'ESCHA_E3_HEAD_RT_BLOCK128' not in d['env']
     for arch in ('sm86','sm89','sm120'):
         for profile in ('12gb','12gb-quality'):
             d=run(arch,['serve','--profile',profile,'-m',str(model),'-md',str(draft)])
-            assert value(d,'-c')=='81920' and value(d,'-b')=='1024' and value(d,'-ub')=='256'
-            assert value(d,'-ctk')=='kvarn3' and value(d,'-ctv')=='kvarn3'
+            assert value(d,'-c')=='81920' and value(d,'-b')=='1024' and value(d,'-ub')==('512' if arch=='sm86' else '256')
+            assert value(d,'-ctk')==value(d,'-ctv')==('kvarn4' if arch=='sm86' else 'kvarn3')
             dk='-ctkd' if arch=='sm120' else '--spec-draft-type-k'
             dv='-ctvd' if arch=='sm120' else '--spec-draft-type-v'
-            assert value(d,dk)=='q4_0' and value(d,dv)=='q4_0' and value(d,'--spec-draft-ubatch-size')=='128'
+            assert value(d,dk)=='q4_0' and value(d,dv)=='q4_0' and value(d,'--spec-draft-ubatch-size')==('32' if arch=='sm86' else '128')
+            if arch=='sm86':
+                assert value(d,'-ot')=='token_embd.lowgpu_.*=CPU' and '--no-op-offload' in d['args']
+                assert value(d,'--spec-draft-ngl')=='99'
+                assert d['env']['L0XRE_INT8_PREFILL']=='1' and d['env']['L0XRE_KVARN_QK_FP16_ACC']=='2'
+            else:
+                assert 'L0XRE_INT8_PREFILL' not in d['env'] and 'L0XRE_KVARN_QK_FP16_ACC' not in d['env']
             assert value(d,'-t')=='32' and value(d,'-tb')=='32'
             assert value(d,'--reasoning-effort')=='medium' and value(d,'--reasoning-budget')=='8192'
             assert value(d,'--fit')=='off' and value(d,'--cache-ram')=='0'

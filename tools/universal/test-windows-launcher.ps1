@@ -20,7 +20,7 @@ foreach ($arch in @('sm86','sm89','sm120')) {
  New-Item -ItemType Directory -Path "$TestRoot\bridge\$arch" -Force | Out-Null
  [IO.File]::WriteAllText("$TestRoot\bridge\$arch\code-gemm.cubin",'stub')
 }
-foreach ($file in @('escha_official_bridge_cuda.dll','escha_gdn_chunk_bridge.dll','sm86\bridge-b74-k3-vector.dll','sm86\k3-vector-all.cubin')) { [IO.File]::WriteAllText("$TestRoot\bridge\$file",'stub') }
+foreach ($file in @('escha_official_bridge_cuda.dll','escha_gdn_chunk_bridge.dll','sm86\bridge-int8-allproj.dll','sm86\k3-vector-all.cubin')) { [IO.File]::WriteAllText("$TestRoot\bridge\$file",'stub') }
 function Run-Case([string]$Arch,[string[]]$Params,[int]$Expected=0) {
  $env:L0XRE_ARCH=$Arch
  $env:ESCHA_E3_HEAD_RT_BLOCK128='1';$env:L0XRE_K3_VECTOR_CUBIN='wrong-sm86.cubin'
@@ -40,7 +40,7 @@ $count=0
 try {
  $params=@('serve','--profile','12gb','-m','model with spaces.gguf','-md','draft with spaces.gguf','--port','9099')
  $lines=Run-Case 'sm86' $params
- if ((Arg-Value $lines '--alias') -ne 'L0xRE-27b-Low' -or (Arg-Value $lines '-c') -ne '81920' -or (Arg-Value $lines '-ub') -ne '256' -or (Arg-Value $lines '--spec-draft-type-k') -ne 'q4_0' -or 'HEAD:1' -notin $lines -or (Arg-Value $lines '-m') -ne 'model with spaces.gguf') { throw 'SM86 B84 routing failed' };$count++
+ if ((Arg-Value $lines '--alias') -ne 'L0xRE-27b-Low' -or (Arg-Value $lines '-c') -ne '81920' -or (Arg-Value $lines '-ub') -ne '512' -or (Arg-Value $lines '--spec-draft-type-k') -ne 'q4_0' -or 'HEAD:1' -notin $lines -or (Arg-Value $lines '-m') -ne 'model with spaces.gguf') { throw 'SM86 B84 routing failed' };$count++
  foreach ($arch in @('sm89','sm120')) {
   $lines=Run-Case $arch $params
   if ((Arg-Value $lines '-c') -ne '81920' -or 'HEAD:' -notin $lines -or 'VECTOR:' -notin $lines) { throw "$arch profile/isolation failed" };$count++
@@ -48,7 +48,10 @@ try {
  foreach ($arch in @('sm86','sm89','sm120')) {
   foreach ($profileName in @('12gb','12gb-quality')) {
    $lines=Run-Case $arch @('serve','--profile',$profileName,'-m','model.gguf','-md','draft.gguf')
-   if ((Arg-Value $lines '-c') -ne '81920' -or (Arg-Value $lines '-ctv') -ne 'kvarn3' -or (Arg-Value $lines '--spec-draft-type-k') -ne 'q4_0' -or (Arg-Value $lines '-t') -ne '32' -or (Arg-Value $lines '-tb') -ne '32' -or (Arg-Value $lines '--fit') -ne 'off' -or (Arg-Value $lines '--reasoning-effort') -ne 'medium' -or 'ARG:--no-mmproj-offload' -notin $lines) { throw "$arch quality profile failed" }
+   if ((Arg-Value $lines '-c') -ne '81920' -or (Arg-Value $lines '-ctv') -ne $(if ($arch -eq 'sm86') {'kvarn4'} else {'kvarn3'}) -or (Arg-Value $lines '--spec-draft-type-k') -ne 'q4_0' -or (Arg-Value $lines '-t') -ne '32' -or (Arg-Value $lines '-tb') -ne '32' -or (Arg-Value $lines '--fit') -ne 'off' -or (Arg-Value $lines '--reasoning-effort') -ne 'medium' -or 'ARG:--no-mmproj-offload' -notin $lines) { throw "$arch quality profile failed" }
+   if ($arch -eq 'sm86') {
+    if ((Arg-Value $lines '--spec-draft-ubatch-size') -ne '32' -or (Arg-Value $lines '--spec-draft-ngl') -ne '99' -or (Arg-Value $lines '-ot') -ne 'token_embd.lowgpu_.*=CPU' -or (Arg-Value $lines '-ub') -ne '512') { throw 'SM86 optimized settings failed' }
+   }
    $count++
   }
  }
