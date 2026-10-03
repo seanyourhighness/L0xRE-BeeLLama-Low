@@ -12,6 +12,9 @@
 #include <cstdio>
 #include <cstdlib>
 #include <atomic>
+#if defined(_WIN32) && defined(GGML_CUDA_KVARN)
+#include "qk16-native-entry.cuh"
+#endif
 
 static std::atomic<uint64_t> g_kvarn_route_decode_split{0};
 static std::atomic<uint64_t> g_kvarn_route_decode_vector{0};
@@ -1155,6 +1158,9 @@ bool ggml_cuda_flash_attn_ext_kvarn(
         ggml_backend_cuda_context & ctx,
         ggml_tensor * dst,
         ggml_cuda_fattn_kvarn_entry_path entry_path) {
+#if defined(_WIN32) && defined(GGML_CUDA_KVARN)
+    if (l0xre_qk16_prefill_entry(ctx, dst, entry_path)) return true;
+#endif
     ggml_cuda_fattn_kvarn_plan plan;
     if (!ggml_cuda_fattn_kvarn_supported(ctx.device, dst, &plan)) {
         if (ggml_cuda_fattn_kvarn_debug_routes_enabled()) {

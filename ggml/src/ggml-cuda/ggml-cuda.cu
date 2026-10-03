@@ -6629,6 +6629,9 @@ ggml_backend_t ggml_backend_cuda_init(int device) {
         /* .context = */ ctx,
     };
 
+#ifdef _WIN32
+    ggml_cuda_escha_init_prefill_bridge();
+#endif
     return cuda_backend;
 }
 

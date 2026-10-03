@@ -44,3 +44,7 @@ bool ggml_cuda_escha_decode_down_add_rms_is_eligible(const ggml_tensor * down,
                                                      const ggml_tensor * add,
                                                      const ggml_tensor * rms,
                                                      const ggml_tensor * mul);
+
+#ifdef _WIN32
+void ggml_cuda_escha_init_prefill_bridge();
+#endif

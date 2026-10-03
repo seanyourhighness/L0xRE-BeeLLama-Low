@@ -1,0 +1,14 @@
+{
+  "modified_compiled_sources": {
+    "ggml/src/ggml-cuda/fattn-kvarn-dispatch.cu": "b72c8048b56bbc29a752774d8b8f194315279e0c58709e846675e14ee6f42413",
+    "ggml/src/ggml-cuda/escha-moe.cu": "fa5b120420c818718b5ae4fcb0268deeeabbc868ff8cc20f6f84d052a25c457d",
+    "ggml/src/ggml-cuda/escha-moe.cuh": "0069e7d3cb7f0780dafe2482ffbc9b20ba2d6ce89f5999997fbfc087c0b0e850",
+    "ggml/src/ggml-cuda/ggml-cuda.cu": "89d48358dfaa2de31888c7b04f9ea5ea5e76cd0c16de8a7a4c05b59346d4e00c",
+    "ggml/src/ggml-cuda/fattn-qk16-prefill.cuh": "b4aa3636b407cca348038b4e576d3e094d5432afb2be7699c8b56b011d9a2267",
+    "ggml/src/ggml-cuda/qk16-native-entry.cuh": "767682e7992362d7ec1ca5f986b4ee7d4772c87f531fb73e02ae4aa0186ac336"
+  },
+  "compiled_baseline": "be302741801080a4fa2ea713fdf9409e2ef599d5",
+  "baseline_source_audit": "historical 1604 matching compiled files, retained object cache",
+  "Linux_qualified_libraries_retained": true,
+  "Windows_GPU_execution": false
+}

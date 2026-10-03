@@ -249,6 +249,14 @@ static const escha_official_bridge_api & escha_official_bridge_load() {
         if (handle == nullptr) {
             GGML_ABORT("escha: failed to load official bridge '%s': %s", path, escha_dl_error());
         }
+#ifdef _WIN32
+        using init_fn = void (*)();
+        auto init = reinterpret_cast<init_fn>(escha_dl_sym(handle, "l0xre_int8_prefill_init_v1"));
+        if (init != nullptr) init();
+        else if (const char * mode = std::getenv("L0XRE_INT8_PREFILL")) {
+            if (std::strcmp(mode, "1") == 0) GGML_ABORT("escha: INT8 bridge initialization ABI missing");
+        }
+#endif
         api.gemm = reinterpret_cast<escha_official_code_gemm_fn>(
             escha_dl_sym(handle, "escha_official_code_gemm"));
         api.pretransformed = reinterpret_cast<escha_official_code_gemm_pretransformed_fn>(
@@ -4397,3 +4405,10 @@ void ggml_cuda_op_escha_mul_mat_fused_gate_silu(ggml_backend_cuda_context & ctx,
     GGML_ASSERT(ggml_cuda_escha_mvt_gate_silu_is_eligible(gate, silu));
     ggml_cuda_op_escha_mul_mat_impl(ctx, gate, nullptr, silu, true);
 }
+
+#ifdef _WIN32
+void ggml_cuda_escha_init_prefill_bridge() {
+    const char * mode = std::getenv("L0XRE_INT8_PREFILL");
+    if (mode != nullptr && std::strcmp(mode, "1") == 0) (void) escha_official_bridge_load();
+}
+#endif
