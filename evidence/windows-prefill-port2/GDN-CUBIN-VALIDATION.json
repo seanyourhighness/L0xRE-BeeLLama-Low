@@ -1,0 +1,106 @@
+{
+  "status": "pass",
+  "hardware_qualified": false,
+  "kernels": [
+    {
+      "arch": "sm86",
+      "kernel": "cumsum",
+      "entry": "chunk_local_cumsum_scalar_kernel",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=86, toolkit=13.3, flags=0xa005604",
+      "sha256": "5ecdf3e2c42e6ec2eb8f222835afb3dbe2d22137ba1fe4c9621b7a089d320be8"
+    },
+    {
+      "arch": "sm86",
+      "kernel": "kkt",
+      "entry": "chunk_scaled_dot_kkt_fwd_kernel",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=86, toolkit=13.3, flags=0x9005604",
+      "sha256": "63f66bb9d7dc6a1f568e526c9cbd50f29fa29b218bb2763cf3a9713f8e42792a"
+    },
+    {
+      "arch": "sm86",
+      "kernel": "solve",
+      "entry": "solve_tril_16x16_kernel",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=86, toolkit=13.3, flags=0xa005604",
+      "sha256": "30627d71b8f7e9bd92ebde57637a9dfb7f84a51237567765493780e6ab02f4b6"
+    },
+    {
+      "arch": "sm86",
+      "kernel": "merge",
+      "entry": "merge_16x16_to_64x64_inverse_kernel",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=86, toolkit=13.3, flags=0x9005604",
+      "sha256": "765ebb81d74cff84de8c152fc1d9af3304d0d13d58bfe7a964e0ce9aa9ee2f9d"
+    },
+    {
+      "arch": "sm86",
+      "kernel": "recompute",
+      "entry": "recompute_w_u_fwd_kernel",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=86, toolkit=13.3, flags=0x9005604",
+      "sha256": "449cd3ac625738630746f98941b10de68b6d3ca73c7bfba3d6bb506c44967acd"
+    },
+    {
+      "arch": "sm86",
+      "kernel": "state",
+      "entry": "chunk_gated_delta_rule_fwd_kernel_h_blockdim64",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=86, toolkit=13.3, flags=0xa005604",
+      "sha256": "01e7abbc8b8b580c322d1e9a9db179d469885d763a1601381510c1730b4139d0"
+    },
+    {
+      "arch": "sm86",
+      "kernel": "output",
+      "entry": "chunk_fwd_kernel_o",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=86, toolkit=13.3, flags=0xa005604",
+      "sha256": "62ccb616e9eb387c2a447303770da31afb40dfc4489c848e41fb0113cab3a474"
+    },
+    {
+      "arch": "sm89",
+      "kernel": "cumsum",
+      "entry": "chunk_local_cumsum_scalar_kernel",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=89, toolkit=13.3, flags=0xa005904",
+      "sha256": "75e29a109cfcc4cfdae5fa4a2b1564fcbe6e68dd81856a180c5f1247d6474962"
+    },
+    {
+      "arch": "sm89",
+      "kernel": "kkt",
+      "entry": "chunk_scaled_dot_kkt_fwd_kernel",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=89, toolkit=13.3, flags=0x9005904",
+      "sha256": "4725b67b13e46cbc3c71abb44d82812d027f828d010e2b200d63af9398586415"
+    },
+    {
+      "arch": "sm89",
+      "kernel": "solve",
+      "entry": "solve_tril_16x16_kernel",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=89, toolkit=13.3, flags=0xa005904",
+      "sha256": "720c9d0d966e3c90d3ce6934dbde845580f19af9db0b2728e2598d4deea22df7"
+    },
+    {
+      "arch": "sm89",
+      "kernel": "merge",
+      "entry": "merge_16x16_to_64x64_inverse_kernel",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=89, toolkit=13.3, flags=0x9005904",
+      "sha256": "25f80fe84aa4ea8f028e03d9d321c30392384d30cef27c6be8388f835abf9d2f"
+    },
+    {
+      "arch": "sm89",
+      "kernel": "recompute",
+      "entry": "recompute_w_u_fwd_kernel",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=89, toolkit=13.3, flags=0x9005904",
+      "sha256": "b8aa4d8bb90bf29b6daeab85b002b00ec5b127807325421773e4a19ef757d9e1"
+    },
+    {
+      "arch": "sm89",
+      "kernel": "state",
+      "entry": "chunk_gated_delta_rule_fwd_kernel_h_blockdim64",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=89, toolkit=13.3, flags=0xa005904",
+      "sha256": "12a809b5a927ddae9b0b42e67a7d8939cb92d94828cabe229cdd336208231551"
+    },
+    {
+      "arch": "sm89",
+      "kernel": "output",
+      "entry": "chunk_fwd_kernel_o",
+      "elf_header": "64-bit ELF: type=ET_EXEC, ABI=8, sm=89, toolkit=13.3, flags=0xa005904",
+      "sha256": "661ba9ab87445ed22909abb00188eac698975a9d826ed51ac81c6e8901d20496"
+    }
+  ],
+  "compiler": "Windows CUDA13.3 ptxas",
+  "launch_metadata_sha256": "8d578d0e57c5c6939a0843ee30ecd6c32f7402d6f0ed9b7842c2e06e7ae768b7"
+}

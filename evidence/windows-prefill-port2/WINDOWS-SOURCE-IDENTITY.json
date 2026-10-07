@@ -1,0 +1,47 @@
+{
+  "hardware_qualified": false,
+  "base_archive_sha256": "a9dd23bfa3ed38c040ffed6447e7085e083cb6abbb640a5b0cb3cf48f7de7263",
+  "native_overlay_sha256": {
+    "ggml/include/ggml.h": "d49e844c7cb6482888082828e775a16174e0ee17bb9361114a260a47a5d6ba50",
+    "ggml/src/ggml.c": "75859fb293c404a1768b8b5bc1e2f1b6cdfd51ff01b0948c16046d6187f6fc16",
+    "ggml/src/ggml-cpu/ggml-cpu.cpp": "e5f12050de0cb40f7db48704187d01cb32ce69a883ad4a389f3180e330cc5664",
+    "ggml/src/ggml-cuda/ggml-cuda.cu": "9fcb5f4b56ea0fd0460a4cb2d68e638f16479d3ba1f741ba80112bab225f8ad8",
+    "ggml/src/ggml-cuda/gated_delta_net.cu": "fb517b27ac96bb2ee8078e61379dc71adce6840535fa59029f8591fb72d30e97",
+    "ggml/src/ggml-cuda/gdn-compact.cuh": "2ebd03a3b40d16d82e36f751dcaba2f50700b1bd500dd93d82ff7da8d83917db",
+    "ggml/src/ggml-cuda/gdn-compact-kernel.cuh": "13bc2ce53477d48b5dfc80410fe95b7ae4a2b259ade347ec44c9179fa2eeac46",
+    "src/llama-memory-recurrent.cpp": "f700fc5f706bb115282e5da69c92dd75e5a446a49ff0155a925db8121cba036d",
+    "src/llama-memory-recurrent.h": "2fdd98592e17a6eb535bc3b41cd3cbef7cb1b085d386aac12dbfcd46cb24a249",
+    "src/llama-graph.cpp": "3e8e4a32d7a9224cef44dc1b1724b84dd38dab648f98ad504c2f2d79f074daa1",
+    "src/llama-graph.h": "4a10483f743f74483bd45b8ef870b29a41a561b64f5751033854ccd4eb19617a",
+    "src/models/delta-net-base.cpp": "9462cc7741b750c6e573c690998fb0c3ee34a333ed6755c602dbcaed8335c6dc",
+    "src/llama-io.h": "76c632e6eaaadd51a34e37c0ad769bd0580ee5f086b33f1fc494da06fa22a104",
+    "src/llama-context.cpp": "c5df9a0861d66fe96094e42eb56852fad8ed2347669433bdaa9d27ca918188c6",
+    "src/llama-kv-cache.cpp": "bcc3d32d072a7d0416c465d822aba8daea8e0bef1ee51e94afca87927868829f",
+    "ggml/src/ggml-cuda/mmvq.cu": "8fbde89d51ada7d45ab4c6ac6b1390f11dd62882377078dcaeffbabdae4e7d1c",
+    "ggml/src/ggml-cuda/qk16-native-entry.cuh": "bda375a3e92fafd4b13335195c9be8975dc5fe3f12bf62f9ecded565a29473df",
+    "ggml/src/ggml-cuda/fattn-qk16-prefill.cuh": "51f9297568e8ce9b750b46ce64350c31a5f9139a815524beb929f217cf68ddf0"
+  },
+  "platform_overrides": {
+    "ggml/src/ggml-cuda/mmvq.cu": {
+      "common_sha256": "3cdf88f8a7a0ab31fdcb4500636bf3a5aefc3420f313b24689752ec2da9e643d",
+      "windows_sha256": "8fbde89d51ada7d45ab4c6ac6b1390f11dd62882377078dcaeffbabdae4e7d1c"
+    },
+    "ggml/src/ggml-cuda/qk16-native-entry.cuh": {
+      "common_sha256": "0953de3c9df9899d35282342a96c758d313fd022f1aefd1e893b37cb21d9a6f3",
+      "windows_sha256": "bda375a3e92fafd4b13335195c9be8975dc5fe3f12bf62f9ecded565a29473df"
+    },
+    "ggml/src/ggml-cuda/fattn-qk16-prefill.cuh": {
+      "common_sha256": "43af3a8cc73b897ed435d0033f1694fec362b32377bc632ea161876bd408d843",
+      "windows_sha256": "51f9297568e8ce9b750b46ce64350c31a5f9139a815524beb929f217cf68ddf0"
+    },
+    "ggml/src/ggml-cuda/gdn-compact.cuh": {
+      "common_sha256": "d589175c1141c7ab70e57ddaef9d72ffa2a814c73b214c2cc94e37cf5155235c",
+      "windows_sha256": "2ebd03a3b40d16d82e36f751dcaba2f50700b1bd500dd93d82ff7da8d83917db"
+    },
+    "ggml/src/ggml-cuda/gated_delta_net.cu": {
+      "common_sha256": "5a317a1098b40a27cfb1d341a5b625894c1bf0bfdd2632ef42d98035ba03cc9b",
+      "windows_sha256": "fb517b27ac96bb2ee8078e61379dc71adce6840535fa59029f8591fb72d30e97"
+    }
+  },
+  "note": "Windows prefill port2: QK16 and masked-GDN architecture gates admit SM86/SM89; INT8 enabled through the existing native DLL initializer. Exact platform override source and bridge build recipe included; hardware unqualified."
+}

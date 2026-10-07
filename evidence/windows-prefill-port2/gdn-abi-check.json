@@ -1,0 +1,7 @@
+{
+  "status": "pass",
+  "gpu_work_launched": false,
+  "null_argument_status": 1,
+  "unsupported_device_status": 1,
+  "output_guards_preserved": true
+}

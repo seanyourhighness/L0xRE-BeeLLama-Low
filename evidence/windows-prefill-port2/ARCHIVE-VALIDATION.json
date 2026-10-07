@@ -1,0 +1,32 @@
+{
+  "status": "pass",
+  "hardware_qualified": false,
+  "architectures": [
+    {
+      "arch": "sm86",
+      "status": "pass",
+      "archive": "/home/sean/work/l0xre-r6-windows-prefill-port2-20261007/L0xRE-BeeLLama-Low-R6-sm86-windows-prefill-port2-candidate.zip",
+      "sha256": "9ae318512be28a851d728c328b201a7aabc7ef052140eb87a50c3773bbe1a93c",
+      "bytes": 892481245,
+      "pe_files": 72,
+      "imports_checked": 844,
+      "runtime_hashes_checked": 101,
+      "source_files_checked": 18,
+      "zip_crc_pass": true,
+      "archive_runtime_and_catalog_hashes_pass": true
+    },
+    {
+      "arch": "sm89",
+      "status": "pass",
+      "archive": "/home/sean/work/l0xre-r6-windows-prefill-port2-20261007/L0xRE-BeeLLama-Low-R6-sm89-windows-prefill-port2-candidate.zip",
+      "sha256": "99ff152cd0712bb358172d9514c2594326455716b5669b4aeebf39f8b8f591c4",
+      "bytes": 891966633,
+      "pe_files": 71,
+      "imports_checked": 835,
+      "runtime_hashes_checked": 100,
+      "source_files_checked": 18,
+      "zip_crc_pass": true,
+      "archive_runtime_and_catalog_hashes_pass": true
+    }
+  ]
+}

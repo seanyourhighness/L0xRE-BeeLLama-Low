@@ -1,0 +1,57 @@
+--- a/ggml/src/ggml-cuda/qk16-native-entry.cuh
++++ b/ggml/src/ggml-cuda/qk16-native-entry.cuh
+@@ -13,7 +13,8 @@
+  // Preserve exact production prefill arithmetic for short contexts.
+  if(!dst->src[1] || dst->src[1]->ne[1] <= 16384)return false;
+  auto q=dst->src[0];ggml_cuda_fattn_kvarn_plan plan;
+- if(ctx.device!=0||ggml_cuda_info().devices[ctx.device].cc!=860||q->ne[0]!=256||q->ne[1]<128||q->ne[1]>1024||dst->ne[0]!=256||!ggml_cuda_fattn_kvarn_view_supported(ctx.device,dst,&plan)||plan.k.bits!=4||plan.v.bits!=4||q->ne[2]/dst->src[1]->ne[2]!=6||dst->src[4]||ggml_cuda_fattn_kvarn_domain(dst)!=GGML_FLASH_ATTN_EXT_KVARN_DOMAIN_ROTATED_K_ORIGINAL_V)return false;
++ const int cc=ggml_cuda_info().devices[ctx.device].cc;
++ if(ctx.device!=0||(cc!=860&&cc!=890)||q->ne[0]!=256||q->ne[1]<128||q->ne[1]>1024||dst->ne[0]!=256||!ggml_cuda_fattn_kvarn_view_supported(ctx.device,dst,&plan)||plan.k.bits!=4||plan.v.bits!=4||q->ne[2]/dst->src[1]->ne[2]!=6||dst->src[4]||ggml_cuda_fattn_kvarn_domain(dst)!=GGML_FLASH_ATTN_EXT_KVARN_DOMAIN_ROTATED_K_ORIGINAL_V)return false;
+  float bias,softcap;std::memcpy(&bias,(const float*)dst->op_params+1,4);std::memcpy(&softcap,(const float*)dst->op_params+2,4);if(bias!=0||softcap!=0)return false;
+  const char*w=std::getenv("GGML_KVARN_WINDOW");return !w||std::atoi(w)!=0;
+ }
+--- a/ggml/src/ggml-cuda/fattn-qk16-prefill.cuh
++++ b/ggml/src/ggml-cuda/fattn-qk16-prefill.cuh
+@@ -3020,7 +3020,8 @@
+     if(!env || (std::strcmp(env,"1")&&std::strcmp(env,"2")))return false;
+     const ggml_tensor *q=dst->src[0];
+     ggml_cuda_fattn_kvarn_plan plan;
+-    if(ggml_cuda_info().devices[ctx.device].cc!=860 || q->ne[0]!=256 ||
++    const int cc=ggml_cuda_info().devices[ctx.device].cc;
++    if((cc!=860 && cc!=890) || q->ne[0]!=256 ||
+        q->ne[1]<128 || q->ne[1]>1024 || dst->ne[0]!=256 ||
+        !ggml_cuda_fattn_kvarn_view_supported(ctx.device,dst,&plan) ||
+        plan.k.bits!=4 || plan.v.bits!=4 || q->ne[2]/dst->src[1]->ne[2]!=6 ||
+@@ -3038,8 +3039,8 @@
+     else l0xre_qk16::ggml_cuda_flash_attn_ext_mma_kvarn_case<256,256,32,2>(ctx,dst);
+     static std::atomic<bool> reported{false};
+     if(!reported.exchange(true,std::memory_order_relaxed))
+-        std::fprintf(stderr,"L0XRE_QK_FP16_ACC M=%lld tile=%dx%d softmax=F32 cc=860 bits=4/4\n",
+-                     (long long)q->ne[1],mode==1?8:(tile64?64:32),mode==1?8:2);
++        std::fprintf(stderr,"L0XRE_QK_FP16_ACC M=%lld tile=%dx%d softmax=F32 cc=%d bits=4/4\n",
++                     (long long)q->ne[1],mode==1?8:(tile64?64:32),mode==1?8:2,cc);
+     return true;
+ #else
+     GGML_UNUSED(ctx);GGML_UNUSED(dst);return false;
+--- a/ggml/src/ggml-cuda/gdn-compact.cuh
++++ b/ggml/src/ggml-cuda/gdn-compact.cuh
+@@ -68,7 +68,7 @@
+     // Preserve the existing qualified masked-prefill prefix and its exact tail.
+     if(!grouped && T>=256 && T<=1024 && capacity+1<T && q->ne[1]==H &&
+             sq1==S && sq2==H*S && sv1==S && sv2>=H*S && sb1==1 && sb2==H &&
+-            ggml_cuda_info().devices[ctx.device].cc==860 && l0xre_gdn_masked_requested()) {
++            (ggml_cuda_info().devices[ctx.device].cc==860 || ggml_cuda_info().devices[ctx.device].cc==890) && l0xre_gdn_masked_requested()) {
+         const int64_t native_tail=capacity+1; // native rollback slots include the final state
+         const int64_t prefix=T-native_tail, padded=((prefix+63)/64)*64;
+         prefix_state.alloc(S*S*H);
+--- a/ggml/src/ggml-cuda/gated_delta_net.cu
++++ b/ggml/src/ggml-cuda/gated_delta_net.cu
+@@ -458,7 +458,7 @@
+             S_v == 128 && H == 48 && neqk1 == H && rq3 == 1 && n_seqs == 1 &&
+             n_tokens >= 256 && n_tokens <= 1024 && K < n_tokens &&
+             sq1 == S_v && sq2 == H*S_v && sv1 == S_v && sv2 >= H*S_v &&
+-            sb1 == 1 && sb2 == H && ggml_cuda_info().devices[ctx.device].cc == 860 &&
++            sb1 == 1 && sb2 == H && (ggml_cuda_info().devices[ctx.device].cc == 860 || ggml_cuda_info().devices[ctx.device].cc == 890) &&
+             l0xre_gdn_masked_requested()) {
+         const int64_t prefix = n_tokens - K;
+         const int64_t padded = ((prefix + 63) / 64) * 64;

@@ -1,0 +1,17 @@
+{
+  "status": "pass",
+  "hardware_qualified": false,
+  "gpu_work_launched": false,
+  "runtime_sha256": {
+    "ggml-cuda.dll": "d58cd2fc0fd003777a905188c4cb3bcf7caf8031cf9bff852d6768f1cb9864da",
+    "llama-server.exe": "34df9a5147bf72ad16eade28efd00c6125c41709170b50a56a1d1b00539a6ed0",
+    "llama-cli.exe": "b5fa112842a8948abd23caced70eff4951cebd874c88b6646b2b2749ca4a8497",
+    "llama-bench.exe": "e5ab7945639ef50940858cb3cb1dd78507c7534579a8211a5734ff0e0f2fe91e"
+  },
+  "source_patch": "C:\\work\\l0xre-r6-gdn-port-20261007\\windows-sm89-prefill-port.patch",
+  "base_build_commit": "47708f863027c0f3162ad59b7a2c9d7f2018a758",
+  "build_number": 6,
+  "qualification": "Native CUDA13.3/MSVC build only; actual SM86/SM89 Windows dispatch and correctness pending.",
+  "existing_int8_initializer_literal_confirmed_in_runtime": true,
+  "log": "/home/sean/work/l0xre-r6-release-20261007/receipts/r6-windows-prefill-port-rebuild.log"
+}

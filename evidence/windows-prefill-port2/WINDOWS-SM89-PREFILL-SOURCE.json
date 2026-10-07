@@ -1,0 +1,27 @@
+{
+  "status": "source_prepared",
+  "hardware_qualified": false,
+  "scope": "admit cc890 alongside860 for opt-in native QK16 and masked GDN; all existing shape/stride/rollback guards preserved",
+  "files": [
+    {
+      "path": "qk16-native-entry.cuh",
+      "before_sha256": "767682e7992362d7ec1ca5f986b4ee7d4772c87f531fb73e02ae4aa0186ac336",
+      "after_sha256": "bda375a3e92fafd4b13335195c9be8975dc5fe3f12bf62f9ecded565a29473df"
+    },
+    {
+      "path": "fattn-qk16-prefill.cuh",
+      "before_sha256": "2a0104fe09cfecfa38fc950ad23c279328f95bfc674024075ca7a01930a39733",
+      "after_sha256": "51f9297568e8ce9b750b46ce64350c31a5f9139a815524beb929f217cf68ddf0"
+    },
+    {
+      "path": "gdn-compact.cuh",
+      "before_sha256": "d589175c1141c7ab70e57ddaef9d72ffa2a814c73b214c2cc94e37cf5155235c",
+      "after_sha256": "2ebd03a3b40d16d82e36f751dcaba2f50700b1bd500dd93d82ff7da8d83917db"
+    },
+    {
+      "path": "gated_delta_net.cu",
+      "before_sha256": "5a317a1098b40a27cfb1d341a5b625894c1bf0bfdd2632ef42d98035ba03cc9b",
+      "after_sha256": "fb517b27ac96bb2ee8078e61379dc71adce6840535fa59029f8591fb72d30e97"
+    }
+  ]
+}
