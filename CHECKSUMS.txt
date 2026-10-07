@@ -1,2 +1,3 @@
-82c30ba3cf2e47c19b465615d08cb47e9aef497c983da3837fa2f64b4421cf71  l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r4.tar.zst
+f4545b4382057817531cc66546cb3e5a2fe9e13d8c69efe972e58ae1fc1f86dc  l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r5-fast.tar.zst
+a9dd23bfa3ed38c040ffed6447e7085e083cb6abbb640a5b0cb3cf48f7de7263  l0xre-fast-runtime-source-v0.4.7.tar.xz
 ff36b7a227148a68915b8b008758816c135e0e02ad47a03c3b2ce75339e57651  l0xre-win-universal-r4.zip

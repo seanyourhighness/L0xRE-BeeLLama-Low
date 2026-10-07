@@ -1,0 +1,346 @@
+{
+  "baseline": {
+    "raw_sha256": "8e37d10446c4aaa47e4229de9f45a4b7d8382586b8a14eaeaae3f68022fc73bc",
+    "pass_at_1": 131,
+    "pass_at_3": 134,
+    "total": 150,
+    "runaway": {
+      "count": 0,
+      "total": 150,
+      "rate": 0.0,
+      "modes": {
+        "timeout": 0,
+        "token_limit": 0,
+        "agent_runner_timeout": 0
+      },
+      "retry_modes": {
+        "timeout": 0,
+        "token_limit": 0,
+        "agent_runner_timeout": 0
+      },
+      "derived_from": "scenario and retry failure_mode fields; journal-finalized JSON omitted aggregate runaway metadata"
+    },
+    "thinking_validity": {
+      "bugfind-15": {
+        "expected": "on",
+        "responses": 15,
+        "status": "ok",
+        "with_reasoning": 15
+      },
+      "cli-40": {
+        "expected": "on",
+        "responses": 40,
+        "status": "ok",
+        "with_reasoning": 40
+      },
+      "dataextract-15": {
+        "expected": "on",
+        "responses": 15,
+        "status": "ok",
+        "with_reasoning": 15
+      },
+      "instructfollow-15": {
+        "expected": "on",
+        "responses": 15,
+        "status": "ok",
+        "with_reasoning": 15
+      },
+      "reasonmath-15": {
+        "expected": "on",
+        "responses": 15,
+        "status": "ok",
+        "with_reasoning": 15
+      },
+      "structoutput-15": {
+        "expected": "on",
+        "responses": 15,
+        "status": "ok",
+        "with_reasoning": 15
+      },
+      "toolcall-15": {
+        "expected": "on",
+        "responses": 15,
+        "status": "ok",
+        "with_reasoning": 15
+      }
+    },
+    "packs": {
+      "toolcall-15": {
+        "total": 15,
+        "pass_at_1": 14,
+        "pass_at_3": 14,
+        "runaway": null
+      },
+      "instructfollow-15": {
+        "total": 15,
+        "pass_at_1": 15,
+        "pass_at_3": 15,
+        "runaway": null
+      },
+      "structoutput-15": {
+        "total": 15,
+        "pass_at_1": 15,
+        "pass_at_3": 15,
+        "runaway": null
+      },
+      "dataextract-15": {
+        "total": 15,
+        "pass_at_1": 13,
+        "pass_at_3": 14,
+        "runaway": null
+      },
+      "reasonmath-15": {
+        "total": 15,
+        "pass_at_1": 12,
+        "pass_at_3": 12,
+        "runaway": null
+      },
+      "bugfind-15": {
+        "total": 15,
+        "pass_at_1": 14,
+        "pass_at_3": 15,
+        "runaway": null
+      },
+      "hermesagent-20": {
+        "total": 20,
+        "pass_at_1": 17,
+        "pass_at_3": 17,
+        "runaway": null
+      },
+      "cli-40": {
+        "total": 40,
+        "pass_at_1": 31,
+        "pass_at_3": 32,
+        "runaway": null
+      }
+    },
+    "duration_s": 5004.56721,
+    "sampling_overrides": {
+      "max_tokens": 4096,
+      "min_p": 0.05,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.95
+    },
+    "reasoning_effort": "medium",
+    "runner_version": "0.9.9"
+  },
+  "candidate": {
+    "raw_sha256": "c7a6a3a9fc1fa638ac6d062a2cca6f0e065aa911d3ab10b09c02cf2e09b9a761",
+    "pass_at_1": 127,
+    "pass_at_3": 134,
+    "total": 150,
+    "runaway": {
+      "count": 0,
+      "total": 150,
+      "rate": 0.0,
+      "modes": {
+        "timeout": 0,
+        "token_limit": 0,
+        "agent_runner_timeout": 0
+      },
+      "retry_modes": {
+        "timeout": 0,
+        "token_limit": 0,
+        "agent_runner_timeout": 0
+      },
+      "derived_from": "scenario and retry failure_mode fields; journal-finalized JSON omitted aggregate runaway metadata"
+    },
+    "thinking_validity": {
+      "bugfind-15": {
+        "expected": "on",
+        "responses": 15,
+        "status": "ok",
+        "with_reasoning": 15
+      },
+      "cli-40": {
+        "expected": "on",
+        "responses": 40,
+        "status": "ok",
+        "with_reasoning": 40
+      },
+      "dataextract-15": {
+        "expected": "on",
+        "responses": 15,
+        "status": "ok",
+        "with_reasoning": 15
+      },
+      "instructfollow-15": {
+        "expected": "on",
+        "responses": 15,
+        "status": "ok",
+        "with_reasoning": 15
+      },
+      "reasonmath-15": {
+        "expected": "on",
+        "responses": 15,
+        "status": "ok",
+        "with_reasoning": 15
+      },
+      "structoutput-15": {
+        "expected": "on",
+        "responses": 15,
+        "status": "ok",
+        "with_reasoning": 15
+      },
+      "toolcall-15": {
+        "expected": "on",
+        "responses": 15,
+        "status": "ok",
+        "with_reasoning": 15
+      }
+    },
+    "packs": {
+      "toolcall-15": {
+        "total": 15,
+        "pass_at_1": 13,
+        "pass_at_3": 14,
+        "runaway": null
+      },
+      "instructfollow-15": {
+        "total": 15,
+        "pass_at_1": 14,
+        "pass_at_3": 14,
+        "runaway": null
+      },
+      "structoutput-15": {
+        "total": 15,
+        "pass_at_1": 15,
+        "pass_at_3": 15,
+        "runaway": null
+      },
+      "dataextract-15": {
+        "total": 15,
+        "pass_at_1": 12,
+        "pass_at_3": 12,
+        "runaway": null
+      },
+      "reasonmath-15": {
+        "total": 15,
+        "pass_at_1": 12,
+        "pass_at_3": 13,
+        "runaway": null
+      },
+      "bugfind-15": {
+        "total": 15,
+        "pass_at_1": 15,
+        "pass_at_3": 15,
+        "runaway": null
+      },
+      "hermesagent-20": {
+        "total": 20,
+        "pass_at_1": 14,
+        "pass_at_3": 18,
+        "runaway": null
+      },
+      "cli-40": {
+        "total": 40,
+        "pass_at_1": 32,
+        "pass_at_3": 33,
+        "runaway": null
+      }
+    },
+    "duration_s": 4792.188477,
+    "sampling_overrides": {
+      "max_tokens": 4096,
+      "min_p": 0.05,
+      "temperature": 0.7,
+      "top_k": 20,
+      "top_p": 0.95
+    },
+    "reasoning_effort": "medium",
+    "runner_version": "0.9.9"
+  },
+  "paired_pass_at_1": {
+    "candidate_only_pass": [
+      "bugfind-15/BF-08",
+      "cli-40/CLI-08",
+      "cli-40/CLI-15",
+      "cli-40/CLI-19",
+      "hermesagent-20/HA-20",
+      "reasonmath-15/RM-06"
+    ],
+    "baseline_only_pass": [
+      "cli-40/CLI-12",
+      "cli-40/CLI-17",
+      "dataextract-15/DE-05",
+      "hermesagent-20/HA-02",
+      "hermesagent-20/HA-08",
+      "hermesagent-20/HA-17",
+      "hermesagent-20/HA-19",
+      "instructfollow-15/IF-10",
+      "reasonmath-15/RM-10",
+      "toolcall-15/TC-05"
+    ],
+    "same_outcome": 134,
+    "difference_scenarios": -4,
+    "difference_percentage_points": -2.666666666666667,
+    "approximate_95pct_interval_percentage_points": [
+      -7.893333333333333,
+      2.5599999999999996
+    ],
+    "exact_mcnemar_two_sided_p": 0.454498291015625
+  },
+  "paired_pass_at_3": {
+    "candidate_only_pass": [
+      "cli-40/CLI-08",
+      "cli-40/CLI-15",
+      "hermesagent-20/HA-20",
+      "reasonmath-15/RM-06"
+    ],
+    "baseline_only_pass": [
+      "cli-40/CLI-17",
+      "dataextract-15/DE-05",
+      "dataextract-15/DE-10",
+      "instructfollow-15/IF-10"
+    ],
+    "same_outcome": 142,
+    "difference_scenarios": 0,
+    "difference_percentage_points": 0.0,
+    "approximate_95pct_interval_percentage_points": [
+      -3.7081927555487524,
+      3.7081927555487524
+    ],
+    "exact_mcnemar_two_sided_p": 1.0
+  },
+  "runner_exit_codes": {
+    "baseline": null,
+    "candidate": 0
+  },
+  "per_pack_change": {
+    "toolcall-15": {
+      "pass_at_1": -1,
+      "pass_at_3": 0
+    },
+    "instructfollow-15": {
+      "pass_at_1": -1,
+      "pass_at_3": -1
+    },
+    "structoutput-15": {
+      "pass_at_1": 0,
+      "pass_at_3": 0
+    },
+    "dataextract-15": {
+      "pass_at_1": -1,
+      "pass_at_3": -2
+    },
+    "reasonmath-15": {
+      "pass_at_1": 0,
+      "pass_at_3": 1
+    },
+    "bugfind-15": {
+      "pass_at_1": 1,
+      "pass_at_3": 0
+    },
+    "hermesagent-20": {
+      "pass_at_1": -3,
+      "pass_at_3": 1
+    },
+    "cli-40": {
+      "pass_at_1": 1,
+      "pass_at_3": 1
+    }
+  },
+  "interpretation": "One unseeded run per arm on the same 150 scenarios. Intervals and McNemar tests describe this paired sample; they do not prove distributional equivalence or broad noninferiority. Review failures, runaways, sampler receipts, and server logs before promotion.",
+  "review_required": true
+}

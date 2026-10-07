@@ -1,3 +1,10 @@
+# Universal r5-fast — October7,2026
+
+- Package exact certified SM86 S71 GDN512/Q2_K/N7 bytes: Bench.sh code53.88/narrative29.13t/s; prefill10K567.58/77K469.42t/s; full150127pass@1/134pass@3 against baseline131/134.
+- Add an explicit portable `--profile fast`, runtime hash checks, optional exact model-hash verification, and architecture qualification gates. Retain original guard512 and production sampler; exclude all guard-tuning experiments.
+- Prepare one source/profile for SM86/89/120 and compile the transformed bridge, GDN512 bridge, fused-head templates and retargeted PTX kernels on all three. SM89/SM120 full-runtime integration and hardware qualification remain pending, with inherited payloads retained for compatibility profiles.
+- Publish source snapshot identity, all quality losses/guard observations, compilation receipts and clean-archive validation. Windows stays at its immutable r4 release.
+
 # Universal r4 — October 3, 2026
 
 - SM86 12gb/12gb-quality/12gb-b84: 81920 targetKVarN4/4, B1024/UB512, draftUB32/ngl99, CPUembedding/no-op-offload, fit-target768.

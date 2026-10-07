@@ -8,6 +8,8 @@ Usage: ./l0xre serve --profile 12gb -m models/L0xRE-27b-Low.gguf \
          -md models/Qwen3.8-27B-DFlash2-Q4_K_M.gguf [server options]
 Select GPU with CUDA_VISIBLE_DEVICES=<index or UUID>.
 Override routing with L0XRE_ARCH=sm86|sm89|sm120.
+SM86 --profile fast selects the certified S71 Q2_K/N7/GDN512 runtime (numactl required).
+SM89/SM120 fast source and kernels are prepared; complete fast payloads remain gated.
 SM86 12gb / 12gb-quality: 80K, target KVarN4/4, INT8 prefill + gated FP16 attention;
 SM89/SM120 retain 80K KVarN3/3, draft Q4_0/Q4_0, N3,
 32 CPU workers, medium reasoning; supplied vision projectors run on CPU.
@@ -30,6 +32,13 @@ else
   arch="$cap"
 fi
 unset L0XRE_INT8_PREFILL L0XRE_INT8_PROJ_MASK L0XRE_KVARN_QK_FP16_ACC L0XRE_KVARN_PREFILL_HEAD_TILE L0XRE_GDN_MASKED_PREFILL
+previous=''
+for argument in "$@"; do
+  if [[ "$previous" == --profile && "$argument" == fast ]]; then
+    exec python3 "$ROOT/tools/universal/fast-launch.py" --arch "sm$arch" "$@"
+  fi
+  previous="$argument"
+done
 case "$arch" in
   86) exec "$ROOT/architectures/sm86/l0xre" "$@" ;;
   89) exec "$ROOT/architectures/sm89/l0xre" "$@" ;;

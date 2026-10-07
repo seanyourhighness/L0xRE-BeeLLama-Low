@@ -1,0 +1,311 @@
+{
+  "reference": "Bench.sh decode-only",
+  "arms": {
+    "D00-baseline-s42": {
+      "candidate": false,
+      "seed": 42,
+      "bench": {
+        "shapes": {
+          "narrative": {
+            "n": 5,
+            "n_usable": 5,
+            "errors": 0,
+            "max_tokens": 1000,
+            "short_eos_floor": 250,
+            "tokens": [
+              877,
+              877,
+              877,
+              877,
+              877
+            ],
+            "wall_tps_mean": 27.95603903068503,
+            "wall_tps_cv": 1.125458058015856,
+            "decode_tps_mean": 28.213376453595178,
+            "decode_tps_cv": 1.1340912976737676,
+            "decode_degenerate": 0,
+            "decode_derived": false,
+            "decode_granularity": "token",
+            "ttft_mean_ms": 286.11621856689453,
+            "ttft_std_ms": 3.2679264625252076
+          },
+          "code": {
+            "n": 5,
+            "n_usable": 5,
+            "errors": 0,
+            "max_tokens": 800,
+            "short_eos_floor": 200,
+            "tokens": [
+              800,
+              800,
+              800,
+              800,
+              800
+            ],
+            "wall_tps_mean": 38.48933748385189,
+            "wall_tps_cv": 0.6241659038547814,
+            "decode_tps_mean": 39.02223298518419,
+            "decode_tps_cv": 0.6387265929935292,
+            "decode_degenerate": 0,
+            "decode_derived": false,
+            "decode_granularity": "token",
+            "ttft_mean_ms": 283.82277488708496,
+            "ttft_std_ms": 2.5094789193783726
+          }
+        },
+        "endpoint": "chat",
+        "sampler": {
+          "temperature": 0.6,
+          "top_p": 0.95,
+          "top_k": 20,
+          "min_p": 0.0
+        },
+        "total_tokens": 8385,
+        "total_errors": 0,
+        "token_ratio": null
+      },
+      "prefill_10240": 561.6114959240663,
+      "prefill_77824": 464.1494609931385,
+      "long_continuation_count": 256,
+      "long_truncated": false,
+      "long_first256_sha256": "57e9b2052bc972899eb5ec4d6b3cb366f57903e473c5fbeb148636ffde04206c"
+    },
+    "D01-candidate-s42": {
+      "candidate": true,
+      "seed": 42,
+      "bench": {
+        "shapes": {
+          "narrative": {
+            "n": 5,
+            "n_usable": 5,
+            "errors": 0,
+            "max_tokens": 1000,
+            "short_eos_floor": 250,
+            "tokens": [
+              874,
+              874,
+              874,
+              874,
+              874
+            ],
+            "wall_tps_mean": 29.274871971644057,
+            "wall_tps_cv": 0.15854366018038965,
+            "decode_tps_mean": 29.553969934373995,
+            "decode_tps_cv": 0.1600620118893506,
+            "decode_degenerate": 0,
+            "decode_derived": false,
+            "decode_granularity": "token",
+            "ttft_mean_ms": 281.93979263305664,
+            "ttft_std_ms": 0.544629590888524
+          },
+          "code": {
+            "n": 5,
+            "n_usable": 5,
+            "errors": 0,
+            "max_tokens": 800,
+            "short_eos_floor": 200,
+            "tokens": [
+              800,
+              800,
+              800,
+              800,
+              800
+            ],
+            "wall_tps_mean": 55.445167749029466,
+            "wall_tps_cv": 0.16404411996821916,
+            "decode_tps_mean": 56.5494053678602,
+            "decode_tps_cv": 0.16768117984428038,
+            "decode_degenerate": 0,
+            "decode_derived": false,
+            "decode_granularity": "token",
+            "ttft_mean_ms": 281.7471981048584,
+            "ttft_std_ms": 0.5353308565186476
+          }
+        },
+        "endpoint": "chat",
+        "sampler": {
+          "temperature": 0.6,
+          "top_p": 0.95,
+          "top_k": 20,
+          "min_p": 0.0
+        },
+        "total_tokens": 8370,
+        "total_errors": 0,
+        "token_ratio": null
+      },
+      "prefill_10240": 567.5854604115793,
+      "prefill_77824": 469.79528530392884,
+      "long_continuation_count": 4091,
+      "long_truncated": false,
+      "long_first256_sha256": "57e9b2052bc972899eb5ec4d6b3cb366f57903e473c5fbeb148636ffde04206c"
+    },
+    "D02-candidate-s1234": {
+      "candidate": true,
+      "seed": 1234,
+      "bench": {
+        "shapes": {
+          "narrative": {
+            "n": 5,
+            "n_usable": 5,
+            "errors": 0,
+            "max_tokens": 1000,
+            "short_eos_floor": 250,
+            "tokens": [
+              928,
+              928,
+              928,
+              928,
+              928
+            ],
+            "wall_tps_mean": 28.454168584963778,
+            "wall_tps_cv": 0.13787348927416893,
+            "decode_tps_mean": 28.702048994941496,
+            "decode_tps_cv": 0.13878677942821943,
+            "decode_degenerate": 0,
+            "decode_derived": false,
+            "decode_granularity": "token",
+            "ttft_mean_ms": 281.6637992858887,
+            "ttft_std_ms": 1.0310451713352855
+          },
+          "code": {
+            "n": 5,
+            "n_usable": 5,
+            "errors": 0,
+            "max_tokens": 800,
+            "short_eos_floor": 200,
+            "tokens": [
+              800,
+              800,
+              800,
+              800,
+              800
+            ],
+            "wall_tps_mean": 50.30664644525356,
+            "wall_tps_cv": 0.20568666517806014,
+            "decode_tps_mean": 51.217135446298144,
+            "decode_tps_cv": 0.20160553000635825,
+            "decode_degenerate": 0,
+            "decode_derived": false,
+            "decode_granularity": "token",
+            "ttft_mean_ms": 282.7018737792969,
+            "ttft_std_ms": 2.345191180466034
+          }
+        },
+        "endpoint": "chat",
+        "sampler": {
+          "temperature": 0.6,
+          "top_p": 0.95,
+          "top_k": 20,
+          "min_p": 0.0
+        },
+        "total_tokens": 8640,
+        "total_errors": 0,
+        "token_ratio": null
+      },
+      "prefill_10240": 567.5673398695216,
+      "prefill_77824": 469.0432141620192,
+      "long_continuation_count": 256,
+      "long_truncated": false,
+      "long_first256_sha256": "57e9b2052bc972899eb5ec4d6b3cb366f57903e473c5fbeb148636ffde04206c"
+    },
+    "D03-baseline-s1234": {
+      "candidate": false,
+      "seed": 1234,
+      "bench": {
+        "shapes": {
+          "narrative": {
+            "n": 5,
+            "n_usable": 5,
+            "errors": 0,
+            "max_tokens": 1000,
+            "short_eos_floor": 250,
+            "tokens": [
+              874,
+              874,
+              874,
+              874,
+              874
+            ],
+            "wall_tps_mean": 29.302190443273975,
+            "wall_tps_cv": 1.1214480201923414,
+            "decode_tps_mean": 29.58663878018649,
+            "decode_tps_cv": 1.1292377338255073,
+            "decode_degenerate": 0,
+            "decode_derived": false,
+            "decode_granularity": "token",
+            "ttft_mean_ms": 286.7473602294922,
+            "ttft_std_ms": 3.939092734600732
+          },
+          "code": {
+            "n": 5,
+            "n_usable": 5,
+            "errors": 0,
+            "max_tokens": 800,
+            "short_eos_floor": 200,
+            "tokens": [
+              800,
+              800,
+              800,
+              800,
+              800
+            ],
+            "wall_tps_mean": 39.82238697066922,
+            "wall_tps_cv": 0.8840022996659865,
+            "decode_tps_mean": 40.39430489123403,
+            "decode_tps_cv": 0.8959235991848759,
+            "decode_degenerate": 0,
+            "decode_derived": false,
+            "decode_granularity": "token",
+            "ttft_mean_ms": 284.41481590270996,
+            "ttft_std_ms": 0.46252409815108914
+          }
+        },
+        "endpoint": "chat",
+        "sampler": {
+          "temperature": 0.6,
+          "top_p": 0.95,
+          "top_k": 20,
+          "min_p": 0.0
+        },
+        "total_tokens": 8370,
+        "total_errors": 0,
+        "token_ratio": null
+      },
+      "prefill_10240": 560.763826045585,
+      "prefill_77824": 464.7513560836519,
+      "long_continuation_count": 256,
+      "long_truncated": false,
+      "long_first256_sha256": "57e9b2052bc972899eb5ec4d6b3cb366f57903e473c5fbeb148636ffde04206c"
+    }
+  },
+  "aggregates": {
+    "baseline": {
+      "narrative": 28.900007616890832,
+      "code": 39.70826893820911,
+      "prefill_10240": 561.1876609848257,
+      "prefill_77824": 464.4504085383952
+    },
+    "candidate": {
+      "narrative": 29.128009464657744,
+      "code": 53.88327040707917,
+      "prefill_10240": 567.5764001405505,
+      "prefill_77824": 469.419249732974
+    }
+  },
+  "gates": {
+    "code_50": true,
+    "narrative_within_1pct": true,
+    "prefill_10240_within_1pct": true,
+    "prefill_77824_within_1pct": true,
+    "all_bench_valid": true,
+    "candidate_capacity_81916": true
+  },
+  "scope": "Two seeds, two fresh boots per arm; five measured runs after three warmups per prompt and boot. Fixed-seed samples measure repeatability, not broad workload generalization.",
+  "percent_change": {
+    "narrative": 0.7889335213657755,
+    "code": 35.697858022791394,
+    "prefill_10240": 1.1384318651114445,
+    "prefill_77824": 1.0698324521267066
+  },
+  "passed": true
+}

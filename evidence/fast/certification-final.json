@@ -1,0 +1,313 @@
+{
+  "status": "certified-and-active-default",
+  "candidate": "S71-gdn512-rejection-q2-n7",
+  "scope": "Z840 RTX3060 sm86, one slot,81920 context; exact frozen binaries/config/dependencies, original guard settings. Performance and quality certification with retained limitations; not a claim of loop-free output.",
+  "activation": {
+    "verified_at_utc": "2026-10-07T03:11:33.457383+00:00",
+    "unit": "l0xre-sm86-3060-96k.service",
+    "enabled": true,
+    "active": true,
+    "pid": 595348,
+    "restart_count": 0,
+    "argv": [
+      "/home/sean/work/l0xre-r5-release-20261006/l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r5/architectures/sm86/bin/llama-server",
+      "--alias",
+      "L0xRE-27b-Low",
+      "-np",
+      "1",
+      "-ngl",
+      "99",
+      "-fa",
+      "on",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-effort",
+      "medium",
+      "--reasoning-budget",
+      "8192",
+      "--temp",
+      "0.7",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "20",
+      "--no-webui",
+      "-c",
+      "81920",
+      "-b",
+      "1024",
+      "-ub",
+      "512",
+      "-ctk",
+      "kvarn4",
+      "-ctv",
+      "kvarn4",
+      "--kv-tail-tokens",
+      "128",
+      "--spec-type",
+      "draft-dflash",
+      "--spec-draft-ngl",
+      "99",
+      "--spec-draft-ubatch-size",
+      "32",
+      "--spec-draft-type-k",
+      "q4_0",
+      "--spec-draft-type-v",
+      "q4_0",
+      "-ot",
+      "token_embd.lowgpu_.*=CPU",
+      "--no-op-offload",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--fit-target",
+      "768",
+      "--no-mmproj-offload",
+      "--image-min-tokens",
+      "1024",
+      "--image-max-tokens",
+      "1024",
+      "-m",
+      "/home/sean/escha-assets/base-models/escha-e3-firstclass-v2.gguf",
+      "--mmproj",
+      "/home/sean/models/qwen38-mmproj-reference/mmproj-Qwen3.8-27B-Q8_0.gguf",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "30172",
+      "--spec-draft-n-max",
+      "7",
+      "-md",
+      "/home/sean/models/qwen3.8-27b-dflash2/Qwen3.8-27B-DFlash2-Q2_K.gguf",
+      "-t",
+      "8",
+      "-tb",
+      "8",
+      "--min-p",
+      "0.05"
+    ],
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "native_health": {
+      "status": "ok"
+    },
+    "public_health": {
+      "status": "ok"
+    },
+    "production_sampler": {
+      "temperature": 0.699999988079071,
+      "top_p": 0.949999988079071,
+      "top_k": 20,
+      "min_p": 0.05000000074505806,
+      "reasoning_loop_guard": "force-close",
+      "reasoning_loop_min_tokens": 512
+    },
+    "production_smoke": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"status\":\"ready\"}",
+            "reasoning_content": "The user wants me to return only a specific JSON object with no other text. The exact output should be: {\"status\":\"ready\"}\n"
+          }
+        }
+      ],
+      "created": 1791342693,
+      "model": "L0xRE-27b-Low",
+      "system_fingerprint": "b0-unknown-dirty",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 36,
+        "prompt_tokens": 25,
+        "total_tokens": 61,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 29,
+          "visible_tokens": 7
+        }
+      },
+      "id": "chatcmpl-SEURzH6LI1axh8pFfpTDR9GOnwiT6kVc",
+      "timings": {
+        "cache_n": 0,
+        "cache_lcp_n": 0,
+        "cache_planned_n": 0,
+        "cache_reprocessed_n": 25,
+        "cache_source": "none",
+        "cache_reason": "no_common_prefix",
+        "cache_slot_ms": 0.014,
+        "cache_ram_save_ms": 0.0,
+        "cache_ram_load_ms": 0.0,
+        "cache_ram_restore_prepare_ms": 0.0,
+        "cache_ram_restore_commit_ms": 0.0,
+        "cache_ram_update_ms": 0.0,
+        "cache_checkpoint_restore_ms": 0.0,
+        "cache_checkpoint_prepare_ms": 0.0,
+        "cache_checkpoint_commit_ms": 0.0,
+        "prompt_n": 25,
+        "prompt_ms": 824.359,
+        "prompt_per_token_ms": 32.974360000000004,
+        "prompt_per_second": 30.326593146917784,
+        "predicted_n": 36,
+        "predicted_ms": 829.245,
+        "predicted_per_token_ms": 23.692714285714285,
+        "predicted_per_second": 42.20706787499472,
+        "draft_n": 42,
+        "draft_n_accepted": 29
+      }
+    },
+    "runtime_manifest_sha256": "d4656a07310a98521431cfcb3686a6d3789d38bafda780cdebafd8b9fe2c6971",
+    "maps_sha256": "74ed89019a38e92f5a44c06c408d67d724ea339175dbc903fae8737e9f9cf067",
+    "server_log_sha256": "c5393e129ec6310abeec3ca36fe9e06e9d663207469c313c0040960586026d54",
+    "passed": true
+  },
+  "bench_reference": "Frozen Bench.sh decode-only, two seeds42/1234, five measured requests after three warmups per prompt per boot; baseline/candidate/candidate/baseline order.",
+  "performance": {
+    "baseline": {
+      "narrative": 28.900007616890832,
+      "code": 39.70826893820911,
+      "prefill_10240": 561.1876609848257,
+      "prefill_77824": 464.4504085383952
+    },
+    "candidate": {
+      "narrative": 29.128009464657744,
+      "code": 53.88327040707917,
+      "prefill_10240": 567.5764001405505,
+      "prefill_77824": 469.419249732974
+    }
+  },
+  "performance_change_pct": {
+    "narrative": 0.7889335213657755,
+    "code": 35.697858022791394,
+    "prefill_10240": 1.1384318651114445,
+    "prefill_77824": 1.0698324521267066
+  },
+  "performance_gates": {
+    "code_50": true,
+    "narrative_within_1pct": true,
+    "prefill_10240_within_1pct": true,
+    "prefill_77824_within_1pct": true,
+    "all_bench_valid": true,
+    "candidate_capacity_81916": true
+  },
+  "quality": {
+    "baseline": {
+      "pass1": 131,
+      "pass3": 134,
+      "total": 150
+    },
+    "candidate": {
+      "pass1": 127,
+      "pass3": 134,
+      "total": 150
+    },
+    "paired_pass1": {
+      "candidate_only_pass": [
+        "bugfind-15/BF-08",
+        "cli-40/CLI-08",
+        "cli-40/CLI-15",
+        "cli-40/CLI-19",
+        "hermesagent-20/HA-20",
+        "reasonmath-15/RM-06"
+      ],
+      "baseline_only_pass": [
+        "cli-40/CLI-12",
+        "cli-40/CLI-17",
+        "dataextract-15/DE-05",
+        "hermesagent-20/HA-02",
+        "hermesagent-20/HA-08",
+        "hermesagent-20/HA-17",
+        "hermesagent-20/HA-19",
+        "instructfollow-15/IF-10",
+        "reasonmath-15/RM-10",
+        "toolcall-15/TC-05"
+      ],
+      "same_outcome": 134,
+      "difference_scenarios": -4,
+      "difference_percentage_points": -2.666666666666667,
+      "approximate_95pct_interval_percentage_points": [
+        -7.893333333333333,
+        2.5599999999999996
+      ],
+      "exact_mcnemar_two_sided_p": 0.454498291015625
+    },
+    "paired_pass3": {
+      "candidate_only_pass": [
+        "cli-40/CLI-08",
+        "cli-40/CLI-15",
+        "hermesagent-20/HA-20",
+        "reasonmath-15/RM-06"
+      ],
+      "baseline_only_pass": [
+        "cli-40/CLI-17",
+        "dataextract-15/DE-05",
+        "dataextract-15/DE-10",
+        "instructfollow-15/IF-10"
+      ],
+      "same_outcome": 142,
+      "difference_scenarios": 0,
+      "difference_percentage_points": 0.0,
+      "approximate_95pct_interval_percentage_points": [
+        -3.7081927555487524,
+        3.7081927555487524
+      ],
+      "exact_mcnemar_two_sided_p": 1.0
+    },
+    "limitations": [
+      "One unseeded quality draw per arm. Equal aggregate pass@3 and a nonsignificant paired pass@1 difference do not prove noninferiority or equivalence.",
+      "Candidate DE-05 failed all three attempts, including two invalid_json responses; IF-10, DE-10 and CLI-17 are candidate-only systematic failures. Four other scenarios improve at pass@3. Failures remain visible in the unchanged receipts.",
+      "Candidate has 15 reasoning force-closures and four visible-output stops in its server journal. This certificate does not claim loop-free generation or elimination of guard-induced truncation.",
+      "Historical R4/R5 seed1234 quality journals, PIDs499411 and500226 on October6, contain real guard events before the current decode sprint. Short fixed-seed hash parity alone does not prove all runtime logits or output distributions identical.",
+      "Candidate head uses changed floating-point reduction; standalone rejection distribution tests are narrower than live runtime distribution equivalence.",
+      "Minimum free GPU memory recorded in performance qualification is 37 MiB; certification covers the tested single-slot configuration."
+    ]
+  },
+  "package_probe": {
+    "passed": true,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "vision": "VISION 742",
+    "runtime_manifest_entries": 17,
+    "external_dependencies": 29
+  },
+  "rollback": "On Z840: bash /home/sean/work/l0xre-decode-qualification-20261006/candidate/rollback.sh",
+  "guard_investigation": {
+    "historical_r4_pid499411_reasoning_closures": 14,
+    "historical_r5_pid500226_reasoning_closures": 14,
+    "candidate_quality_reasoning_closures": 15,
+    "candidate_quality_visible_stops": 4,
+    "experimental_guard_configs_certified": false
+  },
+  "evidence_sha256": {
+    "quality-baseline.json": "8e37d10446c4aaa47e4229de9f45a4b7d8382586b8a14eaeaae3f68022fc73bc",
+    "quality-candidate.json": "c7a6a3a9fc1fa638ac6d062a2cca6f0e065aa911d3ab10b09c02cf2e09b9a761",
+    "quality-attestation-audit.json": "f38d217502d6c7816b4a59c32030e3b09e44adac338d0eb1ea58f69a0bfa857e",
+    "quality-review.json": "00e62e5ccd066c7dbdf96d65366ff4a458037615776fec8e05f73a7ea44b29da",
+    "performance-summary.json": "96d49af0538a40b2691e35e7652834bc7615b9cc7a121319522984849c5b9f2f",
+    "performance-attestation-audit.json": "5cd1ff2aafdd65b9dbebb510599d1cc96c3d101c0d1b32195f7cd3b47337e260",
+    "package-probe.json": "2f152b70089011aeec48a45169f42cf2fd9078dfaea65e37d6f710f70b25c2a5",
+    "certification-gates.json": "3b1f9004e2b2cccca1e10ce1b8ab583e0ba4a0b3e4a36e9b82c09966050d4376",
+    "activation-receipt.json": "389750d998e1a0979c0bcf0777c2985e34d65e97af6a20f9d79869d4a81f2fe5"
+  }
+}

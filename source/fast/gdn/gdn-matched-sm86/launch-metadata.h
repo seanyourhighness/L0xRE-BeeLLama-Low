@@ -1,0 +1,22 @@
+// Generated from compiled kernel metadata; experimental standalone kernels only.
+#define GDN_CUMSUM_NAME "chunk_local_cumsum_scalar_kernel"
+#define GDN_CUMSUM_WARPS 4
+#define GDN_CUMSUM_SHARED 8
+#define GDN_KKT_NAME "chunk_scaled_dot_kkt_fwd_kernel"
+#define GDN_KKT_WARPS 8
+#define GDN_KKT_SHARED 16384
+#define GDN_SOLVE_NAME "solve_tril_16x16_kernel"
+#define GDN_SOLVE_WARPS 1
+#define GDN_SOLVE_SHARED 0
+#define GDN_MERGE_NAME "merge_16x16_to_64x64_inverse_kernel"
+#define GDN_MERGE_WARPS 4
+#define GDN_MERGE_SHARED 10240
+#define GDN_RECOMPUTE_NAME "recompute_w_u_fwd_kernel"
+#define GDN_RECOMPUTE_WARPS 4
+#define GDN_RECOMPUTE_SHARED 16384
+#define GDN_STATE_NAME "chunk_gated_delta_rule_fwd_kernel_h_blockdim64"
+#define GDN_STATE_WARPS 4
+#define GDN_STATE_SHARED 24836
+#define GDN_OUTPUT_NAME "chunk_fwd_kernel_o"
+#define GDN_OUTPUT_WARPS 4
+#define GDN_OUTPUT_SHARED 24576

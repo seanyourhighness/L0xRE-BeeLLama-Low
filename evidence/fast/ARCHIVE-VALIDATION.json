@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "archive": "l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r5-fast.tar.zst",
+  "bytes": 1745174447,
+  "sha256": "f4545b4382057817531cc66546cb3e5a2fe9e13d8c69efe972e58ae1fc1f86dc",
+  "archive_entries": 679,
+  "file_hashes_verified": 571,
+  "architecture_hashes_verified": 280,
+  "safe_paths": true,
+  "clean_extract_root": "/home/sean/work/l0xre-fast-package-20261007/clean-extract-verified/l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r5-fast",
+  "fast_sm86_payload_hardware_qualified": true,
+  "sm89_sm120_fast_payloads_gated": true,
+  "scope": "Archive integrity and clean extraction; portable GPU launch has a separate receipt."
+}

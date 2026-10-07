@@ -1,2 +1,3 @@
 b0849250c633aa93853bf119a877dbdafdd7b1a4ebb672bd6b6a1439906f3543  models/L0xRE-27b-Low.gguf
 1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd  models/Qwen3.8-27B-DFlash2-Q4_K_M.gguf
+e3eb7705404817cdbcdabe56049a1952b3b37bcc8df6e4d4efaec5d41563fb7e  models/Qwen3.8-27B-DFlash2-Q2_K.gguf

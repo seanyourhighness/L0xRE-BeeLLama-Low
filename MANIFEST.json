@@ -2,12 +2,15 @@
   "product": "L0xRE BeeLLama",
   "model": "L0xRE-27b-Low",
   "model_sha256": "b0849250c633aa93853bf119a877dbdafdd7b1a4ebb672bd6b6a1439906f3543",
-  "status": "release-candidate",
+  "status": "SM86-fast-qualified; cross-architecture-parity-prepared",
   "build_manifests": [
     "MANIFEST-LINUX-UNIVERSAL.json",
     "MANIFEST-WINDOWS-UNIVERSAL.json"
   ],
   "source_commit": "be302741801080a4fa2ea713fdf9409e2ef599d5",
   "installation": "README.md",
-  "qualification": "evidence/universal/VALIDATION.json"
+  "qualification": "evidence/fast/certification-final.json",
+  "fast_release": "beellama-v0.4.7-universal-r5-fast",
+  "source_snapshot_sha256": "a9dd23bfa3ed38c040ffed6447e7085e083cb6abbb640a5b0cb3cf48f7de7263",
+  "source_overlay": "source/fast"
 }

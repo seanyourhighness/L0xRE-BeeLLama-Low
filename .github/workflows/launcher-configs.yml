@@ -29,6 +29,7 @@ jobs:
         run: |
           bash -n tools/universal/l0xre tools/universal/l0xre-sm86 tools/universal/l0xre-sm89 tools/universal/l0xre-sm120 examples/vision/serve-cpu-sm86.sh
           python3 tools/universal/test-linux-launchers.py
+          python3 tools/universal/test-fast-launcher.py
           python3 tools/test-release-correctness.py
   windows:
     runs-on: windows-latest

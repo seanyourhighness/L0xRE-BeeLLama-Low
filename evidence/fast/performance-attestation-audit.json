@@ -1,0 +1,57 @@
+{
+  "arms": {
+    "D00-baseline-s42": {
+      "pid": 554290,
+      "candidate": false,
+      "actual_sampler_requests": 16,
+      "bench_valid": true,
+      "target_prefill_context_settings_retained": true,
+      "maps_sha256": "d8636f21a5c16eb8a2d0147fa3ce98b26d4183bc7dce86020b35806c34a79dfb",
+      "server_log_sha256": "4a2ba3cf736f2cdeb0d0507cba23874521deefb27312ab84efc6a2d8943a006e",
+      "rejection_activation": false
+    },
+    "D01-candidate-s42": {
+      "pid": 560734,
+      "candidate": true,
+      "actual_sampler_requests": 16,
+      "bench_valid": true,
+      "target_prefill_context_settings_retained": true,
+      "maps_sha256": "91afe91aa4818956e3901ca66150deb0ec711a83593015c83e4461c64a0a3ab0",
+      "server_log_sha256": "6aa93518bb4bd5720d2666d268550615e2b7638380f7972bc32fda22bb9c5e20",
+      "rejection_activation": true
+    },
+    "D02-candidate-s1234": {
+      "pid": 567308,
+      "candidate": true,
+      "actual_sampler_requests": 16,
+      "bench_valid": true,
+      "target_prefill_context_settings_retained": true,
+      "maps_sha256": "7faeaab77311fb6b37ffe6487d8b255c31ecea4cf5d1ac0aa945e427b7fa1757",
+      "server_log_sha256": "e8b0b3dbd699ad4433a02d8fdf5f157233944177c6305a974f05a225bb617554",
+      "rejection_activation": true
+    },
+    "D03-baseline-s1234": {
+      "pid": 573313,
+      "candidate": false,
+      "actual_sampler_requests": 16,
+      "bench_valid": true,
+      "target_prefill_context_settings_retained": true,
+      "maps_sha256": "4637ac4f03e51fdddddf16036f940095e6a52f398769f0fd08553eb1c92d303c",
+      "server_log_sha256": "8d75208f35863d5259f99558f174057e7dfe831d0cf1ef72830863687cd6bc41",
+      "rejection_activation": false
+    }
+  },
+  "frozen_files": {
+    "bridge/libbridge-transform.so": "41d82fe99b19ce76f5240b499411887f5cce847157ca3590d87d0d4afdd69d61",
+    "transform/pretransformed-direct.cubin": "3b270ea517f4bb6b99d0d60fd4139f6c86acddb914bc48e4fe014a69f8c5ab75",
+    "head-runtime/libggml-cuda.so.0.23.0": "9ea18bf68f07768589a0495c30dbb58a5592678cf77547baf13e48b96efdb8e3",
+    "rejection/bin/libllama-common.so.0.4.7": "1720b98e1861a238bfafa37168a38d7f1c35a7608b5ae1894a6052fc6ad77d73",
+    "rejection/bin/libllama-server-impl.so": "6cd3e4a3f1955636275264ab5fd8f1d426750a6301d6669dbd07224dd7c4399a",
+    "gdn-small/libbridge-gdn512.so": "acdbdc6c6d6211cc1f8468dab7de13e976fa308baef9f81108d94cf86a3096e8"
+  },
+  "reference": {
+    "path": "/home/sean/work/l0xre-decode-sprint-20261006/reference/scripts/bench.sh",
+    "sha256": "a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a"
+  },
+  "passed": true
+}

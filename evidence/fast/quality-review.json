@@ -1,0 +1,112 @@
+{
+  "accepted_for_production": true,
+  "selected_arm": "S71-gdn512-rejection-q2-n7",
+  "scope": "Exact sm86 RTX3060 single-slot 81920 context, frozen candidate binaries and original guard configuration. No experimental guard threshold or cue is certified.",
+  "decision_basis": "User prioritizes the fast build, code >=50 t/s and preserved prefill, with pass@3 as the established quality reference. All recorded performance gates pass; pass@3 matches the paired baseline at 134/150. Package integrity, launch and vision checks remain mandatory before activation.",
+  "baseline_pass1": 131,
+  "candidate_pass1": 127,
+  "baseline_pass3": 134,
+  "candidate_pass3": 134,
+  "pass1_paired_comparison": {
+    "candidate_only_pass": [
+      "bugfind-15/BF-08",
+      "cli-40/CLI-08",
+      "cli-40/CLI-15",
+      "cli-40/CLI-19",
+      "hermesagent-20/HA-20",
+      "reasonmath-15/RM-06"
+    ],
+    "baseline_only_pass": [
+      "cli-40/CLI-12",
+      "cli-40/CLI-17",
+      "dataextract-15/DE-05",
+      "hermesagent-20/HA-02",
+      "hermesagent-20/HA-08",
+      "hermesagent-20/HA-17",
+      "hermesagent-20/HA-19",
+      "instructfollow-15/IF-10",
+      "reasonmath-15/RM-10",
+      "toolcall-15/TC-05"
+    ],
+    "same_outcome": 134,
+    "difference_scenarios": -4,
+    "difference_percentage_points": -2.666666666666667,
+    "approximate_95pct_interval_percentage_points": [
+      -7.893333333333333,
+      2.5599999999999996
+    ],
+    "exact_mcnemar_two_sided_p": 0.454498291015625
+  },
+  "pass3_paired_comparison": {
+    "candidate_only_pass": [
+      "cli-40/CLI-08",
+      "cli-40/CLI-15",
+      "hermesagent-20/HA-20",
+      "reasonmath-15/RM-06"
+    ],
+    "baseline_only_pass": [
+      "cli-40/CLI-17",
+      "dataextract-15/DE-05",
+      "dataextract-15/DE-10",
+      "instructfollow-15/IF-10"
+    ],
+    "same_outcome": 142,
+    "difference_scenarios": 0,
+    "difference_percentage_points": 0.0,
+    "approximate_95pct_interval_percentage_points": [
+      -3.7081927555487524,
+      3.7081927555487524
+    ],
+    "exact_mcnemar_two_sided_p": 1.0
+  },
+  "per_pack_change": {
+    "toolcall-15": {
+      "pass_at_1": -1,
+      "pass_at_3": 0
+    },
+    "instructfollow-15": {
+      "pass_at_1": -1,
+      "pass_at_3": -1
+    },
+    "structoutput-15": {
+      "pass_at_1": 0,
+      "pass_at_3": 0
+    },
+    "dataextract-15": {
+      "pass_at_1": -1,
+      "pass_at_3": -2
+    },
+    "reasonmath-15": {
+      "pass_at_1": 0,
+      "pass_at_3": 1
+    },
+    "bugfind-15": {
+      "pass_at_1": 1,
+      "pass_at_3": 0
+    },
+    "hermesagent-20": {
+      "pass_at_1": -3,
+      "pass_at_3": 1
+    },
+    "cli-40": {
+      "pass_at_1": 1,
+      "pass_at_3": 1
+    }
+  },
+  "limitations": [
+    "One unseeded quality draw per arm. Equal aggregate pass@3 and a nonsignificant paired pass@1 difference do not prove noninferiority or equivalence.",
+    "Candidate DE-05 failed all three attempts, including two invalid_json responses; IF-10, DE-10 and CLI-17 are candidate-only systematic failures. Four other scenarios improve at pass@3. Failures remain visible in the unchanged receipts.",
+    "Candidate has 15 reasoning force-closures and four visible-output stops in its server journal. This certificate does not claim loop-free generation or elimination of guard-induced truncation.",
+    "Historical R4/R5 seed1234 quality journals, PIDs499411 and500226 on October6, contain real guard events before the current decode sprint. Short fixed-seed hash parity alone does not prove all runtime logits or output distributions identical.",
+    "Candidate head uses changed floating-point reduction; standalone rejection distribution tests are narrower than live runtime distribution equivalence.",
+    "Minimum free GPU memory recorded in performance qualification is 37 MiB; certification covers the tested single-slot configuration."
+  ],
+  "evidence_sha256": {
+    "quality-baseline.json": "8e37d10446c4aaa47e4229de9f45a4b7d8382586b8a14eaeaae3f68022fc73bc",
+    "quality-candidate.json": "c7a6a3a9fc1fa638ac6d062a2cca6f0e065aa911d3ab10b09c02cf2e09b9a761",
+    "quality-comparison.json": "02e1a6bc32c49279db3c3601a6b45bec41d9c5fceefd00e647f28fd2f51ee904",
+    "quality-attestation-audit.json": "f38d217502d6c7816b4a59c32030e3b09e44adac338d0eb1ea58f69a0bfa857e",
+    "performance-summary.json": "96d49af0538a40b2691e35e7652834bc7615b9cc7a121319522984849c5b9f2f",
+    "performance-attestation-audit.json": "5cd1ff2aafdd65b9dbebb510599d1cc96c3d101c0d1b32195f7cd3b47337e260"
+  }
+}

@@ -2,7 +2,9 @@
 
 Run **L0xRE-27b-Low** with the BeeLLama runtime on NVIDIA RTX 30, 40, and 50 series GPUs. Download **one Linux / WSL archive** or **one Windows ZIP**; each contains the matching SM86, SM89, and SM120 runtime paths. Model weights are a separate download.
 
-**October 3 SM86 prefill update:** the 12 GB preset now uses **81,920 context and KVarN4/4**, all-projection INT8 prefill, and FP16 QK accumulation only for eligible long prefill above 16,384 KV tokens. DFlash2 remains enabled. On the Z840 RTX 3060, clean fresh 77,824-token ABBA measured **429.05 t/s prefill** and **28.31 t/s decode**: +11.98% prefill and +0.38% decode versus the preceding INT8 production build. The earlier INT8 promotion measured 284.92→382.65 t/s prefill and 26.58→28.22 t/s decode under its own paired test. These are separate measured improvements; **1,000 t/s is still a future target**. See [qualification evidence](evidence/prefill-r4/QUALIFICATION.json).
+**October 7 fast update:** [S71 fast profile](FAST-RELEASE.md) on RTX3060 measured **53.88 t/s code**, **29.13 t/s narrative**, **567.58 t/s10K /469.42 t/s77K prefill**, and **134/150 pass@3** versus the paired baseline134/150. Pass@1 is127/150 versus131/150; known output failures and guard events remain documented. Use `--profile fast` with the **Q2_K** drafter and `numactl`. This Linux/WSL archive contains the original certified SM86 bytes. SM89/SM120 have [shared source and kernel compilation preparation](PARITY.md); their complete fast runtimes and hardware qualification are pending. Windows remains at r4.
+
+**Earlier October 3 SM86 prefill update:** the 12 GB preset now uses **81,920 context and KVarN4/4**, all-projection INT8 prefill, and FP16 QK accumulation only for eligible long prefill above 16,384 KV tokens. DFlash2 remains enabled. On the Z840 RTX 3060, clean fresh 77,824-token ABBA measured **429.05 t/s prefill** and **28.31 t/s decode**: +11.98% prefill and +0.38% decode versus the preceding INT8 production build. The earlier INT8 promotion measured 284.92→382.65 t/s prefill and 26.58→28.22 t/s decode under its own paired test. These are separate measured improvements; **1,000 t/s is still a future target**. See [qualification evidence](evidence/prefill-r4/QUALIFICATION.json).
 
 SM86 defaults: target batch/ubatch1024/512, draft ubatch32 / GPU layer limit99, q4_0 draft KV, fixed DFlash2 depth3, CPU token embeddings, no-op-offload, exact tail128, window16384, one slot, CPU32 workers and optional CPU Q8 vision. Capacity77,820 input+4,096 output passed with no truncation and305MiB minimum free. Both model files remain unchanged. Windows contains the native port; Windows inference/performance remains pending. SM89/SM120 retain their r3 KVarN3/3 settings and inherited compiled payloads.
 
@@ -12,20 +14,20 @@ The intended minimum is **12 GB of GPU VRAM**, not 12 GB of system RAM. Cards wi
 
 ## Downloads
 
-**[Universal release candidate](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/beellama-v0.4.7-universal-r4)** · [Archive checksums](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r4/CHECKSUMS.txt)
+**[Linux fast update](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/beellama-v0.4.7-universal-r5-fast)** · [Archive checksums](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r5-fast/CHECKSUMS.txt) · [Fast profile instructions](FAST-RELEASE.md)
 
 | Platform | Download | GPU code included | Status |
 | --- | --- | --- | --- |
-| Linux x86-64 / WSL2 | [Universal `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r4/l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r4.tar.zst) | Separate SM86 / SM89 / SM120 payloads | SM86 champion components tested on RTX 3060; inherited SM89 and SM120 receipts included; common launcher validated separately |
+| Linux x86-64 / WSL2 | [Universal `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r5-fast/l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r5-fast.tar.zst) | Separate SM86 / SM89 / SM120 payloads | SM86 S71 fast components certified; SM89/SM120 retained with common source/kernel ports prepared, hardware gates pending |
 | Windows x64 | [Universal `.zip`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r4/l0xre-win-universal-r4.zip) | One rebuilt CUDA backend with SM86 / SM89 / SM120 code, architecture-specific bridge cubins | Build, PE dependency, architecture and launcher checks passed; GPU execution and throughput pending |
-| Model + drafter | [L0xRE-27b-Low on Hugging Face](https://huggingface.co/YourHighnessLA/L0xRE-27b-Low) | `L0xRE-27b-Low.gguf` + `Qwen3.8-27B-DFlash2-Q4_K_M.gguf` | Existing weights unchanged; SHA-256 identities below |
+| Model + drafter | [L0xRE-27b-Low on Hugging Face](https://huggingface.co/YourHighnessLA/L0xRE-27b-Low) | `L0xRE-27b-Low.gguf`; Q2_K for `fast`, Q4_K_M for legacy profiles | Existing weights unchanged; SHA-256 identities below |
 
 This is a release candidate because the Windows GPU paths and the new SM120 common-CLI path with the non-MTP Low target have not had hardware execution tests. Architecture coverage is distinct from performance qualification. Older architecture-specific releases remain available as rollback options.
 
 ## Requirements
 
 - An AVX2-capable x86-64 CPU and an RTX 30 / 40 / 50 series GPU with compute capability 8.6 / 8.9 / 12.0 and at least 12 GB VRAM; check with `nvidia-smi`.
-- Linux/WSL: Ubuntu 24.04 or an ABI-compatible x86-64 distribution. The SM120 payload needs glibc 2.38+ and `GLIBCXX_3.4.32`. WSL2 needs an NVIDIA Windows driver with WSL CUDA support.
+- Linux/WSL: Ubuntu 24.04 or an ABI-compatible x86-64 distribution. The fast launcher requires Python3.12+ and `numactl`, with at least8 available CPU workers. The SM120 payload needs glibc 2.38+ and `GLIBCXX_3.4.32`. WSL2 needs an NVIDIA Windows driver with WSL CUDA support.
 - Windows: x64 Windows with PowerShell and an NVIDIA driver compatible with the bundled CUDA 13.3 runtime. CUDA runtime and MSVC runtime DLLs are included; a CUDA toolkit is not required to run it.
 - Linux bundles CUDA 12.8 for SM86/SM89 and CUDA 13.0 for SM120. The host supplies the NVIDIA driver. Reserve about 20 GB of disk space for the runtime archive, extraction, and the two model files.
 
@@ -33,12 +35,12 @@ The target is a custom GGUF supported by this L0xRE runtime. Use this runtime fo
 
 ## Linux / WSL installation
 
-Download the Linux archive and `CHECKSUMS.txt` above into one directory. Install `zstd` and `curl` if needed (`sudo apt-get install zstd curl`). Verify and extract:
+For the new fast profile, follow [FAST-RELEASE.md](FAST-RELEASE.md). The compatibility-profile example below retains Q4_K_M/N3. Download the Linux archive and `CHECKSUMS.txt` above into one directory. Install `zstd` and `curl` if needed (`sudo apt-get install zstd curl`). Verify and extract:
 
 ```bash
 sha256sum --ignore-missing -c CHECKSUMS.txt
-tar --zstd -xf l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r4.tar.zst
-cd l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r4
+tar --zstd -xf l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r5-fast.tar.zst
+cd l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r5-fast
 sha256sum -c SHA256SUMS
 mkdir -p models
 curl -fL --retry 3 -o models/L0xRE-27b-Low.gguf \

@@ -1,0 +1,39 @@
+{
+  "arch": "sm86",
+  "compiler": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Aug_20_01:58:59_PM_PDT_2025\nCuda compilation tools, release 13.0, V13.0.88\nBuild cuda_13.0.r13.0/compiler.36424714_0\n",
+  "common_source": "same frozen S71 overlay for all targets",
+  "head_instantiations": [
+    "5,32,128,1,4",
+    "6,32,128,1,4",
+    "7,32,128,1,4",
+    "8,64,128,1,4"
+  ],
+  "kernel_compile_passed": true,
+  "runtime_build_passed": false,
+  "installable_fast_payload": false,
+  "hardware_qualified": false,
+  "sha256": {
+    "bridge/k3-vector-all.ptx": "6467918a8d3bef5e0067a4522d5f8a98c01061168e2bd1446f437772cfbfc2db",
+    "bridge/head-arch-check.o": "fb85645d25c35a68d22539bf9b801a3e363fd8e0b99bb3a304905b45a46d2575",
+    "bridge/pretransformed-direct.cubin": "4fae6d0ecf3682927b7f324937a7ddd77777cccd4578dbfdaf57aa3faf23415d",
+    "bridge/libbridge-transform.so": "78910c8aa9e3e2a3b2b1e55e438c6f5ee36d68fe1ea02f53a58740d94d35327f",
+    "bridge/libbridge-gdn512.so": "17ff47a14e333bc78c43f4feb3bc8e9d95e4e87acc09195cca6173f4b01dedb6",
+    "bridge/pretransformed-direct.ptx": "1b53dbcb526d7c2708f38caa9da7d7f5793ea19d2b73f4bc38774549b4732fbf",
+    "bridge/k3-vector-all.cubin": "fca026bc6a7eaf1d5692274f7c2ac898c9e5e2a534e72241af62f1ed215ba88b",
+    "bridge/gdn-cubins-sm86/solve.cubin": "5d63ebeb2908da2d5fc9afedfd053c64c366ff1babe35423bd432912044387ae",
+    "bridge/gdn-cubins-sm86/kkt.cubin": "78642f816366a0bbf2a4d815330b82e1eecf97242e1343b14c32c876045e48b3",
+    "bridge/gdn-cubins-sm86/output.cubin": "dca4638deb51cad01a8a1671a6497538319b1a1a16581908121a2c0bf8813906",
+    "bridge/gdn-cubins-sm86/kkt.ptx": "72021fc1cd68e208995392698bce8159c14c689def6a537912162bd1ba82eea5",
+    "bridge/gdn-cubins-sm86/recompute.ptx": "01a3d41e5a2397fe6486a9bcd52d328d0188a9afb2c1cd03cb03f2d6e250a49e",
+    "bridge/gdn-cubins-sm86/output.ptx": "6b626c56d0faa9826878b465ad188972f01f34949a2a22a7dd75189a9c020fb8",
+    "bridge/gdn-cubins-sm86/merge.cubin": "68d95725e9f5fc776d2a5d1c45cd2580288519b503f0eca22a9c7104c1a4690d",
+    "bridge/gdn-cubins-sm86/cumsum.cubin": "ac1d4f0f1c640711c4d4b02bcc9728d0a8b3faac64dc0654468b5bdd78bc9c15",
+    "bridge/gdn-cubins-sm86/recompute.cubin": "35d239469338c772e4e654341ae614aac822c1dc65241eb826854db12011b269",
+    "bridge/gdn-cubins-sm86/state.cubin": "6fc5814466bb18d0761ac42fbc976101d6048369c3fbc6f5fe006a855f1c73f7",
+    "bridge/gdn-cubins-sm86/state.ptx": "b5338b718683732061ee24a1a8391014c7e997133818aff977060f8ac949b675",
+    "bridge/gdn-cubins-sm86/solve.ptx": "b7e962a9e7fe35e45f031bee56cd5c3eb0fa06af1b843882b153a359f10c4809",
+    "bridge/gdn-cubins-sm86/cumsum.ptx": "438448af24f473037b04ec5807961f49dbe484eba91d4a1d2d1f2ea5da94f178",
+    "bridge/gdn-cubins-sm86/merge.ptx": "039730c9a90bb6b344b7b93d5e1a9646963c96dd7acb590bdc4559f163363be3"
+  },
+  "next": "Complete architecture packaging with inherited fallback bridge/cubin dependencies, then run the same greedy, prefill, capacity, Bench.sh, full150 and CPU vision gates before marking hardware qualified."
+}
