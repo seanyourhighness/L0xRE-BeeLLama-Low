@@ -1,2 +1,4 @@
 # Preserve the qualified source input byte-for-byte, including its existing EOF.
 source/fast/bridge/int8-prefill-helpers.cuh whitespace=-blank-at-eof
+# Preserve the frozen inherited header bytes, including its final blank line.
+source/r6/bridge/int8-prefill-helpers.cuh whitespace=-blank-at-eof
