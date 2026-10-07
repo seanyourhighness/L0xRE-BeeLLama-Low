@@ -1,6 +1,30 @@
 {
-  "sm89": {
-    "overlays": [
+  "status": "pass",
+  "hardware_qualified": false,
+  "package": "/home/sean/work/l0xre-r6-sm89-prefill-port2-20261007/package",
+  "relocated_native_files": [
+    "bin/llama-server",
+    "bin/libmtmd.so.0.4.7",
+    "bin/libllama-common.so.0.4.7",
+    "bin/llama-cli",
+    "bin/llama-bench",
+    "bin/libggml-cuda.so.0.23.0",
+    "bin/libllama-bench-impl.so",
+    "bin/libggml-cpu.so.0.23.0",
+    "bin/libggml-base.so.0.23.0",
+    "bin/libllama.so.0.4.7",
+    "bin/libggml.so.0.23.0",
+    "bin/libllama-server-impl.so",
+    "bin/libllama-cli-impl.so",
+    "bin/libbridge-packed.so",
+    "bin/libqk16-context-gate.so"
+  ],
+  "rpath": "$ORIGIN",
+  "runtime_hashes": 55,
+  "loader_links": 14,
+  "architecture_overlay": {
+    "arch": "sm89",
+    "files": [
       {
         "source": "overlay-sm89/ggml/src/ggml-cuda/mmvq.cu",
         "target": "ggml/src/ggml-cuda/mmvq.cu",
@@ -26,13 +50,5 @@
         "qualification": "SM89 architecture transfer compiled for user certification; GPU correctness, performance and capacity pending"
       }
     ]
-  },
-  "sm120": {
-    "source": "overlay-sm120/ggml/src/ggml-cuda/gated_delta_net.cu",
-    "target": "ggml/src/ggml-cuda/gated_delta_net.cu",
-    "sha256": "c4c9e7792e41b3d03479556de3bdb22ed17277bee0bf981adf0917831420b79b",
-    "opt_in": "L0XRE_GDN_MASKED_PREFILL",
-    "default": "off outside the R6 qualification profile",
-    "qualification": "SM120 local RTX 5090 WSL gate widened from SM86; hardware proof required"
   }
 }

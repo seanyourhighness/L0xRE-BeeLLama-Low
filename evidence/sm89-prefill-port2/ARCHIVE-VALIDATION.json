@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "hardware_qualified": false,
+  "archive": "/home/sean/work/l0xre-r6-sm89-prefill-port2-20261007/L0xRE-BeeLLama-Low-R6-sm89-linux-prefill-port2-candidate.tar.zst",
+  "bytes": 985645788,
+  "sha256": "8066643f3141264fff8a27e2d2f4b8e10315746b6890059a75065f198b6e1fc1",
+  "catalog_hashes_checked": 137,
+  "runtime_hashes_checked": 55,
+  "loader_links_checked": 14,
+  "clean_extract": "/home/sean/work/l0xre-r6-sm89-prefill-port2-20261007/clean-extract/package",
+  "masked_gdn_enabled": true
+}
