@@ -17,7 +17,9 @@
     "src/llama-io.h": "76c632e6eaaadd51a34e37c0ad769bd0580ee5f086b33f1fc494da06fa22a104",
     "src/llama-context.cpp": "c5df9a0861d66fe96094e42eb56852fad8ed2347669433bdaa9d27ca918188c6",
     "src/llama-kv-cache.cpp": "bcc3d32d072a7d0416c465d822aba8daea8e0bef1ee51e94afca87927868829f",
-    "ggml/src/ggml-cuda/mmvq.cu": "3cdf88f8a7a0ab31fdcb4500636bf3a5aefc3420f313b24689752ec2da9e643d"
+    "ggml/src/ggml-cuda/mmvq.cu": "3cdf88f8a7a0ab31fdcb4500636bf3a5aefc3420f313b24689752ec2da9e643d",
+    "ggml/src/ggml-cuda/qk16-native-entry.cuh": "0953de3c9df9899d35282342a96c758d313fd022f1aefd1e893b37cb21d9a6f3",
+    "ggml/src/ggml-cuda/fattn-qk16-prefill.cuh": "43af3a8cc73b897ed435d0033f1694fec362b32377bc632ea161876bd408d843"
   },
   "projection_sha256": "07c21e0586878d1611ac96cec3cab38337675cec07d251b7550c8c49ff0ddd49",
   "bridge_sha256": {
@@ -25,7 +27,10 @@
     "bridge-packed.cu": "e6610a155333bdce302ef2db5d2c21093174958837f47b7f2d0c7fad4b00e0d8",
     "escha_official_bridge_v1.h": "6cc9fae65e2d68cacdf78a001c8eda78004594277fcd820815dc3d894fa423db",
     "int8-prefill-helpers.cuh": "9033c8be43718d2089767a408d4319d2c922bf62be8c90ee8305bce8a552d359",
-    "decode-transform-swizzled.cuh": "24df7f9771a448249a749586ff2867e5f56539927971d9a3c350688d9bbb1d04"
+    "decode-transform-swizzled.cuh": "24df7f9771a448249a749586ff2867e5f56539927971d9a3c350688d9bbb1d04",
+    "qk16-host-wrapper.cu": "c07813f36bcb479068a79cf57a44ce2d5b68b94e2a634a7b75803779514587f8",
+    "qk16-kernels.cu": "7cc5bba5b936be9f3ef648b73f3aa651db7f1756323a5875d74c1720f2e9af9a",
+    "fattn-qk16-prefill.cuh": "a6d9e04de9f9a53d847c2e334b4c5d6f82cd7f3e10810e7c39b301d3e759ee37"
   },
   "source_scope": "R5 S71 fast overlay plus compactnativecache/hybrid-inputfix,SM86Q4MMQdispatch andpackedone-MMAprojection bridge. SM120port/hardwarequalification pending."
 }

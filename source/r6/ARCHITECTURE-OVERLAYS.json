@@ -1,0 +1,18 @@
+{
+  "sm89": {
+    "source": "overlay-sm89/ggml/src/ggml-cuda/mmvq.cu",
+    "target": "ggml/src/ggml-cuda/mmvq.cu",
+    "sha256": "8fbde89d51ada7d45ab4c6ac6b1390f11dd62882377078dcaeffbabdae4e7d1c",
+    "opt_in": "L0XRE_SM89_Q4_MMQ",
+    "default": "off",
+    "qualification": "compile-only until target-hardware certification"
+  },
+  "sm120": {
+    "source": "overlay-sm120/ggml/src/ggml-cuda/gated_delta_net.cu",
+    "target": "ggml/src/ggml-cuda/gated_delta_net.cu",
+    "sha256": "c4c9e7792e41b3d03479556de3bdb22ed17277bee0bf981adf0917831420b79b",
+    "opt_in": "L0XRE_GDN_MASKED_PREFILL",
+    "default": "off outside the R6 qualification profile",
+    "qualification": "SM120 local RTX 5090 WSL gate widened from SM86; hardware proof required"
+  }
+}
