@@ -1,28 +1,73 @@
 # L0xRE BeeLLama
 
-Run **L0xRE-27b-Low** with the BeeLLama runtime on NVIDIA RTX 30, 40, and 50 series GPUs. Download **one Linux / WSL archive** or **one Windows ZIP**; each contains the matching SM86, SM89, and SM120 runtime paths. Model weights are a separate download.
+**R6 is the fastest certified SM86 runtime yet — 37 t/s prose and 65 t/s code on the RTX 3060.** Run **L0xRE-27b-Low** on NVIDIA RTX 30 / 40 / 50 series GPUs with an 80K context, INT8 prefill, and the Q4_K_M DFlash2 drafter. One archive contains the SM86 / SM89 / SM120 runtime paths; model weights are a separate download.
 
-**October 7 fast update:** [S71 fast profile](FAST-RELEASE.md) on RTX3060 measured **53.88 t/s code**, **29.13 t/s narrative**, **567.58 t/s10K /469.42 t/s77K prefill**, and **134/150 pass@3** versus the paired baseline134/150. Pass@1 is127/150 versus131/150; known output failures and guard events remain documented. Use `--profile fast` with the **Q2_K** drafter and `numactl`. This Linux/WSL archive contains the original certified SM86 bytes. SM89/SM120 have [shared source and kernel compilation preparation](PARITY.md); their complete fast runtimes and hardware qualification are pending. Windows remains at r4.
+## TLDR
 
-**Earlier October 3 SM86 prefill update:** the 12 GB preset now uses **81,920 context and KVarN4/4**, all-projection INT8 prefill, and FP16 QK accumulation only for eligible long prefill above 16,384 KV tokens. DFlash2 remains enabled. On the Z840 RTX 3060, clean fresh 77,824-token ABBA measured **429.05 t/s prefill** and **28.31 t/s decode**: +11.98% prefill and +0.38% decode versus the preceding INT8 production build. The earlier INT8 promotion measured 284.92→382.65 t/s prefill and 26.58→28.22 t/s decode under its own paired test. These are separate measured improvements; **1,000 t/s is still a future target**. See [qualification evidence](evidence/prefill-r4/QUALIFICATION.json).
+- **Fastest SM86 speed to date:** **37 t/s prose** · **65 t/s code** (measured on RTX 3060, 12 GB).
+- **Certified:** the numbers above are the certified **Linux / WSL SM86** result.
+- **Windows is a candidate:** installable, but no certified GPU throughput yet (run `--qualification-probe`).
+- **80K context** (81,920 tokens) with INT8 all-projection prefill and gated FP16 long attention.
+- **12 GB VRAM minimum** (not RAM). RTX 30 / 40 / 50 series.
 
-SM86 defaults: target batch/ubatch1024/512, draft ubatch32 / GPU layer limit99, q4_0 draft KV, fixed DFlash2 depth3, CPU token embeddings, no-op-offload, exact tail128, window16384, one slot, CPU32 workers and optional CPU Q8 vision. Capacity77,820 input+4,096 output passed with no truncation and305MiB minimum free. Both model files remain unchanged. Windows contains the native port; Windows inference/performance remains pending. SM89/SM120 retain their r3 KVarN3/3 settings and inherited compiled payloads.
+## Speed card (measured, RTX 3060 / 12 GB)
 
-**Image input:** see the [opt-in CPU vision setup](#vision-start-with-the-projector-on-cpu), including Q8_0, worker settings and a native Hermes config.
+| Metric | Value |
+| --- | --- |
+| **Prose (narrative)** | **37 t/s** |
+| **Code** | **65 t/s** |
+| Cold prefill 10K | 566 t/s |
+| Cold prefill 77K | 469 t/s |
+| Context capacity | 81,920 tokens |
+| vs R5 (29 / 54 t/s) | **+27% prose · +20% code** |
 
-The intended minimum is **12 GB of GPU VRAM**, not 12 GB of system RAM. Cards with less VRAM are outside this release target. Available VRAM, context length, display use, and driver overhead still matter; the qualified SM86 80K capacity test reached 305 MiB free on the RTX 3060. This is a measured workload, not a guarantee for every 12 GB card.
+These are the frozen seed-42 certified measurements (37.16 / 65.06 sustained; 37.27 / 65.21 frozen screen). Balanced across seeds 42 / 1234: 34.95 / 62.69, versus R5's 29.21 / 54.09.
+
+## Quick start (Linux / WSL — certified SM86)
+
+Download the R6 Linux archive and its checksum into one directory:
+
+| File | Download |
+| --- | --- |
+| Runtime | [L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst) |
+| Checksum | [SHA-256](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst.sha256) |
+| Model + drafter | [L0xRE-27b-Low on Hugging Face](https://huggingface.co/YourHighnessLA/L0xRE-27b-Low) |
+
+```bash
+sha256sum -c L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst.sha256
+tar --zstd -xf L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst
+cd L0xRE-BeeLLama-Low-R6-sm86-linux
+sha256sum -c SHA256SUMS
+mkdir -p models
+curl -fL --retry 3 -o models/L0xRE-27b-Low.gguf \
+  https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/L0xRE-27b-Low.gguf
+curl -fL --retry 3 -o models/Qwen3.8-27B-DFlash2-Q4_K_M.gguf \
+  https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/Qwen3.8-27B-DFlash2-Q4_K_M.gguf
+sha256sum -c MODEL-SHA256SUMS
+./l0xre serve --profile 12gb -m models/L0xRE-27b-Low.gguf \
+  -md models/Qwen3.8-27B-DFlash2-Q4_K_M.gguf --host 127.0.0.1 --port 8080
+```
+
+## Update / upgrade guide
+
+- **From r5-fast / r4 / r3 → R6:** stop the old server, download the R6 archive above into a fresh directory, verify checksums, and launch with `--profile 12gb`. The model files are unchanged (same SHA-256 identities below), so reuse them or re-download from the pinned HF revision.
+- **Rollback:** extract an earlier release into a separate directory and reuse the unchanged model files; no service install or model conversion is performed.
+- **Windows:** the certified numbers are Linux SM86 only. The Windows SM86 package is a candidate — verify its checksum, run `--qualification-probe`, and treat throughput/quality as unmeasured until you test it on your hardware.
+- **SM89 / SM120:** common source and kernel compilation are prepared (see [PARITY.md](PARITY.md)), but complete fast runtimes and hardware qualification are pending; they are not certified in R6.
 
 ## Downloads
 
-**[Linux fast update](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/beellama-v0.4.7-universal-r5-fast)** · [Archive checksums](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r5-fast/CHECKSUMS.txt) · [Fast profile instructions](FAST-RELEASE.md)
+**[R6 release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/beellama-v0.4.7-universal-r6)** · [Archive checksums](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst.sha256)
 
-| Platform | Download | GPU code included | Status |
-| --- | --- | --- | --- |
-| Linux x86-64 / WSL2 | [Universal `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r5-fast/l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r5-fast.tar.zst) | Separate SM86 / SM89 / SM120 payloads | SM86 S71 fast components certified; SM89/SM120 retained with common source/kernel ports prepared, hardware gates pending |
-| Windows x64 | [Universal `.zip`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r4/l0xre-win-universal-r4.zip) | One rebuilt CUDA backend with SM86 / SM89 / SM120 code, architecture-specific bridge cubins | Build, PE dependency, architecture and launcher checks passed; GPU execution and throughput pending |
-| Model + drafter | [L0xRE-27b-Low on Hugging Face](https://huggingface.co/YourHighnessLA/L0xRE-27b-Low) | `L0xRE-27b-Low.gguf`; Q2_K for `fast`, Q4_K_M for legacy profiles | Existing weights unchanged; SHA-256 identities below |
+| Platform | Download | Status |
+| --- | --- | --- |
+| **Linux x86-64 / WSL2 (SM86)** | [R6 SM86 `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst) | **Certified** — 37 / 65 t/s, 80K context |
+| Windows x64 (SM86) | [R6 SM86 candidate `.zip`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm86-windows-candidate.zip) | Candidate — offline checks passed; GPU throughput/quality pending |
+| Linux (SM89) | [R6 SM89 candidate `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm89-linux-candidate.tar.zst) | Candidate — awaiting SM89 hardware certification |
+| Windows (SM89) | [R6 SM89 candidate `.zip`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm89-windows-candidate.zip) | Candidate — awaiting SM89 hardware certification |
+| Model + drafter | [L0xRE-27b-Low on Hugging Face](https://huggingface.co/YourHighnessLA/L0xRE-27b-Low) | `L0xRE-27b-Low.gguf` + Q4_K_M drafter; SHA-256 identities below |
 
-This is a release candidate because the Windows GPU paths and the new SM120 common-CLI path with the non-MTP Low target have not had hardware execution tests. Architecture coverage is distinct from performance qualification. Older architecture-specific releases remain available as rollback options.
+Only the Linux SM86 package carries the certified 37 / 65 t/s numbers. The Windows and SM89 packages are installable test candidates; use `--qualification-probe` and do not treat them as certified. Older releases (r5-fast, r4, r3) remain available as rollback options.
 
 ## Requirements
 
@@ -35,33 +80,18 @@ The target is a custom GGUF supported by this L0xRE runtime. Use this runtime fo
 
 ## Linux / WSL installation
 
-For the new fast profile, follow [FAST-RELEASE.md](FAST-RELEASE.md). The compatibility-profile example below retains Q4_K_M/N3. Download the Linux archive and `CHECKSUMS.txt` above into one directory. Install `zstd` and `curl` if needed (`sudo apt-get install zstd curl`). Verify and extract:
-
-```bash
-sha256sum --ignore-missing -c CHECKSUMS.txt
-tar --zstd -xf l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r5-fast.tar.zst
-cd l0xre-beellama-low-v0.4.7-wsl-linux-x86_64-universal-r5-fast
-sha256sum -c SHA256SUMS
-mkdir -p models
-curl -fL --retry 3 -o models/L0xRE-27b-Low.gguf \
-  https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/L0xRE-27b-Low.gguf
-curl -fL --retry 3 -o models/Qwen3.8-27B-DFlash2-Q4_K_M.gguf \
-  https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/Qwen3.8-27B-DFlash2-Q4_K_M.gguf
-sha256sum -c MODEL-SHA256SUMS
-./l0xre serve --profile 12gb -m models/L0xRE-27b-Low.gguf \
-  -md models/Qwen3.8-27B-DFlash2-Q4_K_M.gguf --host 127.0.0.1 --port 8080
-```
+The quick start above covers the certified SM86 R6 path. If you need the fast-profile launcher instead, see [FAST-RELEASE.md](FAST-RELEASE.md). For the certified R6 path, extract the R6 Linux archive (the filename and checksum are in the Downloads table above), then verify, download the model, and launch with `--profile 12gb`. Install `zstd` and `curl` if needed (`sudo apt-get install zstd curl`).
 
 The launcher detects the first visible GPU. On a machine with multiple GPUs, set `CUDA_VISIBLE_DEVICES` to the intended GPU index or UUID before launch. For example, `CUDA_VISIBLE_DEVICES=1 ./l0xre serve ...` selects GPU 1. `L0XRE_ARCH=sm86|sm89|sm120` overrides routing; it does not change which GPU CUDA uses.
 
 ## Windows installation
 
-Download the Windows ZIP and `CHECKSUMS.txt` above into one directory. Open PowerShell there, compare the ZIP's `Get-FileHash` result with its line in `CHECKSUMS.txt`, and extract:
+The certified 37 / 65 t/s numbers are Linux SM86 only; the Windows SM86 package is a candidate. Download the R6 SM86 Windows ZIP and its `.sha256` (in the Downloads table above) into one directory. Open PowerShell there, compare the ZIP's `Get-FileHash` result with its `.sha256` line, and extract:
 
 ```powershell
-Get-FileHash .\l0xre-win-universal-r4.zip -Algorithm SHA256
-Expand-Archive .\l0xre-win-universal-r4.zip -DestinationPath .
-Set-Location .\l0xre-win-universal-r4
+Get-FileHash .\L0xRE-BeeLLama-Low-R6-sm86-windows-candidate.zip -Algorithm SHA256
+Expand-Archive .\L0xRE-BeeLLama-Low-R6-sm86-windows-candidate.zip -DestinationPath .
+Set-Location .\L0xRE-BeeLLama-Low-R6-sm86-windows-candidate
 powershell -NoProfile -ExecutionPolicy Bypass -File .\verify.ps1
 New-Item -ItemType Directory -Force models | Out-Null
 curl.exe -fL --retry 3 -o models\L0xRE-27b-Low.gguf https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/L0xRE-27b-Low.gguf
