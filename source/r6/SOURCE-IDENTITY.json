@@ -1,11 +1,11 @@
 {
   "base_archive_sha256": "a9dd23bfa3ed38c040ffed6447e7085e083cb6abbb640a5b0cb3cf48f7de7263",
-  "candidate": "C07-q4-n7-mmq-packed-mma-shared",
+  "candidate": "C07-sm120-prefill-sync-ones-ready",
   "native_overlay_sha256": {
     "ggml/include/ggml.h": "d49e844c7cb6482888082828e775a16174e0ee17bb9361114a260a47a5d6ba50",
     "ggml/src/ggml.c": "75859fb293c404a1768b8b5bc1e2f1b6cdfd51ff01b0948c16046d6187f6fc16",
     "ggml/src/ggml-cpu/ggml-cpu.cpp": "e5f12050de0cb40f7db48704187d01cb32ce69a883ad4a389f3180e330cc5664",
-    "ggml/src/ggml-cuda/ggml-cuda.cu": "9fcb5f4b56ea0fd0460a4cb2d68e638f16479d3ba1f741ba80112bab225f8ad8",
+    "ggml/src/ggml-cuda/ggml-cuda.cu": "08f2e28e078ce67273099020c7afee824352a5a3eb2cdc60572473cea08bcf81",
     "ggml/src/ggml-cuda/gated_delta_net.cu": "5a317a1098b40a27cfb1d341a5b625894c1bf0bfdd2632ef42d98035ba03cc9b",
     "ggml/src/ggml-cuda/gdn-compact.cuh": "d589175c1141c7ab70e57ddaef9d72ffa2a814c73b214c2cc94e37cf5155235c",
     "ggml/src/ggml-cuda/gdn-compact-kernel.cuh": "13bc2ce53477d48b5dfc80410fe95b7ae4a2b259ade347ec44c9179fa2eeac46",
@@ -24,7 +24,7 @@
   "projection_sha256": "07c21e0586878d1611ac96cec3cab38337675cec07d251b7550c8c49ff0ddd49",
   "bridge_sha256": {
     "decode-transform.cuh": "156cb670c89dcdf1aaea8b17ce6fa2b22c725deac9bea5ae7d26757df9f67034",
-    "bridge-packed.cu": "e6610a155333bdce302ef2db5d2c21093174958837f47b7f2d0c7fad4b00e0d8",
+    "bridge-packed.cu": "2450803f0dec0f26854b446e4738467b670495e4a173a96b5c31cf2772b17607",
     "escha_official_bridge_v1.h": "6cc9fae65e2d68cacdf78a001c8eda78004594277fcd820815dc3d894fa423db",
     "int8-prefill-helpers.cuh": "9033c8be43718d2089767a408d4319d2c922bf62be8c90ee8305bce8a552d359",
     "decode-transform-swizzled.cuh": "24df7f9771a448249a749586ff2867e5f56539927971d9a3c350688d9bbb1d04",

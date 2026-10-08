@@ -121,7 +121,8 @@
     "L0XRE_REJECTION_SPEC": "1",
     "L0XRE_GDN_COMPACT_RS": "1",
     "L0XRE_SM86_Q4_MMQ": "1",
-    "L0XRE_PACKED_DECODE_INPUT": "1"
+    "L0XRE_PACKED_DECODE_INPUT": "1",
+    "L0XRE_INT8_PREFILL_SYNC": "1"
   },
   "model_sha256": {
     "target": "b0849250c633aa93853bf119a877dbdafdd7b1a4ebb672bd6b6a1439906f3543",

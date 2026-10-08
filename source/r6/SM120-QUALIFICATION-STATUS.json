@@ -1,0 +1,72 @@
+{
+  "status": "candidate_not_certified",
+  "date_utc": "2026-10-08",
+  "hardware": "RTX 5090 SM120 on WSL",
+  "driver": "616.56",
+  "reviewer_routes": [
+    "gpt-6-sol",
+    "openrouter/deepseek-deepseek-v4.1-flash"
+  ],
+  "changes": [
+    "Complete pageable scale-vector H2D initialization before publishing the shared device/length cache. Cached decode calls add no synchronization.",
+    "Opt-in SM120 INT8 per-projection stream synchronization with selective large-prefill graph bypass; decode graphs remain eligible.",
+    "SM120 compact-GDN architecture overlay."
+  ],
+  "first_decode_correctness": {
+    "cause": "A nonblocking consumer could read ones_for scale data before pageable H2D DMA completed.",
+    "before": "Cold first-layer FFN down projection produced zero in every partial slice, while warm repeated requests produced nonzero values; identical activation/residual/norm inputs.",
+    "after": "Three fresh serial processes each produced four identical 128-token outputs; causal trace cold/warm transformed input, all 12 partials and observed first-decode logit pairs match. Full DFlash code/prose greedy repeats and seeded stochastic repeats pass.",
+    "fix": "One-time cudaDeviceSynchronize after H2D copy and before cache publication.",
+    "cuda_reference": "https://docs.nvidia.com/cuda/cuda-runtime-api/api-sync-behavior.html",
+    "correctness_not_full_certification": true
+  },
+  "prefill_stability": {
+    "included_interval": 1,
+    "prior_interval1_capacity_tokens": 81916,
+    "prior_capacity_predates_ones_fix": true,
+    "rejected_experiment": {
+      "interval": 8,
+      "included_in_source": false,
+      "short_prefill_mean_tps": 3214.373795,
+      "short_prefill_samples_tps": [
+        3308.53,
+        3232.03,
+        3287.68,
+        3072.86,
+        3170.78
+      ],
+      "passed_prompt_tokens": [
+        32768,
+        65536
+      ],
+      "full_capacity": "GPU lost during prefill; last logged prompt progress69632; no decode reached. Windows confirmed GPU loss.",
+      "root_cause_proven": false
+    }
+  },
+  "certification_targets": {
+    "short_prefill_tps": ">3000",
+    "code_decode_mean_tps": ">233",
+    "capacity_tokens": 81916,
+    "quality": "Matched full150 comparison against last certified5090 runtime",
+    "vision": "Native CPU projector smoke"
+  },
+  "remaining": [
+    "Reboot/recover GPU and verify Strata remains stopped.",
+    "Validate staged interval1 plus ones fix, then long-context capacity; do not rerun constant interval8 at depth.",
+    "Recover short-prefill speed with a separately reviewed context-aware fence candidate; depth must come from actual context state, not cumulative bridge calls.",
+    "Repeat canonical decode, matched full quality, native vision, package audit and only then certify/publish SM120 binaries."
+  ],
+  "evidence_sha256": {
+    "R6-sm120-greedy-audit-20261008T023323Z.json": "94ef32920f63c387f5ee754b93e64e26d73cc5da93bac00a54391e4139442d54",
+    "R6-sm120-greedy-audit-20261008T023338Z.json": "e69402d7536a5b52f8162c97dae9c00ddbfae307e638ac17260acc08da288362",
+    "R6-sm120-greedy-audit-20261008T023353Z.json": "7c09b8a421993c7e93a62b395da74863c7088ad48ee1695da2c451a2dbb387b9",
+    "R6-sm120-greedy-audit-20261008T023735Z-logits.csv.partials.csv": "5021a428652a0488d8d1f13c193d7dc1c266243c749054aa6880cce76766716f",
+    "R6-sm120-fenced-correctness-20261008T023820Z.json": "9c567c338bf5e24671465b39a08212d999ebd76f095b1219f137fbb6035c3b52",
+    "R6-sm120-native-prefill-fenced-20261008T023944Z-receipt.json": "c95a54b4e9058500edeb2ca1c4bd6d3c29b566a895ee1142dfdc16fb74d94a9b",
+    "R6-sm120-fenced-candidate-full-32768-graphs-on-blocking0-guarded-20261008T024002Z.json": "24b459dd8c423eeb602ff635667196ea4ea4dfd47923b930bdc1ecced1175c91",
+    "R6-sm120-fenced-candidate-full-65536-graphs-on-blocking0-guarded-20261008T024042Z.json": "c499b1e4c099e8ac1af898b00b0ce02ad8a758a6ba810a63264f8d137325e67c",
+    "R6-sm120-fenced-candidate-full-77824-graphs-on-blocking0-capacity-guarded-20261008T024132Z-failure.json": "70217e369cbe248492984897e2d865e23d94a2a247ccf01b13b3bb463277b762",
+    "R6-sm120-fenced-candidate-full-77824-graphs-on-blocking0-capacity-guarded-20261008T005709Z.json": "840b7d530052cfe47de0d8ad0315902250b526d46a3a31916053f0482aa45fc7"
+  },
+  "scope_note": "This branch is source/recovery work. Existing SM86 and SM89 release assets are not replaced; no SM120 hardware certificate is asserted."
+}

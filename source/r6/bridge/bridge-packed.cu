@@ -84,6 +84,7 @@ constexpr size_t WEIGHT_ELEMS=size_t(17408)*5120;
 constexpr size_t CUBLAS_WORK=4*1024*1024;
 struct State {
     int mode=0, mask=1; bool initialized=false, owner_set=false;
+    bool prefill_sync=false;
     cudaStream_t owner=nullptr;
     int8_t *q=nullptr,*weight=nullptr;float *scales=nullptr;int *accum=nullptr;
     void *work=nullptr;cublasHandle_t handle=nullptr;
@@ -104,12 +105,23 @@ static void startup() {
     const char *env=getenv("L0XRE_INT8_PREFILL");
     if(!env || (strcmp(env,"1") && strcmp(env,"2")))return;
     auto &s=state();s.mode=atoi(env);
+    if(const char *sync=getenv("L0XRE_INT8_PREFILL_SYNC")) {
+        if(strcmp(sync,"0") && strcmp(sync,"1")) {
+            fprintf(stderr,"L0XRE_I8_BAD_PREFILL_SYNC\n");_exit(93);
+        }
+        s.prefill_sync=strcmp(sync,"1")==0;
+    }
     if(const char *mask=getenv("L0XRE_INT8_PROJ_MASK")) {
         char *end=nullptr;long value=strtol(mask,&end,10);
         if(!*mask || *end || value<0 || value>255){fprintf(stderr,"L0XRE_I8_BAD_MASK\n");_exit(93);}
         s.mask=int(value);
     }
     must(cudaSetDevice(0),"device");
+    if(s.prefill_sync) {
+        cudaDeviceProp props;
+        must(cudaGetDeviceProperties(&props,0),"prefill sync device properties");
+        s.prefill_sync=props.major==12 && props.minor==0;
+    }
     must(cudaMalloc(&s.weight,WEIGHT_ELEMS),"weight");
     must(cudaMalloc(&s.q,size_t(CAP)*MAX_IC),"activations");
     must(cudaMalloc(&s.accum,size_t(CAP)*MAX_OC*sizeof(int)),"accumulators");
@@ -127,6 +139,7 @@ static void startup() {
         CUBLAS_COMPUTE_32I,CUBLAS_GEMM_DEFAULT_TENSOR_OP),"warmup");
     }
     must(cudaDeviceSynchronize(),"warmup synchronize");s.initialized=true;
+    fprintf(stderr,"L0XRE_I8_PREFILL_SYNC enabled=%d\n",int(s.prefill_sync));
     fprintf(stderr,"L0XRE_I8_READY mode=%d mask=%d capacity=%d explicit_bytes=%zu single_slot_only=1\n",s.mode,s.mask,CAP,
         WEIGHT_ELEMS+size_t(CAP)*(MAX_IC+MAX_OC*sizeof(int)+sizeof(float))+CUBLAS_WORK);
 }
@@ -151,6 +164,14 @@ static int run(cudaStream_t stream,int device,void *output,const void *input,
         return 1;
     }
     if(!s.owner_set){s.owner=stream;s.owner_set=true;}
+    if(s.prefill_sync) {
+        cudaStreamCaptureStatus capture;
+        must(cudaStreamIsCapturing(stream,&capture),"prefill sync capture check");
+        if(capture!=cudaStreamCaptureStatusNone) {
+            fprintf(stderr,"L0XRE_I8_PREFILL_SYNC_CAPTURE_FALLBACK\n");
+            return 1;
+        }
+    }
     cb(cublasSetStream(s.handle,stream),"stream");
     // cublasSetStream resets workspace: restore it on every enqueue.
     cb(cublasSetWorkspace(s.handle,s.work,CUBLAS_WORK),"workspace");
@@ -167,6 +188,15 @@ static int run(cudaStream_t stream,int device,void *output,const void *input,
     finish_i8<<<(M*(OC/128)+7)/8,256,0,stream>>>(s.accum,s.scales,(const half*)rout,(half*)output,OC,M);
     cudaError_t err=cudaGetLastError();
     if(err!=cudaSuccess){fprintf(stderr,"L0XRE_I8_LAUNCH_FAILED %s\n",cudaGetErrorString(err));return -1;}
+    // SM120/WSL qualification reproduced GPU loss with asynchronous INT8
+    // prefill. Fence only accepted large projections; decode never enters here.
+    if(s.prefill_sync) {
+        err=cudaStreamSynchronize(stream);
+        if(err!=cudaSuccess) {
+            fprintf(stderr,"L0XRE_I8_PREFILL_SYNC_FAILED role=%d CUDA error: %s\n",role,cudaGetErrorString(err));
+            return -1;
+        }
+    }
     if(s.calls[role]++<2)fprintf(stderr,"L0XRE_I8_ENQUEUE role=%d M=%d IC=%d OC=%d K=%d stream=%p\n",role,M,IC,OC,K,(void*)stream);
     return 0;
 }
@@ -413,7 +443,11 @@ float * ones_for(int device, int length) {
     float * device_ptr = nullptr;
     if (cudaSetDevice(device) != cudaSuccess ||
         cudaMalloc(&device_ptr, host.size() * sizeof(float)) != cudaSuccess ||
-        cudaMemcpy(device_ptr, host.data(), host.size() * sizeof(float), cudaMemcpyHostToDevice) != cudaSuccess) {
+        cudaMemcpy(device_ptr, host.data(), host.size() * sizeof(float), cudaMemcpyHostToDevice) != cudaSuccess ||
+        // Pageable H2D may return before DMA completion. Decode uses nonblocking
+        // streams, so finish initialization before publishing this shared cache.
+        // This fence runs only when a new device/length scale vector is created.
+        cudaDeviceSynchronize() != cudaSuccess) {
         if (device_ptr != nullptr) {
             cudaFree(device_ptr);
         }

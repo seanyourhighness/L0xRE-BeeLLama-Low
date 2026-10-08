@@ -4916,6 +4916,29 @@ static bool ggml_cuda_graph_set_enabled(ggml_backend_cuda_context * cuda_ctx, co
 }
 #endif // USE_CUDA_GRAPH
 
+#ifdef USE_CUDA_GRAPH
+static bool ggml_cuda_graph_needs_int8_prefill_sync(
+        ggml_backend_cuda_context * ctx, const ggml_cgraph * cgraph) {
+    const char * sync = std::getenv("L0XRE_INT8_PREFILL_SYNC");
+    const char * int8 = std::getenv("L0XRE_INT8_PREFILL");
+    if (ggml_cuda_info().devices[ctx->device].cc != 1200 ||
+        !sync || std::strcmp(sync, "1") != 0 ||
+        !int8 || std::strcmp(int8, "1") != 0) {
+        return false;
+    }
+    for (int i = 0; i < cgraph->n_nodes; ++i) {
+        const ggml_tensor * node = cgraph->nodes[i];
+        // ESCHA output layout is [output channels, input rows]. These are
+        // the large row counts accepted by the INT8 bridge (CAP=512).
+        // Single-token and speculative verification graphs retain replay.
+        if (node->op == GGML_OP_ESCHA_MUL_MAT && node->ne[1] >= 256 && node->ne[1] <= 512) {
+            return true;
+        }
+    }
+    return false;
+}
+#endif
+
 static enum ggml_status ggml_backend_cuda_graph_compute(ggml_backend_t backend, ggml_cgraph * cgraph) {
     ggml_backend_cuda_context * cuda_ctx = (ggml_backend_cuda_context *) backend->context;
 
@@ -4931,7 +4954,14 @@ static enum ggml_status ggml_backend_cuda_graph_compute(ggml_backend_t backend, 
     ggml_cuda_graph_set_enabled(cuda_ctx, graph_key);
 
     ggml_cuda_graph * graph = cuda_ctx->cuda_graph(graph_key);
-    if (graph->is_enabled()) {
+    const bool int8_prefill_sync = ggml_cuda_graph_needs_int8_prefill_sync(cuda_ctx, cgraph);
+    if (int8_prefill_sync) {
+        static std::once_flag notice;
+        std::call_once(notice, [] {
+            GGML_LOG_INFO("L0XRE_SM120_INT8_PREFILL_GRAPH_BYPASS: decode graphs remain enabled\n");
+        });
+    }
+    if (graph->is_enabled() && !int8_prefill_sync) {
         const bool graph_compatible = ggml_cuda_graph_check_compability(cgraph);
         if (graph_compatible) {
             // HIP-only: skip the graph path (incl. the update_required probe) for
