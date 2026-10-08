@@ -44,16 +44,16 @@
     }
   },
   "certification_targets": {
-    "short_prefill_tps": ">3000",
-    "code_decode_mean_tps": ">233",
+    "short_prefill_tps": ">=3333",
+    "code_decode_mean_tps": ">=233",
     "capacity_tokens": 81916,
     "quality": "Matched full150 comparison against last certified5090 runtime",
     "vision": "Native CPU projector smoke"
   },
   "remaining": [
     "Reboot/recover GPU and verify Strata remains stopped.",
-    "Validate staged interval1 plus ones fix, then long-context capacity; do not rerun constant interval8 at depth.",
-    "Recover short-prefill speed with a separately reviewed context-aware fence candidate; depth must come from actual context state, not cumulative bridge calls.",
+    "Isolate GPU-loss cause with bounded operation-completion diagnostics; validate any fix through repeated capacity and at least30minutes mixed-context soak before performance qualification.",
+    "After stability is established, meet>=3333shortprefill and>=233code decode, explore further gains and retain best validated configuration.",
     "Repeat canonical decode, matched full quality, native vision, package audit and only then certify/publish SM120 binaries."
   ],
   "evidence_sha256": {
@@ -68,5 +68,20 @@
     "R6-sm120-fenced-candidate-full-77824-graphs-on-blocking0-capacity-guarded-20261008T024132Z-failure.json": "70217e369cbe248492984897e2d865e23d94a2a247ccf01b13b3bb463277b762",
     "R6-sm120-fenced-candidate-full-77824-graphs-on-blocking0-capacity-guarded-20261008T005709Z.json": "840b7d530052cfe47de0d8ad0315902250b526d46a3a31916053f0482aa45fc7"
   },
-  "scope_note": "This branch is source/recovery work. Existing SM86 and SM89 release assets are not replaced; no SM120 hardware certificate is asserted."
+  "scope_note": "This branch is source/recovery work. Existing SM86 and SM89 release assets are not replaced; no SM120 hardware certificate is asserted.",
+  "latest_driver_retest": {
+    "driver": "617.42",
+    "windows_display": "iGPU; RTX5090 dedicated compute (user-confirmed)",
+    "cold_serial_repeat": "pass035921Z",
+    "dflash_correctness": "pass040005Z",
+    "interval1_capacity": "FAILED: Windows-confirmedGPUloss04:01:33UTC,lastloggedprefill73728;decode notstarted",
+    "last_sample": {
+      "gpu_core_c": 64,
+      "power_w": 467.26,
+      "clock_mhz": 2715,
+      "memory_used_mib": 11820
+    },
+    "conclusion": "Driver update and per-projection INT8 fencing are not sufficient stability fixes. Prior single capacity pass does not establish production stability.",
+    "next_action": "Fault localization with GPU completion breadcrumbs; short instrumentation canary before deeper bounded probes. No further full-capacity certification retry without new diagnostic evidence."
+  }
 }
