@@ -1,0 +1,34 @@
+{
+  "built": true,
+  "hardware_qualified": false,
+  "architectures": [
+    "sm86",
+    "sm89",
+    "sm120"
+  ],
+  "exports_verified": 11,
+  "device_elf_entries_per_arch": 2,
+  "sha256": {
+    "bridge-packed.cu": "e6610a155333bdce302ef2db5d2c21093174958837f47b7f2d0c7fad4b00e0d8",
+    "build.cmd": "aa051a61be8977a393f20a16d770a2c998372e25106b0c03524b602c68dc0184",
+    "decode-transform-swizzled.cuh": "24df7f9771a448249a749586ff2867e5f56539927971d9a3c350688d9bbb1d04",
+    "decode-transform.cuh": "156cb670c89dcdf1aaea8b17ce6fa2b22c725deac9bea5ae7d26757df9f67034",
+    "escha_official_bridge_v1.h": "6cc9fae65e2d68cacdf78a001c8eda78004594277fcd820815dc3d894fa423db",
+    "escha_r6_packed_bridge.dll": "abd5a2d257ce440d0f98d6797234ac185d280bc8aacd11bf7c5fe8f869237f27",
+    "fattn-qk16-prefill.cuh": "a6d9e04de9f9a53d847c2e334b4c5d6f82cd7f3e10810e7c39b301d3e759ee37",
+    "int8-prefill-helpers.cuh": "9033c8be43718d2089767a408d4319d2c922bf62be8c90ee8305bce8a552d359",
+    "k3-vector-all-sm120.cubin": "bcff5b829ef8bdadc7a88b553218ff13055685bd867e8ff5eeab24f4f273dded",
+    "k3-vector-all-sm86.cubin": "3bc848a899a9a05d4594a4a083803444201c9227f11ad166d9a45c610d4226ad",
+    "k3-vector-all-sm89.cubin": "c635c43d841099dbee0b21b76a0aab8875ef18a5ebdd814c6da40f269e6b4484",
+    "mmvq-before-sm89.cu": "3cdf88f8a7a0ab31fdcb4500636bf3a5aefc3420f313b24689752ec2da9e643d",
+    "packed-input-sm120.cubin": "1a64f91640f55429eb8cfb84ccb064a0c47fa93ec9a4caeae5c6dc84d78c7314",
+    "packed-input-sm86.cubin": "b2659cb4c45d129da6f9c53961ad7783ae679e0d6cf626fd4db96ddc8adf8a62",
+    "packed-input-sm89.cubin": "c272c20cec243a5617ee1ff0cca10ddb7a3548244fc106a1569b7c9508086c52",
+    "qk16-host-wrapper.cu": "c07813f36bcb479068a79cf57a44ce2d5b68b94e2a634a7b75803779514587f8",
+    "qk16-kernels.cu": "7cc5bba5b936be9f3ef648b73f3aa651db7f1756323a5875d74c1720f2e9af9a",
+    "r6-packed.def": "9184ba2ae78e7535e3b9bb57fc9fa1d77b8f708b4b1c1befa806522e7b090d3f",
+    "verify-and-cubins.cmd": "33877890f155e32f9e4f05a0da6b65afe2787f9c9d69f4ad06af184fc98f8072"
+  },
+  "cubins_receipt": "ELF file    1: escha_r6_packed_bridge.1.sm_86.cubin\nELF file    2: escha_r6_packed_bridge.2.sm_89.cubin\nELF file    3: escha_r6_packed_bridge.3.sm_120.cubin\nELF file    4: escha_r6_packed_bridge.4.sm_86.cubin\nELF file    5: escha_r6_packed_bridge.5.sm_89.cubin\nELF file    6: escha_r6_packed_bridge.6.sm_120.cubin\n",
+  "exports_receipt": "Microsoft (R) COFF/PE Dumper Version 14.44.35228.0\nCopyright (C) Microsoft Corporation.  All rights reserved.\n\n\nDump of file escha_r6_packed_bridge.dll\n\nFile Type: DLL\n\n  Section contains the following exports for escha_r6_packed_bridge.dll\n\n    00000000 characteristics\n    FFFFFFFF time date stamp\n        0.00 version\n           1 ordinal base\n          11 number of functions\n          11 number of names\n\n    ordinal hint RVA      name\n\n          1    0 000075C0 escha_official_bridge_abi_version\n          2    1 000075D0 escha_official_bridge_error\n          3    2 00007620 escha_official_bridge_probe\n          4    3 00007640 escha_official_code_gemm\n          5    4 00007650 escha_official_code_gemm_pretransformed\n          6    5 00007A20 escha_official_decode_gemv_main_batch_v1\n          7    6 00007C30 escha_official_decode_gemv_main_desc_v1\n          8    7 00007D40 escha_official_decode_gemv_main_f32_raw\n          9    8 00007ED0 escha_official_decode_gemv_main_raw\n         10    9 00007EE0 escha_official_decode_gemv_raw\n         11    A 00007F40 l0xre_int8_prefill_init_v1\n\n  Summary\n\n        C000 .data\n        1000 .nvFatBi\n       3A000 .nv_fatb\n        1000 .pdata\n       10000 .rdata\n        1000 .reloc\n       16000 .text\n"
+}

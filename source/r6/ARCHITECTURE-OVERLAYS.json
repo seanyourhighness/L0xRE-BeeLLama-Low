@@ -8,11 +8,23 @@
     "qualification": "compile-only until target-hardware certification"
   },
   "sm120": {
-    "source": "overlay-sm120/ggml/src/ggml-cuda/gated_delta_net.cu",
-    "target": "ggml/src/ggml-cuda/gated_delta_net.cu",
-    "sha256": "c4c9e7792e41b3d03479556de3bdb22ed17277bee0bf981adf0917831420b79b",
-    "opt_in": "L0XRE_GDN_MASKED_PREFILL",
-    "default": "off outside the R6 qualification profile",
-    "qualification": "SM120 local RTX 5090 WSL gate widened from SM86; hardware proof required"
+    "overlays": [
+      {
+        "source": "overlay-sm120/ggml/src/ggml-cuda/gated_delta_net.cu",
+        "target": "ggml/src/ggml-cuda/gated_delta_net.cu",
+        "sha256": "c4c9e7792e41b3d03479556de3bdb22ed17277bee0bf981adf0917831420b79b",
+        "opt_in": "L0XRE_GDN_MASKED_PREFILL",
+        "default": "off outside the R6 qualification profile",
+        "qualification": "SM120 GDN bridge route widened from SM86; compact-GDN path separately gated for SM120; hardware proof required"
+      },
+      {
+        "source": "overlay-sm120/ggml/src/ggml-cuda/gdn-compact.cuh",
+        "target": "ggml/src/ggml-cuda/gdn-compact.cuh",
+        "sha256": "1590388d6e85c2f49b28273840efd3f2e56759ab3684cda4f923409c9b1fa44b",
+        "opt_in": "L0XRE_GDN_MASKED_PREFILL",
+        "default": "off outside the R6 qualification profile",
+        "qualification": "SM120 compact-GDN gate admits CC 8.6 and CC 12.0 only; RTX 5090 WSL hardware qualification required"
+      }
+    ]
   }
 }

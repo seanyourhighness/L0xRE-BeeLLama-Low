@@ -1,0 +1,38 @@
+[
+  {
+    "name": "L0xRE-BeeLLama-Low-R6-sm89-linux-candidate.tar.zst",
+    "sha256": "a9c3544e40e8e9b2d307b4bf67268e47c077bcbcef62ddad59dcb56c2f9b1a35",
+    "size": 981480414,
+    "github_digest_match": true
+  },
+  {
+    "name": "L0xRE-BeeLLama-Low-R6-sm89-linux-candidate.tar.zst.sha256",
+    "sha256": "06eea00b5506a0fb24c4d30b5a68aa911e22caf62644fa00955742574f0f47bf",
+    "size": 117,
+    "github_digest_match": true
+  },
+  {
+    "name": "L0xRE-BeeLLama-Low-R6-sm86-windows-candidate.zip",
+    "sha256": "b1391b747a6822a2a9e915fc015c02bdaa0c11b92acd8c019a75d8e277e1e840",
+    "size": 892153094,
+    "github_digest_match": true
+  },
+  {
+    "name": "L0xRE-BeeLLama-Low-R6-sm86-windows-candidate.zip.sha256",
+    "sha256": "d4b567d4cdf3a9a13e5ff744a7e2401f5721643f3a2a0b344cb6fb06df5f5c04",
+    "size": 115,
+    "github_digest_match": true
+  },
+  {
+    "name": "L0xRE-BeeLLama-Low-R6-sm89-windows-candidate.zip",
+    "sha256": "12258e6d4b69f0e33c874f72d9e716818fbba5fb37a4d48f29768234e27eacae",
+    "size": 891638572,
+    "github_digest_match": true
+  },
+  {
+    "name": "L0xRE-BeeLLama-Low-R6-sm89-windows-candidate.zip.sha256",
+    "sha256": "9dfd60bb7d66a519812af580bd630bb8db62b749591c2df070bc1d94efd7b95f",
+    "size": 115,
+    "github_digest_match": true
+  }
+]

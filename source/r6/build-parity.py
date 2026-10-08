@@ -12,6 +12,13 @@ def run(argv):
     print(' '.join(map(str,argv)),flush=True)
     subprocess.run(list(map(str,argv)),check=True)
 
+def overlay_entries(spec):
+    if isinstance(spec, list):
+        return spec
+    if isinstance(spec, dict) and 'overlays' in spec:
+        return spec['overlays']
+    return [spec]
+
 def main():
     p=argparse.ArgumentParser()
     p.add_argument('--arch',choices=['sm86','sm89','sm120'],required=True)
@@ -60,17 +67,24 @@ def main():
         # A previous SM89 incremental build leaves its architecture overlay in
         # the prepared tree. Restore the common R6 input before verifying its
         # identity, then apply only the selected architecture overlay below.
-        for entry in arch_manifest.values():
-            common=root/'overlay'/entry['target']
-            shutil.copy2(common,source/entry['target'])
+        for spec in arch_manifest.values():
+            for entry in overlay_entries(spec):
+                common=root/'overlay'/entry['target']
+                shutil.copy2(common,source/entry['target'])
         identity=json.loads((source/'R6-SOURCE.json').read_text())
         assert identity['base_sha256']=='a9dd23bfa3ed38c040ffed6447e7085e083cb6abbb640a5b0cb3cf48f7de7263'
         for name,digest in identity['overlay_sha256'].items():assert hashlib.sha256((source/name).read_bytes()).hexdigest()==digest,name
         if a.arch in arch_manifest:
-            entry=arch_manifest[a.arch];overlay=root/entry['source'];target=source/entry['target']
-            digest=hashlib.sha256(overlay.read_bytes()).hexdigest();assert digest==entry['sha256']
-            shutil.copy2(overlay,target)
-            arch_overlay_info={'arch':a.arch,'source':entry['source'],'target':entry['target'],'sha256':digest,'opt_in':entry['opt_in'],'default':entry['default'],'qualification':entry['qualification']}
+            applied=[]
+            for entry in overlay_entries(arch_manifest[a.arch]):
+                overlay=root/entry['source'];target=source/entry['target']
+                digest=hashlib.sha256(overlay.read_bytes()).hexdigest();assert digest==entry['sha256']
+                shutil.copy2(overlay,target)
+                applied.append({'source':entry['source'],'target':entry['target'],'sha256':digest,
+                                'opt_in':entry['opt_in'],'default':entry['default'],
+                                'qualification':entry['qualification']})
+            arch_overlay_info=({'arch':a.arch,**applied[0]} if len(applied)==1 else
+                               {'arch':a.arch,'files':applied})
             identity['architecture_overlay']=arch_overlay_info
         else:
             identity.pop('architecture_overlay',None)

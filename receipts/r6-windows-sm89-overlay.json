@@ -1,0 +1,7 @@
+{
+  "source": "/home/sean/work/l0xre-r6-release-20261007/source/r6/overlay-sm89/ggml/src/ggml-cuda/mmvq.cu",
+  "target": "/mnt/c/work/l0xre-win/source-r6/ggml/src/ggml-cuda/mmvq.cu",
+  "sha256": "8fbde89d51ada7d45ab4c6ac6b1390f11dd62882377078dcaeffbabdae4e7d1c",
+  "purpose": "Preserve SM86 opt-in and add SM89 Q4 MMQ opt-in to universal Windows backend",
+  "hardware_qualified": false
+}

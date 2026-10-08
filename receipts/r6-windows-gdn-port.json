@@ -1,0 +1,26 @@
+{
+  "source": "/home/sean/work/l0xre-r6-release-20261007/source/fast/gdn/gdn-matched-prefix-v2/bridge.cu",
+  "source_sha256": "de0fb2d0d4d15e6eba22ece80f6fe5521bae58ebe5135b4a162c47a8e8a4845b",
+  "ported_source_sha256": "be608fcf14d7e1b3b95e54e08fb85995f065618970e999c08dfd124d7e860e29",
+  "changes": [
+    "local launch-metadata include",
+    "workspace max 512 to1024, same expansion as Linux R6 builder",
+    "Windows .def C ABI exports"
+  ],
+  "compiled_architectures": [
+    "sm86",
+    "sm89"
+  ],
+  "hardware_qualified": false,
+  "status": "native_windows_build_and_cpu_abi_pass",
+  "dll_sha256": "047a64c82e588bf97eddd41fd55165b01dafc4549d8859ec34d1931c605cf2f7",
+  "cpu_abi": {
+    "status": "pass",
+    "gpu_work_launched": false,
+    "null_argument_status": 1,
+    "unsupported_device_status": 1,
+    "output_guards_preserved": true
+  },
+  "exports_verified": true,
+  "device_architectures_verified": true
+}
