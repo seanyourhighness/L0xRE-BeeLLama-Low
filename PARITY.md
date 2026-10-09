@@ -2,6 +2,22 @@
 
 Parity is tracked at three levels: the shared source/profile, successful compilation, and hardware-qualified runtime behavior. A compilation receipt does not establish inference correctness or speed.
 
+## Current R6 certification status
+
+One project and shared model weights cover the three architectures. Certification belongs to the tested platform, GPU, profile, and exact payload; it does not transfer to inherited universal packages.
+
+| Architecture / tested GPU | Linux / WSL | Native Windows |
+| --- | --- | --- |
+| SM86 / RTX 3060 | **Certified** — 37 t/s prose, 65 t/s code | Candidate; hardware qualification pending |
+| SM89 / RTX 4090 | Candidate; hardware certification is next | Candidate; hardware certification is next |
+| SM120 / RTX 5090 | **Certified locally** — 131 t/s prose, 229 t/s code; archive publication pending | **Certified and published** — 137 t/s prose, 230 t/s code |
+
+SM120 uses dedicated 80K / KVarN4/4 / DFlash2 N7 profiles. Linux retains its disclosed original decode-target exception; Windows meets its release speed gates. Exact scores, quality scope, package identities, and downloads are in [SM120 certification details](docs/SM120-QUALIFICATION.md). SM89 remains pending until the RTX 4090 is available and its own gates pass.
+
+## Historical r5-fast preparation
+
+The table below records the earlier r5-fast preparation. Its pending SM89/SM120 entries describe those historical payloads, rather than the dedicated R6 certifications above.
+
 | Feature or gate | SM86 / RTX30 | SM89 / RTX40 | SM120 / RTX50 |
 |---|---|---|---|
 | Common frozen S71 sampler/server source | Prepared | Prepared | Prepared |

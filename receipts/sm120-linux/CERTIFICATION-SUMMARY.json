@@ -1,0 +1,81 @@
+{
+  "kind": "Public summary of the sealed local Linux/WSL SM120 certification; not a replacement certificate",
+  "status": "certified_locally_with_decode_performance_exception",
+  "authority": "Local hardware/runtime release qualification; not a vendor certification",
+  "issued_utc": "2026-10-08T23:35:13.500435+00:00",
+  "gpu": "RTX 5090, 32 GB",
+  "platform": "Linux / WSL",
+  "driver": "617.42",
+  "context_tokens": 81920,
+  "one_gpu_one_slot": true,
+  "performance": {
+    "narrative_decode_mean_tps": 131.32153613087777,
+    "code_decode_mean_tps": 229.12536969352004,
+    "prefill_p2048_mean_tps": 3526.978457,
+    "decode_measured_runs_per_shape": 5,
+    "decode_warmups_per_shape": 3,
+    "code_cv_percent": 7.019993174583748,
+    "narrative_cv_percent": 2.889255212602925,
+    "prefill_samples_tps": [
+      3568.53,
+      3422.62,
+      3566.84,
+      3549.01,
+      3527.9
+    ],
+    "original_code_target_tps": 233,
+    "original_code_target_met": false,
+    "decode_target_exception": {
+      "authorized_by_followup": "User directed certification of this same build after disclosure of229.12537 mean confirmation below>233",
+      "measured_code_decode_avg_ts": 229.12536969352004,
+      "original_target_ts": 233,
+      "claim": "Speed target not met in confirmation; retain disclosed exception in certificate"
+    }
+  },
+  "gates": {
+    "stability": "pass",
+    "cold_correctness": "pass",
+    "capacity": "pass_two_fresh_servers",
+    "quality": "accepted_after_paired_case_review",
+    "CPUvision": "pass",
+    "source_and_artifact": "pass",
+    "performance": "decode_target_exception_accepted_prefill_target_pass"
+  },
+  "stability": {
+    "soak_seconds": 1829.7649531610004,
+    "completed_requests": 258,
+    "repeat_comparisons": 249,
+    "all_health_samples_healthy": true
+  },
+  "capacity": {
+    "prompt_tokens": 77824,
+    "generated_tokens": 4092,
+    "total_tokens": 81916,
+    "fresh_server_repetitions": 2,
+    "output_hashes_match": true
+  },
+  "quality": {
+    "context_tokens": 32768,
+    "cases_per_arm": 150,
+    "candidate_pass_at_1": 129,
+    "candidate_pass_at_3": 133,
+    "baseline_pass_at_1": 124,
+    "baseline_pass_at_3": 132,
+    "candidate_runaways": 0,
+    "acceptance": "Accepted paired case review; historical score counts are observations, not fixed quality floors.",
+    "limits": "McNemar p=.1796875 atpass@1 and1.0 atpass@3; improvement and distributional equivalence are not statistically established."
+  },
+  "identity": {
+    "native_sha256": "30442d5b9c45cc40d17360e811b7b03441e0e7195d581b60530cb9716d073264",
+    "bridge_sha256": "d2c46b30b7135099909341d462ee0f3e1267cc759e625ed92bacb909e3e650a9",
+    "profile_sha256": "7783bea46e17ab654dc1d2728ab64a88409be1d76d1c2126dc4ed3f9b58741a6",
+    "certificate_sha256": "b428f17bc34f308405596c92ed5ea4f108e13164f9f8acd3a54293b4d1a76a46",
+    "decode_receipt_sha256": "24f309caef9c3b98d2d843d5f4a2997aed4edd7b7ea075551f3fc2a3835cbb9b",
+    "archive_filename": "L0xRE-SM120-certified-20261008.tar.zst",
+    "archive_bytes": 1111927641,
+    "archive_sha256": "9af12274ef1b7c41923fc35bebea2097a37a20afdba6a6552ea1eb22eccb87ff"
+  },
+  "publication_performed": false,
+  "root_cause_proven": false,
+  "gpu_loss_observed_during_candidate_validation": false
+}
