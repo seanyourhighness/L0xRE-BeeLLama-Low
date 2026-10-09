@@ -1,0 +1,55 @@
+{
+  "status": "original_gate_definition_verified_adapter_error_identified",
+  "explicit_user_performance_requirements": {
+    "decode_mean_tps_min": 229.12537,
+    "prefill_p2048_mean_tps_min": 3526.978457
+  },
+  "original_quality_gate": {
+    "context": 32768,
+    "cases_per_arm": 150,
+    "retry_k": 3,
+    "thinking": "enabled and valid",
+    "sampler": "temperature0.7/top_p0.95/top_k20/min_p0.05, unseeded",
+    "completion": "Both full evaluations complete with valid packs, actual sampler/runtime attestation, healthy GPU and no CUDA errors.",
+    "acceptance": "Paired case-preserving review accepted. Inspect case losses and runaways; retain mixed outcomes and statistical limits.",
+    "fixed_pass_at_1_floor": null,
+    "fixed_pass_at_3_floor": null
+  },
+  "historical_quality_measurements": {
+    "R9_baseline": {
+      "pass_at_1": 124,
+      "pass_at_3": 132
+    },
+    "R6_candidate": {
+      "pass_at_1": 129,
+      "pass_at_3": 133
+    }
+  },
+  "original_case_review_acceptance": "Higher aggregate pass@1 andpass@3, zero runaways, unchanged150 scenario definitions and verified actual samplers. Mixed case losses retained; no broad regression observed in this sample.",
+  "adapter_error": "The Windows adapter incorrectly converted the historical R6 candidate129/133 scores into absolute minimum thresholds. These were observations, not original fixed quality requirements. Legacy failed receipts remain unchanged; a new paired review must satisfy the original gate before promotion.",
+  "not_a_quality_exception": true,
+  "frozen_source_and_serving_profile_unchanged": true,
+  "authoritative_sources": [
+    {
+      "path": "\\\\wsl.localhost\\Ubuntu\\home\\sean\\work\\l0xre-r6-sm120-fenced-20261007\\release-qualification-head8-k256\\seal_package.py",
+      "sha256": "469ce435715ac9988d6cfbaa24a8ffab5b701a1552a6ab6b592758e208294424"
+    },
+    {
+      "path": "\\\\wsl.localhost\\Ubuntu\\home\\sean\\work\\l0xre-r6-sm120-cert-20261007\\runs\\run_sm120_quality.py",
+      "sha256": "9baa492205b9245ed7a3403770d9a4da688a474d5cb2a6a378af52ce05ca8d15"
+    },
+    {
+      "path": "\\\\wsl.localhost\\Ubuntu\\home\\sean\\work\\l0xre-r6-sm120-fenced-20261007\\release-qualification-head8-k256\\review_quality.py",
+      "sha256": "4918c1b9322f55bc03a4ac6c662372e896d161358abac8080652d944fb6eb064"
+    },
+    {
+      "path": "\\\\wsl.localhost\\Ubuntu\\home\\sean\\work\\l0xre-r6-sm120-fenced-20261007\\release-qualification-head8-k256\\QUALITY-REVIEW.json",
+      "sha256": "21dc39f43ba29eed9964910488f1e1aef100c9b8f4a7c2ec33145fceaa21e9b9"
+    }
+  ],
+  "still_required": [
+    "Paired quality case review",
+    "standalone released-package smoke",
+    "GitHub publication and downloaded artifact verification"
+  ]
+}

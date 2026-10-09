@@ -1,0 +1,98 @@
+envcache isolated Windows source experiment
+Original SHA-verified certification benchmark: 3 warmups, 5 measured runs per shape, 3 interleaved fresh boots per arm.
+Code sprint target: mean >=230 t/s. Narrative is reported separately.
+Means use original full-precision summaries; SD/CV uses two-decimal logged individual runs.
+Profiling results are excluded. Configurations remain locked.
+
+envguard code: 214.17644439 t/s, SD 5.77771, CV 2.698%, n=15, boot means [212.34303524989141, 217.92702150430736, 212.25927640993672]
+envguard narrative: 133.34972268 t/s, SD 3.01075, CV 2.258%, n=15, boot means [133.9280045944219, 134.29612942516354, 131.82503400934493]
+envguard prefill: 3588.62410500 t/s, SD 15.77501, CV 0.440%, n=10, boot means [3592.663155, 3584.585055]
+envcache code: 229.68038347 t/s, SD 8.22226, CV 3.580%, n=15, boot means [226.66809598430808, 233.07442219439704, 229.2986322369587]
+envcache narrative: 136.58077960 t/s, SD 5.21640, CV 3.819%, n=15, boot means [135.63307142622557, 139.0420862380307, 135.06718114064415]
+envcache prefill: 3611.28296150 t/s, SD 13.36149, CV 0.370%, n=10, boot means [3607.90445, 3614.661473]
+
+{"sprint_code_mean_min": 230.0, "sprint_code_pass": false, "each_fresh_boot_code_mean_at_least230": false, "release_decode_min": 229.12537, "release_decode_pass": true, "prefill_min": 3526.978457, "prefill_pass": true, "remaining_gates": {"soak": "pending", "capacity": "pending", "quality": "pending", "restart": "pending", "CPU vision": "pending"}}
+
+Every measured decode run:
+envguard boot1 narrative run1: 137.19 t/s; 892 tokens; TTFT 136 ms; draft 615/1939
+envguard boot1 narrative run2: 130.36 t/s; 856 tokens; TTFT 132 ms; draft 574/1974
+envguard boot1 narrative run3: 132.29 t/s; 956 tokens; TTFT 133 ms; draft 647/2163
+envguard boot1 narrative run4: 137.72 t/s; 908 tokens; TTFT 132 ms; draft 629/1953
+envguard boot1 narrative run5: 132.07 t/s; 872 tokens; TTFT 133 ms; draft 591/1967
+envguard boot1 code run1: 208.19 t/s; 800 tokens; TTFT 132 ms; draft 651/1031
+envguard boot1 code run2: 213.09 t/s; 800 tokens; TTFT 133 ms; draft 656/997
+envguard boot1 code run3: 206.24 t/s; 800 tokens; TTFT 135 ms; draft 654/1012
+envguard boot1 code run4: 221.27 t/s; 800 tokens; TTFT 134 ms; draft 661/965
+envguard boot1 code run5: 212.94 t/s; 800 tokens; TTFT 136 ms; draft 654/1008
+envcache boot1 narrative run1: 130.07 t/s; 926 tokens; TTFT 133 ms; draft 608/2226
+envcache boot1 narrative run2: 133.32 t/s; 887 tokens; TTFT 133 ms; draft 590/2079
+envcache boot1 narrative run3: 132.17 t/s; 885 tokens; TTFT 132 ms; draft 585/2100
+envcache boot1 narrative run4: 139.40 t/s; 883 tokens; TTFT 133 ms; draft 599/1988
+envcache boot1 narrative run5: 143.20 t/s; 910 tokens; TTFT 137 ms; draft 626/1988
+envcache boot1 code run1: 234.58 t/s; 800 tokens; TTFT 134 ms; draft 662/948
+envcache boot1 code run2: 228.59 t/s; 800 tokens; TTFT 133 ms; draft 656/995
+envcache boot1 code run3: 218.58 t/s; 800 tokens; TTFT 134 ms; draft 648/1050
+envcache boot1 code run4: 213.19 t/s; 800 tokens; TTFT 132 ms; draft 642/1093
+envcache boot1 code run5: 238.40 t/s; 800 tokens; TTFT 134 ms; draft 660/967
+envguard boot2 narrative run1: 135.42 t/s; 935 tokens; TTFT 136 ms; draft 636/2093
+envguard boot2 narrative run2: 135.14 t/s; 796 tokens; TTFT 132 ms; draft 542/1778
+envguard boot2 narrative run3: 131.06 t/s; 874 tokens; TTFT 134 ms; draft 587/2009
+envguard boot2 narrative run4: 134.24 t/s; 908 tokens; TTFT 134 ms; draft 620/2016
+envguard boot2 narrative run5: 135.62 t/s; 991 tokens; TTFT 134 ms; draft 671/2240
+envguard boot2 code run1: 215.31 t/s; 800 tokens; TTFT 134 ms; draft 656/994
+envguard boot2 code run2: 213.33 t/s; 800 tokens; TTFT 133 ms; draft 657/987
+envguard boot2 code run3: 215.72 t/s; 800 tokens; TTFT 134 ms; draft 658/980
+envguard boot2 code run4: 225.95 t/s; 800 tokens; TTFT 134 ms; draft 666/925
+envguard boot2 code run5: 219.33 t/s; 800 tokens; TTFT 136 ms; draft 657/994
+envcache boot2 narrative run1: 138.64 t/s; 955 tokens; TTFT 132 ms; draft 648/2149
+envcache boot2 narrative run2: 130.02 t/s; 851 tokens; TTFT 134 ms; draft 558/2051
+envcache boot2 narrative run3: 144.54 t/s; 970 tokens; TTFT 133 ms; draft 670/2093
+envcache boot2 narrative run4: 143.32 t/s; 1000 tokens; TTFT 133 ms; draft 693/2131
+envcache boot2 narrative run5: 138.69 t/s; 898 tokens; TTFT 134 ms; draft 609/2023
+envcache boot2 code run1: 233.42 t/s; 800 tokens; TTFT 131 ms; draft 657/994
+envcache boot2 code run2: 238.08 t/s; 800 tokens; TTFT 133 ms; draft 660/966
+envcache boot2 code run3: 237.08 t/s; 800 tokens; TTFT 132 ms; draft 659/978
+envcache boot2 code run4: 237.17 t/s; 800 tokens; TTFT 137 ms; draft 660/970
+envcache boot2 code run5: 219.63 t/s; 800 tokens; TTFT 133 ms; draft 650/1032
+envguard boot3 narrative run1: 128.63 t/s; 988 tokens; TTFT 135 ms; draft 652/2352
+envguard boot3 narrative run2: 134.77 t/s; 899 tokens; TTFT 135 ms; draft 612/2009
+envguard boot3 narrative run3: 136.38 t/s; 937 tokens; TTFT 134 ms; draft 644/2051
+envguard boot3 narrative run4: 128.64 t/s; 933 tokens; TTFT 138 ms; draft 618/2205
+envguard boot3 narrative run5: 130.70 t/s; 879 tokens; TTFT 135 ms; draft 590/2023
+envguard boot3 code run1: 214.15 t/s; 800 tokens; TTFT 132 ms; draft 651/1034
+envguard boot3 code run2: 207.15 t/s; 800 tokens; TTFT 132 ms; draft 648/1050
+envguard boot3 code run3: 216.26 t/s; 800 tokens; TTFT 133 ms; draft 657/990
+envguard boot3 code run4: 205.48 t/s; 760 tokens; TTFT 131 ms; draft 612/1036
+envguard boot3 code run5: 218.25 t/s; 800 tokens; TTFT 132 ms; draft 656/996
+envcache boot3 narrative run1: 141.36 t/s; 867 tokens; TTFT 137 ms; draft 597/1890
+envcache boot3 narrative run2: 136.48 t/s; 860 tokens; TTFT 133 ms; draft 584/1932
+envcache boot3 narrative run3: 133.37 t/s; 888 tokens; TTFT 137 ms; draft 599/2023
+envcache boot3 narrative run4: 135.39 t/s; 1000 tokens; TTFT 139 ms; draft 680/2222
+envcache boot3 narrative run5: 128.73 t/s; 887 tokens; TTFT 139 ms; draft 580/2149
+envcache boot3 code run1: 231.50 t/s; 800 tokens; TTFT 135 ms; draft 659/971
+envcache boot3 code run2: 218.33 t/s; 800 tokens; TTFT 136 ms; draft 647/1057
+envcache boot3 code run3: 233.42 t/s; 800 tokens; TTFT 133 ms; draft 659/979
+envcache boot3 code run4: 231.46 t/s; 800 tokens; TTFT 133 ms; draft 656/994
+envcache boot3 code run5: 231.78 t/s; 800 tokens; TTFT 136 ms; draft 657/985
+
+Every measured prefill run:
+envguard boot1 run1: 3574.260000 t/s
+envguard boot1 run2: 3595.330000 t/s
+envguard boot1 run3: 3591.110000 t/s
+envguard boot1 run4: 3606.510000 t/s
+envguard boot1 run5: 3596.110000 t/s
+envcache boot1 run1: 3608.080000 t/s
+envcache boot1 run2: 3630.720000 t/s
+envcache boot1 run3: 3601.970000 t/s
+envcache boot1 run4: 3588.390000 t/s
+envcache boot1 run5: 3610.370000 t/s
+envguard boot2 run1: 3594.410000 t/s
+envguard boot2 run2: 3610.350000 t/s
+envguard boot2 run3: 3569.320000 t/s
+envguard boot2 run4: 3587.170000 t/s
+envguard boot2 run5: 3561.680000 t/s
+envcache boot2 run1: 3630.110000 t/s
+envcache boot2 run2: 3621.030000 t/s
+envcache boot2 run3: 3614.040000 t/s
+envcache boot2 run4: 3608.850000 t/s
+envcache boot2 run5: 3599.280000 t/s

@@ -1,0 +1,137 @@
+{
+  "status": "certified_local_publication_pending",
+  "hardware_qualified": true,
+  "repository": "seanyourhighness/L0xRE-BeeLLama-Low",
+  "tag": "beellama-v0.4.7-r6-sm120-windows-cuda130",
+  "candidate_backend_sha256": "cecb8856524b9cde7cce52cad6c762317ca1a52aa3fdd5a803f2a08311b27501",
+  "candidate_bridge_sha256": "e44150e6b2ab03c1cbb72cc27e722bb5ad80022a1bad65f4add3ce8c69a2fe79",
+  "performance": {
+    "code": {
+      "n": 15,
+      "mean_tps": 229.68038347188795,
+      "sample_sd": 8.222259392880373,
+      "cv_percent": 3.579865694491935,
+      "min": 213.19,
+      "max": 238.4,
+      "boot_means": [
+        226.66809598430808,
+        233.07442219439704,
+        229.2986322369587
+      ],
+      "pooled_draft_acceptance": 0.6563856065157888
+    },
+    "narrative": {
+      "n": 15,
+      "mean_tps": 136.58077960163348,
+      "sample_sd": 5.216404070676602,
+      "cv_percent": 3.8193030243641846,
+      "min": 128.73,
+      "max": 144.54,
+      "boot_means": [
+        135.63307142622557,
+        139.0420862380307,
+        135.06718114064415
+      ],
+      "pooled_draft_acceptance": 0.2971910836232444
+    },
+    "prefill": {
+      "n": 10,
+      "mean_tps": 3611.2829615,
+      "sample_sd": 13.361485446361646,
+      "cv_percent": 0.3699926520971944,
+      "min": 3588.39,
+      "max": 3630.72,
+      "boot_means": [
+        3607.90445,
+        3614.661473
+      ]
+    }
+  },
+  "quality": {
+    "status": "accepted_after_paired_case_review",
+    "pass_at_1": 125,
+    "pass_at_3": 133,
+    "total": 150,
+    "runaway": {
+      "count": 0,
+      "total": 150,
+      "rate": 0.0,
+      "modes": {
+        "timeout": 0,
+        "token_limit": 0,
+        "agent_runner_timeout": 0
+      },
+      "retry_modes": {
+        "timeout": 0,
+        "token_limit": 0,
+        "agent_runner_timeout": 0
+      },
+      "derived_from": "scenario and retry failure_mode fields; journal-finalized JSON omitted aggregate runaway metadata"
+    },
+    "case_review": {
+      "status": "accepted",
+      "quality_sha256": "2f729a9040e46d89bead133abf7eef9930c142a4ac47d95c77c03e82e98b75c5",
+      "acceptance_rule": "Original Linux qualification: completed matched full150 evaluations with actual sampler/runtime attestation, zero runaways/CUDA faults, and accepted paired case review. Historical129/133 was not a fixed count threshold.",
+      "gate_definition_audit": "REQUIREMENTS-AUDIT.json",
+      "not_a_threshold_exception": true,
+      "windows": {
+        "pass_at_1": 125,
+        "pass_at_3": 133,
+        "cases": 150
+      },
+      "original_R9_baseline": {
+        "pass_at_1": 124,
+        "pass_at_3": 132
+      },
+      "fresh_Linux_R6": {
+        "pass_at_1": 126,
+        "pass_at_3": 133
+      },
+      "case_review": {
+        "first_attempt_losses_vs_fresh": [
+          "cli-40/CLI-11",
+          "cli-40/CLI-12",
+          "hermesagent-20/HA-11"
+        ],
+        "first_attempt_loss_review": "Sorting the largest files, creating totals.csv, and preserving the GHCR skill failed first attempts but recovered within the prescribed three attempts. Candidate-only first passes TC-05 and CLI-19 are retained; net difference is one case.",
+        "third_attempt_losses_vs_fresh": [
+          "dataextract-15/DE-14",
+          "reasonmath-15/RM-06"
+        ],
+        "third_attempt_loss_review": "DE-14 fails strict multilingual name/array extraction. RM-06 returns mathematically correct3/4 and1/4 but uses noncanonical final-line keys; the original verifier rejects it. No score is regraded. Windows-only third-attempt passes HA-17 and HA-19 balance the two losses.",
+        "historical_baseline_persistent_losses": [
+          "cli-40/CLI-20",
+          "hermesagent-20/HA-13",
+          "reasonmath-15/RM-06"
+        ],
+        "historical_loss_review": "Archive-byte preservation, cron creation, and exact answer formatting remain model/agent behavior failures. All attempt traces remain retained. Other first-attempt losses recover on retries.",
+        "controlled_inference_evidence": "RM-06 and RM-13 greedy and seed42 outputs, including reasoning, are byte-identical on Windows candidate, Windows CUDA130 control and Linux. This rules out a platform-specific difference in those controlled examples only.",
+        "decision": "Accept the original paired-review gate for the stated model, sampler and32K quality protocol. Windows is one first-attempt case below the fresh Linux reference and equal atpass@3, and one case above the originalR9 baseline at both metrics. Valid thinking, identical150 definitions and actual samplers, zero runaways and no GPU/CUDA faults support this limited qualification.",
+        "limits": "One unseeded full150 run per arm. McNemar p=1.0 for fresh comparisons is not proof of equivalence. Mixed wins/losses are preserved; do not claim broad or distributional quality equivalence."
+      },
+      "extended81920_result": {
+        "pass_at_1": 121,
+        "pass_at_3": 129,
+        "cases": 150,
+        "scope": "Additional unseeded trial at frozen serving context, not the original32K quality gate. Retained and disclosed; no quality claim across all81K prompts is established."
+      },
+      "earlier_adapter_error": "Raw Windows receipts remain failed under the mistakenly added historical-score floor. This review supersedes that adapter verdict under the verified original gate; it does not erase or relabel measurements."
+    },
+    "context_note": "This isolated quality process uses the original Linux gate context32768. The frozen default profile remains81920. The earlier81920 quality result is retained separately.",
+    "adapter_gate_definition_correction": "The Windows adapter incorrectly converted the historical R6 candidate129/133 scores into absolute minimum thresholds. These were observations, not original fixed quality requirements. Legacy failed receipts remain unchanged; a new paired review must satisfy the original gate before promotion."
+  },
+  "assets": {
+    "l0xre-beellama-low-v0.4.7-r6-windows-x86_64-sm120-cuda130.zip": {
+      "bytes": 617766515,
+      "sha256": "3f1375870d8876ddaca0d048f81bd10e3b32245322376a8133ae3692aca9bfd7"
+    },
+    "l0xre-beellama-low-v0.4.7-r6-windows-sm120-source-inputs.zip": {
+      "bytes": 44215001,
+      "sha256": "91bcffbcc55a396cbbfed41ffec257885324d2814e5cd5c54ba669b53443478a"
+    }
+  },
+  "source_build_identity": "Full prepared control source, flat experiment TUs/header, bridge and recorded compile/link commands are in the source-input ZIP. The source tree and flags are frozen; rebuilt binaries require their own verification.",
+  "all_prior_results_preserved": true,
+  "original_quality_gate_restored_without_exception": true,
+  "publication_performed": false
+}

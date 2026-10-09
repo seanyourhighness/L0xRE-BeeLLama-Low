@@ -1,0 +1,49 @@
+{
+  "status": "accepted",
+  "quality_sha256": "2f729a9040e46d89bead133abf7eef9930c142a4ac47d95c77c03e82e98b75c5",
+  "acceptance_rule": "Original Linux qualification: completed matched full150 evaluations with actual sampler/runtime attestation, zero runaways/CUDA faults, and accepted paired case review. Historical129/133 was not a fixed count threshold.",
+  "gate_definition_audit": "REQUIREMENTS-AUDIT.json",
+  "not_a_threshold_exception": true,
+  "windows": {
+    "pass_at_1": 125,
+    "pass_at_3": 133,
+    "cases": 150
+  },
+  "original_R9_baseline": {
+    "pass_at_1": 124,
+    "pass_at_3": 132
+  },
+  "fresh_Linux_R6": {
+    "pass_at_1": 126,
+    "pass_at_3": 133
+  },
+  "case_review": {
+    "first_attempt_losses_vs_fresh": [
+      "cli-40/CLI-11",
+      "cli-40/CLI-12",
+      "hermesagent-20/HA-11"
+    ],
+    "first_attempt_loss_review": "Sorting the largest files, creating totals.csv, and preserving the GHCR skill failed first attempts but recovered within the prescribed three attempts. Candidate-only first passes TC-05 and CLI-19 are retained; net difference is one case.",
+    "third_attempt_losses_vs_fresh": [
+      "dataextract-15/DE-14",
+      "reasonmath-15/RM-06"
+    ],
+    "third_attempt_loss_review": "DE-14 fails strict multilingual name/array extraction. RM-06 returns mathematically correct3/4 and1/4 but uses noncanonical final-line keys; the original verifier rejects it. No score is regraded. Windows-only third-attempt passes HA-17 and HA-19 balance the two losses.",
+    "historical_baseline_persistent_losses": [
+      "cli-40/CLI-20",
+      "hermesagent-20/HA-13",
+      "reasonmath-15/RM-06"
+    ],
+    "historical_loss_review": "Archive-byte preservation, cron creation, and exact answer formatting remain model/agent behavior failures. All attempt traces remain retained. Other first-attempt losses recover on retries.",
+    "controlled_inference_evidence": "RM-06 and RM-13 greedy and seed42 outputs, including reasoning, are byte-identical on Windows candidate, Windows CUDA130 control and Linux. This rules out a platform-specific difference in those controlled examples only.",
+    "decision": "Accept the original paired-review gate for the stated model, sampler and32K quality protocol. Windows is one first-attempt case below the fresh Linux reference and equal atpass@3, and one case above the originalR9 baseline at both metrics. Valid thinking, identical150 definitions and actual samplers, zero runaways and no GPU/CUDA faults support this limited qualification.",
+    "limits": "One unseeded full150 run per arm. McNemar p=1.0 for fresh comparisons is not proof of equivalence. Mixed wins/losses are preserved; do not claim broad or distributional quality equivalence."
+  },
+  "extended81920_result": {
+    "pass_at_1": 121,
+    "pass_at_3": 129,
+    "cases": 150,
+    "scope": "Additional unseeded trial at frozen serving context, not the original32K quality gate. Retained and disclosed; no quality claim across all81K prompts is established."
+  },
+  "earlier_adapter_error": "Raw Windows receipts remain failed under the mistakenly added historical-score floor. This review supersedes that adapter verdict under the verified original gate; it does not erase or relabel measurements."
+}

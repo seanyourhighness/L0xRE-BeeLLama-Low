@@ -1,0 +1,63 @@
+{
+  "started": 1791521472.8968403,
+  "purpose": "Cache startup feature flags at selected host dispatch call sites; attestation stays dynamic.",
+  "compiler_commands": [
+    "C:\\work\\l0xre-sm120-cuda130-windows-20261008\\cuda\\bin\\nvcc.exe -forward-unknown-to-host-compiler -DGGML_BACKEND_BUILD -DGGML_BACKEND_DL -DGGML_BACKEND_SHARED -DGGML_CUDA_KVARN -DGGML_CUDA_USE_GRAPHS -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -D_CRT_SECURE_NO_WARNINGS -D_USE_MATH_DEFINES -D_XOPEN_SOURCE=600 -Dggml_cuda_EXPORTS -IC:\\work\\l0xre-sm120-cuda130-windows-20261008\\source\\ggml\\src\\ggml-cuda\\.. -IC:\\work\\l0xre-sm120-cuda130-windows-20261008\\source\\ggml\\src\\..\\include -isystem C:\\work\\l0xre-sm120-cuda130-windows-20261008\\cuda\\include -isystem C:\\work\\l0xre-sm120-cuda130-windows-20261008\\cuda\\include\\cccl -D_WINDOWS -Xcompiler=\" /EHsc\" -Xcompiler=\"-O2 -Ob2\" -DNDEBUG -std=c++17 \"--generate-code=arch=compute_120a,code=[compute_120a,sm_120a]\" -Xcompiler=-MD -use_fast_math -extended-lambda -compress-mode=size -Xcompiler /Zc:preprocessor -MD -MT C:\\work\\l0xre-sm120-envcache-windows-20261008\\ggml-cuda.cu.obj -MF C:\\work\\l0xre-sm120-envcache-windows-20261008\\ggml-cuda.cu.obj.d -x cu -c C:\\work\\l0xre-sm120-envcache-windows-20261008\\source\\ggml-cuda.cu -o C:\\work\\l0xre-sm120-envcache-windows-20261008\\ggml-cuda.cu.obj -Xcompiler=-FdC:/work/l0xre-sm120-envcache-windows-20261008/,-FS -IC:\\work\\l0xre-sm120-cuda130-windows-20261008\\source\\ggml\\src\\ggml-cuda",
+    "C:\\work\\l0xre-sm120-cuda130-windows-20261008\\cuda\\bin\\nvcc.exe -forward-unknown-to-host-compiler -DGGML_BACKEND_BUILD -DGGML_BACKEND_DL -DGGML_BACKEND_SHARED -DGGML_CUDA_KVARN -DGGML_CUDA_USE_GRAPHS -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -D_CRT_SECURE_NO_WARNINGS -D_USE_MATH_DEFINES -D_XOPEN_SOURCE=600 -Dggml_cuda_EXPORTS -IC:\\work\\l0xre-sm120-cuda130-windows-20261008\\source\\ggml\\src\\ggml-cuda\\.. -IC:\\work\\l0xre-sm120-cuda130-windows-20261008\\source\\ggml\\src\\..\\include -isystem C:\\work\\l0xre-sm120-cuda130-windows-20261008\\cuda\\include -isystem C:\\work\\l0xre-sm120-cuda130-windows-20261008\\cuda\\include\\cccl -D_WINDOWS -Xcompiler=\" /EHsc\" -Xcompiler=\"-O2 -Ob2\" -DNDEBUG -std=c++17 \"--generate-code=arch=compute_120a,code=[compute_120a,sm_120a]\" -Xcompiler=-MD -use_fast_math -extended-lambda -compress-mode=size -Xcompiler /Zc:preprocessor -MD -MT C:\\work\\l0xre-sm120-envcache-windows-20261008\\escha-moe.cu.obj -MF C:\\work\\l0xre-sm120-envcache-windows-20261008\\escha-moe.cu.obj.d -x cu -c C:\\work\\l0xre-sm120-envcache-windows-20261008\\source\\escha-moe.cu -o C:\\work\\l0xre-sm120-envcache-windows-20261008\\escha-moe.cu.obj -Xcompiler=-FdC:/work/l0xre-sm120-envcache-windows-20261008/,-FS -IC:\\work\\l0xre-sm120-cuda130-windows-20261008\\source\\ggml\\src\\ggml-cuda"
+  ],
+  "control_root": "C:\\work\\l0xre-sm120-cuda130-windows-20261008",
+  "serving_profile_locked": true,
+  "link_command": [
+    "D:\\VS\\BuildTools2022\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe",
+    "/nologo",
+    "@C:\\work\\l0xre-sm120-envcache-windows-20261008\\link.rsp",
+    "/out:C:\\work\\l0xre-sm120-envcache-windows-20261008\\package\\bin\\ggml-cuda.dll",
+    "/implib:C:\\work\\l0xre-sm120-envcache-windows-20261008\\ggml-cuda.lib",
+    "/pdb:C:\\work\\l0xre-sm120-envcache-windows-20261008\\ggml-cuda.pdb",
+    "/dll",
+    "/version:0.23",
+    "-shared",
+    "/machine:x64",
+    "/INCREMENTAL:NO",
+    "-LIBPATH:C:\\work\\l0xre-sm120-cuda130-windows-20261008\\cuda\\lib\\x64"
+  ],
+  "bridge_command": [
+    "C:\\work\\l0xre-sm120-cuda130-windows-20261008\\cuda\\bin\\nvcc.exe",
+    "-O3",
+    "-std=c++17",
+    "-gencode=arch=compute_120,code=sm_120",
+    "-gencode=arch=compute_120a,code=sm_120a",
+    "-shared",
+    "-Xcompiler",
+    "/MD",
+    "-Xlinker",
+    "/DEF:bridge-packed.def",
+    "-Xlinker",
+    "/NODEFAULTLIB:LIBCMT",
+    "-I.",
+    "-IC:\\work\\l0xre-sm120-cuda130-windows-20261008\\source\\ggml\\src\\ggml-cuda",
+    "-IC:\\work\\l0xre-sm120-cuda130-windows-20261008\\source\\ggml\\src",
+    "-IC:\\work\\l0xre-sm120-cuda130-windows-20261008\\source\\ggml\\include",
+    "bridge-packed.cu",
+    "-lcublas",
+    "-lcuda",
+    "-o",
+    "C:\\work\\l0xre-sm120-envcache-windows-20261008\\package\\bridge\\bridge-packed.dll"
+  ],
+  "status": "built",
+  "finished": 1791521538.4051638,
+  "initial_attempt": {
+    "status": "error",
+    "error": "AssertionError('bridge compile failed')"
+  },
+  "binary_hashes": {
+    "bin/ggml-cuda.dll": "cecb8856524b9cde7cce52cad6c762317ca1a52aa3fdd5a803f2a08311b27501",
+    "bridge/bridge-packed.dll": "e44150e6b2ab03c1cbb72cc27e722bb5ad80022a1bad65f4add3ce8c69a2fe79"
+  },
+  "source_hashes": {
+    "source/ggml-cuda.cu": "628d81288b14e993ab8f01d93000adfcf314c539b74a8c7f679c58c1ce5877e5",
+    "source/escha-moe.cu": "f01ab1d9c64f5783da6a18ab824977ea788d61c8e8f156b818c9593bffbfa5ba",
+    "source/l0xre-startup-env.h": "cd7465d9c2a3df2d1ddf638711be741f56088e7875e20870a260b73c125a09cc",
+    "bridge/bridge-packed.cu": "79914c4d1d4caca0032d9ae3efb116d9a51cae908cbb62aed314cac76bef1ff6"
+  }
+}
