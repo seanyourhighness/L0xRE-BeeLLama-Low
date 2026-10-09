@@ -8,7 +8,7 @@
 - **RTX 5090 / SM120:** **137 t/s prose · 230 t/s code · 3,611 t/s prefill** on native Windows with 32 GB VRAM.
 - **SM120 on both platforms:** Linux / WSL and Windows retain their independently certified single-card packages in the universal R6 release.
 - **80K context** (81,920 tokens), with INT8 prefill and CPU vision in the certified profiles.
-- **RTX 4070 Ti / SM89 Windows is next:** a CUDA 13.0 R6 refresh carries the SM120 source fixes into the 12 GB candidate. Linux SM89 and Windows SM86 remain candidates.
+- **RTX 4070 Ti / SM89 Windows:** **68 t/s prose · 116 t/s code** measured on the R6 refresh. **Certification mostly complete; completed quality packs 79/90 first attempts, 83/90 within three attempts; remaining packs pending.** [Measured configuration and status](docs/SM89-WINDOWS-STATUS.md). Linux SM89 and Windows SM86 remain candidates.
 - **All RTX 30/40/50 cards with 12 GB or more are installer targets.** Other cards and profiles require their own testing. Matched dual cards are **experimental / untested / uncertified**; [testers wanted](docs/DUAL-GPU-TESTING.md).
 
 ## Speed card (measured, RTX 3060 / 12 GB)

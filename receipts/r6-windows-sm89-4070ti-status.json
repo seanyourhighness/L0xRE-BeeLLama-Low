@@ -1,0 +1,109 @@
+{
+  "status": "certification-mostly-complete",
+  "hardware_qualified": false,
+  "quality_score": "remaining-packs-pending",
+  "quality_cases_required": 150,
+  "binary_changes": false,
+  "archive_sha256": "5fb57e1525c1bdbe9c6cf3f0f4d40a83bef37c764fe9922b73cb9d21eab8343b",
+  "canonical_decode_tokens_per_second": {
+    "prose": 67.88406274013634,
+    "code": 115.76447487117349
+  },
+  "canonical_wall_tokens_per_second": {
+    "prose": 67.14505237745362,
+    "code": 113.12988188038517
+  },
+  "protocol": "Two fresh starts, three warmups and five measured requests per workload per start; thinking disabled; temperature .6/top_p .95/top_k20/min_p0.",
+  "passed": [
+    "63 package hashes",
+    "3 model hashes",
+    "12 cross-restart token comparisons",
+    "81916-token capacity without truncation",
+    "1801.391-second soak,500 requests,496 repeated comparisons",
+    "CPUvision OCR and shapes",
+    "varied-content10240/77824 prefill checks"
+  ],
+  "closeout_pending": [
+    "Candidate full150 quality and paired reviewed comparison",
+    "Final consumer-launcher start/stop and quiet-prefill closeout"
+  ],
+  "future_targets": {
+    "prose": 75,
+    "code": 125,
+    "prefill_stretch": 1500
+  },
+  "server_state": "stopped at user request",
+  "limitations": [
+    "Partial quality outcomes are not a final n/150 score.",
+    "Original invalid Hermes/CLI cohorts excluded; corrected candidate Hermes currently16/20 complete and corrected CLI40 unperformed.",
+    "Reasoning-loop guards and task failures are retained; no universally loop-free or perfect-quality claim."
+  ],
+  "profile": "tools/universal/r6-windows-sm89-4070ti-profile.json",
+  "completed_quality_packs": {
+    "basis": "Raw verifier results, completed valid packs only; no extrapolation or adjudication adjustments.",
+    "matched_case_definitions_and_sampling": true,
+    "packs": [
+      {
+        "pack": "toolcall-15",
+        "cases": 15,
+        "candidate_first_attempt": 12,
+        "candidate_up_to_three": 13,
+        "baseline_first_attempt": 14,
+        "baseline_up_to_three": 14
+      },
+      {
+        "pack": "instructfollow-15",
+        "cases": 15,
+        "candidate_first_attempt": 14,
+        "candidate_up_to_three": 15,
+        "baseline_first_attempt": 14,
+        "baseline_up_to_three": 15
+      },
+      {
+        "pack": "structoutput-15",
+        "cases": 15,
+        "candidate_first_attempt": 15,
+        "candidate_up_to_three": 15,
+        "baseline_first_attempt": 15,
+        "baseline_up_to_three": 15
+      },
+      {
+        "pack": "dataextract-15",
+        "cases": 15,
+        "candidate_first_attempt": 13,
+        "candidate_up_to_three": 13,
+        "baseline_first_attempt": 12,
+        "baseline_up_to_three": 12
+      },
+      {
+        "pack": "reasonmath-15",
+        "cases": 15,
+        "candidate_first_attempt": 11,
+        "candidate_up_to_three": 12,
+        "baseline_first_attempt": 12,
+        "baseline_up_to_three": 13
+      },
+      {
+        "pack": "bugfind-15",
+        "cases": 15,
+        "candidate_first_attempt": 14,
+        "candidate_up_to_three": 15,
+        "baseline_first_attempt": 14,
+        "baseline_up_to_three": 15
+      }
+    ],
+    "totals": {
+      "cases": 90,
+      "candidate_first_attempt": 79,
+      "candidate_up_to_three": 83,
+      "baseline_first_attempt": 81,
+      "baseline_up_to_three": 84
+    },
+    "source_sha256": {
+      "capacity-stability\\quality-75.json": "daf2f2c81e25e3ff442191cda8c1a668328e7458132831fc6825141cba2f084d",
+      "quality-candidate\\results.json": "5f169f06a99968b5f73bcb67def6ccf895baf4fe7e94d441fe10cf710189ae22",
+      "quality-baseline\\results.json": "d03d04587ed1029fa042c56b95fdbc5bb61107bdc3d78f1fbbc9abeb3a4cff76"
+    }
+  },
+  "build_handoff": "Configuration and launcher source for integration into the full Windows package on another build machine; no new native build or full archive published."
+}

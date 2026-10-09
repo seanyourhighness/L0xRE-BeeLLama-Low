@@ -1,0 +1,17 @@
+{
+  "check": "consumer-launcher-dry-run",
+  "passed": true,
+  "server_started": false,
+  "profile": "r6-sm89-4070ti",
+  "arch": "sm89",
+  "processor_affinity": 4095,
+  "frozen_server_args_match": true,
+  "portable_environment_matches_frozen_values": true,
+  "runtime_and_model_hash_checks": "Passed by launcher before dry-run output",
+  "hardware_qualified": false,
+  "limitation": "Dry-run only; real consumer-launcher start/stop remains pending.",
+  "source_sha256": {
+    "tools/universal/r6-launch.ps1": "b8609c9d2afec8904a9d649e6d02c8d48e8b5952eeaf8a3c00be8dc6e52c3430",
+    "tools/universal/r6-windows-sm89-4070ti-profile.json": "a03199b0cb2ff587ca4daa31587a097cf8b7b258fe10b0f568a68506635cc401"
+  }
+}
