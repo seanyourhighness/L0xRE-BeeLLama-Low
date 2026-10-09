@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'tools/universal/**'
+      - 'install/**'
       - 'tools/release-correctness.py'
       - 'tools/test-release-correctness.py'
       - 'doctor.py'
@@ -12,6 +13,7 @@ on:
   pull_request:
     paths:
       - 'tools/universal/**'
+      - 'install/**'
       - 'tools/release-correctness.py'
       - 'tools/test-release-correctness.py'
       - 'doctor.py'
@@ -31,6 +33,12 @@ jobs:
           python3 tools/universal/test-linux-launchers.py
           python3 tools/universal/test-fast-launcher.py
           python3 tools/test-release-correctness.py
+      - name: Check guided Linux installer with offline archives
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zstd
+          bash -n install/install.sh
+          python3 -m unittest discover -s install -p 'test_install.py'
   windows:
     runs-on: windows-latest
     steps:
@@ -38,3 +46,6 @@ jobs:
       - name: Check Windows launcher arguments with a stub executable
         shell: powershell
         run: .\tools\universal\test-windows-launcher.ps1
+      - name: Check guided Windows installer with offline archives
+        shell: powershell
+        run: .\install\test-windows.ps1

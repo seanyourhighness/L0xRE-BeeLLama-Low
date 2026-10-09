@@ -38,6 +38,29 @@ These are the frozen seed-42 certified measurements (37.16 / 65.06 sustained; 37
 
 These are rounded confirmed means from separate RTX 5090 qualifications, each with one GPU and one slot. Windows meets its release speed requirements; Linux retains its disclosed original decode-target exception. Exact scores, quality results, frozen profiles, and evidence are in [SM120 certification details](docs/SM120-QUALIFICATION.md).
 
+## Guided install (Linux / WSL and Windows)
+
+**Let setup pick the package and profile.** The installer detects your selected GPU, checks VRAM, downloads and verifies the runtime, target, and drafter, and creates a ready-to-run launcher with the package's existing **80K / KVarN4/4 / DFlash2 N7** settings. Matching model files can be reused; setup shows the plan and asks before downloading about 10 GB of weights. The NVIDIA driver must already work.
+
+On **Linux / WSL** (Python 3.12+, `curl`, `zstd`, and `numactl`):
+
+```bash
+curl -fL --retry 3 -o install-l0xre.sh \
+  https://raw.githubusercontent.com/seanyourhighness/L0xRE-BeeLLama-Low/main/install/install.sh
+bash install-l0xre.sh --dry-run
+bash install-l0xre.sh
+```
+
+On **Windows**, open PowerShell:
+
+```powershell
+Invoke-WebRequest -UseBasicParsing 'https://raw.githubusercontent.com/seanyourhighness/L0xRE-BeeLLama-Low/main/install/install.ps1' -OutFile install-l0xre.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\install-l0xre.ps1 -DryRun
+powershell -NoProfile -ExecutionPolicy Bypass -File .\install-l0xre.ps1
+```
+
+Automatic certified downloads are available for **Linux SM86** and **Windows SM120 / RTX 5090**. Linux SM120 accepts the sealed local archive until its download is published. SM89 / RTX 4090 and Windows SM86 require an explicit candidate opt-in. Setup prints the start command and leaves the server stopped. See [installer options and architecture selection](install/README.md) for existing model folders, GPU selection, CPU vision, and candidate testing.
+
 ## Quick start (Linux / WSL — certified SM86)
 
 Download the R6 Linux archive and its checksum into one directory:
@@ -59,7 +82,7 @@ curl -fL --retry 3 -o models/L0xRE-27b-Low.gguf \
 curl -fL --retry 3 -o models/Qwen3.8-27B-DFlash2-Q4_K_M.gguf \
   https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/Qwen3.8-27B-DFlash2-Q4_K_M.gguf
 sha256sum -c MODEL-SHA256SUMS
-./l0xre serve --profile 12gb -m models/L0xRE-27b-Low.gguf \
+./l0xre serve --profile r6 -m models/L0xRE-27b-Low.gguf \
   -md models/Qwen3.8-27B-DFlash2-Q4_K_M.gguf --host 127.0.0.1 --port 8080
 ```
 
@@ -75,7 +98,7 @@ Use your actual model paths. Add `-DryRun` to verify files and print the resolve
 
 ## Update / upgrade guide
 
-- **From r5-fast / r4 / r3 → R6:** stop the old server, download the R6 archive above into a fresh directory, verify checksums, and launch with `--profile 12gb`. The model files are unchanged (same SHA-256 identities below), so reuse them or re-download from the pinned HF revision.
+- **From r5-fast / r4 / r3 → R6:** stop the old server, download the R6 archive above into a fresh directory, verify checksums, and launch with `--profile r6`. The model files are unchanged (same SHA-256 identities below), so reuse them or re-download from the pinned HF revision.
 - **Rollback:** extract an earlier release into a separate directory and reuse the unchanged model files; no service install or model conversion is performed.
 - **Windows SM86/SM89:** the universal packages remain candidates. The separate Windows SM120/RTX5090 archive above has its own qualified profile and evidence; do not apply its measurements to the other assets.
 - **SM120:** the Linux / WSL and Windows certifications apply to their dedicated RTX 5090 profiles. The certified Linux archive has not yet been published; inherited universal SM120 payloads keep their previous status. See [SM120 certification details](docs/SM120-QUALIFICATION.md).
@@ -108,7 +131,7 @@ The target is a custom GGUF supported by this L0xRE runtime. Use this runtime fo
 
 ## Linux / WSL installation
 
-The quick start above covers the certified SM86 R6 path. If you need the fast-profile launcher instead, see [FAST-RELEASE.md](FAST-RELEASE.md). For the certified R6 path, extract the R6 Linux archive (the filename and checksum are in the Downloads table above), then verify, download the model, and launch with `--profile 12gb`. Install `zstd` and `curl` if needed (`sudo apt-get install zstd curl`).
+The quick start above covers the certified SM86 R6 path. If you need the fast-profile launcher instead, see [FAST-RELEASE.md](FAST-RELEASE.md). For the certified R6 path, extract the R6 Linux archive (the filename and checksum are in the Downloads table above), then verify, download the model, and launch with `--profile r6`. Install `zstd` and `curl` if needed (`sudo apt-get install zstd curl`).
 
 The launcher detects the first visible GPU. On a machine with multiple GPUs, set `CUDA_VISIBLE_DEVICES` to the intended GPU index or UUID before launch. For example, `CUDA_VISIBLE_DEVICES=1 ./l0xre serve ...` selects GPU 1. `L0XRE_ARCH=sm86|sm89|sm120` overrides routing; it does not change which GPU CUDA uses.
 
@@ -120,12 +143,11 @@ The certified 37 / 65 t/s numbers are Linux SM86 only; the Windows SM86 package 
 Get-FileHash .\L0xRE-BeeLLama-Low-R6-sm86-windows-candidate.zip -Algorithm SHA256
 Expand-Archive .\L0xRE-BeeLLama-Low-R6-sm86-windows-candidate.zip -DestinationPath .
 Set-Location .\L0xRE-BeeLLama-Low-R6-sm86-windows-candidate
-powershell -NoProfile -ExecutionPolicy Bypass -File .\verify.ps1
 New-Item -ItemType Directory -Force models | Out-Null
 curl.exe -fL --retry 3 -o models\L0xRE-27b-Low.gguf https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/L0xRE-27b-Low.gguf
 curl.exe -fL --retry 3 -o models\Qwen3.8-27B-DFlash2-Q4_K_M.gguf https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/Qwen3.8-27B-DFlash2-Q4_K_M.gguf
 Get-FileHash .\models\*.gguf -Algorithm SHA256
-.\l0xre.cmd serve --profile 12gb -m models\L0xRE-27b-Low.gguf -md models\Qwen3.8-27B-DFlash2-Q4_K_M.gguf --host 127.0.0.1 --port 8080
+.\l0xre-r6.cmd serve --profile r6 --qualification-probe -m models\L0xRE-27b-Low.gguf -md models\Qwen3.8-27B-DFlash2-Q4_K_M.gguf --host 127.0.0.1 --port 8080
 ```
 
 Compare both model hashes with the table below before running. On a multi-GPU Windows machine, set `$env:CUDA_VISIBLE_DEVICES="1"` (or the GPU UUID) before launch. Stop the server with Ctrl+C. The API is at `http://127.0.0.1:8080/v1`; check `http://127.0.0.1:8080/health` for readiness.
@@ -140,6 +162,8 @@ Compare both model hashes with the table below before running. On a multi-GPU Wi
 Downloads are pinned to HF revision `9b74c81c19f8372888c2968b5334f42b0354d8b1`, verified against the repository's LFS identities on September 29, 2026. The model card explains the current recommended setup; the pinned model bytes are unchanged. The [MTP variant](https://huggingface.co/YourHighnessLA/L0xRE-27b-Low-MTP) is a separate target file and is not interchangeable in benchmark attribution.
 
 ## Profiles
+
+Guided setup uses each current R6 package's frozen **80K / KVarN4/4 / DFlash2 N7** profile. Linux R6 launchers accept `--profile r6`; the dedicated Windows SM120 launcher reads its bundled profile directly. The `12gb` settings below describe the inherited universal compatibility launchers, which are separate from the current R6 installer packages.
 
 **Updated SM86 12 GB default:** `12gb`, `12gb-quality`, and `12gb-b84` select **80K context, target KVarN4/4, Q4_0/Q4_0 DFlash2 caches**, Q4_K_M drafter weights and medium reasoning. INT8 prefill and gated FP16 long attention are enabled. The inherited universal SM89/SM120 paths retain the r3 80K KVarN3/3 preset. Dedicated certified SM120 packages use **80K, KVarN4/4, and DFlash2 N7**; their settings are recorded in [SM120 certification details](docs/SM120-QUALIFICATION.md).
 
