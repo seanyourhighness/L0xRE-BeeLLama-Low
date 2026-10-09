@@ -75,10 +75,10 @@
         "certified_gpu_name_contains": ""
       },
       "sm89": {
-        "filename": "L0xRE-BeeLLama-Low-R6-sm89-windows-prefill-port2-candidate.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm89-windows-prefill-port2-candidate.zip",
-        "sha256": "99ff152cd0712bb358172d9514c2594326455716b5669b4aeebf39f8b8f591c4",
-        "bytes": 891966633,
+        "filename": "L0xRE-BeeLLama-Low-R6-sm89-windows-refresh-candidate.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm89-windows-refresh-candidate.zip",
+        "sha256": "5fb57e1525c1bdbe9c6cf3f0f4d40a83bef37c764fe9922b73cb9d21eab8343b",
+        "bytes": 615071754,
         "status": "candidate",
         "min_memory_mib": 12000,
         "gpu_name_contains": "RTX 40",
@@ -86,7 +86,9 @@
         "launcher": "tools/universal/r6-launch.ps1",
         "launcher_style": "r6",
         "install_reserve_bytes": 5000000000,
-        "certified_gpu_name_contains": ""
+        "certified_gpu_name_contains": "",
+        "source_release": "beellama-v0.4.7-r6-sm120-windows-cuda130",
+        "qualification_note": "Refreshed CUDA13.0 source; RTX4070Ti hardware certification pending."
       },
       "sm120": {
         "filename": "l0xre-beellama-low-v0.4.7-r6-windows-x86_64-sm120-cuda130.zip",

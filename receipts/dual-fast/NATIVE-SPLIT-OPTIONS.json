@@ -1,0 +1,73 @@
+{
+  "status": "pass",
+  "method": "compiled parser option strings present; not an inference or placement test",
+  "physical_pair_tests": false,
+  "runtimes": [
+    {
+      "runtime": "linux-sm86",
+      "file": "libllama-common.so.0.4.7",
+      "sha256": "1720b98e1861a238bfafa37168a38d7f1c35a7608b5ae1894a6052fc6ad77d73",
+      "compiled_option_strings": [
+        "--split-mode",
+        "--tensor-split",
+        "--device",
+        "--spec-draft-device"
+      ]
+    },
+    {
+      "runtime": "linux-sm89",
+      "file": "libllama-common.so.0.4.7",
+      "sha256": "2e706600b4b922e8ffdea90f261c94ce504b0b691f3ff78edca07aecf892b261",
+      "compiled_option_strings": [
+        "--split-mode",
+        "--tensor-split",
+        "--device",
+        "--spec-draft-device"
+      ]
+    },
+    {
+      "runtime": "linux-sm120",
+      "file": "libllama-common.so.0.4.7",
+      "sha256": "3a47e7a59cf2e85d0fe5d98b810b95b177c4220db77bd9a36148306fd636648c",
+      "compiled_option_strings": [
+        "--split-mode",
+        "--tensor-split",
+        "--device",
+        "--spec-draft-device"
+      ]
+    },
+    {
+      "runtime": "windows-sm86",
+      "file": "llama-common.dll",
+      "sha256": "51207b58eb7247059e9493127d45218d5f98e742e2875647be32ae548780a88c",
+      "compiled_option_strings": [
+        "--split-mode",
+        "--tensor-split",
+        "--device",
+        "--spec-draft-device"
+      ]
+    },
+    {
+      "runtime": "windows-sm120",
+      "file": "llama-common.dll",
+      "sha256": "1b6968988b4066620f535fb0966b6b73a285434ebf57a082c6087cc0ec47944b",
+      "compiled_option_strings": [
+        "--split-mode",
+        "--tensor-split",
+        "--device",
+        "--spec-draft-device"
+      ]
+    },
+    {
+      "runtime": "windows-sm89-refresh",
+      "file": "llama-common.dll",
+      "sha256": "dd7ba801a5eae20f3c60b43ff249e206bb0e5b5ed673b5a93191da4db974fc3c",
+      "compiled_option_strings": [
+        "--split-mode",
+        "--tensor-split",
+        "--device",
+        "--spec-draft-device"
+      ]
+    }
+  ]
+}

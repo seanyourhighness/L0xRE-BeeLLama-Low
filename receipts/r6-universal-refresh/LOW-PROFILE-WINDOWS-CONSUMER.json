@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "gpu_detection": "mock SM120 identity",
+  "gpu_inference_run": false,
+  "native_windows_clean_extraction": true,
+  "full_manifest_and_real_model_hashes": "pass",
+  "hardware_qualified": false,
+  "context": 32768,
+  "int8_down_cache": "0",
+  "affinity": 255
+}

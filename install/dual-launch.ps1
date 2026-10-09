@@ -59,9 +59,10 @@ if ($receipt.vision) { $argv += @('--mmproj',(Join-Path $receipt.models_dir $mod
 $server = Join-Path $receipt.runtime 'bin\llama-server.exe'
 if ($DryRun) {
     foreach ($name in @('CUDA_VISIBLE_DEVICES','GGML_BACKEND_PATH','ESCHA_OFFICIAL_BRIDGE_LIBRARY','L0XRE_GDN_MASKED_LIBRARY','L0XRE_DUAL_FAST_EXPERIMENT')) { $resolvedEnv[$name]=[Environment]::GetEnvironmentVariable($name,'Process') }
-    @{ mode='dual-fast-experimental'; hardware_qualified=$false; argv=@($server)+$argv; external_fast_bridges=$true; env=$resolvedEnv } | ConvertTo-Json -Depth 8
+    @{ mode='dual-fast-experimental'; qualification_status='experimental / untested / uncertified'; hardware_qualified=$false; argv=@($server)+$argv; external_fast_bridges=$true; env=$resolvedEnv } | ConvertTo-Json -Depth 8
     exit 0
 }
+Write-Host 'EXPERIMENTAL DUAL GPU / UNTESTED / UNCERTIFIED: quality and performance parity are unmeasured.'
 [Diagnostics.Process]::GetCurrentProcess().ProcessorAffinity = [IntPtr]255
 & $server @argv
 exit $LASTEXITCODE

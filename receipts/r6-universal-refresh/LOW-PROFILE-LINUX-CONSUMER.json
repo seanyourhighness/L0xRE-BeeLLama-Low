@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "gpu_detection": "mock SM120 identity",
+  "gpu_inference_run": false,
+  "hardware_qualified": false,
+  "full_manifest_loader_links_real_model_hashes": "pass",
+  "context": 32768,
+  "int8_down_cache": "0"
+}

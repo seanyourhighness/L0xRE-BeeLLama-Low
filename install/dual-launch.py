@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sys
 
 
 def sha(path):
@@ -78,9 +79,11 @@ def main():
     args, env = command_for(receipt, profile)
     if opt.dry_run:
         print(json.dumps({"mode": "dual-fast-experimental", "hardware_qualified": False, "argv": args,
+                          "qualification_status": "experimental / untested / uncertified",
                           "env": {k: v for k, v in env.items() if k.startswith(("ESCHA_", "L0XRE_", "GGML_", "LD_", "CUDA_"))},
                           "external_fast_bridges": True}, indent=2))
         return
+    print("EXPERIMENTAL DUAL GPU / UNTESTED / UNCERTIFIED: quality and performance parity are unmeasured.", file=sys.stderr, flush=True)
     os.sched_setaffinity(0, set(range(8)))
     os.execvpe(args[0], args, env)
 

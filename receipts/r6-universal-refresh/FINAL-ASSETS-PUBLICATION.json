@@ -1,0 +1,34 @@
+{
+  "status": "pass",
+  "tag": "beellama-v0.4.7-universal-r6",
+  "all_selected_catalog_assets_published_and_hash_verified": true,
+  "new_assets": [
+    {
+      "filename": "L0xRE-BeeLLama-Low-R6-sm89-windows-refresh-candidate.zip",
+      "bytes": 615071754,
+      "sha256": "5fb57e1525c1bdbe9c6cf3f0f4d40a83bef37c764fe9922b73cb9d21eab8343b"
+    },
+    {
+      "filename": "L0xRE-BeeLLama-Low-R6-sm89-windows-refresh-source-inputs.zip",
+      "bytes": 43595585,
+      "sha256": "398fa0d234f16bbfc56ad2fe5e9217837deeaa535a694a0a68fe2f8f19e9dfeb"
+    },
+    {
+      "filename": "R6-UNIVERSAL-CATALOG.json",
+      "bytes": 8490,
+      "sha256": "62dadea38625a831256d0efedfe7bd6e883a18a496dc06f8ec555887eaeb7fc9"
+    },
+    {
+      "filename": "L0xRE-BeeLLama-Low-R6-setup-linux.tar.gz",
+      "bytes": 10488,
+      "sha256": "baac9549cd5bf940cf3b99b1604789e8f2f31b931dfc9bd4a7489522915f9a4b"
+    },
+    {
+      "filename": "L0xRE-BeeLLama-Low-R6-setup-windows.zip",
+      "bytes": 12168,
+      "sha256": "7770e631b208f61667a7da31605437a8093e08a43bd091d01934e8b01610228f"
+    }
+  ],
+  "sm89_hardware_qualified": false,
+  "dual_gpu_hardware_qualified": false
+}

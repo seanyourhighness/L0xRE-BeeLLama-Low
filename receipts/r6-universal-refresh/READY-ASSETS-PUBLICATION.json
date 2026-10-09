@@ -1,0 +1,37 @@
+{
+  "tag": "beellama-v0.4.7-universal-r6",
+  "status": "uploaded-github-digests-match",
+  "assets": [
+    {
+      "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-linux-candidate.tar.zst",
+      "bytes": 1112801747,
+      "sha256": "0ad0866a7fe99c272a7d6d4b9b8eeb4816d6472c0b1f76f2d867da1731ed729d"
+    },
+    {
+      "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-windows-candidate.zip",
+      "bytes": 617480059,
+      "sha256": "5f46cc0804053f11af69bd346d98e0893dc50cf45dcef0c2b85e185313d10ea4"
+    },
+    {
+      "filename": "L0xRE-BeeLLama-Low-R6-dual-fast-linux-experimental.tar.zst",
+      "bytes": 764875,
+      "sha256": "66d209550a7f6f763c68b04f524da53cac485c01c63e6044365e4e0461a0297e"
+    },
+    {
+      "filename": "L0xRE-BeeLLama-Low-R6-dual-fast-windows-experimental.zip",
+      "bytes": 593388,
+      "sha256": "695988f9b9a30f1579a4c3267f36e6e2b3ec167a1680a300f0f9de37a288129a"
+    },
+    {
+      "filename": "L0xRE-SM120-certified-20261008.tar.zst",
+      "bytes": 1111927641,
+      "sha256": "9af12274ef1b7c41923fc35bebea2097a37a20afdba6a6552ea1eb22eccb87ff"
+    },
+    {
+      "filename": "l0xre-beellama-low-v0.4.7-r6-windows-x86_64-sm120-cuda130.zip",
+      "bytes": 617766515,
+      "sha256": "3f1375870d8876ddaca0d048f81bd10e3b32245322376a8133ae3692aca9bfd7"
+    }
+  ],
+  "prior_assets_unchanged": true
+}

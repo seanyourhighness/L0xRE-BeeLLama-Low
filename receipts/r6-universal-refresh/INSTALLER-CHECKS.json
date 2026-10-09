@@ -1,0 +1,23 @@
+{
+  "status": "pass",
+  "linux_unittest_count": 14,
+  "native_windows_powershell": "5.1.26100.9444",
+  "windows_checks": 46,
+  "gpu_inference_run": false,
+  "github_ci": {
+    "run": 37970396734,
+    "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/actions/runs/37970396734",
+    "linux": "success",
+    "windows": "success",
+    "commit": "9a2dff3600606377ac3395fd976025686b12cb66"
+  },
+  "scope": [
+    "GPU/model/VRAM selection",
+    "candidate and matched-pair gates",
+    "archive/model hashes and tamper rejection",
+    "clean extraction and path containment",
+    "retained R6 fast profile and per-device bridge selection",
+    "update preferences and verified rollback",
+    "SM120 selected-GPU adapter preserves sealed launcher"
+  ]
+}
