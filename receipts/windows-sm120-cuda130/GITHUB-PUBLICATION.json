@@ -1,0 +1,56 @@
+{
+  "status": "published_and_download_verified",
+  "repository": "seanyourhighness/L0xRE-BeeLLama-Low",
+  "tag": "beellama-v0.4.7-r6-sm120-windows-cuda130",
+  "release_url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/beellama-v0.4.7-r6-sm120-windows-cuda130",
+  "release_channel": "R6 prerelease",
+  "published_at_utc": "2026-10-09T08:15:15Z",
+  "target_commit": "5567eaef32a24181cac82bae5c473e07ac606bfa",
+  "merged_pull_request": {
+    "mergeCommit": {
+      "oid": "5567eaef32a24181cac82bae5c473e07ac606bfa"
+    },
+    "mergedAt": "2026-10-09T08:10:57Z",
+    "state": "MERGED",
+    "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/pull/2"
+  },
+  "tag_commit_verified": true,
+  "all_five_assets_downloaded_and_sha256_verified": true,
+  "assets": {
+    "l0xre-beellama-low-v0.4.7-r6-windows-x86_64-sm120-cuda130.zip": {
+      "sha256": "3f1375870d8876ddaca0d048f81bd10e3b32245322376a8133ae3692aca9bfd7",
+      "bytes": 617766515,
+      "download_url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6-sm120-windows-cuda130/l0xre-beellama-low-v0.4.7-r6-windows-x86_64-sm120-cuda130.zip",
+      "verified_against_local": true
+    },
+    "l0xre-beellama-low-v0.4.7-r6-windows-sm120-source-inputs.zip": {
+      "sha256": "91bcffbcc55a396cbbfed41ffec257885324d2814e5cd5c54ba669b53443478a",
+      "bytes": 44215001,
+      "download_url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6-sm120-windows-cuda130/l0xre-beellama-low-v0.4.7-r6-windows-sm120-source-inputs.zip",
+      "verified_against_local": true
+    },
+    "WINDOWS-SM120-SHA256SUMS.txt": {
+      "sha256": "0cd37a9bb5a5622e2399e2b287409f534191177f1e48e1d314cc849402f3b480",
+      "bytes": 257,
+      "download_url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6-sm120-windows-cuda130/WINDOWS-SM120-SHA256SUMS.txt",
+      "verified_against_local": true
+    },
+    "WINDOWS-SM120-CERTIFICATE.json": {
+      "sha256": "7a8ff02a9212b9358543a066bb03731329813908a6ac612f21afad3c354e6ff2",
+      "bytes": 43920,
+      "download_url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6-sm120-windows-cuda130/WINDOWS-SM120-CERTIFICATE.json",
+      "verified_against_local": true
+    },
+    "ARCHIVE-CONSUMER-VERIFICATION.json": {
+      "sha256": "783a82f7f3137037f610f04ecb6a87a60af0c367de6552f1682fbabc0d783889",
+      "bytes": 14469,
+      "download_url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6-sm120-windows-cuda130/ARCHIVE-CONSUMER-VERIFICATION.json",
+      "verified_against_local": true
+    }
+  },
+  "certificate_status": "certified",
+  "original_quality_gate": "accepted paired case review; historical129/133 was not a fixed count floor",
+  "runtime_binary_and_serving_config_unchanged": true,
+  "performance_requirements_unchanged": true,
+  "verification_finished_utc": "2026-10-09T08:19:10Z"
+}
