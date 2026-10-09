@@ -1,0 +1,81 @@
+{
+  "status": "pass",
+  "backend_sha256": "cecb8856524b9cde7cce52cad6c762317ca1a52aa3fdd5a803f2a08311b27501",
+  "bridge_sha256": "e44150e6b2ab03c1cbb72cc27e722bb5ad80022a1bad65f4add3ce8c69a2fe79",
+  "K256": {
+    "mangled_name": "_Z10head_fusedILi8ELi64ELi256ELi1ELi4EEvPKhPK6__halfS1_S4_Pfii",
+    "normalized_sass_sha256": "749b7e5ed9c9dab59ff40e6ca5131ec8e2fb294125a8600420555439e0b459b5",
+    "instruction_count": 232,
+    "identical_to_CUDA130_control_and_Linux": true,
+    "command": [
+      "C:\\work\\l0xre-sm120-cuda130-windows-20261008\\cuda\\bin\\cuobjdump.exe",
+      "--dump-sass",
+      "--function",
+      "_Z10head_fusedILi8ELi64ELi256ELi1ELi4EEvPKhPK6__halfS1_S4_Pfii",
+      "C:\\work\\l0xre-sm120-envcache-windows-20261008\\package\\bin\\ggml-cuda.dll"
+    ]
+  },
+  "sources": {
+    "C:\\work\\l0xre-sm120-envcache-windows-20261008\\source\\ggml-cuda.cu": "628d81288b14e993ab8f01d93000adfcf314c539b74a8c7f679c58c1ce5877e5",
+    "C:\\work\\l0xre-sm120-envcache-windows-20261008\\source\\escha-moe.cu": "f01ab1d9c64f5783da6a18ab824977ea788d61c8e8f156b818c9593bffbfa5ba",
+    "C:\\work\\l0xre-sm120-envcache-windows-20261008\\bridge\\bridge-packed.cu": "79914c4d1d4caca0032d9ae3efb116d9a51cae908cbb62aed314cac76bef1ff6",
+    "C:\\work\\l0xre-sm120-envcache-windows-20261008\\source\\l0xre-startup-env.h": "cd7465d9c2a3df2d1ddf638711be741f56088e7875e20870a260b73c125a09cc"
+  },
+  "semantics": "Structural guards remove impossible getenv queries. Selected stable feature flags own per-callsite snapshots initialized at first use. A fresh process is required to change them. Attestation and test controls remain dynamic.",
+  "prefill_notices": {
+    "L0XRE_I8_PREFILL_SYNC enabled=1 interval=8": true,
+    "L0XRE_I8_DOWN_CACHE enabled=1": true,
+    "L0XRE_I8_DOWN_CACHE_FILL": true,
+    "L0XRE_I8_DOWN_CACHE_HIT": true,
+    "L0XRE_REJECTION_VERIFY_ACTIVE depth=7": true
+  },
+  "profiling_excluded_from_performance": true,
+  "capture": {
+    "receipt_sha256": "96c719bfc359ef7357a25092d69db7dd6d102805061f2e4a9e375c0e7ecec471",
+    "report_sha256": "a386a1f53c19a61a805de3494f4f6a063adf9cffaef5c3f9d67acd8a0ba3a8b3",
+    "sqlite_sha256": "3ddd7c5b7ff62e70226b5553d25dfd18a7aca57bb53a5472cc82a6463d395bd0",
+    "active_head_K256": [
+      [
+        "void head_fused<(int)8, (int)64, (int)256, (int)1, (int)4>(const unsigned char *, const __half *, const unsigned char *, const __half *, float *, int, int)",
+        3880,
+        1,
+        1,
+        512,
+        1,
+        1,
+        171,
+        165
+      ]
+    ],
+    "active_down16_grid": [
+      [
+        "void escha_escham::escham_gemv_bw_kernel<(int)1, (int)3, (bool)0, (bool)0, (bool)0>(float *, const __half *, const unsigned short *, const __half *, const float *, int, int, int, int, int, __half *, const __half *, const float *, int *)",
+        40,
+        16,
+        1,
+        256,
+        1,
+        1,
+        5504,
+        5321
+      ]
+    ],
+    "graph_launch_API": [
+      [
+        "cudaGraphLaunch_v10000",
+        675
+      ]
+    ],
+    "rows_fields": [
+      "name",
+      "gridX",
+      "gridY",
+      "gridZ",
+      "blockX",
+      "blockY",
+      "blockZ",
+      "instances",
+      "graph_instances"
+    ]
+  }
+}
