@@ -8,12 +8,13 @@
         "sha256": "6d69be5b0e6dcb85be9b08767ffff034a99439658bdc8bac856a545697518781",
         "bytes": 724015593,
         "status": "certified",
-        "min_memory_mib": 11000,
-        "gpu_name_contains": "",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "RTX 30",
         "profile": "80K / KVarN4/4 / DFlash2 N7 / medium reasoning",
         "launcher": "tools/universal/r6-launch.py",
         "launcher_style": "r6",
-        "install_reserve_bytes": 5000000000
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": "RTX 3060"
       },
       "sm89": {
         "filename": "L0xRE-BeeLLama-Low-R6-sm89-linux-prefill-port2-candidate.tar.zst",
@@ -21,25 +22,41 @@
         "sha256": "8066643f3141264fff8a27e2d2f4b8e10315746b6890059a75065f198b6e1fc1",
         "bytes": 985645788,
         "status": "candidate",
-        "min_memory_mib": 22000,
-        "gpu_name_contains": "RTX 4090",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "RTX 40",
         "profile": "80K / KVarN4/4 / DFlash2 N7 / medium reasoning",
         "launcher": "tools/universal/r6-launch.py",
         "launcher_style": "r6",
-        "install_reserve_bytes": 5000000000
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": ""
       },
       "sm120": {
         "filename": "L0xRE-SM120-certified-20261008.tar.zst",
-        "url": null,
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-SM120-certified-20261008.tar.zst",
         "sha256": "9af12274ef1b7c41923fc35bebea2097a37a20afdba6a6552ea1eb22eccb87ff",
         "bytes": 1111927641,
-        "status": "certified-local",
+        "status": "certified",
         "min_memory_mib": 30000,
         "gpu_name_contains": "RTX 5090",
         "profile": "80K / KVarN4/4 / DFlash2 N7 / medium reasoning",
         "launcher": "tools/universal/r6-launch.py",
         "launcher_style": "r6",
-        "install_reserve_bytes": 5000000000
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": "RTX 5090"
+      },
+      "sm120-12gb": {
+        "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-linux-candidate.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm120-12gb-linux-candidate.tar.zst",
+        "sha256": "0ad0866a7fe99c272a7d6d4b9b8eeb4816d6472c0b1f76f2d867da1731ed729d",
+        "bytes": 1112801747,
+        "status": "candidate",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "RTX 50",
+        "profile": "32K / KVarN4/4 / DFlash2 N7 / no down-weight cache / 16K prefill chunks",
+        "launcher": "tools/universal/r6-launch.py",
+        "launcher_style": "r6",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": ""
       }
     },
     "windows": {
@@ -49,12 +66,13 @@
         "sha256": "9ae318512be28a851d728c328b201a7aabc7ef052140eb87a50c3773bbe1a93c",
         "bytes": 892481245,
         "status": "candidate",
-        "min_memory_mib": 11000,
-        "gpu_name_contains": "",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "RTX 30",
         "profile": "80K / KVarN4/4 / DFlash2 N7 / medium reasoning",
         "launcher": "tools/universal/r6-launch.ps1",
         "launcher_style": "r6",
-        "install_reserve_bytes": 5000000000
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": ""
       },
       "sm89": {
         "filename": "L0xRE-BeeLLama-Low-R6-sm89-windows-prefill-port2-candidate.zip",
@@ -62,16 +80,17 @@
         "sha256": "99ff152cd0712bb358172d9514c2594326455716b5669b4aeebf39f8b8f591c4",
         "bytes": 891966633,
         "status": "candidate",
-        "min_memory_mib": 22000,
-        "gpu_name_contains": "RTX 4090",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "RTX 40",
         "profile": "80K / KVarN4/4 / DFlash2 N7 / medium reasoning",
         "launcher": "tools/universal/r6-launch.ps1",
         "launcher_style": "r6",
-        "install_reserve_bytes": 5000000000
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": ""
       },
       "sm120": {
         "filename": "l0xre-beellama-low-v0.4.7-r6-windows-x86_64-sm120-cuda130.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6-sm120-windows-cuda130/l0xre-beellama-low-v0.4.7-r6-windows-x86_64-sm120-cuda130.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/l0xre-beellama-low-v0.4.7-r6-windows-x86_64-sm120-cuda130.zip",
         "sha256": "3f1375870d8876ddaca0d048f81bd10e3b32245322376a8133ae3692aca9bfd7",
         "bytes": 617766515,
         "status": "certified",
@@ -80,7 +99,23 @@
         "profile": "80K / KVarN4/4 / DFlash2 N7 / medium reasoning",
         "launcher": "l0xre.ps1",
         "launcher_style": "sm120-windows",
-        "install_reserve_bytes": 5000000000
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": "RTX 5090",
+        "gpu_selector_adapter": true
+      },
+      "sm120-12gb": {
+        "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-windows-candidate.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm120-12gb-windows-candidate.zip",
+        "sha256": "5f46cc0804053f11af69bd346d98e0893dc50cf45dcef0c2b85e185313d10ea4",
+        "bytes": 617480059,
+        "status": "candidate",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "RTX 50",
+        "profile": "32K / KVarN4/4 / DFlash2 N7 / no down-weight cache / 16K prefill chunks",
+        "launcher": "l0xre.ps1",
+        "launcher_style": "sm120-windows",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": ""
       }
     }
   },
@@ -102,6 +137,33 @@
       "bytes": 629247008,
       "sha256": "2e968a6af97ce35d8971890b257b9b7edabf20ad91450501fa53162a19ee33eb",
       "url": "https://huggingface.co/ggml-org/Qwen3.8-27B-GGUF/resolve/71bc7b627595dc8a91039addd9c791ae548d6747/mmproj-Qwen3.8-27B-Q8_0.gguf"
+    }
+  },
+  "hardware_target": {
+    "series": [
+      "RTX 30",
+      "RTX 40",
+      "RTX 50"
+    ],
+    "minimum_vram_mib_per_gpu": 12000,
+    "dual_gpu": "experimental / untested / uncertified matched pair; >=12GB per GPU; layer split1,1 with per-device fast bridge; parity is a goal, not a measured result"
+  },
+  "dual_addons": {
+    "linux": {
+      "filename": "L0xRE-BeeLLama-Low-R6-dual-fast-linux-experimental.tar.zst",
+      "bytes": 764875,
+      "sha256": "66d209550a7f6f763c68b04f524da53cac485c01c63e6044365e4e0461a0297e",
+      "status": "experimental",
+      "launcher": "DUAL-EXPERIMENT.json",
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-dual-fast-linux-experimental.tar.zst"
+    },
+    "windows": {
+      "filename": "L0xRE-BeeLLama-Low-R6-dual-fast-windows-experimental.zip",
+      "bytes": 593388,
+      "sha256": "695988f9b9a30f1579a4c3267f36e6e2b3ec167a1680a300f0f9de37a288129a",
+      "status": "experimental",
+      "launcher": "DUAL-EXPERIMENT.json",
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-dual-fast-windows-experimental.zip"
     }
   }
 }

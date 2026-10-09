@@ -1,0 +1,310 @@
+--- a/bridge/bridge-packed.cu
++++ b/bridge/bridge-packed.cu
+@@ -97,20 +97,19 @@
+     unsigned long calls[8]={}, other_stream[8]={};
+     std::mutex mutex;
+ };
+-static State & state() { static State *s=new State;return *s; }
++// One immutable lifetime state per CUDA ordinal; matched GPUs only in the launcher.
++constexpr int MAX_DEVICES = 64;
++static State & state(int device) { static State states[MAX_DEVICES]; return states[device]; }
+ static void must(cudaError_t e,const char *what) {
+     if(e!=cudaSuccess) {fprintf(stderr,"L0XRE_I8_INIT_FAILED %s: %s\n",what,cudaGetErrorString(e));_exit(91);}
+ }
+ static void cb(cublasStatus_t e,const char *what) {
+     if(e!=CUBLAS_STATUS_SUCCESS) {fprintf(stderr,"L0XRE_I8_CUBLAS_FAILED %s: %d\n",what,int(e));_exit(92);}
+ }
+-#ifndef _WIN32
+-__attribute__((constructor))
+-#endif
+-static void startup() {
++static void startup_device(int device) {
+     const char *env=getenv("L0XRE_INT8_PREFILL");
+     if(!env || (strcmp(env,"1") && strcmp(env,"2")))return;
+-    auto &s=state();s.mode=atoi(env);
++    auto &s=state(device);s.mode=atoi(env);
+     if(const char *sync=getenv("L0XRE_INT8_PREFILL_SYNC")) {
+         if(strcmp(sync,"0") && strcmp(sync,"1")) {
+             fprintf(stderr,"L0XRE_I8_BAD_PREFILL_SYNC\n");_exit(93);
+@@ -138,10 +137,10 @@
+         if(!*mask || *end || value<0 || value>255){fprintf(stderr,"L0XRE_I8_BAD_MASK\n");_exit(93);}
+         s.mask=int(value);
+     }
+-    must(cudaSetDevice(0),"device");
++    must(cudaSetDevice(device),"device");
+     if(s.prefill_sync) {
+         cudaDeviceProp props;
+-        must(cudaGetDeviceProperties(&props,0),"prefill sync device properties");
++        must(cudaGetDeviceProperties(&props,device),"prefill sync device properties");
+         s.prefill_sync=props.major==12 && props.minor==0;
+     }
+     must(cudaMalloc(&s.weight,WEIGHT_ELEMS),"weight");
+@@ -176,11 +175,26 @@
+         WEIGHT_ELEMS+size_t(CAP)*(MAX_IC+MAX_OC*sizeof(int)+sizeof(float))+CUBLAS_WORK+
+         (s.cache_down?WEIGHT_ELEMS*DOWN_CACHE_CAP:0));
+ }
++#ifndef _WIN32
++__attribute__((constructor))
++#endif
++static void startup() {
++    const char *env=getenv("L0XRE_INT8_PREFILL");
++    if(!env || (strcmp(env,"1") && strcmp(env,"2")))return;
++    int count=0, previous=0;
++    must(cudaGetDeviceCount(&count),"device count");
++    if(count<1 || count>MAX_DEVICES) { fprintf(stderr,"L0XRE_I8_DEVICE_COUNT_UNSUPPORTED\n");_exit(93); }
++    must(cudaGetDevice(&previous),"current device");
++    for(int device=0;device<count;++device)startup_device(device);
++    must(cudaSetDevice(previous),"restore device");
++    fprintf(stderr,"L0XRE_DUAL_FAST_INIT devices=%d experimental=1\n",count);
++}
+ // 1 means fall through to untouched B74; 0 means success; -1 means failure.
+ static int run(cudaStream_t stream,int device,void *output,const void *input,
+         const int16_t *code,const void *rout,int M,int ic,int oc,int K,int acc) {
+-    auto &s=state();
+-    if(!s.initialized || s.mode!=1 || device!=0 || M<256 || M>CAP)return 1;
++    if(device<0 || device>=MAX_DEVICES)return 1;
++    auto &s=state(device);
++    if(!s.initialized || s.mode!=1 || M<256 || M>CAP)return 1;
+     const int role=(ic==17408 && oc==5120 && K==3 && acc==0)?0:
+                    (ic==5120 && oc==17408 && K==2 && acc==1)?1:
+                    (ic==5120 && oc==17408 && K==3 && acc==1)?2:
+@@ -271,8 +285,11 @@
+ thread_local std::string g_error;
+ std::mutex g_mutex;
+ 
+-CUmodule g_code_module = nullptr;
+-std::unordered_map<std::string, CUfunction> g_code_functions;
++struct code_module_state {
++    CUmodule module = nullptr;
++    std::unordered_map<std::string, CUfunction> functions;
++};
++std::unordered_map<int, code_module_state> g_code_modules;
+ std::unordered_map<uint64_t, float *> g_ones;
+ 
+ struct decode_module_key {
+@@ -357,7 +374,8 @@
+ 
+ bool load_code_module(int device) {
+     std::lock_guard<std::mutex> lock(g_mutex);
+-    if (g_code_module != nullptr) {
++    auto &state = g_code_modules[device];
++    if (state.module != nullptr) {
+         return true;
+     }
+     const char * path = L0XRE_STARTUP_ENV("ESCHA_OFFICIAL_CODE_GEMM_CUBIN");
+@@ -368,10 +386,10 @@
+     if (!ensure_context(device)) {
+         return false;
+     }
+-    const CUresult status = cuModuleLoad(&g_code_module, path);
++    const CUresult status = cuModuleLoad(&state.module, path);
+     if (status != CUDA_SUCCESS) {
+         set_driver_error("cuModuleLoad code-GEMM cubin failed", status);
+-        g_code_module = nullptr;
++        state.module = nullptr;
+         return false;
+     }
+     return true;
+@@ -471,17 +489,18 @@
+         return nullptr;
+     }
+     std::lock_guard<std::mutex> lock(g_mutex);
+-    auto it = g_code_functions.find(symbol);
+-    if (it != g_code_functions.end()) {
++    auto &state = g_code_modules.at(device);
++    auto it = state.functions.find(symbol);
++    if (it != state.functions.end()) {
+         return it->second;
+     }
+     CUfunction function = nullptr;
+-    const CUresult status = cuModuleGetFunction(&function, g_code_module, symbol);
++    const CUresult status = cuModuleGetFunction(&function, state.module, symbol);
+     if (status != CUDA_SUCCESS) {
+         set_driver_error("cuModuleGetFunction code-GEMM failed", status);
+         return nullptr;
+     }
+-    g_code_functions.emplace(symbol, function);
++    state.functions.emplace(symbol, function);
+     return function;
+ }
+ 
+--- a/sm86/gdn-masked.cu
++++ b/sm86/gdn-masked.cu
+@@ -121,11 +121,15 @@
+     int * indices = nullptr;
+ };
+ 
+-Workspace workspace;
+-std::once_flag init_once;
+-std::mutex owner_mutex;
+-bool ready = false;
+-cudaStream_t owner = nullptr;
++constexpr int MAX_DEVICES = 64;
++struct DeviceState {
++    Workspace workspace;
++    std::once_flag init_once;
++    std::mutex owner_mutex;
++    bool ready = false;
++    cudaStream_t owner = nullptr;
++};
++DeviceState & device_state(int device) { static DeviceState states[MAX_DEVICES]; return states[device]; }
+ 
+ Kernel load_kernel(const std::string & path, const char * name, int shared) {
+     Kernel k;
+@@ -141,6 +145,7 @@
+ void allocate(void ** ptr, size_t bytes) { cuda_ok(cudaMalloc(ptr, bytes), "cudaMalloc GDN workspace"); }
+ 
+ void initialize(int device) {
++    auto &workspace=device_state(device).workspace;
+     cuda_ok(cudaSetDevice(device), "cudaSetDevice");
+     cu_ok(cuInit(0), "cuInit");
+     const char * root_env = std::getenv("L0XRE_GDN_MASKED_CUBIN_ROOT");
+@@ -192,12 +197,19 @@
+         int64_t sb1, int64_t sb2, float scale, int64_t valid_tokens) {
+     try {
+         last_error.clear();
++        if(device<0 || device>=MAX_DEVICES)return 1;
++        auto &s=device_state(device);
++        auto &workspace=s.workspace;
++        auto &init_once=s.init_once;
++        auto &owner_mutex=s.owner_mutex;
++        auto &ready=s.ready;
++        auto &owner=s.owner;
+         // Serialize the entire shared-workspace launch sequence, including
+         // callers from different host threads on the same CUDA stream.
+         std::lock_guard<std::mutex> dispatch_guard(owner_mutex);
+         if (q32 == nullptr || k32 == nullptr || v32 == nullptr || g32 == nullptr ||
+             beta32 == nullptr || state_in == nullptr || dst32 == nullptr || state_out == nullptr ||
+-            device != 0 || S_v != D || heads != H || n_tokens < 64 || n_tokens > T ||
++            S_v != D || heads != H || n_tokens < 64 || n_tokens > T ||
+             n_tokens % 64 != 0 || valid_tokens <= 0 || valid_tokens > n_tokens || n_seqs != 1 ||
+             // BeeLlama's ggml tensors are laid out as [D,H,T,B]: the
+             // element stride is one and the token stride is H*D.  The
+@@ -208,6 +220,7 @@
+             sb1 != 1 || sb2 != H || std::abs(scale - 1.0f/std::sqrt((float)D)) > 1e-6f) {
+             return 1; // unsupported: no output writes
+         }
++        cuda_ok(cudaSetDevice(device), "select GDN device");
+         // Allocate only outside capture; callers must warm up before graph replay.
+         // One owner stream prevents cross-stream reuse of the shared scratch.
+         {
+--- a/sm89/gdn-masked.cu
++++ b/sm89/gdn-masked.cu
+@@ -121,11 +121,15 @@
+     int * indices = nullptr;
+ };
+ 
+-Workspace workspace;
+-std::once_flag init_once;
+-std::mutex owner_mutex;
+-bool ready = false;
+-cudaStream_t owner = nullptr;
++constexpr int MAX_DEVICES = 64;
++struct DeviceState {
++    Workspace workspace;
++    std::once_flag init_once;
++    std::mutex owner_mutex;
++    bool ready = false;
++    cudaStream_t owner = nullptr;
++};
++DeviceState & device_state(int device) { static DeviceState states[MAX_DEVICES]; return states[device]; }
+ 
+ Kernel load_kernel(const std::string & path, const char * name, int shared) {
+     Kernel k;
+@@ -141,6 +145,7 @@
+ void allocate(void ** ptr, size_t bytes) { cuda_ok(cudaMalloc(ptr, bytes), "cudaMalloc GDN workspace"); }
+ 
+ void initialize(int device) {
++    auto &workspace=device_state(device).workspace;
+     cuda_ok(cudaSetDevice(device), "cudaSetDevice");
+     cu_ok(cuInit(0), "cuInit");
+     const char * root_env = std::getenv("L0XRE_GDN_MASKED_CUBIN_ROOT");
+@@ -192,12 +197,19 @@
+         int64_t sb1, int64_t sb2, float scale, int64_t valid_tokens) {
+     try {
+         last_error.clear();
++        if(device<0 || device>=MAX_DEVICES)return 1;
++        auto &s=device_state(device);
++        auto &workspace=s.workspace;
++        auto &init_once=s.init_once;
++        auto &owner_mutex=s.owner_mutex;
++        auto &ready=s.ready;
++        auto &owner=s.owner;
+         // Serialize the entire shared-workspace launch sequence, including
+         // callers from different host threads on the same CUDA stream.
+         std::lock_guard<std::mutex> dispatch_guard(owner_mutex);
+         if (q32 == nullptr || k32 == nullptr || v32 == nullptr || g32 == nullptr ||
+             beta32 == nullptr || state_in == nullptr || dst32 == nullptr || state_out == nullptr ||
+-            device != 0 || S_v != D || heads != H || n_tokens < 64 || n_tokens > T ||
++            S_v != D || heads != H || n_tokens < 64 || n_tokens > T ||
+             n_tokens % 64 != 0 || valid_tokens <= 0 || valid_tokens > n_tokens || n_seqs != 1 ||
+             // BeeLlama's ggml tensors are laid out as [D,H,T,B]: the
+             // element stride is one and the token stride is H*D.  The
+@@ -208,6 +220,7 @@
+             sb1 != 1 || sb2 != H || std::abs(scale - 1.0f/std::sqrt((float)D)) > 1e-6f) {
+             return 1; // unsupported: no output writes
+         }
++        cuda_ok(cudaSetDevice(device), "select GDN device");
+         // Allocate only outside capture; callers must warm up before graph replay.
+         // One owner stream prevents cross-stream reuse of the shared scratch.
+         {
+--- a/sm120/gdn-masked.cu
++++ b/sm120/gdn-masked.cu
+@@ -121,11 +121,15 @@
+     int * indices = nullptr;
+ };
+ 
+-Workspace workspace;
+-std::once_flag init_once;
+-std::mutex owner_mutex;
+-bool ready = false;
+-cudaStream_t owner = nullptr;
++constexpr int MAX_DEVICES = 64;
++struct DeviceState {
++    Workspace workspace;
++    std::once_flag init_once;
++    std::mutex owner_mutex;
++    bool ready = false;
++    cudaStream_t owner = nullptr;
++};
++DeviceState & device_state(int device) { static DeviceState states[MAX_DEVICES]; return states[device]; }
+ 
+ Kernel load_kernel(const std::string & path, const char * name, int shared) {
+     Kernel k;
+@@ -141,6 +145,7 @@
+ void allocate(void ** ptr, size_t bytes) { cuda_ok(cudaMalloc(ptr, bytes), "cudaMalloc GDN workspace"); }
+ 
+ void initialize(int device) {
++    auto &workspace=device_state(device).workspace;
+     cuda_ok(cudaSetDevice(device), "cudaSetDevice");
+     cu_ok(cuInit(0), "cuInit");
+     const char * root_env = std::getenv("L0XRE_GDN_MASKED_CUBIN_ROOT");
+@@ -192,12 +197,19 @@
+         int64_t sb1, int64_t sb2, float scale, int64_t valid_tokens) {
+     try {
+         last_error.clear();
++        if(device<0 || device>=MAX_DEVICES)return 1;
++        auto &s=device_state(device);
++        auto &workspace=s.workspace;
++        auto &init_once=s.init_once;
++        auto &owner_mutex=s.owner_mutex;
++        auto &ready=s.ready;
++        auto &owner=s.owner;
+         // Serialize the entire shared-workspace launch sequence, including
+         // callers from different host threads on the same CUDA stream.
+         std::lock_guard<std::mutex> dispatch_guard(owner_mutex);
+         if (q32 == nullptr || k32 == nullptr || v32 == nullptr || g32 == nullptr ||
+             beta32 == nullptr || state_in == nullptr || dst32 == nullptr || state_out == nullptr ||
+-            device != 0 || S_v != D || heads != H || n_tokens < 64 || n_tokens > T ||
++            S_v != D || heads != H || n_tokens < 64 || n_tokens > T ||
+             n_tokens % 64 != 0 || valid_tokens <= 0 || valid_tokens > n_tokens || n_seqs != 1 ||
+             // BeeLlama's ggml tensors are laid out as [D,H,T,B]: the
+             // element stride is one and the token stride is H*D.  The
+@@ -208,6 +220,7 @@
+             sb1 != 1 || sb2 != H || std::abs(scale - 1.0f/std::sqrt((float)D)) > 1e-6f) {
+             return 1; // unsupported: no output writes
+         }
++        cuda_ok(cudaSetDevice(device), "select GDN device");
+         // Allocate only outside capture; callers must warm up before graph replay.
+         // One owner stream prevents cross-stream reuse of the shared scratch.
+         {

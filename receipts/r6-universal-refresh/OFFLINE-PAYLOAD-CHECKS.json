@@ -1,0 +1,41 @@
+{
+  "status": "pass",
+  "hardware_tests_run": false,
+  "original_certified_archives_unchanged": true,
+  "packages": [
+    {
+      "platform": "linux",
+      "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-linux-candidate.tar.zst",
+      "sha256": "0ad0866a7fe99c272a7d6d4b9b8eeb4816d6472c0b1f76f2d867da1731ed729d",
+      "archive_and_extracted_hashes": "pass",
+      "hardware_qualified": false,
+      "profile_assertions": "pass",
+      "retained_certified_payload_files": 21
+    },
+    {
+      "platform": "windows",
+      "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-windows-candidate.zip",
+      "sha256": "5f46cc0804053f11af69bd346d98e0893dc50cf45dcef0c2b85e185313d10ea4",
+      "archive_and_extracted_hashes": "pass",
+      "hardware_qualified": false,
+      "profile_assertions": "pass",
+      "retained_certified_payload_files": 33,
+      "pe_imports_checked": 292
+    },
+    {
+      "platform": "linux",
+      "filename": "L0xRE-BeeLLama-Low-R6-dual-fast-linux-experimental.tar.zst",
+      "sha256": "66d209550a7f6f763c68b04f524da53cac485c01c63e6044365e4e0461a0297e",
+      "archive_and_extracted_hashes": "pass",
+      "hardware_qualified": false
+    },
+    {
+      "platform": "windows",
+      "filename": "L0xRE-BeeLLama-Low-R6-dual-fast-windows-experimental.zip",
+      "sha256": "695988f9b9a30f1579a4c3267f36e6e2b3ec167a1680a300f0f9de37a288129a",
+      "archive_and_extracted_hashes": "pass",
+      "hardware_qualified": false,
+      "pe_imports_checked": 63
+    }
+  ]
+}

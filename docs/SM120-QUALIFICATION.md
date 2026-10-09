@@ -4,7 +4,7 @@ The R6 SM120 profiles use the same L0xRE-27b-Low target and Q4_K_M DFlash2 draft
 
 ## Linux / WSL qualification
 
-The Linux / WSL build was locally certified on October 8, 2026, with NVIDIA driver 617.42. The sealed archive is **not yet published as a GitHub download**. Older universal SM120 payloads do not inherit this certification.
+The Linux / WSL build was locally certified on October 8, 2026, with NVIDIA driver 617.42. The exact sealed archive is available in the [universal R6 release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-SM120-certified-20261008.tar.zst). Older universal SM120 payloads do not inherit this certification.
 
 | Measurement | Confirmed result |
 | --- | --- |
@@ -68,4 +68,4 @@ The confirmed Windows narrative mean is **136.58077960 t/s**, rounded to **137 t
 
 ## Unified project and next architecture
 
-Both platforms stay in this repository and use the same model and drafter hashes. Each platform keeps its own archive, launcher, and certification evidence. Consolidating the documentation does not replace or repack the certified binaries. SM89 / RTX 4090 is the next hardware target; its Linux and Windows packages remain candidates until their own correctness, speed, quality, capacity, and stability gates pass. See [architecture status](../PARITY.md).
+Both platforms stay in this repository and use the same model and drafter hashes. Each platform keeps its own archive, launcher, and certification evidence. Consolidating the documentation does not replace or repack the certified binaries. SM89 / RTX 4070 Ti Windows is the next hardware target; SM89 Linux and Windows packages remain candidates until their own correctness, speed, quality, capacity, and stability gates pass. See [architecture status](../PARITY.md).

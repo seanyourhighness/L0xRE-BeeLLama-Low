@@ -56,17 +56,41 @@ def detect_gpu(selector=None):
 
 def make_plan(catalog, gpu, allow_candidate=False, runtime_archive=None):
     package = catalog["packages"]["linux"].get(gpu["arch"])
+    if gpu["arch"] == "sm120" and (gpu["memory_mib"] < 30000 or "RTX 5090" not in gpu["name"]):
+        package = catalog["packages"]["linux"].get("sm120-12gb", package)
     if not package:
         raise ValueError(f"Unsupported GPU architecture: {gpu['arch']}")
     if gpu["memory_mib"] < package["min_memory_mib"]:
-        raise ValueError(f"{gpu['name']} has insufficient VRAM for this packaged 80K profile")
+        raise ValueError(f"{gpu['name']} has insufficient VRAM for this packaged profile")
     if package["gpu_name_contains"] and package["gpu_name_contains"] not in gpu["name"]:
         raise ValueError(f"The available {gpu['arch']} setup is scoped to {package['gpu_name_contains']}")
     if package["status"] == "candidate" and not allow_candidate:
         raise ValueError(f"{gpu['arch']} Linux is a candidate. Use --allow-candidate only to opt into testing it")
     if not package["url"] and not runtime_archive:
         raise ValueError("The certified Linux SM120 archive is not published yet. Supply --runtime-archive PATH to the sealed archive; Windows SM120 is available now")
-    return {"gpu": gpu, "package": package, "platform": "linux"}
+    measured = package.get("certified_gpu_name_contains", package["gpu_name_contains"])
+    return {"gpu": gpu, "package": package, "platform": "linux",
+            "hardware_qualified_for_gpu": package["status"].startswith("certified") and bool(measured) and measured in gpu["name"]}
+
+
+def make_dual_plan(catalog, selectors, allow_candidate=False, runtime_archive=None):
+    if not allow_candidate:
+        raise ValueError("Dual-GPU native layer split is experimental; use --allow-candidate")
+    ids = selectors.split(",")
+    if len(ids) != 2 or any(not s.strip() for s in ids):
+        raise ValueError("Supply exactly two GPU indices or UUIDs with --gpus 0,1")
+    gpus = [detect_gpu(s.strip()) for s in ids]
+    a, b = gpus
+    if a["uuid"] == b["uuid"] or a["arch"] != b["arch"] or a["name"] != b["name"] or abs(a["memory_mib"] - b["memory_mib"]) > 256:
+        raise ValueError("Dual mode requires two distinct matched cards of the same model and VRAM size")
+    if min(g["memory_mib"] for g in gpus) < 12000:
+        raise ValueError("Dual mode requires at least 12GB VRAM per card")
+    plan = make_plan(catalog, a, True, runtime_archive)
+    addon = catalog.get("dual_addons", {}).get("linux")
+    if not addon:
+        raise ValueError("This catalog does not contain the experimental dual fast-path add-on")
+    plan.update(gpus=gpus, mode="dual-fast-experimental", hardware_qualified_for_gpu=False, dual_addon=addon)
+    return plan
 
 
 def verify_artifact(path, record):
@@ -185,6 +209,7 @@ def check_space(install_dir, models_dir, records, runtime_reserve):
 
 
 def write_launcher(install_dir, runtime, models_dir, plan, vision, port):
+    receipt_path = install_dir / "INSTALLATION.json"
     args = [sys.executable, str(runtime / plan["package"]["launcher"]), "serve", "--arch", plan["gpu"]["arch"],
             "-m", str(models_dir / "L0xRE-27b-Low.gguf"), "-md", str(models_dir / "Qwen3.8-27B-DFlash2-Q4_K_M.gguf"),
             "--host", "127.0.0.1", "--port", str(port)]
@@ -192,10 +217,30 @@ def write_launcher(install_dir, runtime, models_dir, plan, vision, port):
         args += ["--qualification-probe"]
     if vision:
         args += ["--mmproj", str(models_dir / "mmproj-Qwen3.8-27B-Q8_0.gguf")]
+    if plan.get("mode") == "dual-fast-experimental":
+        source = Path(__file__).with_name("dual-launch.py")
+        helper = install_dir / "launchers" / sha256(source)[:16] / source.name
+        helper.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, helper)
+        plan["launcher_files"] = {str(helper.relative_to(install_dir)): sha256(helper)}
+        args = [sys.executable, str(helper)]
     script = install_dir / "start.sh"
-    script.write_text("#!/usr/bin/env bash\nset -euo pipefail\nexport CUDA_VISIBLE_DEVICES=" +
-                      shlex.quote(plan["gpu"]["uuid"]) + "\nexec " + shlex.join(args) + ' "$@"\n')
+    script_text = ("#!/usr/bin/env bash\nset -euo pipefail\nexport CUDA_VISIBLE_DEVICES=" +
+                   shlex.quote(plan["gpu"]["uuid"]) + "\nexec " + shlex.join(args) + ' "$@"\n')
+    previous = json.loads(receipt_path.read_text()) if receipt_path.is_file() else {}
+    if previous and script.is_file() and (script.read_text() != script_text or previous.get("runtime") != str(runtime)
+                                         or previous.get("dual_addon_root") != plan.get("dual_addon_root")):
+        rollback = install_dir / "previous"
+        rollback.mkdir(exist_ok=True)
+        for name in ("INSTALLATION.json", "start.sh"):
+            shutil.copy2(install_dir / name, rollback / name)
+    script.write_text(script_text)
     script.chmod(0o755)
+    updater = install_dir / "update.sh"
+    updater.write_text('#!/usr/bin/env bash\nset -euo pipefail\nstage="$(mktemp -d)"\ntrap \'rm -rf -- "$stage"\' EXIT\n'
+        'curl -fL --retry 3 https://raw.githubusercontent.com/seanyourhighness/L0xRE-BeeLLama-Low/main/install/install.sh -o "$stage/install.sh"\n'
+        'bash "$stage/install.sh" --update --dir ' + shlex.quote(str(install_dir)) + ' "$@"\n')
+    updater.chmod(0o755)
     (install_dir / "INSTALLATION.json").write_text(json.dumps({**plan, "models_dir": str(models_dir),
                                                                "runtime": str(runtime), "vision": vision, "port": port}, indent=2) + "\n")
     return script
@@ -207,20 +252,60 @@ def main(argv=None):
     parser.add_argument("--models-dir", type=Path)
     parser.add_argument("--catalog", type=Path)
     parser.add_argument("--gpu", help="Physical GPU index or UUID; defaults to first CUDA_VISIBLE_DEVICES entry or GPU 0")
+    parser.add_argument("--gpus", help="Experimental matched pair, e.g. 0,1; requires --allow-candidate")
     parser.add_argument("--runtime-archive", type=Path)
     parser.add_argument("--allow-candidate", action="store_true")
+    parser.add_argument("--update", action="store_true", help="Keep installed GPU, models, vision and port while selecting the current release")
+    parser.add_argument("--rollback", action="store_true", help="Restore the previous verified runtime and start script")
     parser.add_argument("--vision", action="store_true")
     parser.add_argument("--runtime-only", action="store_true")
     parser.add_argument("--dry-run", action="store_true", help="Show the selection without writing files or downloading artifacts")
     parser.add_argument("--yes", action="store_true", help="Accept the planned downloads without a prompt")
-    parser.add_argument("--port", type=int, default=8080)
+    parser.add_argument("--port", type=int)
     options = parser.parse_args(argv)
+    install_dir = options.dir.expanduser().resolve()
+    if options.rollback:
+        previous = install_dir / "previous"
+        receipt = json.loads((previous / "INSTALLATION.json").read_text())
+        verify_package(Path(receipt["runtime"]))
+        if receipt.get("dual_addon_root"):
+            verify_package(Path(receipt["dual_addon_root"]))
+        for name, expected in receipt.get("launcher_files", {}).items():
+            path = install_dir / name
+            if not path.resolve().is_relative_to(install_dir.resolve()) or sha256(path) != expected:
+                raise ValueError("Previous launcher integrity mismatch: " + name)
+        if not options.dry_run:
+            for name in ("INSTALLATION.json", "start.sh"):
+                shutil.copy2(previous / name, install_dir / name)
+        print("Previous runtime: " + receipt["runtime"])
+        return 0
+    if options.update:
+        previous = json.loads((install_dir / "INSTALLATION.json").read_text())
+        if not options.gpu and not options.gpus:
+            if previous.get("mode") == "dual-fast-experimental":
+                options.gpus = ",".join(g["uuid"] for g in previous["gpus"])
+            else:
+                options.gpu = previous["gpu"]["uuid"]
+        options.models_dir = options.models_dir or Path(previous["models_dir"])
+        options.vision = options.vision or previous["vision"]
+        options.port = options.port if options.port is not None else previous["port"]
+        options.allow_candidate = options.allow_candidate or previous["package"]["status"] == "candidate" or previous.get("mode") == "dual-fast-experimental"
+    options.port = options.port if options.port is not None else 8080
     if not 1 <= options.port <= 65535:
         parser.error("Port must be between 1 and 65535")
     if sys.platform != "linux" or sys.version_info < (3, 12):
         parser.error("Linux / WSL with Python 3.12+ is required; use install.ps1 on Windows")
-    catalog = load_catalog(options.catalog)
-    plan = make_plan(catalog, detect_gpu(options.gpu), options.allow_candidate, options.runtime_archive)
+    if options.update and not options.catalog:
+        with urllib.request.urlopen(CATALOG_URL, timeout=60) as response:
+            catalog = json.load(response)
+        if catalog.get("schema_version") != 1:
+            raise ValueError("Download the current installer to read this catalog")
+    else:
+        catalog = load_catalog(options.catalog)
+    if options.gpu and options.gpus:
+        raise ValueError("Choose --gpu or --gpus, not both")
+    plan = (make_dual_plan(catalog, options.gpus, options.allow_candidate, options.runtime_archive) if options.gpus else
+            make_plan(catalog, detect_gpu(options.gpu), options.allow_candidate, options.runtime_archive))
     install_dir = options.dir.expanduser().resolve()
     models_dir = (options.models_dir or install_dir / "models").expanduser().resolve()
     plan.update({"install_dir": str(install_dir), "models_dir": str(models_dir), "vision": options.vision, "port": options.port})
@@ -239,6 +324,9 @@ def main(argv=None):
             if path.exists():
                 verify_artifact(path, record)
     print(f"GPU: {plan['gpu']['name']} / {plan['gpu']['arch']}\nPackage: {plan['package']['status']}\nProfile: {plan['package']['profile']}\nInstall: {install_dir}\nModels: {models_dir}")
+    print(f"Certified on selected GPU: {plan['hardware_qualified_for_gpu']}")
+    if plan.get("mode"):
+        print("Dual GPU: EXPERIMENTAL / UNTESTED / UNCERTIFIED; performance parity is unmeasured.")
     if not options.yes:
         print("Runtime-only setup; model downloads are skipped." if options.runtime_only else
               "Setup may download about 10 GB of models plus the runtime. Existing matching files will be reused.")
@@ -250,6 +338,11 @@ def main(argv=None):
     verify_artifact(archive, plan["package"])
     runtime = install_dir / (plan["gpu"]["arch"] + "-" + plan["package"]["sha256"][:12])
     runtime = unpack(archive, runtime, plan["package"])
+    if plan.get("mode") == "dual-fast-experimental":
+        addon = plan["dual_addon"]
+        addon_archive = get_artifact(addon, install_dir / "downloads")
+        addon_root = install_dir / ("dual-" + addon["sha256"][:12])
+        plan["dual_addon_root"] = str(unpack(addon_archive, addon_root, addon))
     if not options.runtime_only:
         for record in records:
             get_artifact(record, models_dir)

@@ -1,0 +1,22 @@
+--- a/ggml/src/ggml-cuda/gdn-compact.cuh
++++ b/ggml/src/ggml-cuda/gdn-compact.cuh
+@@ -68,7 +68,7 @@
+     // Preserve the existing qualified masked-prefill prefix and its exact tail.
+     if(!grouped && T>=256 && T<=1024 && capacity+1<T && q->ne[1]==H &&
+             sq1==S && sq2==H*S && sv1==S && sv2>=H*S && sb1==1 && sb2==H &&
+-            (ggml_cuda_info().devices[ctx.device].cc==860 ||
++            (ggml_cuda_info().devices[ctx.device].cc==860 || ggml_cuda_info().devices[ctx.device].cc==890 ||
+              ggml_cuda_info().devices[ctx.device].cc==1200) && l0xre_gdn_masked_requested()) {
+         const int64_t native_tail=capacity+1; // native rollback slots include the final state
+         const int64_t prefix=T-native_tail, padded=((prefix+63)/64)*64;
+--- a/ggml/src/ggml-cuda/gated_delta_net.cu
++++ b/ggml/src/ggml-cuda/gated_delta_net.cu
+@@ -459,7 +459,7 @@
+             n_tokens >= 256 && n_tokens <= 1024 && K < n_tokens &&
+             sq1 == S_v && sq2 == H*S_v && sv1 == S_v && sv2 >= H*S_v &&
+             sb1 == 1 && sb2 == H &&
+-            (ggml_cuda_info().devices[ctx.device].cc == 860 ||
++            (ggml_cuda_info().devices[ctx.device].cc == 860 || ggml_cuda_info().devices[ctx.device].cc == 890 ||
+              ggml_cuda_info().devices[ctx.device].cc == 1200) &&
+             l0xre_gdn_masked_requested()) {
+         const int64_t prefix = n_tokens - K;

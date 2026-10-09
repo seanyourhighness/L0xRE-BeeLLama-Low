@@ -1,0 +1,4 @@
+ELF file    1: libbridge-dual.1.sm_86.cubin
+ELF file    2: libbridge-dual.2.sm_89.cubin
+ELF file    3: libbridge-dual.3.sm_86.cubin
+ELF file    4: libbridge-dual.4.sm_89.cubin

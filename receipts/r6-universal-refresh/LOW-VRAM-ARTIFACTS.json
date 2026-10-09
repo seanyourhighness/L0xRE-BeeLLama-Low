@@ -1,0 +1,12 @@
+{
+  "linux": {
+    "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-linux-candidate.tar.zst",
+    "sha256": "0ad0866a7fe99c272a7d6d4b9b8eeb4816d6472c0b1f76f2d867da1731ed729d",
+    "bytes": 1112801747
+  },
+  "windows": {
+    "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-windows-candidate.zip",
+    "sha256": "5f46cc0804053f11af69bd346d98e0893dc50cf45dcef0c2b85e185313d10ea4",
+    "bytes": 617480059
+  }
+}

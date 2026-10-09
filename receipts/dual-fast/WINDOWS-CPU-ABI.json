@@ -1,0 +1,20 @@
+[
+    {
+        "abi":  1,
+        "gpu_work_launched":  false,
+        "arch":  "sm86",
+        "null_and_invalid_device_guards":  "pass"
+    },
+    {
+        "abi":  1,
+        "gpu_work_launched":  false,
+        "arch":  "sm89",
+        "null_and_invalid_device_guards":  "pass"
+    },
+    {
+        "abi":  1,
+        "gpu_work_launched":  false,
+        "arch":  "sm120",
+        "null_and_invalid_device_guards":  "pass"
+    }
+]

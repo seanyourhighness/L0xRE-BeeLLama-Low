@@ -9,10 +9,10 @@ One project and shared model weights cover the three architectures. Certificatio
 | Architecture / tested GPU | Linux / WSL | Native Windows |
 | --- | --- | --- |
 | SM86 / RTX 3060 | **Certified** — 37 t/s prose, 65 t/s code | Candidate; hardware qualification pending |
-| SM89 / RTX 4090 | Candidate; hardware certification is next | Candidate; hardware certification is next |
-| SM120 / RTX 5090 | **Certified locally** — 131 t/s prose, 229 t/s code; archive publication pending | **Certified and published** — 137 t/s prose, 230 t/s code |
+| SM89 / RTX 40 series >=12 GB | Candidate | Refreshed CUDA 13.0 candidate; RTX 4070 Ti certification pending |
+| SM120 / RTX 5090 | **Certified and published** — 131 t/s prose, 229 t/s code | **Certified and published** — 137 t/s prose, 230 t/s code |
 
-SM120 uses dedicated 80K / KVarN4/4 / DFlash2 N7 profiles. Linux retains its disclosed original decode-target exception; Windows meets its release speed gates. Exact scores, quality scope, package identities, and downloads are in [SM120 certification details](docs/SM120-QUALIFICATION.md). SM89 remains pending until the RTX 4090 is available and its own gates pass.
+SM120 uses dedicated 80K / KVarN4/4 / DFlash2 N7 profiles. Linux retains its disclosed original decode-target exception; Windows meets its release speed gates. Exact scores, quality scope, package identities, and downloads are in [SM120 certification details](docs/SM120-QUALIFICATION.md). The RTX 4070 Ti is the next Windows SM89 certification target. Its earlier r3/r4 runs do not qualify the refreshed R6 binary. Other RTX 30/40/50 cards with at least 12 GB are installer targets, not additional certifications. Smaller-card SM120 profiles use a separate untested 32K candidate. Matched dual cards retain the selected R6 profile with a per-device bridge add-on and remain **experimental / untested / uncertified**; see [testing requirements](docs/DUAL-GPU-TESTING.md).
 
 ## Historical r5-fast preparation
 

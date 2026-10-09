@@ -6,9 +6,10 @@
 
 - **RTX 3060 / SM86:** our fastest certified SM86 runtime yet — **37 t/s prose · 65 t/s code** on Linux / WSL with 12 GB VRAM.
 - **RTX 5090 / SM120:** **137 t/s prose · 230 t/s code · 3,611 t/s prefill** on native Windows with 32 GB VRAM.
-- **SM120 on both platforms:** Linux / WSL is locally certified; the independently certified Windows release is available now.
+- **SM120 on both platforms:** Linux / WSL and Windows retain their independently certified single-card packages in the universal R6 release.
 - **80K context** (81,920 tokens), with INT8 prefill and CPU vision in the certified profiles.
-- **RTX 4090 / SM89 is next:** Linux and Windows candidates are available; hardware certification is pending. Windows SM86 also remains a candidate.
+- **RTX 4070 Ti / SM89 Windows is next:** a CUDA 13.0 R6 refresh carries the SM120 source fixes into the 12 GB candidate. Linux SM89 and Windows SM86 remain candidates.
+- **All RTX 30/40/50 cards with 12 GB or more are installer targets.** Other cards and profiles require their own testing. Matched dual cards are **experimental / untested / uncertified**; [testers wanted](docs/DUAL-GPU-TESTING.md).
 
 ## Speed card (measured, RTX 3060 / 12 GB)
 
@@ -25,7 +26,7 @@ These are the frozen seed-42 certified measurements (37.16 / 65.06 sustained; 37
 
 ## Speed card (measured, RTX 5090 / 32 GB)
 
-**SM120 brings the speed: 137 t/s prose, 230 t/s code, and 3,611 t/s prefill on native Windows — with an 80K context and a completed 30-minute soak.** Linux / WSL has its own locally certified profile using the same model and drafter.
+**SM120 brings the speed: 137 t/s prose, 230 t/s code, and 3,611 t/s prefill on native Windows — with an 80K context and a completed 30-minute soak.** Linux / WSL has its own certified profile using the same model and drafter.
 
 | Metric | Linux / WSL | Native Windows |
 | --- | --- | --- |
@@ -34,13 +35,13 @@ These are the frozen seed-42 certified measurements (37.16 / 65.06 sustained; 37
 | Target prefill (2,048 tokens) | 3,527 t/s | 3,611 t/s |
 | Context capacity | 81,920 tokens | 81,920 tokens |
 | Stability soak | 30 minutes passed | 30 minutes passed |
-| Release status | Certified locally; download pending | **Certified; download available** |
+| Release status | Certified; download available | **Certified; download available** |
 
 These are rounded confirmed means from separate RTX 5090 qualifications, each with one GPU and one slot. Windows meets its release speed requirements; Linux retains its disclosed original decode-target exception. Exact scores, quality results, frozen profiles, and evidence are in [SM120 certification details](docs/SM120-QUALIFICATION.md).
 
 ## Guided install (Linux / WSL and Windows)
 
-**Let setup pick the package and profile.** The installer detects your selected GPU, checks VRAM, downloads and verifies the runtime, target, and drafter, and creates a ready-to-run launcher with the package's existing **80K / KVarN4/4 / DFlash2 N7** settings. Matching model files can be reused; setup shows the plan and asks before downloading about 10 GB of weights. The NVIDIA driver must already work.
+**Let setup pick the package and profile.** The installer detects your selected GPU, checks VRAM, downloads and verifies the runtime, target, and drafter, and creates a ready-to-run launcher with the selected R6 profile. Certified profiles retain **80K / KVarN4/4 / DFlash2 N7**; the separate smaller-card SM120 candidate uses **32K**, N7, and no down-weight cache. Matching model files can be reused; setup shows the plan and asks before downloading about 10 GB of weights. The NVIDIA driver must already work.
 
 On **Linux / WSL** (Python 3.12+, `curl`, `zstd`, and `numactl`):
 
@@ -59,7 +60,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\install-l0xre.ps1 -DryRun
 powershell -NoProfile -ExecutionPolicy Bypass -File .\install-l0xre.ps1
 ```
 
-Automatic certified downloads are available for **Linux SM86** and **Windows SM120 / RTX 5090**. Linux SM120 accepts the sealed local archive until its download is published. SM89 / RTX 4090 and Windows SM86 require an explicit candidate opt-in. Setup prints the start command and leaves the server stopped. See [installer options and architecture selection](install/README.md) for existing model folders, GPU selection, CPU vision, and candidate testing.
+Automatic certified downloads cover **Linux SM86 / RTX 3060** and **Linux/Windows SM120 / RTX 5090**. Certification applies to those measured cards and exact profiles. Other RTX 30/40/50 cards with at least 12 GB route to their architecture; SM89, Windows SM86, smaller-card SM120 profiles, and all dual configurations require `--allow-candidate` / `-AllowCandidate`. Setup prints the start command and leaves the server stopped. For a matched pair use `--gpus 0,1 --allow-candidate` or `-Gpus 0,1 -AllowCandidate`; at least 12 GB is required on **each** card. See [installer options and updates](install/README.md) and [dual-GPU testing](docs/DUAL-GPU-TESTING.md).
 
 ## Quick start (Linux / WSL — certified SM86)
 
@@ -69,6 +70,8 @@ Download the R6 Linux archive and its checksum into one directory:
 | --- | --- |
 | Runtime | [L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst) |
 | Checksum | [SHA-256](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst.sha256) |
+| RTX 50 series, >=12 GB, smaller-card profile | [Guided setup](install/README.md) | 32K profile candidate; no hardware qualification |
+| Matched dual GPUs, >=12 GB each | [Experimental setup and testing](docs/DUAL-GPU-TESTING.md) | **Experimental / untested / uncertified** |
 | Model + drafter | [L0xRE-27b-Low on Hugging Face](https://huggingface.co/YourHighnessLA/L0xRE-27b-Low) |
 
 ```bash
@@ -98,11 +101,9 @@ Use your actual model paths. Add `-DryRun` to verify files and print the resolve
 
 ## Update / upgrade guide
 
-- **From r5-fast / r4 / r3 → R6:** stop the old server, download the R6 archive above into a fresh directory, verify checksums, and launch with `--profile r6`. The model files are unchanged (same SHA-256 identities below), so reuse them or re-download from the pinned HF revision.
-- **Rollback:** extract an earlier release into a separate directory and reuse the unchanged model files; no service install or model conversion is performed.
-- **Windows SM86/SM89:** the universal packages remain candidates. The separate Windows SM120/RTX5090 archive above has its own qualified profile and evidence; do not apply its measurements to the other assets.
-- **SM120:** the Linux / WSL and Windows certifications apply to their dedicated RTX 5090 profiles. The certified Linux archive has not yet been published; inherited universal SM120 payloads keep their previous status. See [SM120 certification details](docs/SM120-QUALIFICATION.md).
-- **SM89:** RTX 4090 certification is next. Existing Linux and Windows packages remain candidates; see [architecture status](PARITY.md).
+Guided installations include `~/L0xRE/update.sh` on Linux or `$env:LOCALAPPDATA\L0xRE\update.ps1` on Windows. Stop the server, preview with `--dry-run` / `-DryRun`, then run the updater without that flag. Models, GPU selection, vision and port are reused. `--rollback` / `-Rollback` restores the previous verified runtime and launcher. See the [full update guide](install/README.md#downloads-reuse-and-rollback).
+
+For r3/r4/r5 installations, run guided setup into a new directory and point `--models-dir` / `-ModelsDir` at your existing models. An earlier run on the same GPU does not qualify a new R6 binary. The certified SM86 Linux and SM120 Linux/Windows archives are retained byte for byte; dual mode adds separate experimental bridges.
 
 ## Downloads
 
@@ -111,10 +112,10 @@ Use your actual model paths. Add `-DryRun` to verify files and print the resolve
 | Platform | Download | Status |
 | --- | --- | --- |
 | **Linux x86-64 / WSL2 (SM86)** | [R6 SM86 `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst) | **Certified** — 37 / 65 t/s, 80K context |
-| Windows x64 (SM86) | [R6 SM86 candidate `.zip`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm86-windows-candidate.zip) | Candidate — offline checks passed; GPU throughput/quality pending |
-| Linux (SM89) | [R6 SM89 candidate `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm89-linux-candidate.tar.zst) | Candidate — awaiting SM89 hardware certification |
-| Windows (SM89) | [R6 SM89 candidate `.zip`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm89-windows-candidate.zip) | Candidate — awaiting SM89 hardware certification |
-| Linux x86-64 / WSL2 (SM120, RTX 5090) | [Certification and archive identity](docs/SM120-QUALIFICATION.md#linux--wsl-qualification) | **Certified locally** — 131 / 229 t/s; archive publication pending |
+| Windows x64 (SM86) | [R6 SM86 candidate `.zip`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm86-windows-prefill-port2-candidate.zip) | Candidate — offline checks passed; GPU throughput/quality pending |
+| Linux (SM89) | [R6 SM89 candidate `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm89-linux-prefill-port2-candidate.tar.zst) | Candidate — awaiting SM89 hardware certification |
+| Windows (SM89) | [R6 SM89 candidate `.zip`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm89-windows-refresh-candidate.zip) | Candidate — refreshed CUDA 13.0 build; RTX 4070 Ti certification pending |
+| Linux x86-64 / WSL2 (SM120, RTX 5090) | [Certified SM120 `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-SM120-certified-20261008.tar.zst) | **Certified** — 131 / 229 t/s; original decode exception retained |
 | **Windows x86-64 / SM120 (RTX 5090)** | [Certified CUDA 13.0 runtime ZIP](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6-sm120-windows-cuda130/l0xre-beellama-low-v0.4.7-r6-windows-x86_64-sm120-cuda130.zip) | **Certified** — 137 / 230 t/s, 80K context |
 | Model + drafter | [L0xRE-27b-Low on Hugging Face](https://huggingface.co/YourHighnessLA/L0xRE-27b-Low) | `L0xRE-27b-Low.gguf` + Q4_K_M drafter; SHA-256 identities below |
 
@@ -124,8 +125,8 @@ One project, shared model weights, and platform-specific downloads. Each speed c
 
 - An AVX2-capable x86-64 CPU and an RTX 30 / 40 / 50 series GPU with compute capability 8.6 / 8.9 / 12.0 and at least 12 GB VRAM; check with `nvidia-smi`.
 - Linux/WSL: Ubuntu 24.04 or an ABI-compatible x86-64 distribution. The fast launcher requires Python3.12+ and `numactl`, with at least8 available CPU workers. The SM120 payload needs glibc 2.38+ and `GLIBCXX_3.4.32`. WSL2 needs an NVIDIA Windows driver with WSL CUDA support.
-- Windows: x64 Windows with PowerShell and a compatible NVIDIA driver. Universal candidate archives bundle CUDA13.3; the separately qualified SM120 archive bundles CUDA13.0 and was tested with driver617.42. CUDA and MSVC runtime DLLs are included; a CUDA toolkit is not required to run the archives.
-- Linux bundles CUDA 12.8 for SM86/SM89 and CUDA 13.0 for SM120. The host supplies the NVIDIA driver. Reserve about 20 GB of disk space for the runtime archive, extraction, and the two model files.
+- Windows: x64 Windows with PowerShell and a compatible NVIDIA driver. The SM89 refresh and SM120 archives bundle CUDA13.0; the retained SM86 candidate bundles CUDA13.3. The certified SM120 archive was tested with driver617.42. CUDA and MSVC runtime DLLs are included; a CUDA toolkit is not required to run the archives.
+- Linux bundles CUDA 12.8 for SM86 and CUDA 13.0 for the selected SM89/SM120 packages. The host supplies the NVIDIA driver. Reserve about 20 GB of disk space for the runtime archive, extraction, and the two model files.
 
 The target is a custom GGUF supported by this L0xRE runtime. Use this runtime for these weights; see the model card for model-specific compatibility and licensing.
 
@@ -140,9 +141,9 @@ The launcher detects the first visible GPU. On a machine with multiple GPUs, set
 The certified 37 / 65 t/s numbers are Linux SM86 only; the Windows SM86 package is a candidate. Download the R6 SM86 Windows ZIP and its `.sha256` (in the Downloads table above) into one directory. Open PowerShell there, compare the ZIP's `Get-FileHash` result with its `.sha256` line, and extract:
 
 ```powershell
-Get-FileHash .\L0xRE-BeeLLama-Low-R6-sm86-windows-candidate.zip -Algorithm SHA256
-Expand-Archive .\L0xRE-BeeLLama-Low-R6-sm86-windows-candidate.zip -DestinationPath .
-Set-Location .\L0xRE-BeeLLama-Low-R6-sm86-windows-candidate
+Get-FileHash .\L0xRE-BeeLLama-Low-R6-sm86-windows-prefill-port2-candidate.zip -Algorithm SHA256
+Expand-Archive .\L0xRE-BeeLLama-Low-R6-sm86-windows-prefill-port2-candidate.zip -DestinationPath .
+Set-Location .\L0xRE-R6-sm86-port2
 New-Item -ItemType Directory -Force models | Out-Null
 curl.exe -fL --retry 3 -o models\L0xRE-27b-Low.gguf https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/L0xRE-27b-Low.gguf
 curl.exe -fL --retry 3 -o models\Qwen3.8-27B-DFlash2-Q4_K_M.gguf https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/Qwen3.8-27B-DFlash2-Q4_K_M.gguf
@@ -163,7 +164,7 @@ Downloads are pinned to HF revision `9b74c81c19f8372888c2968b5334f42b0354d8b1`, 
 
 ## Profiles
 
-Guided setup uses each current R6 package's frozen **80K / KVarN4/4 / DFlash2 N7** profile. Linux R6 launchers accept `--profile r6`; the dedicated Windows SM120 launcher reads its bundled profile directly. The `12gb` settings below describe the inherited universal compatibility launchers, which are separate from the current R6 installer packages.
+Guided setup retains the current R6 packages' **80K / KVarN4/4 / DFlash2 N7** profiles, with a separate **32K / N7 / no down-weight cache** SM120 candidate for smaller cards. Linux R6 launchers accept `--profile r6`; the dedicated Windows SM120 launcher reads its bundled profile directly. The `12gb` settings below describe the inherited universal compatibility launchers, which are separate from the current R6 installer packages.
 
 **Updated SM86 12 GB default:** `12gb`, `12gb-quality`, and `12gb-b84` select **80K context, target KVarN4/4, Q4_0/Q4_0 DFlash2 caches**, Q4_K_M drafter weights and medium reasoning. INT8 prefill and gated FP16 long attention are enabled. The inherited universal SM89/SM120 paths retain the r3 80K KVarN3/3 preset. Dedicated certified SM120 packages use **80K, KVarN4/4, and DFlash2 N7**; their settings are recorded in [SM120 certification details](docs/SM120-QUALIFICATION.md).
 
@@ -176,7 +177,7 @@ SM86 uses one slot, batch1024 / target ubatch512, draft ubatch32, DFlash2 depth3
 | Linux / SM120, inherited universal payload | Retained r3 80K KVarN3/3 / UB256 defaults with DFlash2 N3 when a drafter is supplied | Explicit `dflash-8k`, `ordinary-8k`, `ordinary-32k` retain r9 settings; dedicated certified SM120 profile is separate |
 | Windows / SM86 | SM86 KVarN4/4 / UB512, native INT8 + gated FP16 port, head128 | `12gb-quality` / `12gb-b84`; Windows GPU headroom and throughput unmeasured |
 | Windows / SM89 / SM120, inherited universal payload | Retained r3 KVarN3/3 / UB256 defaults with architecture-specific bridge selection | `16gb`, `full32k` retain prior settings; these payloads remain candidates |
-| Dedicated SM120 / Linux and Windows | Frozen 80K, KVarN4/4, batch/ubatch 1024/512, DFlash2 N7; dedicated launcher/profile | Certified on RTX 5090 with 32 GB; Linux archive publication pending |
+| Dedicated SM120 / Linux and Windows | Frozen 80K, KVarN4/4, batch/ubatch 1024/512, DFlash2 N7; dedicated launcher/profile | Certified on RTX 5090 with 32 GB; platform-specific archives available |
 
 A profile name is a memory/configuration target, not a guarantee that every card of that capacity will fit it. Only the SM86 route enables the 128-thread head and K3 vector cubin. The 80K profile is hardware-tested on Linux SM86; changing defaults on other routes does not create a performance or memory qualification. Override `-t/-tb` for your CPU, and reduce context if available VRAM is insufficient.
 

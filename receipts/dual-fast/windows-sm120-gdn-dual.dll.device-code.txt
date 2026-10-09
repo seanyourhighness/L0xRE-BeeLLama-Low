@@ -1,0 +1,2 @@
+ELF file    1: gdn-dual.1.sm_120.cubin
+ELF file    2: gdn-dual.2.sm_120.cubin

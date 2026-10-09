@@ -1,5 +1,7 @@
 # R6 C07 source
 
+The notes below describe the original C07 source preparation. Current release additions have separate provenance: [Windows SM89 refresh from the certified SM120 source](windows-sm89-refresh/README.md), [experimental dual fast bridges](dual-fast/README.md), and [platform-specific SM120 certification](../../docs/SM120-QUALIFICATION.md). Compilation and a shared source base do not transfer hardware certification.
+
 R6 restores the DFlash2 drafter to Q4_K_M. It adds compact FP32 recurrent history through native GGML/cache/checkpoint APIs, repairs hybrid history-input initialization, selects native Q4 matrix multiplication for six to eight draft rows on SM86, and uses one tensor-core operation per useful projection tile with a matching packed activation layout.
 
 SM86 R6 passed the hardware performance and paired-quality gates. The frozen seed42 screen measured 37.27 t/s prose and 65.21 t/s code; the sustained seed42 arm measured 37.16/65.06. Balanced seeds42/1234 measured 34.95/62.69 versus R5's 29.21/54.09. Cold prefill measured 566.56 t/s at 10K and 469.39 at 77K, within 0.1% of R5. The 81,916-token capacity test and matching 256-token long-context greedy continuation passed. On the paired 150-scenario set, R6 scored 127/150 pass@1 and 132/150 pass@3 versus R5's 123/150 and 130/150; R6 had no runaway requests or CUDA errors, while R5 had one runaway and no CUDA errors. The paired differences are directionally positive but not statistically decisive, and the case-level gains and losses are retained in the evidence.
