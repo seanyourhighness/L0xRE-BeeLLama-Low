@@ -2,7 +2,7 @@
 
 The newest published Linux SM89 payload was installed on Z840, then updated from the current complete R6 native source inputs. The selected candidate preserves81920 context, KVarN4/4, one slot, DFlash2 Q4 N7, medium reasoning, eight CPU threads and NUMA0 at the host's persistent300W power limit. It enables the optional INT8 down-weight cache.
 
-The candidate is **not certified yet**. Matched two-seed performance/capacity qualification passed; Paired150 quality and its failure review are complete. Scoped serial/spec/restart correctness and CPUvision passed. The30-minute mixed-depth stability gate aborted on a new corrected DRAM scrub event at2026-10-10 09:59:57UTC. Final certification, clean-package qualification and full publication remain incomplete. The3060 and its previous backend/proxy remain stopped.
+The named `r6-sm89-4090` profile is now **certified locally on RTX4090 Linux at300W**. After Sean removed the newly installed suspect RAM andRTX3060 and rebooted, the unchanged candidate passed fresh correctness, CPUvision, a complete32-minute mixed-depth soak, and the final archive consumer probe. The certified installation is separate from the frozen candidate. The earlier failed run is retained below. Universal catalog finalization and the first full stable publication remain pending.
 
 ## Optimization screens
 
@@ -52,8 +52,25 @@ Both full150 cohorts used production medium reasoning, unseeded temperature0.7/t
 
 Greedy128code/prose and10K-prefill tokens match across serial/spec/restart on the tested cases. Sampled64outputs repeat within each mode and across speculative restart, but sampled serial/spec token sequences differ and are not claimed identical. Native CPU OCR/color/shape passed the fixed VISION742fixture. Broader vision accuracy and system-wide RAM health are outside those checks.
 
-## Stability gate abort
+## Earlier stability gate abort
 
 At2026-10-10 09:59:57UTC the raw machine-check trace recordedCPU0/socket0/MCA bank9 status0x8c000047000800c0. KernelEDAC identified a corrected DRAM scrubbing error atCPU_SrcID#0_Ha#0_Chan#0_DIMM#0; the kernel retired another page and HardwareCorrupted increased4→8KiB. The watchdog stopped the soak at1703.22seconds after controller start, before completing the minimum30-minute gate.335request records are retained. The old running-status file is not a pass, and systemd successful cleanup is not successful qualification.
 
-A libc general-protection-fault record followed during the abort/cleanup interval; its causal relation is unproven. No GPUXid was observed in that captured interval. This is an unresolved platform-memory condition and does not establish that every earlier notice had the same cause. No retry-until-pass, shortened gate, hardware exception, certified package or stable release was created. Memory-path maintenance/isolation and a fresh complete stability run are required. Exact physical silkscreened DIMM mapping is not established by the EDAC label alone.
+A libc general-protection-fault record followed during the abort/cleanup interval; its causal relation is unproven. No GPUXid was observed in that captured interval. This is an unresolved platform-memory condition and does not establish that every earlier notice had the same cause. At that point no retry-until-pass, shortened gate, hardware exception, certified package or stable release was created. Resumption required a hardware condition change and a fresh complete stability run. Exact physical silkscreened DIMM mapping is not established by the EDAC label alone.
+
+
+## Qualification after the hardware change
+
+Z840 rebooted at2026-10-10 14:07UTC. The new inventory reports48GB installed RAM and only the expectedRTX4090. Both EDAC controllers started atCE0/UE0, with HardwareCorrupted0KiB. The boot helper was updated for the remaining4090 and its300W limit verified; the removed3060 backend and proxy socket were disabled. This workload qualification does not identify the physical cause of the earlier memory events or certify system-wide RAM health.
+
+The unchanged native files and sealed profile passed fresh serial/spec/restart greedy checks, per-mode seeded repeat checks, and the CPU OCR/color/shape fixture. Results match the pre-removal correctness oracle. Sampled serial/spec sequences remain different. The earlier paired150 quality review and balanced performance comparison apply to the same frozen runtime and are explicitly retained as measurements before the hardware change.
+
+The new soak completed1925.20seconds,15full cycles,375requests and366matching repeat comparisons. Independent audit verified all depths, counts, token hashes, telemetry and a clean server exit0. Peak GPU temperature was64C and peak allocation17284MiB. The final current-boot health audit foundCE0/UE0,0KiB quarantined memory, zero raw machine-check events and no kernel GPUXid or process faults.
+
+The archive `L0xRE-BeeLLama-Low-R6-sm89-linux-rtx4090-certified.tar.zst` is986319840bytes, SHA256 `5bb052aa07c6158d2ab71a80d77aa1c0f547f76ef2c71a5f161d49ddb83633c2`. Fresh extraction verified160inventory files and55native files. Target, draft and CPUvision model hashes were checked again. Only the named4090 profile is qualified; genericSM89 remains unqualified.
+
+A separate persistent installation at `/home/sean/work/l0xre-r6-4090-20261010/package-certified` matches that extraction. Its actual launcher ran without the qualification bypass flag, matched the greedy oracle, completed a cold10K request and77825input+4091output tokens(total81916) without truncation, retainedCPU0-7 affinity and the expected libraries, passedCPU OCR, and exited0. The private raw-event watcher was then archived and removed; no GPU compute process remains.
+
+The shutdown logs retain the existing CUDA_Host compute-buffer accounting warning(3.2041MiB versus0.8448MiB); it appears in both the pre-removal and fresh logs. Clean exit and zero CUDA-error observations do not imply zero warning lines.
+
+Final scope, artifact and installation receipts are in `receipts/r6-linux-sm89-4090/CERTIFICATION-FINAL.json`. The full universal stable release has not been published.

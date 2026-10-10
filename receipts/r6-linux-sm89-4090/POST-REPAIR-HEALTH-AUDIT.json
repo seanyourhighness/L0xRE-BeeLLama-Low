@@ -1,0 +1,24 @@
+{
+  "status": "pass",
+  "audited_at": 1791644033.8254468,
+  "boot_id": "6dda15aa-9921-4e49-91a0-18d34444c57d",
+  "edac_counts": {
+    "/sys/devices/system/edac/mc/mc0/ce_count": 0,
+    "/sys/devices/system/edac/mc/mc0/ue_count": 0,
+    "/sys/devices/system/edac/mc/mc1/ce_count": 0,
+    "/sys/devices/system/edac/mc/mc1/ue_count": 0
+  },
+  "hardware_corrupted_kib": 0,
+  "raw_mce_events": 0,
+  "kernel_error_lines": [],
+  "gpu": [
+    "GPU-c4a782a6-fd5a-78c2-7d77-604c01cbffb8",
+    " NVIDIA GeForce RTX 4090",
+    " 300.00",
+    " 610.57.04"
+  ],
+  "watch_started": 1791641535.7377958,
+  "raw_trace_sha256": "058f14917f7486af779e7a84b9b104909bfa61995d6e57ec945f7d78c7c71c4b",
+  "kernel_log_sha256": "428e6dd91bc0a249b1a8a8541ad5907f3dfede4f2a0143f56b646a4399600438",
+  "scope": "Current boot and measured R6 workload after user-reported RAM/GPU removal. Prior corrected-memory history retained; no system-wide RAM-health guarantee."
+}

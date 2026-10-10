@@ -1,0 +1,24 @@
+{
+  "status": "pass",
+  "duration_seconds": 1925.1976516110003,
+  "requests": 375,
+  "cycles": 15,
+  "repeat_comparisons": 366,
+  "scenario_counts": {
+    "short0-0.7": 75,
+    "short0-0": 75,
+    "short1-0.7": 75,
+    "short1-0": 75,
+    "prefill16384": 15,
+    "prefill2048": 15,
+    "prefill32768": 15,
+    "prefill65536": 15,
+    "prefill77824": 15
+  },
+  "telemetry_samples": 917,
+  "peak_temperature_c": 64.0,
+  "peak_memory_mib": 17284.0,
+  "server_exit": 0,
+  "zero_cuda_error_lines": true,
+  "scope": "One frozen RTX4090 profile mixed-depth30-minute workload; does not resolve earlier system RAM findings."
+}

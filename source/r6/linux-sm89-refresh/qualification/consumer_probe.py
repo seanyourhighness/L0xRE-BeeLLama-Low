@@ -45,6 +45,12 @@ def main():
             assert probe.digest(answer['tokens']) == expected[index]
         ids = json.loads(Path('/home/sean/work/l0xre-prefill-20261002/fixtures.json').read_text())['pp77824'][:10240]
         pre = request('cold10k',probe.payload(ids,1)); assert pre['timings']['prompt_n'] == 10240
+        long_ids = json.loads(Path('/home/sean/work/l0xre-prefill-20261002/fixtures.json').read_text())['pp77824']
+        long_ids = long_ids[:77824] + [long_ids[77823]]
+        capacity = request('capacity80k',probe.payload(long_ids,4091))
+        assert capacity['timings']['prompt_n'] == 77825 and capacity['timings'].get('cache_n',0) == 0
+        assert capacity['tokens_evaluated'] == 77825 and capacity['tokens_predicted'] == 4091
+        assert not capacity.get('truncated')
         image = (ROOT / 'vision-smoke.png').read_bytes()
         body={'messages':[{'role':'user','content':[{'type':'image_url','image_url':{'url':'data:image/png;base64,'+base64.b64encode(image).decode()}},
               {'type':'text','text':'Transcribe the printed text in the image. Reply with only the exact text, including its number. Do not describe shapes or colors.'}]}],
@@ -61,6 +67,7 @@ def main():
     assert status['state']=='gate_pass' and status['server_exit'] in [0,-2]
     receipt={'status':'pass','package':str(package),'actual_consumer_launcher':True,'qualification_probe_flag_used':False,
              'native_and_profile_equal_frozen':True,'greedy_oracle_match':True,'cold10k_pass':True,'cpu_vision':'VISION 742',
+             'capacity_input_tokens':77825,'capacity_output_tokens':4091,'capacity_total_tokens':81916,
              'cpu_affinity':list(range(8)),'clean_exit':status['server_exit'],'timestamp':status['finished']}
     (ROOT/'FINAL-CONSUMER-PROBE.json').write_text(json.dumps(receipt,indent=2)+'\n')
     print(json.dumps(receipt,indent=2))

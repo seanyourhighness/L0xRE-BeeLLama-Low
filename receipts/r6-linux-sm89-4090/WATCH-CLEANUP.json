@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "stopped_after_successful_qualification": true,
+  "watch_started": 1791641535.7377958,
+  "finished": 1791644100.1182804,
+  "private_trace_removed": true,
+  "final_trace_sha256": "058f14917f7486af779e7a84b9b104909bfa61995d6e57ec945f7d78c7c71c4b",
+  "raw_mce_events": 0,
+  "gpu_compute_processes": 0,
+  "unit": "Result=success\nActiveState=inactive\n"
+}

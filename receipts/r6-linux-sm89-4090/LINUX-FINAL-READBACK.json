@@ -1,0 +1,10 @@
+{
+  "status": "pass",
+  "archive_sha256": "5bb052aa07c6158d2ab71a80d77aa1c0f547f76ef2c71a5f161d49ddb83633c2",
+  "native_files_verified": 55,
+  "inventory_files_verified": 160,
+  "package": "/run/user/1000/l0xre-r6-4090-certified-20261010/package",
+  "fresh_extraction": true,
+  "named_4090_profile_qualified": true,
+  "generic_profile_qualified": false
+}
