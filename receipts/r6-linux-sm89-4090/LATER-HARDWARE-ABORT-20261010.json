@@ -1,0 +1,26 @@
+{
+  "state": "aborted_on_hardware_event",
+  "event_utc": "2026-10-10T15:25:27Z",
+  "event_unix": 1791645927,
+  "cpu": 0,
+  "socket": 0,
+  "bank": 9,
+  "status": "0x8c000047000800c0",
+  "address": "0x197cc000",
+  "power_during_event_w": 300,
+  "completed_arms": [
+    "P00-r6-300w-seed42",
+    "P01-r6-450w-seed42",
+    "P02-r6-450w-seed1234"
+  ],
+  "interrupted_arm": "P03-r6-300w-seed1234",
+  "comparison_complete": false,
+  "gpu_tests_stopped": true,
+  "known_edac_counts": {
+    "/sys/devices/system/edac/mc/mc0/ce_count": 0,
+    "/sys/devices/system/edac/mc/mc0/ue_count": 0,
+    "/sys/devices/system/edac/mc/mc1/ce_count": 0,
+    "/sys/devices/system/edac/mc/mc1/ue_count": 0
+  },
+  "scope": "New corrected memory-path hardware event after RAM/GPU removal. Exact physical DIMM/component not isolated; not proof450Wcaused it."
+}

@@ -74,3 +74,14 @@ A separate persistent installation at `/home/sean/work/l0xre-r6-4090-20261010/pa
 The shutdown logs retain the existing CUDA_Host compute-buffer accounting warning(3.2041MiB versus0.8448MiB); it appears in both the pre-removal and fresh logs. Clean exit and zero CUDA-error observations do not imply zero warning lines.
 
 Final scope, artifact and installation receipts are in `receipts/r6-linux-sm89-4090/CERTIFICATION-FINAL.json`. The full universal stable release has not been published.
+
+
+## Later hardware event during the full-power comparison
+
+The later Bench.sh comparison stopped on another corrected DRAM patrol-scrub event at October 10, 2026, 15:25:27 UTC. The raw trace and offline decoder identify socket 0, memory-controller channel 0, MCA bank 9, status `0x8c000047000800c0`, address `0x197cc000`. This occurred after returning to 300 W for the second matched seed; it does not establish that 450 W caused the event. Exported EDAC counters and HardwareCorrupted stayed at zero, while the raw observer caught the event. The physical DIMM or memory-path component remains unisolated after the RAM removal.
+
+The earlier 32-minute and clean-package gates remain measured historical observations. The current host's continuing stability and further qualification are blocked. No vanilla/native inference or headroom profiling has run after the new event. The 4090 is idle at the user-requested 450 W factory limit.
+
+Three complete pinned Bench.sh arms were preserved. Both 450 W seeds average 102.95 t/s prose and 165.59 t/s code, with 2,086.16 t/s cold 10K prefill and 1,813.92 t/s cold 77K prefill. The completed seed-42 pair gives +1.19% code and +7.91% 77K prefill at 450 W versus 300 W. The second 300 W arm was interrupted, so no complete balanced power comparison or maximum-speed claim is made.
+
+The latest requested baseline is an official unmodified BeeLlama v0.4.7 package and the similarly sized LowGPU NoMTP IQ3XXXS model (9,570,663,040 bytes versus L0xRE E3's 8,619,127,680). The official package and model are prepared and hash-pinned locally. Ordinary native decoding, shared DFlash2 N7, and a same-LowGPU runtime control are planned at matched settings once the hardware condition is addressed. Partial audited results and the blocked plan are in `receipts/r6-linux-sm89-4090/PARTIAL-COMPARISON-20261010.json` and `VANILLA-LOWGPU-PLAN.json`.
