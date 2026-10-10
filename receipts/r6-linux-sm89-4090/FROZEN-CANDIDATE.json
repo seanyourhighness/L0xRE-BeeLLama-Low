@@ -1,0 +1,17 @@
+{
+  "state": "optimized_candidate_frozen",
+  "package": "/home/sean/work/l0xre-r6-4090-20261010/package-current",
+  "inventory_sha256": "7e98996c99d94bcf996e0679223750658254327fe0c7044c774b84012b9166c4",
+  "profile": "r6-sm89-4090",
+  "profile_sha256": "89499a2a7c0801ae9002b8937b977a6891c025ec184f782d2174918643181b57",
+  "gpu_uuid": "GPU-c4a782a6-fd5a-78c2-7d77-604c01cbffb8",
+  "power_limit_w": 300,
+  "threads": 8,
+  "context": 81920,
+  "draft_depth": 7,
+  "down_splits": 12,
+  "cache_down": true,
+  "hardware_qualified": false,
+  "full_certification_complete": false,
+  "frozen_at": 1791619141.885122
+}

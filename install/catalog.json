@@ -14,7 +14,10 @@
         "launcher": "tools/universal/r6-launch.py",
         "launcher_style": "r6",
         "install_reserve_bytes": 5000000000,
-        "certified_gpu_name_contains": "RTX 3060"
+        "certified_gpu_name_contains": "RTX 3060",
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 3060"
+        ]
       },
       "sm89": {
         "filename": "L0xRE-BeeLLama-Low-R6-sm89-linux-prefill-port2-candidate.tar.zst",
@@ -42,7 +45,10 @@
         "launcher": "tools/universal/r6-launch.py",
         "launcher_style": "r6",
         "install_reserve_bytes": 5000000000,
-        "certified_gpu_name_contains": "RTX 5090"
+        "certified_gpu_name_contains": "RTX 5090",
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 5090"
+        ]
       },
       "sm120-12gb": {
         "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-linux-candidate.tar.zst",
@@ -103,7 +109,10 @@
         "launcher_style": "sm120-windows",
         "install_reserve_bytes": 5000000000,
         "certified_gpu_name_contains": "RTX 5090",
-        "gpu_selector_adapter": true
+        "gpu_selector_adapter": true,
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 5090"
+        ]
       },
       "sm120-12gb": {
         "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-windows-candidate.zip",

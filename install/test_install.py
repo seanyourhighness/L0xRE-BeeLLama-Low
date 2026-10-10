@@ -40,6 +40,30 @@ def archive_at(path, files):
 
 
 class SelectionTests(unittest.TestCase):
+    def test_similarly_named_gpu_does_not_inherit_certificate(self):
+        catalog = copy.deepcopy(CATALOG)
+        catalog["packages"]["linux"]["sm120"]["certified_gpu_names"] = ["NVIDIA GeForce RTX 5090"]
+        variant = gpu("sm120", "NVIDIA GeForce RTX 5090 D", 32607)
+        with self.assertRaisesRegex(ValueError, "allow-candidate"):
+            installer.make_plan(catalog, variant)
+        self.assertFalse(installer.make_plan(catalog, variant, True)["hardware_qualified_for_gpu"])
+
+    def test_profile_selection_requires_the_named_card_and_vram(self):
+        catalog = copy.deepcopy(CATALOG)
+        catalog["packages"]["linux"]["sm89"]["launch_profiles"] = [
+            {"gpu_name": "NVIDIA GeForce RTX 4090", "min_memory_mib": 23000,
+             "profile": "r6-sm89-4090"}]
+        selected = installer.make_plan(catalog, gpu("sm89", "NVIDIA GeForce RTX 4090", 24564), True)
+        self.assertEqual(selected["launch_profile"], "r6-sm89-4090")
+        for device in [gpu("sm89", "NVIDIA GeForce RTX 4070 Ti", 12288),
+                       gpu("sm89", "NVIDIA GeForce RTX 4090", 16384)]:
+            self.assertEqual(installer.make_plan(catalog, device, True)["launch_profile"], "r6")
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = installer.write_launcher(root, root / "runtime", root / "models", selected, False, 8080)
+            self.assertIn("r6-sm89-4090", path.read_text())
+            self.assertEqual(json.loads((root / "INSTALLATION.json").read_text())["launch_profile"], "r6-sm89-4090")
+
     def test_certified_route_and_pending_release(self):
         self.assertEqual(installer.make_plan(CATALOG, gpu())["package"]["status"], "certified")
         blackwell = gpu("sm120", "NVIDIA GeForce RTX 5090", 32607)
@@ -51,10 +75,12 @@ class SelectionTests(unittest.TestCase):
         self.assertEqual(installer.make_plan(pending, blackwell, runtime_archive="sealed.tar.zst")["package"]["status"], "certified")
 
     def test_candidate_needs_opt_in(self):
-        ada = gpu("sm89", "NVIDIA GeForce RTX 4090", 24564)
+        ada = gpu("sm89", "NVIDIA GeForce RTX 4070 Ti", 12288)
         with self.assertRaisesRegex(ValueError, "allow-candidate"):
             installer.make_plan(CATALOG, ada)
-        self.assertEqual(installer.make_plan(CATALOG, ada, True)["package"]["status"], "candidate")
+        self.assertFalse(installer.make_plan(CATALOG, ada, True)["hardware_qualified_for_gpu"])
+        with self.assertRaisesRegex(ValueError, "allow-candidate"):
+            installer.make_plan(CATALOG, gpu("sm86", "NVIDIA GeForce RTX 3090", 24576))
 
     def test_card_scope_and_vram(self):
         for device in [gpu(memory=8192), gpu("sm75"), gpu("sm120", "RTX 4080", 32768), gpu("sm89", "RTX 4060", 8192)]:
@@ -71,6 +97,7 @@ class SelectionTests(unittest.TestCase):
         with patch.object(installer, "detect_gpu", side_effect=cards):
             plan = installer.make_dual_plan(CATALOG, "0,1", True)
         self.assertFalse(plan["hardware_qualified_for_gpu"])
+        self.assertEqual(plan["launch_profile"], "r6")
         for devices in [[cards[0], cards[0]], [cards[0], {**cards[1], "memory_mib": 8192}], [cards[0], {**cards[1], "name": "RTX 3090"}]]:
             with patch.object(installer, "detect_gpu", side_effect=devices), self.assertRaises(ValueError):
                 installer.make_dual_plan(CATALOG, "0,1", True)

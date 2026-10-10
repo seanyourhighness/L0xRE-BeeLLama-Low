@@ -1,0 +1,8 @@
+uprobe:/home/sean/work/l0xre-r6-4090-20261010/package-current/architectures/sm89/bin/libbridge-packed.so:escha_official_code_gemm
+{ @gemm_calls = count(); }
+uretprobe:/home/sean/work/l0xre-r6-4090-20261010/package-current/architectures/sm89/bin/libbridge-packed.so:escha_official_code_gemm
+{ @gemm_return[retval] = count(); }
+uprobe:/home/sean/work/l0xre-r6-4090-20261010/package-current/architectures/sm89/bin/libbridge-packed.so:escha_official_code_gemm_pretransformed
+{ @transformed_calls = count(); }
+uretprobe:/home/sean/work/l0xre-r6-4090-20261010/package-current/architectures/sm89/bin/libbridge-packed.so:escha_official_code_gemm_pretransformed
+{ @transformed_return[retval] = count(); }

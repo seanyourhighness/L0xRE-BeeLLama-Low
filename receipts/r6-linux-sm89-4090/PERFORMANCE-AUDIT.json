@@ -1,0 +1,76 @@
+{
+  "status": "performance-capacity-passed",
+  "hardware_qualified": false,
+  "full_certification_complete": false,
+  "balanced": {
+    "prose": {
+      "baseline": 99.6084765170117,
+      "candidate": 101.67348803000047,
+      "change_percent": 2.0731282971044207
+    },
+    "code": {
+      "baseline": 160.65224159802614,
+      "candidate": 162.88163215754065,
+      "change_percent": 1.3877120775524165
+    },
+    "prefill_10240": {
+      "baseline": 1870.8681045057924,
+      "candidate": 1938.473106174968,
+      "change_percent": 3.6135632173297516
+    },
+    "prefill_77824": {
+      "baseline": 1612.9476523968103,
+      "candidate": 1673.3953914866952,
+      "change_percent": 3.747656596298121
+    }
+  },
+  "arms": {
+    "P00-published42": {
+      "prose": 100.60585123204817,
+      "code": 164.49919329380063,
+      "prefill": {
+        "10240": 1871.0779766265086,
+        "77824": 1612.9255222147929
+      },
+      "total_capacity_tokens": 78081,
+      "request_observations": 16
+    },
+    "P01-candidate42": {
+      "prose": 102.6386060680371,
+      "code": 168.72263713716828,
+      "prefill": {
+        "10240": 1937.9808283732505,
+        "77824": 1672.7584946970455
+      },
+      "total_capacity_tokens": 81916,
+      "request_observations": 16
+    },
+    "P02-candidate1234": {
+      "prose": 100.70836999196385,
+      "code": 157.04062717791302,
+      "prefill": {
+        "10240": 1938.9653839766854,
+        "77824": 1674.0322882763448
+      },
+      "total_capacity_tokens": 78081,
+      "request_observations": 16
+    },
+    "P03-published1234": {
+      "prose": 98.61110180197524,
+      "code": 156.80528990225167,
+      "prefill": {
+        "10240": 1870.6582323850764,
+        "77824": 1612.9697825788278
+      },
+      "total_capacity_tokens": 78081,
+      "request_observations": 16
+    }
+  },
+  "remaining": [
+    "paired full150 quality and review",
+    "serial/spec correctness scope",
+    "CPUvision",
+    "restart and stability",
+    "final clean package and publication"
+  ]
+}
