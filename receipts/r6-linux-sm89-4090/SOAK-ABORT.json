@@ -1,0 +1,22 @@
+{
+  "status": "aborted-on-hardware-error",
+  "full_certification_complete": false,
+  "soak_passed": false,
+  "controller_state_note": "systemd stopped the bound unit; previous running JSON is stale, not a pass",
+  "started": 1791624696.9020019,
+  "hardware_event_unix": 1791626397,
+  "stopped_at": 1791626400.1214485,
+  "elapsed_before_stop": 1703.2194466590881,
+  "raw_status": "0x8c000047000800c0",
+  "mca_bank": 9,
+  "socket": 0,
+  "cpu": 0,
+  "address": "0x263b2000",
+  "kernel_classification": "corrected DRAM memory scrubbing error",
+  "edac": "CPU_SrcID#0_Ha#0_Chan#0_DIMM#0",
+  "hardware_corrupted_kib": 8,
+  "previous_hardware_corrupted_kib": 4,
+  "completed_request_records": 335,
+  "followup": "Physical memory-path maintenance/isolation and fresh complete stability qualification; do not regrade or restart until-pass.",
+  "public_trace_redaction": "Only CPU PPIN redacted in public trace; original preserved in local lab/remote evidence."
+}

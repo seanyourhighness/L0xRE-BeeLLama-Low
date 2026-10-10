@@ -1,0 +1,8 @@
+uprobe:/home/sean/work/l0xre-r6-4090-20261010/package-current/architectures/sm89/bin/libbridge-packed.so:escha_official_decode_gemv_main_batch_v1
+{ @batch_calls = count(); }
+uretprobe:/home/sean/work/l0xre-r6-4090-20261010/package-current/architectures/sm89/bin/libbridge-packed.so:escha_official_decode_gemv_main_batch_v1
+{ @batch_return[retval] = count(); }
+uprobe:/home/sean/work/l0xre-r6-4090-20261010/package-current/architectures/sm89/bin/libbridge-packed.so:escha_official_decode_gemv_main_f32_raw
+{ @f32_calls = count(); }
+uretprobe:/home/sean/work/l0xre-r6-4090-20261010/package-current/architectures/sm89/bin/libbridge-packed.so:escha_official_decode_gemv_main_f32_raw
+{ @f32_return[retval] = count(); }

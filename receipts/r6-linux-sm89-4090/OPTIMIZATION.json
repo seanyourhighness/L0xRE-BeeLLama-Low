@@ -1,0 +1,105 @@
+{
+  "status": "optimization-complete-certification-active",
+  "full_certification_complete": false,
+  "hardware_qualified": false,
+  "gpu": "RTX4090",
+  "power_limit_w": 300,
+  "source_revision": "bb1675d0364a6e92e3565d0e711c630d72d6f53b",
+  "source_archive_sha256": "398fa0d234f16bbfc56ad2fe5e9217837deeaa535a694a0a68fe2f8f19e9dfeb",
+  "selected": "current-native,cache-down1,N7,down12,threads8,80K,KVarN4/4,one slot",
+  "bench_sha256": "a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a",
+  "screens": [
+    {
+      "arm": "S00-published-seed42",
+      "status": "screen_pass",
+      "seed": 42,
+      "warmups": 1,
+      "measured": 3,
+      "hardware_qualified": false,
+      "narrative_decode_tps": 101.72741845895845,
+      "code_decode_tps": 168.77687152764898,
+      "prefill_tokens": 10240,
+      "prefill_tps": 1859.657597809091
+    },
+    {
+      "arm": "M03-cache0-warm-repeat",
+      "status": "screen_pass",
+      "seed": 42,
+      "warmups": 3,
+      "measured": 5,
+      "hardware_qualified": false,
+      "narrative_decode_tps": 100.9630383938868,
+      "code_decode_tps": 166.0660342401444,
+      "prefill_tokens": 10240,
+      "prefill_tps": 1873.9388180936112
+    },
+    {
+      "arm": "M04-cache1-warm-repeat",
+      "status": "screen_pass",
+      "seed": 42,
+      "warmups": 3,
+      "measured": 5,
+      "hardware_qualified": false,
+      "narrative_decode_tps": 100.7609888178373,
+      "code_decode_tps": 166.24387587072852,
+      "prefill_tokens": 10240,
+      "prefill_tps": 1942.6828868040043
+    },
+    {
+      "arm": "L00-long-cache0",
+      "status": "screen_pass",
+      "seed": 42,
+      "warmups": 1,
+      "measured": 3,
+      "hardware_qualified": false,
+      "prefill_tokens": 77824,
+      "prefill_tps": 1613.5828578550315
+    },
+    {
+      "arm": "L01-long-cache1",
+      "status": "screen_pass",
+      "seed": 42,
+      "warmups": 1,
+      "measured": 3,
+      "hardware_qualified": false,
+      "prefill_tokens": 77824,
+      "prefill_tps": 1673.4261480189552
+    },
+    {
+      "arm": "R00-current-native-cache1",
+      "status": "screen_pass",
+      "seed": 42,
+      "warmups": 1,
+      "measured": 3,
+      "hardware_qualified": false,
+      "narrative_decode_tps": 103.32237912156315,
+      "code_decode_tps": 168.40535145304224,
+      "prefill_tokens": 10240,
+      "prefill_tps": 1943.2583736597398
+    },
+    {
+      "arm": "R16-current-native-splits16",
+      "status": "screen_pass",
+      "seed": 42,
+      "warmups": 1,
+      "measured": 3,
+      "hardware_qualified": false,
+      "narrative_decode_tps": 94.1376089610153,
+      "code_decode_tps": 160.3030345344765,
+      "prefill_tokens": 10240,
+      "prefill_tps": 1940.0909758676553
+    },
+    {
+      "arm": "R77-current-native-long",
+      "status": "screen_pass",
+      "seed": 42,
+      "warmups": 1,
+      "measured": 3,
+      "hardware_qualified": false,
+      "prefill_tokens": 77824,
+      "prefill_tps": 1674.2803207456743
+    }
+  ],
+  "rejected": "Threads2/4 and SM89 Q4 MMQ showed no benefit. Split16 was slower on the current backend. N9 exceeds the compact GDN rollback contract.",
+  "hardware_limitation": "Earlier corrected system RAM errors remain unresolved; optimization raw-MCE observation window captured no new events. This is not full system-memory qualification."
+}

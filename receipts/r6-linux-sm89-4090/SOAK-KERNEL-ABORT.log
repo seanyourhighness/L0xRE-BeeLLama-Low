@@ -1,0 +1,10 @@
+2026-10-10T09:59:57+00:00 z840 kernel: mce: [Hardware Error]: Machine check events logged
+2026-10-10T09:59:57+00:00 z840 kernel: RAS: Soft-offlining pfn: 0x263b2
+2026-10-10T09:59:57+00:00 z840 kernel: EDAC sbridge MC1: HANDLING MCE MEMORY ERROR
+2026-10-10T09:59:57+00:00 z840 kernel: EDAC sbridge MC1: CPU 0: Machine Check Event: 0 Bank 9: 8c000047000800c0
+2026-10-10T09:59:57+00:00 z840 kernel: EDAC sbridge MC1: TSC 3451004245d6 
+2026-10-10T09:59:57+00:00 z840 kernel: EDAC sbridge MC1: ADDR 263b2000 
+2026-10-10T09:59:57+00:00 z840 kernel: EDAC sbridge MC1: MISC 908400800080e8c 
+2026-10-10T09:59:57+00:00 z840 kernel: EDAC sbridge MC1: PROCESSOR 0:406f1 TIME 1791626397 SOCKET 0 APIC 0
+2026-10-10T09:59:57+00:00 z840 kernel: EDAC MC1: 1 CE memory scrubbing error on CPU_SrcID#0_Ha#0_Chan#0_DIMM#0 (channel:0 page:0x263b2 offset:0x0 grain:32 syndrome:0x0 -  area:DRAM err_code:0008:00c0 socket:0 ha:0 channel_mask:1 rank:255 row:0x2892 col:0x1d8 bank_addr:3 bank_group:3)
+2026-10-10T09:59:58+00:00 z840 kernel: traps: llama-server[78497] general protection fault ip:7bd09ec47339 sp:7ffd817d1110 error:0 in libc.so.6[47339,7bd09ec28000+189000]

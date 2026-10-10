@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "archive": "L0xRE-BeeLLama-Low-R6-sm89-windows-current-profile-candidate.zip",
+  "bytes": 615086819,
+  "sha256": "d75c3bb2cc0d38b0c5af455324b7e9cfec18837a382d6ef9537c6b7819e7ae2f",
+  "zip_members": 76,
+  "runtime_manifest_entries": 67,
+  "required_native_profile_hashes": 53,
+  "native_powershell_parse": "passed",
+  "hardware_qualified": false,
+  "model_inference_performed": false
+}

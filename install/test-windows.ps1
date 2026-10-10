@@ -22,6 +22,11 @@ try {
     $ada = [pscustomobject]@{ index = 1; uuid = 'GPU-ada'; name = 'NVIDIA GeForce RTX 4090'; arch = 'sm89'; memory_mib = 24576 }
     $ampere = [pscustomobject]@{ index = 2; uuid = 'GPU-ampere'; name = 'NVIDIA GeForce RTX 3060'; arch = 'sm86'; memory_mib = 12288 }
     Assert-Install ((Get-InstallPlan $catalog $blackwell $false '').package.status -eq 'certified') 'Wrong certified Windows route'
+    $namedCatalog = $catalog | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+    $namedCatalog.packages.windows.sm120 | Add-Member NoteProperty certified_gpu_names @('NVIDIA GeForce RTX 5090') -Force
+    $variant5090 = [pscustomobject]@{index=0;uuid='GPU-variant';name='NVIDIA GeForce RTX 5090 D';arch='sm120';memory_mib=32607}
+    Assert-Rejected { Get-InstallPlan $namedCatalog $variant5090 $false '' } 'Similarly named GPU silently inherited certification'
+    Assert-Install (-not (Get-InstallPlan $namedCatalog $variant5090 $true '').hardware_qualified_for_gpu) 'Variant GPU incorrectly certified'
     Assert-Rejected { Get-InstallPlan $catalog $ada $false '' } 'SM89 candidate silently selected'
     Assert-Rejected { Get-InstallPlan $catalog $ampere $false '' } 'SM86 candidate silently selected'
     Assert-Install ((Get-InstallPlan $catalog $ada $true '').package.status -eq 'candidate') 'Explicit candidate unavailable'
@@ -184,6 +189,17 @@ $gpuRecords
     $arguments = @($candidateResponse.argv)
     Assert-Install ($arguments -contains '--qualification-probe' -and $arguments -contains '--dry-run') ("Candidate launcher flags not forwarded: " + ($arguments | ConvertTo-Json -Depth 4 -Compress))
     Assert-Install ($arguments -contains 'r6') 'Candidate sealed profile missing'
+
+    $profileCatalog = $catalog | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+    $profileCatalog.packages.windows.sm89 | Add-Member NoteProperty launch_profiles @(
+        [pscustomobject]@{ gpu_name='NVIDIA GeForce RTX 4070 Ti'; min_memory_mib=12000; profile='r6-sm89-4070ti' })
+    $selectedProfile = Get-InstallPlan $profileCatalog $smallAda $true ''
+    Assert-Install ($selectedProfile.launch_profile -eq 'r6-sm89-4070ti') 'Measured Windows profile not selected for its named GPU'
+    Assert-Install ((Get-InstallPlan $profileCatalog $ada $true '').launch_profile -eq 'r6') 'Another SM89 card inherited the measured 4070 Ti profile'
+    $selectedProfile.package.launcher = 'fixture.ps1'
+    $profileStart = Write-InstallLauncher $candidateDir $candidateDir $modelRoot $selectedProfile $false 8080
+    $profileResponse = & $native -NoProfile -File $profileStart -DryRun | ConvertFrom-Json
+    Assert-Install (@($profileResponse.argv) -contains 'r6-sm89-4070ti') 'Selected profile missing from the actual generated launcher'
 
     $dualDir = Join-Path $fixtureRoot 'dual-install'
     $dualRuntime = Join-Path $dualDir 'runtime'

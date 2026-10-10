@@ -9,7 +9,7 @@ def main():
     if 'serve' in args:args.remove('serve')
     p=argparse.ArgumentParser(allow_abbrev=False)
     p.add_argument('--arch',choices=['sm86','sm89','sm120'])
-    p.add_argument('--profile',choices=['r6'],default='r6')
+    p.add_argument('--profile',choices=['r6','r6-sm89-4090'],default='r6')
     p.add_argument('-m','--model',required=True);p.add_argument('-md','--draft-model','--spec-draft-model',dest='draft',required=True)
     p.add_argument('--mmproj');p.add_argument('--dry-run',action='store_true');p.add_argument('--verify-models',action='store_true')
     p.add_argument('--qualification-probe',action='store_true');p.add_argument('--sm89-q4-mmq',action='store_true')
@@ -26,8 +26,23 @@ def main():
     if not path.is_file():p.error(f'{arch} R6 payload is not installed')
     manifest=json.loads(path.read_text())
     if not manifest.get('built'):p.error(f'{arch} R6 payload has not been built')
-    if not manifest.get('hardware_qualified') and not opt.qualification_probe:p.error(f'{arch} R6 hardware qualification is pending')
-    config=json.loads((root/'tools/universal/r6-profile.json').read_text())
+    qualified=manifest.get('profile_qualification',{}).get(opt.profile,manifest.get('hardware_qualified',False))
+    if not qualified and not opt.qualification_probe:p.error(f'{arch} {opt.profile} hardware qualification is pending')
+    profile_name='r6-linux-sm89-4090-profile.json' if opt.profile=='r6-sm89-4090' else 'r6-profile.json'
+    profile_path=root/'tools/universal'/profile_name
+    config=json.loads(profile_path.read_text())
+    expected_profile=manifest.get('profile_sha256',{}).get(profile_name)
+    if expected_profile and sha(profile_path)!=expected_profile:p.error('R6 profile integrity check failed')
+    if opt.profile=='r6-sm89-4090':
+        if arch!='sm89':p.error('r6-sm89-4090 requires SM89')
+        if opt.sm89_q4_mmq:p.error('The RTX4090 profile keeps SM89 Q4 MMQ disabled')
+        expected=manifest.get('profile_sha256',{}).get(profile_name)
+        if not expected or sha(profile_path)!=expected:p.error('RTX4090 profile integrity check failed')
+        raw=subprocess.check_output(['nvidia-smi','--id='+uuid,'--query-gpu=memory.total,name','--format=csv,noheader,nounits'],text=True)
+        memory,name=[x.strip() for x in raw.strip().split(',',1)]
+        if int(memory)<config['min_gpu_memory_mib'] or name!=config['required_gpu_name']:p.error('RTX4090 profile requires the selected 24GB RTX4090')
+        sealed=['-np','-t','-tb','-ngl','-fa','-c','-b','-ub','-ctk','-ctv','-ot','--kv-tail-tokens','--spec-type','--spec-draft-n-max','--spec-draft-ngl','--spec-draft-ubatch-size','--spec-draft-type-k','--spec-draft-type-v','--spec-draft-threads','--spec-draft-threads-batch','--reasoning','--reasoning-effort','--reasoning-budget','--temp','--top-p','--top-k','--min-p','--cache-ram','--fit','--fit-target','--no-op-offload','--no-mmproj-offload','--image-min-tokens','--image-max-tokens']
+        if any(value.split('=',1)[0] in sealed for value in extra):p.error('RTX4090 profile options are sealed; select the packaged profile without overriding them')
     for name,value in manifest['runtime_sha256'].items():
         path=archroot/name
         if not path.is_file() or sha(path)!=value:p.error(f'R6 payload integrity check failed: {name}')
@@ -63,7 +78,7 @@ def main():
     if opt.mmproj:command+=['--mmproj',str(vision)]
     command+=extra
     if opt.dry_run:
-        print(json.dumps({'arch':arch,'hardware_qualified':manifest.get('hardware_qualified',False),'argv':command,
+        print(json.dumps({'arch':arch,'profile':opt.profile,'hardware_qualified':qualified,'argv':command,
             'env':{k:env[k] for k in [*config['env'],'L0XRE_ARCH','L0XRE_SM89_Q4_MMQ','CUDA_VISIBLE_DEVICES'] if k in env}},indent=2));return
     os.execvpe(command[0],command,env)
 if __name__=='__main__':main()
