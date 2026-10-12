@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "elapsed_seconds": 1964.4316669649997,
+  "cycles": 16,
+  "requests": 400,
+  "repeat_comparisons": 391,
+  "depths": [
+    2048,
+    16384,
+    32768,
+    65536,
+    77824
+  ]
+}

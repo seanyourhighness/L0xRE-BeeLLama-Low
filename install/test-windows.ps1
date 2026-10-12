@@ -241,6 +241,26 @@ $gpuRecords
     $receipt = Get-Content -Raw -LiteralPath (Join-Path $InstallDir 'INSTALLATION.json') | ConvertFrom-Json
     [IO.File]::WriteAllText((Join-Path $receipt.runtime 'l0xre.ps1'), 'changed')
     Assert-Rejected { Invoke-L0xreInstall } 'Tampered installed payload reused'
+
+    # Full-release route matrix: every supported architecture resolves for 12GB-plus cards.
+    $matrix = @(
+        [pscustomobject]@{ name = 'NVIDIA GeForce RTX 3060'; arch = 'sm86'; memory_mib = 12288 },
+        [pscustomobject]@{ name = 'NVIDIA GeForce RTX 3090'; arch = 'sm86'; memory_mib = 24576 },
+        [pscustomobject]@{ name = 'NVIDIA GeForce RTX 4060 Ti'; arch = 'sm89'; memory_mib = 16384 },
+        [pscustomobject]@{ name = 'NVIDIA GeForce RTX 4070 Ti'; arch = 'sm89'; memory_mib = 12288 },
+        [pscustomobject]@{ name = 'NVIDIA GeForce RTX 4090'; arch = 'sm89'; memory_mib = 24576 },
+        [pscustomobject]@{ name = 'NVIDIA GeForce RTX 5060 Ti'; arch = 'sm120'; memory_mib = 16384 },
+        [pscustomobject]@{ name = 'NVIDIA GeForce RTX 5070'; arch = 'sm120'; memory_mib = 12288 },
+        [pscustomobject]@{ name = 'NVIDIA GeForce RTX 5090'; arch = 'sm120'; memory_mib = 32607 })
+    foreach ($card in $matrix) {
+        $plan = Get-InstallPlan $catalog $card $true ''
+        Assert-Install ($plan.package.filename -and $plan.package.sha256 -and $plan.package.url -and $plan.package.bytes) "$($card.name) route has no published archive"
+        Assert-Install ($plan.package.min_memory_mib -le $card.memory_mib) "$($card.name) route exceeds its VRAM floor"
+        if ($card.name -eq 'NVIDIA GeForce RTX 5090') {
+            Assert-Install ($plan.hardware_qualified_for_gpu -and $plan.package.status -eq 'certified') 'RTX 5090 Windows certificate lost'
+        }
+    }
+    Assert-Install ((Get-InstallPlan $catalog $blackwell $false '').hardware_qualified_for_gpu) 'Certified Windows route needs an opt-in'
     Write-Host "WINDOWS_INSTALLER_PASS: $checks checks; native PowerShell $($PSVersionTable.PSVersion)"
 } finally {
     Remove-Item -LiteralPath $fixtureRoot -Recurse -Force

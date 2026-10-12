@@ -92,6 +92,24 @@ class SelectionTests(unittest.TestCase):
             if arch == "sm120":
                 self.assertIn("12gb", plan["package"]["filename"])
 
+    def test_full_release_route_matrix_covers_every_arch_at_12gb(self):
+        matrix = [("sm86", "NVIDIA GeForce RTX 3060", 12288), ("sm86", "NVIDIA GeForce RTX 3090", 24576),
+                  ("sm89", "NVIDIA GeForce RTX 4060 Ti", 16384), ("sm89", "NVIDIA GeForce RTX 4070 Ti", 12288),
+                  ("sm89", "NVIDIA GeForce RTX 4090", 24564), ("sm120", "NVIDIA GeForce RTX 5060 Ti", 16384),
+                  ("sm120", "NVIDIA GeForce RTX 5070", 12288), ("sm120", "NVIDIA GeForce RTX 5090", 32607)]
+        for arch, name, memory in matrix:
+            plan = installer.make_plan(CATALOG, gpu(arch, name, memory), True, "sealed.tar.zst")
+            package = plan["package"]
+            self.assertTrue(package["filename"] and package["sha256"] and package["url"] and package["bytes"],
+                            f"{name} route has no published archive")
+            self.assertLessEqual(package["min_memory_mib"], memory, f"{name} route exceeds its VRAM floor")
+            if name == "NVIDIA GeForce RTX 4090":
+                self.assertEqual(plan["launch_profile"], "r6-sm89-4090")
+                self.assertTrue(plan["hardware_qualified_for_gpu"])
+            if name == "NVIDIA GeForce RTX 5090":
+                self.assertTrue(plan["hardware_qualified_for_gpu"])
+        self.assertTrue(installer.make_plan(CATALOG, gpu("sm89", "NVIDIA GeForce RTX 4090", 24564))["hardware_qualified_for_gpu"])
+
     def test_dual_retains_profile_and_fast_routes(self):
         cards = [gpu(), {**gpu(), "index": 1, "uuid": "GPU-second"}]
         with patch.object(installer, "detect_gpu", side_effect=cards):

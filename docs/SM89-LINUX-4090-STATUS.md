@@ -85,3 +85,44 @@ The earlier 32-minute and clean-package gates remain measured historical observa
 Three complete pinned Bench.sh arms were preserved. Both 450 W seeds average 102.95 t/s prose and 165.59 t/s code, with 2,086.16 t/s cold 10K prefill and 1,813.92 t/s cold 77K prefill. The completed seed-42 pair gives +1.19% code and +7.91% 77K prefill at 450 W versus 300 W. The second 300 W arm was interrupted, so no complete balanced power comparison or maximum-speed claim is made.
 
 The latest requested baseline is an official unmodified BeeLlama v0.4.7 package and the similarly sized LowGPU NoMTP IQ3XXXS model (9,570,663,040 bytes versus L0xRE E3's 8,619,127,680). The official package and model are prepared and hash-pinned locally. Ordinary native decoding, shared DFlash2 N7, and a same-LowGPU runtime control are planned at matched settings once the hardware condition is addressed. Partial audited results and the blocked plan are in `receipts/r6-linux-sm89-4090/PARTIAL-COMPARISON-20261010.json` and `VANILLA-LOWGPU-PLAN.json`.
+
+
+## Full-power re-qualification on the repaired host — 2026-10-11
+
+The Strata service on the RTX4090 was stopped and disabled (`strata-qwen-flash-next-4090`, `strata-cpu-performance`), freeing the card. Z840 rebooted 2026-10-11 17:27 PDT (boot `cba21c13-68c8-4b48-914f-25be95667c51`) with **78 GB RAM** and both the RTX4090 and the RTX3060 present; the RTX3060 L0xRE service remained running and idle throughout. The RTX4090 stayed at its **450 W** persistent limit, which is also this card's **maximum supported power limit** (`Max Power Limit 450 W`), so full power is the hardware ceiling.
+
+Per the operator's instruction, no RAM/memory gate was applied to this run: exported EDAC counters on this boot read mc1 CE=39 / mc3 CE=13 corrected events with UE=0, and the raw machine-check watcher used on October 10 was removed from the controller. Corrected-ECC activity is therefore **disclosed, not gated**, and this run does not certify system-wide RAM health. GPU-side guards (CUDA error scan, 82 C guard, clean-exit check, affinity check, frozen-sampler attestation) remained active.
+
+### Frozen Bench.sh decode/prefill arms at 450 W
+
+Same frozen package (`inventory_sha256 7e98996c…9166c4`) and sealed `r6-sm89-4090` profile (`89499a2a…181b57`); three warmups and five measured requests per prompt per seed; 16 effective sampler observations matched the frozen protocol; greedy code/prose hashes matched the October 10 oracle exactly.
+
+| Arm | Prose decode t/s | Code decode t/s | 77K prefill t/s | 10K prefill t/s | 2K prefill t/s |
+|---|---:|---:|---:|---:|---:|
+| Q45 seed42 | 105.33 | 173.25 | 1780.62 | 2034.04 | 1520.52 |
+| Q46 seed1234 | 103.37 | 160.99 | 1780.88 | 2033.84 | 1533.35 |
+| **Two-seed mean** | **104.35** | **167.12** | **1780.75** | **2033.94** | — |
+
+Against the October 10 450 W observations (48 GB configuration): prose +1.36%, code +0.92%, 10K prefill −2.50%, 77K prefill −1.83%. The host memory population and the presence of the second GPU differ, so this is reported as an observation, not a paired power or hardware claim.
+
+Cross-card anchors from the same frozen Bench.sh protocol: RTX 4070 Ti Windows R6 measured 115.76 t/s code, so the 4090 is **+44.4%** on code decode. The certified RTX 5090 SM120 package reports 229 t/s code, so the 4090 reaches ~73% of it. The RTX 5090 Strata figures quoted elsewhere are a different runtime and are not comparable to these R6 numbers.
+
+### Optimization screen at 450 W (full-headroom check)
+
+A repeat of the seed-42 arm established the noise floor at +0.17% prose / +0.28% code / +0.15% prefill. Every screened variant landed inside or below that floor:
+
+| Screen | Prose | Code | 77K prefill | Verdict |
+|---|---:|---:|---:|---|
+| O10 repeat (noise floor) | 105.50 | 173.73 | 1783.25 | baseline |
+| O11 threads 12 (CPU0-11) | 105.16 | 173.59 | 1788.27 | neutral |
+| O12 ubatch 1024 | 105.36 | 172.59 | 1608.04 | rejected (−9.8% prefill) |
+| O13 down_splits 24 | — | — | — | `ggml_abort`, outside the K3 cubin contract |
+| O20 KVarN window chunk 32768 | 105.26 | 172.38 | 1792.60 | within noise |
+| O21 KVarN window chunk 8192 | 105.50 | 174.19 | 1771.50 | within noise |
+| O22 ESCHA_W2_I8_HEAD=1 | 105.52 | 173.20 | 1779.20 | within noise |
+
+Historic rejections remain in force: SM89 Q4 MMQ is slower (100.56/165.21 at 300 W), draft depth 9 exits the runtime, threads 2/4 are slower, down_splits 16 aborts, and the INT8 down-weight cache is retained because it improved prefill. Under load the card held 2715–2730 MHz of a 3105 MHz maximum with SW Power Cap intermittently active and no HW slowdown, thermal slowdown or power-brake event — i.e. the profile is running at the platform's power ceiling.
+
+Fast-path attestation for the certified arms: packed bridge and QK16 context gate mapped in the server process, 16/16 sampler observations matching the frozen protocol, CPU0-7 affinity and NUMA0 placement verified. This is process/library and request-level attestation, not a per-kernel trace.
+
+**Conclusion:** the frozen `r6-sm89-4090` profile is the best configuration found on this host at full power; no profile change was adopted, so the sealed profile and the existing certified archive remain byte-identical. Machine-readable results: `receipts/r6-linux-sm89-4090/OPTIMIZATION-450W-20261011.json` and `receipts/r6-linux-sm89-4090/20261011-fullpower/`.

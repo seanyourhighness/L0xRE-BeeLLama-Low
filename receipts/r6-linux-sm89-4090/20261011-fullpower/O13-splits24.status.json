@@ -1,0 +1,29 @@
+{
+  "arm": {
+    "id": "O13-splits24",
+    "installed": "/home/sean/work/l0xre-r6-sm89-4090-20261011/r6.json",
+    "seed": 42,
+    "power_w": 450,
+    "runs": 5,
+    "warmups": 3,
+    "prefill": 77824,
+    "additional_prefill": 10240,
+    "context": 81920,
+    "env": {
+      "ESCHA_OFFICIAL_RAW_DECODE_K3_DOWN_SPLITS": "24"
+    },
+    "args": [
+      "--alias",
+      "4090-opt",
+      "--reasoning",
+      "off"
+    ],
+    "frozen_candidate": true
+  },
+  "status": "failed",
+  "started": 1791774593.9582047,
+  "hardware_qualified": false,
+  "error": "Remote end closed connection without response",
+  "server_exit": -6,
+  "finished": 1791774602.887399
+}

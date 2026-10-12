@@ -1,0 +1,25 @@
+{
+  "status": "pass",
+  "package": "/home/sean/work/l0xre-r6-sm89-4090-20261011/certified-package",
+  "actual_consumer_launcher": true,
+  "qualification_probe_flag_used": false,
+  "native_and_profile_equal_frozen": true,
+  "greedy_oracle_match": true,
+  "cold10k_pass": true,
+  "cpu_vision": "VISION 742",
+  "capacity_input_tokens": 77825,
+  "capacity_output_tokens": 4091,
+  "capacity_total_tokens": 81916,
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "clean_exit": 0,
+  "timestamp": 1791779074.164218
+}
