@@ -18,6 +18,7 @@ function New-FixtureRecord([string]$Path) {
 }
 try {
     $catalog = Get-InstallCatalog ''
+    $officialCatalog = $catalog | ConvertTo-Json -Depth 20 | ConvertFrom-Json
     $blackwell = [pscustomobject]@{ index = 0; uuid = 'GPU-fixture'; name = 'NVIDIA GeForce RTX 5090'; arch = 'sm120'; memory_mib = 32607 }
     $ada = [pscustomobject]@{ index = 1; uuid = 'GPU-ada'; name = 'NVIDIA GeForce RTX 4090'; arch = 'sm89'; memory_mib = 24576 }
     $ampere = [pscustomobject]@{ index = 2; uuid = 'GPU-ampere'; name = 'NVIDIA GeForce RTX 3060'; arch = 'sm86'; memory_mib = 12288 }
@@ -25,26 +26,23 @@ try {
     $namedCatalog = $catalog | ConvertTo-Json -Depth 20 | ConvertFrom-Json
     $namedCatalog.packages.windows.sm120 | Add-Member NoteProperty certified_gpu_names @('NVIDIA GeForce RTX 5090') -Force
     $variant5090 = [pscustomobject]@{index=0;uuid='GPU-variant';name='NVIDIA GeForce RTX 5090 D';arch='sm120';memory_mib=32607}
-    Assert-Rejected { Get-InstallPlan $namedCatalog $variant5090 $false '' } 'Similarly named GPU silently inherited certification'
-    Assert-Install (-not (Get-InstallPlan $namedCatalog $variant5090 $true '').hardware_qualified_for_gpu) 'Variant GPU incorrectly certified'
-    Assert-Rejected { Get-InstallPlan $catalog $ada $false '' } 'SM89 candidate silently selected'
-    Assert-Rejected { Get-InstallPlan $catalog $ampere $false '' } 'SM86 candidate silently selected'
-    Assert-Install ((Get-InstallPlan $catalog $ada $true '').package.status -eq 'candidate') 'Explicit candidate unavailable'
+    Assert-Install (-not (Get-InstallPlan $namedCatalog $variant5090 $false '').hardware_qualified_for_gpu) 'Variant GPU incorrectly certified'
+    Assert-Install (-not (Get-InstallPlan $catalog $ada $false '').hardware_qualified_for_gpu) 'SM89 Windows starter mislabeled'
+    Assert-Install (-not (Get-InstallPlan $catalog $ampere $false '').hardware_qualified_for_gpu) 'SM86 Windows starter mislabeled'
+    Assert-Install ((Get-InstallPlan $catalog $ada $false '').package.status -eq 'starter') 'Starter route unavailable without opt-in'
     $low = [pscustomobject]@{ name = 'RTX 5080'; arch = 'sm120'; memory_mib = 16384 }
-    Assert-Rejected { Get-InstallPlan $catalog $low $false '' } 'Low VRAM candidate selected without opt-in'
-    Assert-Install ((Get-InstallPlan $catalog $low $true '').package.filename -match '12gb') 'SM120 low VRAM profile not selected'
+    Assert-Install ((Get-InstallPlan $catalog $low $false '').package.filename -match '12gb') 'SM120 low VRAM profile not selected'
     $other = [pscustomobject]@{ name = 'RTX 5080'; arch = 'sm120'; memory_mib = 32768 }
     Assert-Install (-not (Get-InstallPlan $catalog $other $true '').hardware_qualified_for_gpu) '5080 incorrectly inherits 5090 certification'
     $smallAda = [pscustomobject]@{ index=1; uuid='GPU-small'; name='NVIDIA GeForce RTX 4070 Ti'; arch='sm89'; memory_mib=12288 }
-    Assert-Install ((Get-InstallPlan $catalog $smallAda $true '').package.status -eq 'candidate') '4070 Ti unavailable'
+    Assert-Install ((Get-InstallPlan $catalog $smallAda $false '').package.status -eq 'starter') '4070 Ti starter unavailable'
     $eightGb = [pscustomobject]@{ name='NVIDIA GeForce RTX 5060'; arch='sm120'; memory_mib=8192 }
     Assert-Rejected { Get-InstallPlan $catalog $eightGb $true '' } '8GB card accepted'
     $savedGpuFunction = (Get-Item Function:Get-InstallGpu).ScriptBlock
     function Get-InstallGpu([string]$Selector) { return [pscustomobject]@{ index=[int]$Selector; uuid=('GPU-'+$Selector); name='NVIDIA GeForce RTX 3060'; arch='sm86'; memory_mib=12288 } }
     Assert-Rejected { Get-DualInstallPlan $catalog '0,1' $false '' } 'Dual mode selected without opt-in'
     Assert-Rejected { Get-DualInstallPlan $catalog '0,0' $true '' } 'Duplicate dual GPU accepted'
-    $pair = Get-DualInstallPlan $catalog '0,1' $true ''
-    Assert-Install ($pair.mode -eq 'dual-fast-experimental' -and -not $pair.hardware_qualified_for_gpu) 'Dual candidate mislabeled'
+    Assert-Rejected { Get-DualInstallPlan $catalog '0,1' $true '' } 'Official catalog still carries the dual add-on'
     Set-Item Function:Get-InstallGpu $savedGpuFunction
 
     $originalVisible = $env:CUDA_VISIBLE_DEVICES
@@ -215,6 +213,14 @@ $gpuRecords
     $addonFile = Join-Path $addon 'DUAL-EXPERIMENT.json'
     [IO.File]::WriteAllText($addonFile, '{"hardware_qualified":false}')
     [IO.File]::WriteAllText((Join-Path $addon 'SHA256SUMS'), ((Get-FileHash $addonFile).Hash.ToLowerInvariant() + "  DUAL-EXPERIMENT.json`n"))
+    # The official catalog no longer carries the dual add-on; exercise the launcher
+    # generation path with a synthetic catalog so the code stays covered.
+    $savedDualGpu = (Get-Item Function:Get-InstallGpu).ScriptBlock
+    function Get-InstallGpu([string]$Selector) { return [pscustomobject]@{ index=[int]$Selector; uuid=('GPU-'+$Selector); name='NVIDIA GeForce RTX 3060'; arch='sm86'; memory_mib=12288 } }
+    $dualCatalog = $catalog | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+    $dualCatalog | Add-Member NoteProperty dual_addons ([pscustomobject]@{ windows = (New-FixtureRecord $addonFile) })
+    $pair = Get-DualInstallPlan $dualCatalog '0,1' $true ''
+    Set-Item Function:Get-InstallGpu $savedDualGpu
     $pair | Add-Member NoteProperty dual_addon_root $addon
     Write-InstallLauncher $dualDir $dualRuntime $modelRoot $pair $false 8192 | Out-Null
     $dualReceipt = Get-Content -Raw -LiteralPath (Join-Path $dualDir 'INSTALLATION.json') | ConvertFrom-Json
@@ -253,14 +259,18 @@ $gpuRecords
         [pscustomobject]@{ name = 'NVIDIA GeForce RTX 5070'; arch = 'sm120'; memory_mib = 12288 },
         [pscustomobject]@{ name = 'NVIDIA GeForce RTX 5090'; arch = 'sm120'; memory_mib = 32607 })
     foreach ($card in $matrix) {
-        $plan = Get-InstallPlan $catalog $card $true ''
+        $plan = Get-InstallPlan $officialCatalog $card $false ''
         Assert-Install ($plan.package.filename -and $plan.package.sha256 -and $plan.package.url -and $plan.package.bytes) "$($card.name) route has no published archive"
+        Assert-Install ($plan.package.url -match 'beellama-v0\.4\.7-r6/') "$($card.name) route leaves the official release"
         Assert-Install ($plan.package.min_memory_mib -le $card.memory_mib) "$($card.name) route exceeds its VRAM floor"
         if ($card.name -eq 'NVIDIA GeForce RTX 5090') {
             Assert-Install ($plan.hardware_qualified_for_gpu -and $plan.package.status -eq 'certified') 'RTX 5090 Windows certificate lost'
         }
+        if ($card.name -in @('NVIDIA GeForce RTX 5060 Ti','NVIDIA GeForce RTX 5070')) {
+            Assert-Install ($plan.package.status -eq 'starter' -and $plan.package.filename -match '12gb') '50-series 12GB starter route wrong'
+        }
     }
-    Assert-Install ((Get-InstallPlan $catalog $blackwell $false '').hardware_qualified_for_gpu) 'Certified Windows route needs an opt-in'
+    Assert-Install ((Get-InstallPlan $officialCatalog $blackwell $false '').hardware_qualified_for_gpu) 'Certified Windows route needs an opt-in'
     Write-Host "WINDOWS_INSTALLER_PASS: $checks checks; native PowerShell $($PSVersionTable.PSVersion)"
 } finally {
     Remove-Item -LiteralPath $fixtureRoot -Recurse -Force

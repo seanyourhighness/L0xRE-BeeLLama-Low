@@ -64,16 +64,12 @@ def make_plan(catalog, gpu, allow_candidate=False, runtime_archive=None):
         raise ValueError(f"{gpu['name']} has insufficient VRAM for this packaged profile")
     if package["gpu_name_contains"] and package["gpu_name_contains"] not in gpu["name"]:
         raise ValueError(f"The available {gpu['arch']} setup is scoped to {package['gpu_name_contains']}")
-    if package["status"] == "candidate" and not allow_candidate:
-        raise ValueError(f"{gpu['arch']} Linux is a candidate. Use --allow-candidate only to opt into testing it")
     if not package["url"] and not runtime_archive:
         raise ValueError("The certified Linux SM120 archive is not published yet. Supply --runtime-archive PATH to the sealed archive; Windows SM120 is available now")
     measured = package.get("certified_gpu_name_contains", package["gpu_name_contains"])
     qualified = package["status"].startswith("certified") and bool(measured) and measured in gpu["name"]
     if "certified_gpu_names" in package:
         qualified = package["status"].startswith("certified") and gpu["name"] in package["certified_gpu_names"]
-    if not qualified and not allow_candidate:
-        raise ValueError("The selected GPU is unqualified for this package; use --allow-candidate to opt into testing it")
     launch_profile = "r6"
     for preset in package.get("launch_profiles", []):
         if gpu["name"] == preset["gpu_name"] and gpu["memory_mib"] >= preset.get("min_memory_mib", 0):

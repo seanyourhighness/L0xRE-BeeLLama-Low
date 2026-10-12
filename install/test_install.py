@@ -44,9 +44,8 @@ class SelectionTests(unittest.TestCase):
         catalog = copy.deepcopy(CATALOG)
         catalog["packages"]["linux"]["sm120"]["certified_gpu_names"] = ["NVIDIA GeForce RTX 5090"]
         variant = gpu("sm120", "NVIDIA GeForce RTX 5090 D", 32607)
-        with self.assertRaisesRegex(ValueError, "allow-candidate"):
-            installer.make_plan(catalog, variant)
-        self.assertFalse(installer.make_plan(catalog, variant, True)["hardware_qualified_for_gpu"])
+        plan = installer.make_plan(catalog, variant)
+        self.assertFalse(plan["hardware_qualified_for_gpu"])
 
     def test_profile_selection_requires_the_named_card_and_vram(self):
         catalog = copy.deepcopy(CATALOG)
@@ -74,13 +73,13 @@ class SelectionTests(unittest.TestCase):
             installer.make_plan(pending, blackwell)
         self.assertEqual(installer.make_plan(pending, blackwell, runtime_archive="sealed.tar.zst")["package"]["status"], "certified")
 
-    def test_candidate_needs_opt_in(self):
+    def test_uncertified_cards_run_starter_routes_without_opt_in(self):
         ada = gpu("sm89", "NVIDIA GeForce RTX 4070 Ti", 12288)
-        with self.assertRaisesRegex(ValueError, "allow-candidate"):
-            installer.make_plan(CATALOG, ada)
-        self.assertFalse(installer.make_plan(CATALOG, ada, True)["hardware_qualified_for_gpu"])
-        with self.assertRaisesRegex(ValueError, "allow-candidate"):
-            installer.make_plan(CATALOG, gpu("sm86", "NVIDIA GeForce RTX 3090", 24576))
+        plan = installer.make_plan(CATALOG, ada)
+        self.assertFalse(plan["hardware_qualified_for_gpu"])
+        self.assertEqual(plan["launch_profile"], "r6")
+        plan = installer.make_plan(CATALOG, gpu("sm86", "NVIDIA GeForce RTX 3090", 24576))
+        self.assertFalse(plan["hardware_qualified_for_gpu"])
 
     def test_card_scope_and_vram(self):
         for device in [gpu(memory=8192), gpu("sm75"), gpu("sm120", "RTX 4080", 32768), gpu("sm89", "RTX 4060", 8192)]:
@@ -98,43 +97,27 @@ class SelectionTests(unittest.TestCase):
                   ("sm89", "NVIDIA GeForce RTX 4090", 24564), ("sm120", "NVIDIA GeForce RTX 5060 Ti", 16384),
                   ("sm120", "NVIDIA GeForce RTX 5070", 12288), ("sm120", "NVIDIA GeForce RTX 5090", 32607)]
         for arch, name, memory in matrix:
-            plan = installer.make_plan(CATALOG, gpu(arch, name, memory), True, "sealed.tar.zst")
+            plan = installer.make_plan(CATALOG, gpu(arch, name, memory))
             package = plan["package"]
             self.assertTrue(package["filename"] and package["sha256"] and package["url"] and package["bytes"],
                             f"{name} route has no published archive")
+            self.assertIn("beellama-v0.4.7-r6/", package["url"], f"{name} route leaves the official release")
             self.assertLessEqual(package["min_memory_mib"], memory, f"{name} route exceeds its VRAM floor")
             if name == "NVIDIA GeForce RTX 4090":
                 self.assertEqual(plan["launch_profile"], "r6-sm89-4090")
                 self.assertTrue(plan["hardware_qualified_for_gpu"])
             if name == "NVIDIA GeForce RTX 5090":
                 self.assertTrue(plan["hardware_qualified_for_gpu"])
+            if name in ("NVIDIA GeForce RTX 5060 Ti", "NVIDIA GeForce RTX 5070"):
+                self.assertEqual(package["status"], "starter")
+                self.assertIn("12gb", package["filename"])
         self.assertTrue(installer.make_plan(CATALOG, gpu("sm89", "NVIDIA GeForce RTX 4090", 24564))["hardware_qualified_for_gpu"])
 
-    def test_dual_retains_profile_and_fast_routes(self):
+    def test_official_catalog_does_not_offer_dual(self):
+        self.assertNotIn("dual_addons", CATALOG)
         cards = [gpu(), {**gpu(), "index": 1, "uuid": "GPU-second"}]
-        with patch.object(installer, "detect_gpu", side_effect=cards):
-            plan = installer.make_dual_plan(CATALOG, "0,1", True)
-        self.assertFalse(plan["hardware_qualified_for_gpu"])
-        self.assertEqual(plan["launch_profile"], "r6")
-        for devices in [[cards[0], cards[0]], [cards[0], {**cards[1], "memory_mib": 8192}], [cards[0], {**cards[1], "name": "RTX 3090"}]]:
-            with patch.object(installer, "detect_gpu", side_effect=devices), self.assertRaises(ValueError):
-                installer.make_dual_plan(CATALOG, "0,1", True)
-        profile = {"argv": ["@ARCH_ROOT@/bin/llama-server", "-c", "81920", "--spec-draft-n-max", "7", "--port", "8080"],
-                   "env": {"ESCHA_OFFICIAL_RAW_BRIDGE": "1", "L0XRE_INT8_PREFILL": "1", "LD_PRELOAD": "@ARCH_ROOT@/bin/libqk16-context-gate.so:@ARCH_ROOT@/bin/libbridge-packed.so"}}
-        spec = importlib.util.spec_from_file_location("dual", SOURCE.with_name("dual-launch.py"))
-        dual = importlib.util.module_from_spec(spec); spec.loader.exec_module(dual)
-        receipt = {**plan, "runtime": "/runtime", "dual_addon_root": "/addon", "port": 8190, "models_dir": "/models", "vision": False}
-        with patch.dict(os.environ, {"ESCHA_UNKNOWN": "1", "LD_PRELOAD": "bad.so"}):
-            args, env = dual.command_for(receipt, profile)
-        self.assertEqual(args[args.index("-c")+1], "81920")
-        self.assertEqual(args[args.index("--spec-draft-n-max")+1], "7")
-        self.assertEqual(args[args.index("--tensor-split")+1], "1,1")
-        self.assertEqual(env["CUDA_VISIBLE_DEVICES"], "GPU-fixture,GPU-second")
-        self.assertEqual(env["ESCHA_OFFICIAL_RAW_BRIDGE"], "1")
-        self.assertEqual(env["L0XRE_INT8_PREFILL"], "1")
-        self.assertIn("/addon/sm86/libbridge-dual.so", env["LD_PRELOAD"])
-        self.assertNotIn("libbridge-packed.so", env["LD_PRELOAD"])
-        self.assertNotIn("ESCHA_UNKNOWN", env)
+        with patch.object(installer, "detect_gpu", side_effect=cards), self.assertRaisesRegex(ValueError, "does not contain"):
+            installer.make_dual_plan(CATALOG, "0,1", True)
 
     def test_visible_gpu_selection(self):
         line = "1, GPU-second, NVIDIA GeForce RTX 3060, 8.6, 12288\n"
@@ -250,7 +233,7 @@ class IntegrationTests(unittest.TestCase):
             downloads = install / "downloads"; downloads.mkdir(parents=True)
             addon = downloads / "dual.tar.zst"; marker = b'{"hardware_qualified":false}'
             archive_at(addon, {"DUAL-EXPERIMENT.json": marker, "SHA256SUMS": (hashlib.sha256(marker).hexdigest()+"  DUAL-EXPERIMENT.json\n").encode()})
-            catalog["dual_addons"]["linux"].update(record(addon))
+            catalog.setdefault("dual_addons", {})["linux"] = {**record(addon), "launcher": "DUAL-EXPERIMENT.json", "status": "experimental"}
             config = root / "catalog.json"; config.write_text(json.dumps(catalog))
             cards = [gpu(), {**gpu(), "index": 1, "uuid": "GPU-second"}]
             args = ["--catalog", str(config), "--dir", str(install), "--models-dir", str(models), "--runtime-archive", str(archive),

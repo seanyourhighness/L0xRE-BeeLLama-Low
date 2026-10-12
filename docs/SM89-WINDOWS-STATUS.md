@@ -1,6 +1,6 @@
 # RTX 4070 Ti / SM89 Windows R6 status
 
-**Certification mostly complete. Completed quality packs: 79/90 first attempts; 83/90 within three attempts. Remaining packs pending.**
+**Starter route — measured configuration, shipped ready to run. Certification closeout in progress. Completed quality packs: 79/90 first attempts; 83/90 within three attempts. Remaining packs pending.**
 
 The R6 refresh binaries are unchanged. This configuration uses two target/draft CPU threads, six batch threads, and all 12 logical processors on the tested Ryzen 5 5600X. It retains one 81,920-token slot, KVarN4/4, the pinned 27B target and Q4 DFlash2 N7 drafter.
 

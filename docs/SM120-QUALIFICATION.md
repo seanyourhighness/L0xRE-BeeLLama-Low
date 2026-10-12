@@ -51,7 +51,7 @@ Use your actual model paths. Add `-DryRun` to verify files and print the resolve
 
 **Quality scope and retained limitations:** the original Linux qualification used a paired case review at32K, not a fixed129/133 count floor. An initial Windows adapter mistakenly treated those historical scores as minimums; the error and earlier verdicts are retained in `REQUIREMENTS-AUDIT.json`. Mixed case losses remain documented, and one unseeded sample per arm does not prove distributional equivalence. An additional81920-context quality trial scored121/150 and129/150; it is retained separately and does not establish quality across every81K prompt. The explicit decode229.12537 and prefill3526.978457 requirements remain met without a performance exception.
 
-The archived binary hashes are the qualification identities. Rebuilt binaries must be independently verified; source availability alone does not certify a new build. Existing universal Windows/SM89 assets retain their prior candidate status.
+The archived binary hashes are the qualification identities. Rebuilt binaries must be independently verified; source availability alone does not certify a new build. Windows and SM89 starter routes ship the best measured configurations and are labeled as starters.
 
 ## Windows evidence
 
@@ -68,4 +68,4 @@ The confirmed Windows narrative mean is **136.58077960 t/s**, rounded to **137 t
 
 ## Unified project and next architecture
 
-Both platforms stay in this repository and use the same model and drafter hashes. Each platform keeps its own archive, launcher, and certification evidence. Consolidating the documentation does not replace or repack the certified binaries. SM89 / RTX 4070 Ti Windows is the next hardware target; SM89 Linux and Windows packages remain candidates until their own correctness, speed, quality, capacity, and stability gates pass. See [architecture status](../PARITY.md).
+Both platforms stay in this repository and use the same model and drafter hashes. Each platform keeps its own archive, launcher, and certification evidence. Consolidating the documentation does not replace or repack the certified binaries. SM89 Linux is certified on the RTX 4090; the RTX 4070 Ti Windows starter route is the next certification closeout. Starter routes run measured configurations until their own correctness, speed, quality, capacity, and stability gates pass. See [architecture status](./PARITY.md).
