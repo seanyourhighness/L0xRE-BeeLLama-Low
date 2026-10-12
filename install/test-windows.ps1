@@ -212,6 +212,14 @@ $gpuRecords
     $addonFile = Join-Path $addon 'DUAL-EXPERIMENT.json'
     [IO.File]::WriteAllText($addonFile, '{"hardware_qualified":false}')
     [IO.File]::WriteAllText((Join-Path $addon 'SHA256SUMS'), ((Get-FileHash $addonFile).Hash.ToLowerInvariant() + "  DUAL-EXPERIMENT.json`n"))
+    # The official catalog no longer carries the dual add-on; exercise the launcher
+    # generation path with a synthetic catalog so the code stays covered.
+    $savedDualGpu = (Get-Item Function:Get-InstallGpu).ScriptBlock
+    function Get-InstallGpu([string]$Selector) { return [pscustomobject]@{ index=[int]$Selector; uuid=('GPU-'+$Selector); name='NVIDIA GeForce RTX 3060'; arch='sm86'; memory_mib=12288 } }
+    $dualCatalog = $catalog | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+    $dualCatalog | Add-Member NoteProperty dual_addons ([pscustomobject]@{ windows = (New-FixtureRecord $addonFile) })
+    $pair = Get-DualInstallPlan $dualCatalog '0,1' $true ''
+    Set-Item Function:Get-InstallGpu $savedDualGpu
     $pair | Add-Member NoteProperty dual_addon_root $addon
     Write-InstallLauncher $dualDir $dualRuntime $modelRoot $pair $false 8192 | Out-Null
     $dualReceipt = Get-Content -Raw -LiteralPath (Join-Path $dualDir 'INSTALLATION.json') | ConvertFrom-Json
