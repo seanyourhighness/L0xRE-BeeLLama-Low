@@ -60,7 +60,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\install-l0xre.ps1 -DryRun
 powershell -NoProfile -ExecutionPolicy Bypass -File .\install-l0xre.ps1
 ```
 
-Automatic certified downloads cover **Linux SM86 / RTX 3060** and **Linux/Windows SM120 / RTX 5090**. Certification applies to those measured cards and exact profiles. Other RTX 30/40/50 cards with at least 12 GB route to their architecture; SM89, Windows SM86, smaller-card SM120 profiles, and all dual configurations require `--allow-candidate` / `-AllowCandidate`. Setup prints the start command and leaves the server stopped. For a matched pair use `--gpus 0,1 --allow-candidate` or `-Gpus 0,1 -AllowCandidate`; at least 12 GB is required on **each** card. See [installer options and updates](install/README.md) and [dual-GPU testing](docs/DUAL-GPU-TESTING.md).
+Automatic certified downloads cover **Linux SM86 / RTX 3060**, **Linux SM89 / RTX 4090** and **Linux/Windows SM120 / RTX 5090**. Certification applies to those measured cards and exact profiles. Other RTX 30/40/50 cards with at least 12 GB route to their architecture; other RTX 40 cards, Windows SM86/SM89, smaller-card SM120 profiles, and all dual configurations require `--allow-candidate` / `-AllowCandidate`. Setup prints the start command and leaves the server stopped. For a matched pair use `--gpus 0,1 --allow-candidate` or `-Gpus 0,1 -AllowCandidate`; at least 12 GB is required on **each** card. See [installer options and updates](install/README.md) and [dual-GPU testing](docs/DUAL-GPU-TESTING.md).
 
 ## Quick start (Linux / WSL — certified SM86)
 
@@ -107,19 +107,19 @@ For r3/r4/r5 installations, run guided setup into a new directory and point `--m
 
 ## Downloads
 
-**[R6 release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/beellama-v0.4.7-universal-r6)** · [Archive checksums](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst.sha256)
+**[First official R6 release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/beellama-v0.4.7-r6)** · [Earlier R6 pre-releases](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/beellama-v0.4.7-universal-r6) · [Archive checksums](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/L0xRE-BeeLLama-Low-R6-sm89-linux-rtx4090-certified.tar.zst.sha256)
 
 | Platform | Download | Status |
 | --- | --- | --- |
 | **Linux x86-64 / WSL2 (SM86)** | [R6 SM86 `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst) | **Certified** — 37 / 65 t/s, 80K context |
 | Windows x64 (SM86) | [R6 SM86 candidate `.zip`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm86-windows-prefill-port2-candidate.zip) | Candidate — offline checks passed; GPU throughput/quality pending |
-| Linux (SM89) | [R6 SM89 candidate `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm89-linux-prefill-port2-candidate.tar.zst) | Candidate — awaiting SM89 hardware certification |
+| **Linux x86-64 / WSL2 (SM89, RTX 4090)** | [Certified SM89 `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/L0xRE-BeeLLama-Low-R6-sm89-linux-rtx4090-certified.tar.zst) | **Certified** — 104 / 167 t/s, 80K context, 450 W |
 | Windows (SM89) | [R6 SM89 candidate `.zip`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm89-windows-refresh-candidate.zip) | Candidate — refreshed CUDA 13.0 build; RTX 4070 Ti certification pending |
 | Linux x86-64 / WSL2 (SM120, RTX 5090) | [Certified SM120 `.tar.zst`](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-SM120-certified-20261008.tar.zst) | **Certified** — 131 / 229 t/s; original decode exception retained |
 | **Windows x86-64 / SM120 (RTX 5090)** | [Certified CUDA 13.0 runtime ZIP](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6-sm120-windows-cuda130/l0xre-beellama-low-v0.4.7-r6-windows-x86_64-sm120-cuda130.zip) | **Certified** — 137 / 230 t/s, 80K context |
 | Model + drafter | [L0xRE-27b-Low on Hugging Face](https://huggingface.co/YourHighnessLA/L0xRE-27b-Low) | `L0xRE-27b-Low.gguf` + Q4_K_M drafter; SHA-256 identities below |
 
-One project, shared model weights, and platform-specific downloads. Each speed card describes its tested GPU and certified profile. Windows SM86 and both SM89 packages remain candidates; older releases remain available for rollback.
+One project, shared model weights, and platform-specific downloads. Each speed card describes its tested GPU and certified profile. Windows SM86 and Windows SM89 packages remain candidates; older releases remain available for rollback.
 
 ## Requirements
 

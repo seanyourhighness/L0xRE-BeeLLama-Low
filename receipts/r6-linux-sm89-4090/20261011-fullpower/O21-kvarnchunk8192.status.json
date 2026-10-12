@@ -1,0 +1,92 @@
+{
+  "arm": {
+    "installed": "/home/sean/work/l0xre-r6-sm89-4090-20261011/r6.json",
+    "seed": 42,
+    "power_w": 450,
+    "runs": 5,
+    "warmups": 3,
+    "prefill": 77824,
+    "additional_prefill": 10240,
+    "context": 81920,
+    "args": [
+      "--alias",
+      "4090-opt",
+      "--reasoning",
+      "off"
+    ],
+    "frozen_candidate": true,
+    "id": "O21-kvarnchunk8192",
+    "env": {
+      "GGML_KVARN_WINDOW_CHUNK": "8192"
+    }
+  },
+  "status": "screen_pass",
+  "started": 1791774847.2407155,
+  "hardware_qualified": false,
+  "bench": {
+    "shapes": {
+      "narrative": {
+        "n": 5,
+        "n_usable": 5,
+        "errors": 0,
+        "max_tokens": 1000,
+        "short_eos_floor": 250,
+        "tokens": [
+          989,
+          989,
+          989,
+          989,
+          989
+        ],
+        "wall_tps_mean": 104.23139049454197,
+        "wall_tps_cv": 0.19573061039839199,
+        "decode_tps_mean": 105.49685450034175,
+        "decode_tps_cv": 0.19987394866022457,
+        "decode_degenerate": 0,
+        "decode_derived": false,
+        "decode_granularity": "token",
+        "ttft_mean_ms": 113.81635665893555,
+        "ttft_std_ms": 0.398813946829738
+      },
+      "code": {
+        "n": 5,
+        "n_usable": 5,
+        "errors": 0,
+        "max_tokens": 800,
+        "short_eos_floor": 200,
+        "tokens": [
+          800,
+          800,
+          800,
+          800,
+          800
+        ],
+        "wall_tps_mean": 170.0158555324819,
+        "wall_tps_cv": 0.6318742234444311,
+        "decode_tps_mean": 174.19429165609534,
+        "decode_tps_cv": 0.6370135153399963,
+        "decode_degenerate": 0,
+        "decode_derived": false,
+        "decode_granularity": "token",
+        "ttft_mean_ms": 112.87169456481934,
+        "ttft_std_ms": 0.7353404594036484
+      }
+    },
+    "endpoint": "chat",
+    "sampler": {
+      "temperature": 0.6,
+      "top_p": 0.95,
+      "top_k": 20,
+      "min_p": 0.0
+    },
+    "total_tokens": 8945,
+    "total_errors": 0,
+    "token_ratio": null
+  },
+  "greedy_hashes": [
+    "0db3539adee4b63dceb8a541a1eae4a9d41b4d841a70bb00924e22240e358594",
+    "af0d5d75aaa9b0dbf0fdc7bd199f682b1f57f2fb7b9b59e8b21539d79cefeee7"
+  ],
+  "server_exit": 0,
+  "finished": 1791775024.9439657
+}

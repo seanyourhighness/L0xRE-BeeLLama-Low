@@ -1,0 +1,36 @@
+{
+  "status": "observed",
+  "cold_prefill": {
+    "2048": {
+      "requests": 15,
+      "median_cold_prefill_tps": 1627.4440466777653,
+      "min_cold_prefill_tps": 1229.8032735105298,
+      "max_cold_prefill_tps": 1636.2022531335908
+    },
+    "16384": {
+      "requests": 15,
+      "median_cold_prefill_tps": 2004.849621594423,
+      "min_cold_prefill_tps": 2000.9323191726419,
+      "max_cold_prefill_tps": 2017.4785753724775
+    },
+    "32768": {
+      "requests": 15,
+      "median_cold_prefill_tps": 1926.7429606233081,
+      "min_cold_prefill_tps": 1925.0110443748881,
+      "max_cold_prefill_tps": 1937.9755560058256
+    },
+    "65536": {
+      "requests": 15,
+      "median_cold_prefill_tps": 1746.9203052643006,
+      "min_cold_prefill_tps": 1744.7860154506318,
+      "max_cold_prefill_tps": 1752.5526481806983
+    },
+    "77824": {
+      "requests": 15,
+      "median_cold_prefill_tps": 1681.520304891367,
+      "min_cold_prefill_tps": 1679.9644423644445,
+      "max_cold_prefill_tps": 1685.648807035903
+    }
+  },
+  "scope": "Repeated cold prefill requests in post-removal soak; workload observations, not a repeated paired Bench.sh decode comparison."
+}

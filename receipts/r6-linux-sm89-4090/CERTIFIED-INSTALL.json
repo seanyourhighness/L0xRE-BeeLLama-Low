@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "package": "/home/sean/work/l0xre-r6-4090-20261010/package-certified",
+  "inventory_equal_clean_archive": true,
+  "frozen_candidate_preserved": true,
+  "new_metadata_written_by_atomic_rsync_replacement": true,
+  "certified_profile": "r6-sm89-4090",
+  "installed_at": 1791643795.3861814
+}

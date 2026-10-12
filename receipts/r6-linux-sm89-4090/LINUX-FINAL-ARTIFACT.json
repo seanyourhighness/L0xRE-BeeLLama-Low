@@ -1,0 +1,14 @@
+{
+  "status": "packaged-certified-profile",
+  "filename": "L0xRE-BeeLLama-Low-R6-sm89-linux-rtx4090-certified.tar.zst",
+  "sha256": "5bb052aa07c6158d2ab71a80d77aa1c0f547f76ef2c71a5f161d49ddb83633c2",
+  "bytes": 986319840,
+  "hardware_qualified": true,
+  "certified_gpu_names": [
+    "NVIDIA GeForce RTX 4090"
+  ],
+  "certified_profile": "r6-sm89-4090",
+  "generic_profile_qualified": false,
+  "clean_archive_probe_pending": false,
+  "clean_archive_probe": "FINAL-CONSUMER-PROBE.json"
+}

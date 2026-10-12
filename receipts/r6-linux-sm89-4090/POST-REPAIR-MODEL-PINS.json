@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "checked_at": 1791643778.721685,
+  "models": {
+    "target": {
+      "path": "/home/sean/escha-assets/base-models/escha-e3-firstclass-v2.gguf",
+      "sha256": "b0849250c633aa93853bf119a877dbdafdd7b1a4ebb672bd6b6a1439906f3543",
+      "bytes": 8619127680
+    },
+    "draft": {
+      "path": "/home/sean/escha-assets/Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+      "sha256": "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd",
+      "bytes": 1143006816
+    },
+    "vision": {
+      "path": "/home/sean/models/qwen38-mmproj-reference/mmproj-Qwen3.8-27B-Q8_0.gguf",
+      "sha256": "2e968a6af97ce35d8971890b257b9b7edabf20ad91450501fa53162a19ee33eb",
+      "bytes": 629247008
+    }
+  }
+}

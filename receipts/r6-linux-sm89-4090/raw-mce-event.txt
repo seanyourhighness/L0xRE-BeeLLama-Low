@@ -1,0 +1,13 @@
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 1/1   #P:32
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+     kworker/0:1-11      [000] ..... 27394.203102: mce_record: CPU: 0, MCGc/s: 7000c16/0, MC9: 8c000047000800c0, IPID: 0000000000000000, ADDR: 00000000263b2000, MISC: 0908400800080e8c, SYND: 0000000000000000, RIP: 00:<0000000000000000>, TSC: 3451004245d6, PPIN: <redacted>, vendor: 0, CPUID: 406f1, time: 1791626397, socket: 0, APIC: 0, microcode: b000040, vendor data: {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0}

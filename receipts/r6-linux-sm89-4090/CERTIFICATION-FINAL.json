@@ -1,0 +1,239 @@
+{
+  "status": "certified",
+  "certified_at": 1791644153.7508388,
+  "hardware_qualified": true,
+  "full_profile_certification_complete": true,
+  "scope": "One frozen R6 Linux SM89 RTX4090 profile on Z840 at300W; no Windows, other-card, multi-GPU or system-wide RAM certification.",
+  "profile": {
+    "state": "optimized_candidate_frozen",
+    "package": "/home/sean/work/l0xre-r6-4090-20261010/package-current",
+    "inventory_sha256": "7e98996c99d94bcf996e0679223750658254327fe0c7044c774b84012b9166c4",
+    "profile": "r6-sm89-4090",
+    "profile_sha256": "89499a2a7c0801ae9002b8937b977a6891c025ec184f782d2174918643181b57",
+    "gpu_uuid": "GPU-c4a782a6-fd5a-78c2-7d77-604c01cbffb8",
+    "power_limit_w": 300,
+    "threads": 8,
+    "context": 81920,
+    "draft_depth": 7,
+    "down_splits": 12,
+    "cache_down": true,
+    "hardware_qualified": true,
+    "full_certification_complete": true,
+    "frozen_at": 1791619141.885122
+  },
+  "current_host": {
+    "boot_id": "6dda15aa-9921-4e49-91a0-18d34444c57d",
+    "installed_ram_gib": 48,
+    "usable_ram_gib_rounded": 47,
+    "gpus": [
+      "NVIDIA GeForce RTX 4090"
+    ],
+    "user_reported_change": "Removed newly installed suspect RAM andRTX3060,thenrebooted"
+  },
+  "soak": {
+    "status": "pass",
+    "duration_seconds": 1925.1976516110003,
+    "requests": 375,
+    "cycles": 15,
+    "repeat_comparisons": 366,
+    "scenario_counts": {
+      "short0-0.7": 75,
+      "short0-0": 75,
+      "short1-0.7": 75,
+      "short1-0": 75,
+      "prefill16384": 15,
+      "prefill2048": 15,
+      "prefill32768": 15,
+      "prefill65536": 15,
+      "prefill77824": 15
+    },
+    "telemetry_samples": 917,
+    "peak_temperature_c": 64.0,
+    "peak_memory_mib": 17284.0,
+    "server_exit": 0,
+    "zero_cuda_error_lines": true,
+    "scope": "One frozen RTX4090 profile mixed-depth30-minute workload; does not resolve earlier system RAM findings."
+  },
+  "consumer": {
+    "status": "pass",
+    "package": "/home/sean/work/l0xre-r6-4090-20261010/package-certified",
+    "actual_consumer_launcher": true,
+    "qualification_probe_flag_used": false,
+    "native_and_profile_equal_frozen": true,
+    "greedy_oracle_match": true,
+    "cold10k_pass": true,
+    "cpu_vision": "VISION 742",
+    "capacity_input_tokens": 77825,
+    "capacity_output_tokens": 4091,
+    "capacity_total_tokens": 81916,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "clean_exit": 0,
+    "timestamp": 1791643967.035776
+  },
+  "health": {
+    "status": "pass",
+    "audited_at": 1791644033.8254468,
+    "boot_id": "6dda15aa-9921-4e49-91a0-18d34444c57d",
+    "edac_counts": {
+      "/sys/devices/system/edac/mc/mc0/ce_count": 0,
+      "/sys/devices/system/edac/mc/mc0/ue_count": 0,
+      "/sys/devices/system/edac/mc/mc1/ce_count": 0,
+      "/sys/devices/system/edac/mc/mc1/ue_count": 0
+    },
+    "hardware_corrupted_kib": 0,
+    "raw_mce_events": 0,
+    "kernel_error_lines": [],
+    "gpu": [
+      "GPU-c4a782a6-fd5a-78c2-7d77-604c01cbffb8",
+      " NVIDIA GeForce RTX 4090",
+      " 300.00",
+      " 610.57.04"
+    ],
+    "watch_started": 1791641535.7377958,
+    "raw_trace_sha256": "058f14917f7486af779e7a84b9b104909bfa61995d6e57ec945f7d78c7c71c4b",
+    "kernel_log_sha256": "428e6dd91bc0a249b1a8a8541ad5907f3dfede4f2a0143f56b646a4399600438",
+    "scope": "Current boot and measured R6 workload after user-reported RAM/GPU removal. Prior corrected-memory history retained; no system-wide RAM-health guarantee."
+  },
+  "artifact": {
+    "status": "packaged-certified-profile",
+    "filename": "L0xRE-BeeLLama-Low-R6-sm89-linux-rtx4090-certified.tar.zst",
+    "sha256": "5bb052aa07c6158d2ab71a80d77aa1c0f547f76ef2c71a5f161d49ddb83633c2",
+    "bytes": 986319840,
+    "hardware_qualified": true,
+    "certified_gpu_names": [
+      "NVIDIA GeForce RTX 4090"
+    ],
+    "certified_profile": "r6-sm89-4090",
+    "generic_profile_qualified": false,
+    "clean_archive_probe_pending": false,
+    "clean_archive_probe": "FINAL-CONSUMER-PROBE.json"
+  },
+  "archive_readback": {
+    "status": "pass",
+    "archive_sha256": "5bb052aa07c6158d2ab71a80d77aa1c0f547f76ef2c71a5f161d49ddb83633c2",
+    "native_files_verified": 55,
+    "inventory_files_verified": 160,
+    "package": "/run/user/1000/l0xre-r6-4090-certified-20261010/package",
+    "fresh_extraction": true,
+    "named_4090_profile_qualified": true,
+    "generic_profile_qualified": false
+  },
+  "installed": {
+    "status": "pass",
+    "package": "/home/sean/work/l0xre-r6-4090-20261010/package-certified",
+    "inventory_equal_clean_archive": true,
+    "frozen_candidate_preserved": true,
+    "new_metadata_written_by_atomic_rsync_replacement": true,
+    "certified_profile": "r6-sm89-4090",
+    "installed_at": 1791643795.3861814
+  },
+  "model_pins": {
+    "status": "pass",
+    "checked_at": 1791643778.721685,
+    "models": {
+      "target": {
+        "path": "/home/sean/escha-assets/base-models/escha-e3-firstclass-v2.gguf",
+        "sha256": "b0849250c633aa93853bf119a877dbdafdd7b1a4ebb672bd6b6a1439906f3543",
+        "bytes": 8619127680
+      },
+      "draft": {
+        "path": "/home/sean/escha-assets/Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+        "sha256": "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd",
+        "bytes": 1143006816
+      },
+      "vision": {
+        "path": "/home/sean/models/qwen38-mmproj-reference/mmproj-Qwen3.8-27B-Q8_0.gguf",
+        "sha256": "2e968a6af97ce35d8971890b257b9b7edabf20ad91450501fa53162a19ee33eb",
+        "bytes": 629247008
+      }
+    }
+  },
+  "watch_cleanup": {
+    "status": "pass",
+    "stopped_after_successful_qualification": true,
+    "watch_started": 1791641535.7377958,
+    "finished": 1791644100.1182804,
+    "private_trace_removed": true,
+    "final_trace_sha256": "058f14917f7486af779e7a84b9b104909bfa61995d6e57ec945f7d78c7c71c4b",
+    "raw_mce_events": 0,
+    "gpu_compute_processes": 0,
+    "unit": "Result=success\nActiveState=inactive\n"
+  },
+  "post_removal_prefill_observations": {
+    "status": "observed",
+    "cold_prefill": {
+      "2048": {
+        "requests": 15,
+        "median_cold_prefill_tps": 1627.4440466777653,
+        "min_cold_prefill_tps": 1229.8032735105298,
+        "max_cold_prefill_tps": 1636.2022531335908
+      },
+      "16384": {
+        "requests": 15,
+        "median_cold_prefill_tps": 2004.849621594423,
+        "min_cold_prefill_tps": 2000.9323191726419,
+        "max_cold_prefill_tps": 2017.4785753724775
+      },
+      "32768": {
+        "requests": 15,
+        "median_cold_prefill_tps": 1926.7429606233081,
+        "min_cold_prefill_tps": 1925.0110443748881,
+        "max_cold_prefill_tps": 1937.9755560058256
+      },
+      "65536": {
+        "requests": 15,
+        "median_cold_prefill_tps": 1746.9203052643006,
+        "min_cold_prefill_tps": 1744.7860154506318,
+        "max_cold_prefill_tps": 1752.5526481806983
+      },
+      "77824": {
+        "requests": 15,
+        "median_cold_prefill_tps": 1681.520304891367,
+        "min_cold_prefill_tps": 1679.9644423644445,
+        "max_cold_prefill_tps": 1685.648807035903
+      }
+    },
+    "scope": "Repeated cold prefill requests in post-removal soak; workload observations, not a repeated paired Bench.sh decode comparison."
+  },
+  "historical_quality": {
+    "baseline_pass1": 126,
+    "baseline_pass3": 136,
+    "candidate_pass1": 128,
+    "candidate_pass3": 132,
+    "cases": 150,
+    "same_frozen_runtime": true,
+    "measured_before_memory_change": true,
+    "review": "QUALITY-REVIEW.json",
+    "scope": "Scores and all reviewed failures retained; no quality-equivalence claim."
+  },
+  "historical_performance": {
+    "receipt": "PERFORMANCE-AUDIT.json",
+    "measured_before_memory_change": true,
+    "scope": "Earlier balanced two-seed comparison; newboot correctness,vision,30-minute stability,80Kcapacity andcleanconsumer checks completed."
+  },
+  "prior_failure": {
+    "receipt": "SOAK-ABORT.json",
+    "event_utc": "2026-10-10T09:59:57Z",
+    "retained": true,
+    "cause_of_prior_server_fault_unproven": true
+  },
+  "known_shutdown_warning": {
+    "message": "CUDA_Host compute buffer size of3.2041MiB does not match expectation of0.8448MiB",
+    "present_in_pre_removal_and_fresh_logs": true,
+    "server_exit": 0,
+    "scope": "Retained shutdown warning; no claim that logs contain zero warnings."
+  },
+  "publication": {
+    "stable_full_release_published": false,
+    "scope": "Local certified artifact; broader universal release work separate."
+  }
+}

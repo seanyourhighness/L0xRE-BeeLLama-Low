@@ -65,8 +65,23 @@ function Get-InstallPlan($Catalog, $SelectedGpu, [bool]$Candidates, [string]$Arc
     if (-not $package.url -and -not $Archive) { throw 'This archive is not published; supply -RuntimeArchive PATH.' }
     $measured = $package.gpu_name_contains
     if ($package.PSObject.Properties['certified_gpu_name_contains']) { $measured = $package.certified_gpu_name_contains }
+    $qualified = ($package.status.StartsWith('certified') -and [bool]$measured -and $SelectedGpu.name.Contains($measured))
+    if ($package.PSObject.Properties['certified_gpu_names']) {
+        $qualified = ($package.status.StartsWith('certified') -and $SelectedGpu.name -in @($package.certified_gpu_names))
+    }
+    if (-not $qualified -and -not $Candidates) { throw 'The selected GPU is unqualified for this package; use -AllowCandidate to opt into testing it.' }
+    $launchProfile = 'r6'
+    if ($package.PSObject.Properties['launch_profiles']) {
+        foreach ($preset in $package.launch_profiles) {
+            if ($SelectedGpu.name -eq $preset.gpu_name -and $SelectedGpu.memory_mib -ge $preset.min_memory_mib) {
+                $launchProfile = $preset.profile
+                break
+            }
+        }
+    }
     return [pscustomobject]@{ gpu = $SelectedGpu; package = $package; platform = 'windows'
-        hardware_qualified_for_gpu = ($package.status.StartsWith('certified') -and [bool]$measured -and $SelectedGpu.name.Contains($measured)) }
+        launch_profile = $launchProfile
+        hardware_qualified_for_gpu = $qualified }
 }
 
 function Get-DualInstallPlan($Catalog, [string]$Selectors, [bool]$Candidates, [string]$Archive) {
@@ -84,6 +99,7 @@ function Get-DualInstallPlan($Catalog, [string]$Selectors, [bool]$Candidates, [s
     $plan | Add-Member NoteProperty mode 'dual-fast-experimental'
     $plan | Add-Member NoteProperty dual_addon $Catalog.dual_addons.windows
     $plan.hardware_qualified_for_gpu = $false
+    $plan.launch_profile = 'r6'
     return $plan
 }
 
@@ -205,15 +221,16 @@ function Write-InstallLauncher([string]$Root, [string]$Runtime, [string]$ModelRo
     $draft = Join-Path $ModelRoot 'Qwen3.8-27B-DFlash2-Q4_K_M.gguf'
     if ($Plan.package.launcher_style -eq 'sm120-windows') {
         $parameters = @{ Model = $target; Draft = $draft; BindAddress = '127.0.0.1'; Port = $ListenPort }
-        if ($Plan.package.status -eq 'candidate') { $parameters.QualificationProbe = $true }
+        if ($Plan.package.status -eq 'candidate' -or -not $Plan.hardware_qualified_for_gpu) { $parameters.QualificationProbe = $true }
         if ($WithVision) { $parameters.Mmproj = Join-Path $ModelRoot 'mmproj-Qwen3.8-27B-Q8_0.gguf' }
         $entries = @($parameters.Keys | ForEach-Object { $_ + ' = ' + $(if ($parameters[$_] -is [bool]) { '$true' } else { Quote-InstallString $parameters[$_] }) })
         $callLines = @(('$serverParameters = @{ ' + ($entries -join '; ') + ' }'),
             'if ($DryRun) { $serverParameters.DryRun = $true }', '& $command @serverParameters')
     } else {
-        $arguments = @('serve', '--profile', 'r6', '-m', $target, '-md', $draft, '--host', '127.0.0.1', '--port', "$ListenPort")
+        $launchProfile = if ($Plan.PSObject.Properties['launch_profile']) { $Plan.launch_profile } else { 'r6' }
+        $arguments = @('serve', '--profile', $launchProfile, '-m', $target, '-md', $draft, '--host', '127.0.0.1', '--port', "$ListenPort")
         $dryFlag = '--dry-run'
-        if ($Plan.package.status -eq 'candidate') { $arguments += '--qualification-probe' }
+        if ($Plan.package.status -eq 'candidate' -or -not $Plan.hardware_qualified_for_gpu) { $arguments += '--qualification-probe' }
         if ($WithVision) { $arguments += @('--mmproj', (Join-Path $ModelRoot 'mmproj-Qwen3.8-27B-Q8_0.gguf')) }
         $callLines = @(('$argsForServer = @(' + (($arguments | ForEach-Object { Quote-InstallString $_ }) -join ', ') + ')'),
             ('if ($DryRun) { $argsForServer += ' + (Quote-InstallString $dryFlag) + ' }'), '& $command @argsForServer')

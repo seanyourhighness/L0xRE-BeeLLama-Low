@@ -1,0 +1,37 @@
+{
+  "status": "pass",
+  "results": {
+    "spec": {
+      "greedy": [
+        "0db3539adee4b63dceb8a541a1eae4a9d41b4d841a70bb00924e22240e358594",
+        "af0d5d75aaa9b0dbf0fdc7bd199f682b1f57f2fb7b9b59e8b21539d79cefeee7"
+      ],
+      "prefill_token": [
+        264
+      ],
+      "seeded": "5ce9d06707e9dfb9e7f54e2adeb0fa4cb8b010a25679b42a4489d6d3cb9f261a"
+    },
+    "serial": {
+      "greedy": [
+        "0db3539adee4b63dceb8a541a1eae4a9d41b4d841a70bb00924e22240e358594",
+        "af0d5d75aaa9b0dbf0fdc7bd199f682b1f57f2fb7b9b59e8b21539d79cefeee7"
+      ],
+      "prefill_token": [
+        264
+      ],
+      "seeded": "8230e775315d76fbea60a84f065af94ec77627b29d11f0ece5c81ad0b870cfe6"
+    },
+    "restart": {
+      "greedy": [
+        "0db3539adee4b63dceb8a541a1eae4a9d41b4d841a70bb00924e22240e358594",
+        "af0d5d75aaa9b0dbf0fdc7bd199f682b1f57f2fb7b9b59e8b21539d79cefeee7"
+      ],
+      "prefill_token": [
+        264
+      ],
+      "seeded": "5ce9d06707e9dfb9e7f54e2adeb0fa4cb8b010a25679b42a4489d6d3cb9f261a"
+    }
+  },
+  "scope": "Greedy128 code/prose and10K prefill serial/spec/restart equivalence; seeded64 repeat per mode and speculative cross-restart. Sampled serial/spec equality is reported separately.",
+  "sampled_serial_spec_equal": false
+}

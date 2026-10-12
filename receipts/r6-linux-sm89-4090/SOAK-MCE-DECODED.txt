@@ -1,0 +1,15 @@
+Hardware event. This is not a software error.
+CPU 0 BANK 9
+MISC 908400800080e8c ADDR 263b2000
+TIME 1791626397 Sat Oct 10 09:59:57 2026
+MCG status:
+MCi status:
+Corrected error
+MCi_MISC register valid
+MCi_ADDR register valid
+MCA: MEMORY CONTROLLER MS_CHANNEL0_ERR
+Transaction: Memory scrubbing error
+MemCtrl: Corrected patrol scrub error
+STATUS 8c000047000800c0 MCGSTATUS 0
+MCGCAP 7000c16 APICID 0 SOCKETID 0
+CPUID Vendor Intel Family 6 Model 79 Step 0

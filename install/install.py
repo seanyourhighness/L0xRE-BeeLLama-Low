@@ -69,8 +69,19 @@ def make_plan(catalog, gpu, allow_candidate=False, runtime_archive=None):
     if not package["url"] and not runtime_archive:
         raise ValueError("The certified Linux SM120 archive is not published yet. Supply --runtime-archive PATH to the sealed archive; Windows SM120 is available now")
     measured = package.get("certified_gpu_name_contains", package["gpu_name_contains"])
+    qualified = package["status"].startswith("certified") and bool(measured) and measured in gpu["name"]
+    if "certified_gpu_names" in package:
+        qualified = package["status"].startswith("certified") and gpu["name"] in package["certified_gpu_names"]
+    if not qualified and not allow_candidate:
+        raise ValueError("The selected GPU is unqualified for this package; use --allow-candidate to opt into testing it")
+    launch_profile = "r6"
+    for preset in package.get("launch_profiles", []):
+        if gpu["name"] == preset["gpu_name"] and gpu["memory_mib"] >= preset.get("min_memory_mib", 0):
+            launch_profile = preset["profile"]
+            break
     return {"gpu": gpu, "package": package, "platform": "linux",
-            "hardware_qualified_for_gpu": package["status"].startswith("certified") and bool(measured) and measured in gpu["name"]}
+            "launch_profile": launch_profile,
+            "hardware_qualified_for_gpu": qualified}
 
 
 def make_dual_plan(catalog, selectors, allow_candidate=False, runtime_archive=None):
@@ -89,7 +100,8 @@ def make_dual_plan(catalog, selectors, allow_candidate=False, runtime_archive=No
     addon = catalog.get("dual_addons", {}).get("linux")
     if not addon:
         raise ValueError("This catalog does not contain the experimental dual fast-path add-on")
-    plan.update(gpus=gpus, mode="dual-fast-experimental", hardware_qualified_for_gpu=False, dual_addon=addon)
+    plan.update(gpus=gpus, mode="dual-fast-experimental", hardware_qualified_for_gpu=False, dual_addon=addon,
+                launch_profile="r6")
     return plan
 
 
@@ -211,9 +223,10 @@ def check_space(install_dir, models_dir, records, runtime_reserve):
 def write_launcher(install_dir, runtime, models_dir, plan, vision, port):
     receipt_path = install_dir / "INSTALLATION.json"
     args = [sys.executable, str(runtime / plan["package"]["launcher"]), "serve", "--arch", plan["gpu"]["arch"],
+            "--profile", plan.get("launch_profile", "r6"),
             "-m", str(models_dir / "L0xRE-27b-Low.gguf"), "-md", str(models_dir / "Qwen3.8-27B-DFlash2-Q4_K_M.gguf"),
             "--host", "127.0.0.1", "--port", str(port)]
-    if plan["package"]["status"] == "candidate":
+    if plan["package"]["status"] == "candidate" or not plan.get("hardware_qualified_for_gpu", False):
         args += ["--qualification-probe"]
     if vision:
         args += ["--mmproj", str(models_dir / "mmproj-Qwen3.8-27B-Q8_0.gguf")]

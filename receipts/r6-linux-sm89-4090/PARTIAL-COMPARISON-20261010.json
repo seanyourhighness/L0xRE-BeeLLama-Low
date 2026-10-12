@@ -1,0 +1,107 @@
+{
+  "status": "partial_hardware_aborted",
+  "generated_at": 1791647389.4775271,
+  "completed_arms": {
+    "P00-r6-300w-seed42": {
+      "seed": 42,
+      "power_w": 300,
+      "prose_decode_tps": 103.08937092935261,
+      "code_decode_tps": 170.21365552829064,
+      "prefill_tps": {
+        "2048": 1524.5774843429315,
+        "10240": 1966.4055738380493,
+        "77824": 1682.1301789011934
+      },
+      "measured_requests_per_prompt": 5,
+      "source": "remote-evidence/runs/P00-r6-300w-seed42"
+    },
+    "P01-r6-450w-seed42": {
+      "seed": 42,
+      "power_w": 450,
+      "prose_decode_tps": 104.18413425627058,
+      "code_decode_tps": 172.23964459374918,
+      "prefill_tps": {
+        "2048": 1559.7095345622645,
+        "10240": 2087.496264319429,
+        "77824": 1815.2447342881408
+      },
+      "measured_requests_per_prompt": 5,
+      "source": "remote-evidence/runs/P01-r6-450w-seed42"
+    },
+    "P02-r6-450w-seed1234": {
+      "seed": 1234,
+      "power_w": 450,
+      "prose_decode_tps": 101.71442169787915,
+      "code_decode_tps": 158.94385537415678,
+      "prefill_tps": {
+        "2048": 1581.2376272788197,
+        "10240": 2084.817459368964,
+        "77824": 1812.5875241229212
+      },
+      "measured_requests_per_prompt": 5,
+      "source": "remote-evidence/runs/P02-r6-450w-seed1234"
+    }
+  },
+  "matched_seed42_450_vs300_change_percent": {
+    "prose_decode_tps": 1.0619555799484148,
+    "code_decode_tps": 1.1902623553736058,
+    "prefill_change_percent": {
+      "2048": 2.304379448085214,
+      "10240": 6.1579712798023545,
+      "77824": 7.9134514710330395
+    }
+  },
+  "full450_two_seed_observations": {
+    "prose_decode_tps": 102.94927797707487,
+    "code_decode_tps": 165.59174998395298,
+    "prefill_tps": {
+      "2048": 1570.4735809205422,
+      "10240": 2086.1568618441966,
+      "77824": 1813.916129205531
+    },
+    "measured_requests_per_prompt": 10,
+    "seeds": [
+      42,
+      1234
+    ]
+  },
+  "fast_path_audit": {
+    "int8_down_cache_enabled": true,
+    "int8_down_cache_hit": true,
+    "rejection_verify_depth7": true,
+    "packed_bridge_mapped": true,
+    "qk16_companion_mapped": true,
+    "cpu_affinity0_7": true,
+    "gpu_numa_node": 0,
+    "scope": "Observed cache/depth markers and loaded libraries/placement; not proof maximum throughput or tracing every selected kernel."
+  },
+  "abort": {
+    "state": "aborted_on_hardware_event",
+    "event_utc": "2026-10-10T15:25:27Z",
+    "event_unix": 1791645927,
+    "cpu": 0,
+    "socket": 0,
+    "bank": 9,
+    "status": "0x8c000047000800c0",
+    "address": "0x197cc000",
+    "power_during_event_w": 300,
+    "completed_arms": [
+      "P00-r6-300w-seed42",
+      "P01-r6-450w-seed42",
+      "P02-r6-450w-seed1234"
+    ],
+    "interrupted_arm": "P03-r6-300w-seed1234",
+    "comparison_complete": false,
+    "gpu_tests_stopped": true,
+    "known_edac_counts": {
+      "/sys/devices/system/edac/mc/mc0/ce_count": 0,
+      "/sys/devices/system/edac/mc/mc0/ue_count": 0,
+      "/sys/devices/system/edac/mc/mc1/ce_count": 0,
+      "/sys/devices/system/edac/mc/mc1/ue_count": 0
+    },
+    "scope": "New corrected memory-path hardware event after RAM/GPU removal. Exact physical DIMM/component not isolated; not proof450Wcaused it."
+  },
+  "maximum_r6_speed_proven": false,
+  "vanilla_lowgpu_measured": false,
+  "scope": "All completed samples retained. Second300Wseed interrupted; paired aggregate andbaseline comparisons incomplete. NativeQ4/MTP plan superseded byuserLowGPU/vanilla instruction."
+}

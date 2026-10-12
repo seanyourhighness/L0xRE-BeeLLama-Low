@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "answer": {
+    "text": "VISION 742",
+    "shapes": [
+      {
+        "color": "red",
+        "shape": "square"
+      },
+      {
+        "color": "blue",
+        "shape": "circle"
+      },
+      {
+        "color": "green",
+        "shape": "triangle"
+      }
+    ]
+  },
+  "scope": "One fixed native CPU OCR/color/shape image, not broad vision accuracy."
+}

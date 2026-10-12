@@ -14,21 +14,34 @@
         "launcher": "tools/universal/r6-launch.py",
         "launcher_style": "r6",
         "install_reserve_bytes": 5000000000,
-        "certified_gpu_name_contains": "RTX 3060"
+        "certified_gpu_name_contains": "RTX 3060",
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 3060"
+        ]
       },
       "sm89": {
-        "filename": "L0xRE-BeeLLama-Low-R6-sm89-linux-prefill-port2-candidate.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-BeeLLama-Low-R6-sm89-linux-prefill-port2-candidate.tar.zst",
-        "sha256": "8066643f3141264fff8a27e2d2f4b8e10315746b6890059a75065f198b6e1fc1",
-        "bytes": 985645788,
-        "status": "candidate",
+        "filename": "L0xRE-BeeLLama-Low-R6-sm89-linux-rtx4090-certified.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/L0xRE-BeeLLama-Low-R6-sm89-linux-rtx4090-certified.tar.zst",
+        "sha256": "5bb052aa07c6158d2ab71a80d77aa1c0f547f76ef2c71a5f161d49ddb83633c2",
+        "bytes": 986319840,
+        "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "RTX 40",
         "profile": "80K / KVarN4/4 / DFlash2 N7 / medium reasoning",
         "launcher": "tools/universal/r6-launch.py",
         "launcher_style": "r6",
         "install_reserve_bytes": 5000000000,
-        "certified_gpu_name_contains": ""
+        "launch_profiles": [
+          {
+            "gpu_name": "NVIDIA GeForce RTX 4090",
+            "min_memory_mib": 23000,
+            "profile": "r6-sm89-4090"
+          }
+        ],
+        "certified_gpu_name_contains": "RTX 4090",
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 4090"
+        ]
       },
       "sm120": {
         "filename": "L0xRE-SM120-certified-20261008.tar.zst",
@@ -42,7 +55,10 @@
         "launcher": "tools/universal/r6-launch.py",
         "launcher_style": "r6",
         "install_reserve_bytes": 5000000000,
-        "certified_gpu_name_contains": "RTX 5090"
+        "certified_gpu_name_contains": "RTX 5090",
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 5090"
+        ]
       },
       "sm120-12gb": {
         "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-linux-candidate.tar.zst",
@@ -103,7 +119,10 @@
         "launcher_style": "sm120-windows",
         "install_reserve_bytes": 5000000000,
         "certified_gpu_name_contains": "RTX 5090",
-        "gpu_selector_adapter": true
+        "gpu_selector_adapter": true,
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 5090"
+        ]
       },
       "sm120-12gb": {
         "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-windows-candidate.zip",

@@ -1,0 +1,159 @@
+{
+ "status": "screen_complete",
+ "generated_at": 1791775394.0713186,
+ "power_w": 450,
+ "boot_id": "cba21c13-68c8-4b48-914f-25be95667c51",
+ "host": {
+  "ram_gb_total": 84,
+  "gpus": [
+   "NVIDIA",
+   "GeForce",
+   "RTX",
+   "4090",
+   "NVIDIA",
+   "GeForce",
+   "RTX",
+   "3060"
+  ]
+ },
+ "baseline": "O10-repeat42 (fresh repeat of Q45 seed42, frozen profile)",
+ "noise_floor_vs_Q45_pct": {
+  "prose": 0.168,
+  "code": 0.277,
+  "prefill77K": 0.148
+ },
+ "arms": [
+  {
+   "arm": "Q45-450w-seed42",
+   "status": "screen_pass",
+   "prose_decode_tps": 105.326,
+   "code_decode_tps": 173.253,
+   "prefill77K_tps": 1780.62,
+   "prefill10K_tps": 2034.04,
+   "prefill2K_tps": 1520.52
+  },
+  {
+   "arm": "O10-repeat42",
+   "status": "screen_pass",
+   "prose_decode_tps": 105.503,
+   "code_decode_tps": 173.733,
+   "prefill77K_tps": 1783.25,
+   "prefill10K_tps": 2037.54,
+   "prefill2K_tps": 1538.34
+  },
+  {
+   "arm": "O11-threads12",
+   "status": "screen_pass",
+   "prose_decode_tps": 105.161,
+   "code_decode_tps": 173.594,
+   "prefill77K_tps": 1788.27,
+   "prefill10K_tps": 2045.24,
+   "prefill2K_tps": 1539.24
+  },
+  {
+   "arm": "O12-ubatch1024",
+   "status": "screen_pass",
+   "prose_decode_tps": 105.361,
+   "code_decode_tps": 172.594,
+   "prefill77K_tps": 1608.04,
+   "prefill10K_tps": 1751.3,
+   "prefill2K_tps": 1385.27
+  },
+  {
+   "arm": "O13-splits24",
+   "status": "failed",
+   "prose_decode_tps": 0,
+   "code_decode_tps": 0,
+   "error": "Remote end closed connection without response"
+  },
+  {
+   "arm": "O20-kvarnchunk32768",
+   "status": "screen_pass",
+   "prose_decode_tps": 105.26,
+   "code_decode_tps": 172.378,
+   "prefill77K_tps": 1792.57,
+   "prefill10K_tps": 2033.67,
+   "prefill2K_tps": 1531.52
+  },
+  {
+   "arm": "O21-kvarnchunk8192",
+   "status": "screen_pass",
+   "prose_decode_tps": 105.497,
+   "code_decode_tps": 174.194,
+   "prefill77K_tps": 1771.5,
+   "prefill10K_tps": 2035.56,
+   "prefill2K_tps": 1532.88
+  },
+  {
+   "arm": "O22-w2-i8-head",
+   "status": "screen_pass",
+   "prose_decode_tps": 105.516,
+   "code_decode_tps": 173.202,
+   "prefill77K_tps": 1779.24,
+   "prefill10K_tps": 2033.62,
+   "prefill2K_tps": 1530.53
+  },
+  {
+   "arm": "Q46-450w-seed1234",
+   "status": "screen_pass",
+   "prose_decode_tps": 103.372,
+   "code_decode_tps": 160.986,
+   "prefill77K_tps": 1780.88,
+   "prefill10K_tps": 2033.84,
+   "prefill2K_tps": 1533.35
+  }
+ ],
+ "deltas_vs_baseline_pct": {
+  "O10-repeat42": {
+   "prose": 0.0,
+   "code": 0.0,
+   "prefill77K": 0.0
+  },
+  "O11-threads12": {
+   "prose": -0.324,
+   "code": -0.08,
+   "prefill77K": 0.282
+  },
+  "O12-ubatch1024": {
+   "prose": -0.135,
+   "code": -0.656,
+   "prefill77K": -9.825
+  },
+  "O13-splits24": {
+   "prose": -100.0,
+   "code": -100.0,
+   "prefill77K": -100.0
+  },
+  "O20-kvarnchunk32768": {
+   "prose": -0.23,
+   "code": -0.78,
+   "prefill77K": 0.523
+  },
+  "O21-kvarnchunk8192": {
+   "prose": -0.006,
+   "code": 0.265,
+   "prefill77K": -0.659
+  },
+  "O22-w2-i8-head": {
+   "prose": 0.012,
+   "code": -0.306,
+   "prefill77K": -0.225
+  }
+ },
+ "conclusion": "No screened variant beats the frozen r6-sm89-4090 profile beyond the repeat noise floor. threads12 neutral; ubatch1024 regresses 77K prefill ~-10%; down_splits 24 aborts in ggml_abort (outside the K3 cubin contract, matching the earlier splits16 failure); KVarN window chunk 32768/8192 and ESCHA_W2_I8_HEAD=1 within noise. Frozen profile retained for certification.",
+ "rejected_historically": {
+  "sm89_q4_mmq": "slower (100.56/165.21 at 300W)",
+  "depth9": "runtime exit",
+  "threads2_4": "slower",
+  "splits16": "abort",
+  "cache_down_off": "slower prefill"
+ },
+ "power_ceiling": "Max Power Limit for this RTX4090 is 450W (default=ceiling=max). Intermittent SW Power Cap at 450W under load is the hardware ceiling, not a configuration shortfall. No HW slowdown, thermal slowdown or power-brake observed; clocks 2715-2730 MHz of 3105 max under load.",
+ "fast_path_attestation": {
+  "packed_bridge_mapped": true,
+  "qk16_gate_preloaded": true,
+  "sampler_observations": 16,
+  "frozen_sampler_confirmed": true,
+  "scope": "process maps + /slots sampler attestation; not a per-kernel trace"
+ }
+}

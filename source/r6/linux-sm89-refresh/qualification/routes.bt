@@ -1,0 +1,8 @@
+uprobe:/home/sean/work/l0xre-r6-4090-20261010/package-current/architectures/sm89/deps/L0XRE_GDN_MASKED_LIBRARY/libbridge-gdn512.so:escha_gdn_chunk_prefill_masked_v1
+{ @gdn_calls = count(); }
+uretprobe:/home/sean/work/l0xre-r6-4090-20261010/package-current/architectures/sm89/deps/L0XRE_GDN_MASKED_LIBRARY/libbridge-gdn512.so:escha_gdn_chunk_prefill_masked_v1
+{ @gdn_return[retval] = count(); }
+uprobe:/home/sean/work/l0xre-r6-4090-20261010/package-current/architectures/sm89/bin/libbridge-packed.so:escha_official_decode_gemv_main_desc_v1
+{ @decode_bridge_calls = count(); }
+uretprobe:/home/sean/work/l0xre-r6-4090-20261010/package-current/architectures/sm89/bin/libbridge-packed.so:escha_official_decode_gemv_main_desc_v1
+{ @decode_bridge_return[retval] = count(); }
