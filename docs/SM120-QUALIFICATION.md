@@ -4,7 +4,7 @@ The R6 SM120 profiles use the same L0xRE-27b-Low target and Q4_K_M DFlash2 draft
 
 ## Linux / WSL qualification
 
-The Linux / WSL build was locally certified on October 8, 2026, with NVIDIA driver 617.42. The exact sealed archive is available in the [universal R6 release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-universal-r6/L0xRE-SM120-certified-20261008.tar.zst). Older universal SM120 payloads do not inherit this certification.
+The Linux / WSL build was locally certified on October 8, 2026, with NVIDIA driver 617.42. The exact sealed archive is available in the [universal R6 release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/L0xRE-SM120-certified-20261008.tar.zst). Older universal SM120 payloads do not inherit this certification.
 
 | Measurement | Confirmed result |
 | --- | --- |
@@ -41,7 +41,7 @@ This separate package is qualified on **RTX 5090, Windows 11, NVIDIA driver 617.
 
 The frozen default is DFlash N7, context81920, batch1024/ubatch512, KVarN4/4, tail128, graphs ON, asynchronous launches, threads8/affinity255, down16, head-next1/RT2, K256, INT8 sync8 and down-weight caching. Profiling and diagnostic runs are excluded from performance means. The earlier CUDA13.3/13.0 experiment changed compiler and runtime jointly; no compiler-only improvement is claimed.
 
-Download the [Windows SM120 release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/beellama-v0.4.7-r6-sm120-windows-cuda130), its runtime ZIP and `WINDOWS-SM120-SHA256SUMS.txt`. Verify the ZIP's SHA-256, extract to a fresh directory, enter `package`, and run:
+Download the [Windows SM120 release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/beellama-v0.4.7-r6), its runtime ZIP and `WINDOWS-SM120-SHA256SUMS.txt`. Verify the ZIP's SHA-256, extract to a fresh directory, enter `package`, and run:
 
 ```powershell
 .\l0xre.ps1 -Model 'D:\models\L0xRE-27b-Low.gguf' -Draft 'D:\models\Qwen3.8-27B-DFlash2-Q4_K_M.gguf' -Port 31990

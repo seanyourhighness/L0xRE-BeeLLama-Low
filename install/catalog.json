@@ -103,8 +103,8 @@
         "launcher_style": "r6",
         "install_reserve_bytes": 5000000000,
         "certified_gpu_name_contains": "",
-        "source_release": "beellama-v0.4.7-r6-sm120-windows-cuda130",
-        "qualification_note": "Refreshed CUDA13.0 source; RTX4070Ti hardware certification pending."
+        "source_release": "beellama-v0.4.7-r6",
+        "qualification_note": "Refreshed CUDA13.0 source; starter route measured 68/116 t/s on RTX 4070 Ti."
       },
       "sm120": {
         "filename": "l0xre-beellama-low-v0.4.7-r6-windows-x86_64-sm120-cuda130.zip",

@@ -41,7 +41,7 @@ python3 b72_vectorize_half.py
 
 This gives a new build for qualification; it does not promise byte identity to the retained champion. The exact original head-backend relink replaced only the patched model-specific CUDA object, kept the original object list/flags, and compared stripped rebuilt loadable code/data. The pinned source commit carries the backend change in its full source tree; this release checkout carries the bridge/PTX reconstruction material under `source/sm86-b84/`, not compiler caches.
 
-SM89 uses the existing `beellama-sm89-v0.4.7-r1` payload and receipts; SM120 uses `beellama-sm120-v0.4.7-r9`. Their original build notes, source patches, model identities and license notices remain under their architecture directories. See the pinned historical source records for that separate baseline. The SM120 historical reference checkpoint includes MTP tensors; the new Low adapter does not inherit a throughput claim for its different target file.
+SM89 and SM120 historical payloads and receipts were consolidated into the official `beellama-v0.4.7-r6` release; their original tags have been retired. Their original build notes, source patches, model identities and license notices remain under their architecture directories. See the pinned historical source records for that separate baseline. The SM120 historical reference checkpoint includes MTP tensors; the new Low adapter does not inherit a throughput claim for its different target file.
 
 ## Windows
 
@@ -65,7 +65,7 @@ Package the new bridge at `bridge/sm86/bridge-b74-k3-vector.dll` and the SM86 ve
 
 ## Reproduce the r3 launcher defaults
 
-The compiled source commit above intentionally stays pinned. The r3 configuration is in `tools/universal/` at tag `beellama-v0.4.7-universal-r3`. After building a runtime, use that tag's common `l0xre` plus the corresponding `l0xre-sm86`, `l0xre-sm89` or `l0xre-sm120` as the architecture-directory launcher. For Windows, use that tag's `l0xre.ps1` and `l0xre.cmd`. The older source-build packaging templates are not evidence of the current 12 GB defaults. Include the r3 manifests and `examples/vision/` alongside the compiled components and reseal package checksums.
+The compiled source commit above intentionally stays pinned. The r3 configuration lives in `tools/universal/` in this repository. Build a runtime from it with the common `l0xre` plus the corresponding `l0xre-sm86`, `l0xre-sm89` or `l0xre-sm120` as the architecture-directory launcher; on Windows use `l0xre.ps1` and `l0xre.cmd`. The older source-build packaging templates are not evidence of the current 12 GB defaults. Include the r3 manifests and `examples/vision/` alongside the compiled components and reseal package checksums.
 
 ## Validation and release gates
 
