@@ -18,6 +18,7 @@ function New-FixtureRecord([string]$Path) {
 }
 try {
     $catalog = Get-InstallCatalog ''
+    $officialCatalog = $catalog | ConvertTo-Json -Depth 20 | ConvertFrom-Json
     $blackwell = [pscustomobject]@{ index = 0; uuid = 'GPU-fixture'; name = 'NVIDIA GeForce RTX 5090'; arch = 'sm120'; memory_mib = 32607 }
     $ada = [pscustomobject]@{ index = 1; uuid = 'GPU-ada'; name = 'NVIDIA GeForce RTX 4090'; arch = 'sm89'; memory_mib = 24576 }
     $ampere = [pscustomobject]@{ index = 2; uuid = 'GPU-ampere'; name = 'NVIDIA GeForce RTX 3060'; arch = 'sm86'; memory_mib = 12288 }
@@ -258,7 +259,7 @@ $gpuRecords
         [pscustomobject]@{ name = 'NVIDIA GeForce RTX 5070'; arch = 'sm120'; memory_mib = 12288 },
         [pscustomobject]@{ name = 'NVIDIA GeForce RTX 5090'; arch = 'sm120'; memory_mib = 32607 })
     foreach ($card in $matrix) {
-        $plan = Get-InstallPlan $catalog $card $false ''
+        $plan = Get-InstallPlan $officialCatalog $card $false ''
         Assert-Install ($plan.package.filename -and $plan.package.sha256 -and $plan.package.url -and $plan.package.bytes) "$($card.name) route has no published archive"
         Assert-Install ($plan.package.url -match 'beellama-v0\.4\.7-r6/') "$($card.name) route leaves the official release"
         Assert-Install ($plan.package.min_memory_mib -le $card.memory_mib) "$($card.name) route exceeds its VRAM floor"
@@ -269,7 +270,7 @@ $gpuRecords
             Assert-Install ($plan.package.status -eq 'starter' -and $plan.package.filename -match '12gb') '50-series 12GB starter route wrong'
         }
     }
-    Assert-Install ((Get-InstallPlan $catalog $blackwell $false '').hardware_qualified_for_gpu) 'Certified Windows route needs an opt-in'
+    Assert-Install ((Get-InstallPlan $officialCatalog $blackwell $false '').hardware_qualified_for_gpu) 'Certified Windows route needs an opt-in'
     Write-Host "WINDOWS_INSTALLER_PASS: $checks checks; native PowerShell $($PSVersionTable.PSVersion)"
 } finally {
     Remove-Item -LiteralPath $fixtureRoot -Recurse -Force
