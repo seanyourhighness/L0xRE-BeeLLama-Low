@@ -59,9 +59,6 @@ function Get-InstallPlan($Catalog, $SelectedGpu, [bool]$Candidates, [string]$Arc
     if ($package.gpu_name_contains -and -not $SelectedGpu.name.Contains($package.gpu_name_contains)) {
         throw "This setup is scoped to $($package.gpu_name_contains)."
     }
-    if ($package.status -eq 'candidate' -and -not $Candidates) {
-        throw "$($SelectedGpu.arch) Windows is a candidate. Use -AllowCandidate only to opt into testing it."
-    }
     if (-not $package.url -and -not $Archive) { throw 'This archive is not published; supply -RuntimeArchive PATH.' }
     $measured = $package.gpu_name_contains
     if ($package.PSObject.Properties['certified_gpu_name_contains']) { $measured = $package.certified_gpu_name_contains }
@@ -69,7 +66,6 @@ function Get-InstallPlan($Catalog, $SelectedGpu, [bool]$Candidates, [string]$Arc
     if ($package.PSObject.Properties['certified_gpu_names']) {
         $qualified = ($package.status.StartsWith('certified') -and $SelectedGpu.name -in @($package.certified_gpu_names))
     }
-    if (-not $qualified -and -not $Candidates) { throw 'The selected GPU is unqualified for this package; use -AllowCandidate to opt into testing it.' }
     $launchProfile = 'r6'
     if ($package.PSObject.Properties['launch_profiles']) {
         foreach ($preset in $package.launch_profiles) {
@@ -221,7 +217,7 @@ function Write-InstallLauncher([string]$Root, [string]$Runtime, [string]$ModelRo
     $draft = Join-Path $ModelRoot 'Qwen3.8-27B-DFlash2-Q4_K_M.gguf'
     if ($Plan.package.launcher_style -eq 'sm120-windows') {
         $parameters = @{ Model = $target; Draft = $draft; BindAddress = '127.0.0.1'; Port = $ListenPort }
-        if ($Plan.package.status -eq 'candidate' -or -not $Plan.hardware_qualified_for_gpu) { $parameters.QualificationProbe = $true }
+        if ($Plan.package.status -eq 'starter' -or -not $Plan.hardware_qualified_for_gpu) { $parameters.QualificationProbe = $true }
         if ($WithVision) { $parameters.Mmproj = Join-Path $ModelRoot 'mmproj-Qwen3.8-27B-Q8_0.gguf' }
         $entries = @($parameters.Keys | ForEach-Object { $_ + ' = ' + $(if ($parameters[$_] -is [bool]) { '$true' } else { Quote-InstallString $parameters[$_] }) })
         $callLines = @(('$serverParameters = @{ ' + ($entries -join '; ') + ' }'),
@@ -230,7 +226,7 @@ function Write-InstallLauncher([string]$Root, [string]$Runtime, [string]$ModelRo
         $launchProfile = if ($Plan.PSObject.Properties['launch_profile']) { $Plan.launch_profile } else { 'r6' }
         $arguments = @('serve', '--profile', $launchProfile, '-m', $target, '-md', $draft, '--host', '127.0.0.1', '--port', "$ListenPort")
         $dryFlag = '--dry-run'
-        if ($Plan.package.status -eq 'candidate' -or -not $Plan.hardware_qualified_for_gpu) { $arguments += '--qualification-probe' }
+        if ($Plan.package.status -eq 'starter' -or -not $Plan.hardware_qualified_for_gpu) { $arguments += '--qualification-probe' }
         if ($WithVision) { $arguments += @('--mmproj', (Join-Path $ModelRoot 'mmproj-Qwen3.8-27B-Q8_0.gguf')) }
         $callLines = @(('$argsForServer = @(' + (($arguments | ForEach-Object { Quote-InstallString $_ }) -join ', ') + ')'),
             ('if ($DryRun) { $argsForServer += ' + (Quote-InstallString $dryFlag) + ' }'), '& $command @argsForServer')
@@ -340,7 +336,7 @@ function Invoke-L0xreInstall {
         if (-not $ModelsDir) { $ModelsDir = $old.models_dir }
         if (-not $installBoundParameters.ContainsKey('Vision')) { $Vision = [bool]$old.vision }
         if (-not $installBoundParameters.ContainsKey('Port')) { $Port = [int]$old.port }
-        if ($old.selection.package.status -eq 'candidate') { $AllowCandidate = $true }
+        if ($old.selection.package.status -ne 'certified') { $AllowCandidate = $true }
     }
     if ($Update -and -not $CatalogPath) {
         $catalog = (Invoke-WebRequest -UseBasicParsing 'https://raw.githubusercontent.com/seanyourhighness/L0xRE-BeeLLama-Low/main/install/catalog.json').Content | ConvertFrom-Json

@@ -1,0 +1,40 @@
+# Architecture parity status
+
+Parity is tracked at three levels: the shared source/profile, successful compilation, and hardware-qualified runtime behavior. A compilation receipt does not establish inference correctness or speed.
+
+## Current R6 certification status
+
+One project and shared model weights cover the three architectures. Certification belongs to the tested platform, GPU, profile, and exact payload; it does not transfer to inherited universal packages.
+
+| Architecture / route | Linux / WSL | Native Windows |
+| --- | --- | --- |
+| SM86 / RTX 30 series >=12 GB | **Certified** on RTX 3060 — 37 t/s prose, 65 t/s code | Starter — best-known 80K configuration |
+| SM89 / RTX 40 series >=12 GB | **Certified** on RTX 4090 — 104 t/s prose, 167 t/s code; starter 80K configuration on other cards | Starter — measured 68 t/s prose, 116 t/s code on RTX 4070 Ti |
+| SM120 / RTX 5090 | **Certified** — 131 t/s prose, 229 t/s code | **Certified** — 137 t/s prose, 230 t/s code |
+| SM120 / other RTX 50 series >=12 GB | Starter — 32K profile | Starter — 32K profile |
+
+SM120 uses dedicated 80K / KVarN4/4 / DFlash2 N7 profiles. Linux retains its disclosed original decode-target exception; Windows meets its release speed gates. Exact scores, quality scope, package identities, and downloads are in [SM120 certification details](SM120-QUALIFICATION.md), with the RTX 4090 SM89 certification in [SM89 Linux status](SM89-LINUX-4090-STATUS.md) and the RTX 4070 Ti measurements in [SM89 Windows status](SM89-WINDOWS-STATUS.md). Earlier r3/r4 runs on a card do not qualify the refreshed R6 binary. Starter routes run the best configuration measured so far and are labeled as such; they are not additional certifications. Smaller-card SM120 profiles use a separate 32K starter configuration.
+
+## Historical r5-fast preparation
+
+The table below records the earlier r5-fast preparation. Its pending SM89/SM120 entries describe those historical payloads, rather than the dedicated R6 certifications above.
+
+| Feature or gate | SM86 / RTX30 | SM89 / RTX40 | SM120 / RTX50 |
+|---|---|---|---|
+| Common frozen S71 sampler/server source | Prepared | Prepared | Prepared |
+| Common81,920 context/KVarN4/4/Q2/N7 fast profile | Prepared | Prepared | Prepared |
+| Transform bridge, GDN512 bridge and fused-head compilation | Passed | Passed | Passed |
+| Projection PTX and seven masked-GDN kernels assembled | Passed | Passed | Passed |
+| Complete fast runtime package | **Certified bytes packaged** | Full build/integration pending | Full build/integration pending |
+| Greedy output, CPU vision and clean package smoke | **Passed** | Pending | Pending |
+| Balanced Bench.sh decode, prefill and capacity | **Passed** | Pending | Pending |
+| Full150 production-medium quality review | **127 pass@1 /134 pass@3** | Pending | Pending |
+| Hardware qualification | **RTX3060 qualified** | RTX4090 currently absent | Hardware run pending |
+
+The Linux universal r5-fast archive ships the original certified SM86 S71 bytes. It retains prior SM89/SM120 payloads for existing profiles; those are not relabeled as optimized or requalified. `--profile fast` is explicitly gated by each architecture's `FAST-MANIFEST.json` and cannot use an incomplete payload. Windows remains at the prior release.
+
+The shared build preparation in [source/fast](../source/fast/README.md) is the handoff for updating SM89, then SM120. The same source/configuration and qualification gates apply to all three. Hardware-specific launch geometry, numerical behavior and throughput must be measured on each GPU before claiming full runtime parity.
+
+Reference SM86 results: code53.88t/s, narrative29.13t/s,10K prefill567.58t/s,77K469.42t/s,81,916-token capacity. Paired baseline code39.71/narrative28.90 and131/134 quality versus fast127/134. Guard events and all quality losses are retained in [fast qualification evidence](../evidence/fast/CERTIFICATION.md).
+
+Compilation receipts: [SM86](../evidence/parity/sm86-compile.json), [SM89](../evidence/parity/sm89-compile.json), [SM120](../evidence/parity/sm120-compile.json). They contain exact artifact hashes and explicitly mark hardware qualification false for the cross-builds.
