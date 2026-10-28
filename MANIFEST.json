@@ -65,6 +65,18 @@
       "sha256": "9ade9729fd1bf75b479dcbe5fe9c048414e950ed29f137414d493f21d52f0538",
       "bytes": 282,
       "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/MODEL-SHA256SUMS"
+    },
+    {
+      "filename": "closing-audit.json",
+      "sha256": "0ece5a8efd9d85810004c1ded1cbfcccbf5f2c7e5e510f39b474f5825339ed03",
+      "bytes": 20544,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/closing-audit.json"
+    },
+    {
+      "filename": "closing-audit.json.sha256",
+      "sha256": "234d2f3b17a5b34a6ac3a76bf376f7cb74f59ddaf8190d3e81dbe1a02e48ee84",
+      "bytes": 85,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/closing-audit.json.sha256"
     }
   ],
   "models": {
@@ -113,8 +125,8 @@
       "manifest_sha256": "05ec68e340b032b9a9b644c505e4c5586e33f51bae4c98fcd13873ba3cee0686",
       "source_manifest_sha256": "1320b73f5c3ac84ed89ff060adaf344f3f733300f679a8b445a672587d90c8b8",
       "prevalidation": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm86/clean-install-468/independent-review472.json",
-      "final_extraction_startup_pending": true,
-      "published": false,
+      "final_extraction_startup_pending": false,
+      "published": true,
       "documentation_only_repack": {
         "previous_archive_sha256": "e554646b155bc6e059e380bb3cfd03311dba2b1745f65d21479449f68b8e5362",
         "changed_payload_file": "docs/V01-RELEASE.md",
@@ -126,7 +138,9 @@
         "all_executables_helpers_profiles_references_models_libraries_unchanged": true,
         "technical_files_digest": "077e2bf745093a4f3728006bcfb059082afbe4e4a5544d9a94df041908936788",
         "technical_files": 191
-      }
+      },
+      "final_archive_checks_complete": true,
+      "native_hardware_validation_pending": false
     },
     {
       "complete": true,
@@ -144,8 +158,8 @@
       "manifest_sha256": "bf53580bbe9defecaa253993353a9e900206aebdf8726d11130873d0b1a91d17",
       "source_manifest_sha256": "2e4e25c6773c69ebe1b3a3fd99d28ac4d3633bf97ff8e934b9ebf9df19c2b61b",
       "prevalidation": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/clean-install-478/result.json",
-      "final_extraction_startup_pending": true,
-      "published": false,
+      "final_extraction_startup_pending": false,
+      "published": true,
       "documentation_only_repack": {
         "previous_archive_sha256": "d67e111b83187255f0b7f99eb8108aeeff24efcfd9991067a9bd879695676609",
         "changed_payload_file": "docs/V01-RELEASE.md",
@@ -157,7 +171,9 @@
         "all_executables_helpers_profiles_references_models_libraries_unchanged": true,
         "technical_files_digest": "f38bc886ad4ccb4eeb760672aac002b2dc7b9c9275de2044a86c4511c2df1c95",
         "technical_files": 119
-      }
+      },
+      "final_archive_checks_complete": true,
+      "native_hardware_validation_pending": false
     },
     {
       "complete": true,
@@ -175,8 +191,8 @@
       "manifest_sha256": "b2eb59c060b1a3066121b25a0fd807406f1ee918ed0e48ea61523bc707232296",
       "source_manifest_sha256": "75056f86451d5110ac2a93edb5b5dd705fbfbbc466935b78fd834b5632a024d1",
       "prevalidation": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish472/wsl-sm120-review.json",
-      "final_extraction_startup_pending": true,
-      "published": false,
+      "final_extraction_startup_pending": false,
+      "published": true,
       "documentation_only_repack": {
         "previous_archive_sha256": "ddb47588e11c5d7354bc5857a469a777692c0aaac244fd639d1b3f881c6302a6",
         "changed_payload_file": "docs/V01-RELEASE.md",
@@ -188,7 +204,9 @@
         "all_executables_helpers_profiles_references_models_libraries_unchanged": true,
         "technical_files_digest": "ef5667cae53261b8859ba01da4e89534d1c562e4e4f561dfac21c6f6bf91d209",
         "technical_files": 117
-      }
+      },
+      "final_archive_checks_complete": true,
+      "native_hardware_validation_pending": false
     },
     {
       "complete": true,
@@ -206,8 +224,8 @@
       "manifest_sha256": "ff5ba5900e722ab8cdaff2879109f6abcef2bb7a489619db8ca8b3931276fb1c",
       "source_manifest_sha256": "e51ac857e71c94cc616a2239d93cd2335e4dfb0ebb338e8e7f1c68d80bfae762",
       "prevalidation": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish476/phase2b-result.json",
-      "final_extraction_startup_pending": true,
-      "published": false,
+      "final_extraction_startup_pending": false,
+      "published": true,
       "documentation_only_repack": {
         "previous_archive_sha256": "23e97819ca01dc16776ce3a4b25dd97e1ab0533cedcc280b52f9216cefbacd7a",
         "changed_payload_file": "docs/V01-RELEASE.md",
@@ -219,7 +237,9 @@
         "all_executables_helpers_profiles_references_models_libraries_unchanged": true,
         "technical_files_digest": "a4eb5b54b71b7755f9c497d15b53b22745221e39f5cf84a25a808a2016e18678",
         "technical_files": 155
-      }
+      },
+      "final_archive_checks_complete": true,
+      "native_hardware_validation_pending": true
     },
     {
       "complete": true,
@@ -237,8 +257,8 @@
       "manifest_sha256": "ca04c62332363b4b770401d6f2a36b7540e13b09697d9bb6b2b59ec8fe6d35f1",
       "source_manifest_sha256": "3dcc61289ead33df8f943d55a7fd7d837e87f8bb67c05906f417f3a1af61c01a",
       "prevalidation": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish476/phase2b-result.json",
-      "final_extraction_startup_pending": true,
-      "published": false,
+      "final_extraction_startup_pending": false,
+      "published": true,
       "documentation_only_repack": {
         "previous_archive_sha256": "ab351edfa9d55a2b239574d6027e6f82b4f2cdd7d3a9622bde942d23a644cf85",
         "changed_payload_file": "docs/V01-RELEASE.md",
@@ -250,7 +270,9 @@
         "all_executables_helpers_profiles_references_models_libraries_unchanged": true,
         "technical_files_digest": "fd2481d56631eedb7346113852b39077f755b87965773920d622fcd83eacc0a8",
         "technical_files": 136
-      }
+      },
+      "final_archive_checks_complete": true,
+      "native_hardware_validation_pending": true
     },
     {
       "complete": true,
@@ -268,8 +290,8 @@
       "manifest_sha256": "47921e4c9c607e815ffd9039e9c2db0b0f384809c339e189a646a46e12b6bdcb",
       "source_manifest_sha256": "77cc6a11b87eb3eeb508c6d4caa2852ee60eb16e78fb756dfcc83bacaaba1493",
       "prevalidation": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish464/verified-result.json",
-      "final_extraction_startup_pending": true,
-      "published": false,
+      "final_extraction_startup_pending": false,
+      "published": true,
       "documentation_only_repack": {
         "previous_archive_sha256": "2093ef5cc4eb5ae527029db958b0776a23fdf60d364004f08e66380992df606c",
         "changed_payload_file": "docs/V01-RELEASE.md",
@@ -281,7 +303,9 @@
         "all_executables_helpers_profiles_references_models_libraries_unchanged": true,
         "technical_files_digest": "0303f725d269532df7c8e491f6d70e3b03140f76af1b8de85c6e3d2cb9c6f243",
         "technical_files": 157
-      }
+      },
+      "final_archive_checks_complete": true,
+      "native_hardware_validation_pending": false
     }
   ],
   "speed_floor": {
@@ -298,12 +322,20 @@
     "HistoricalR7replay,return-to-short,genericcudaMalloc limits retained"
   ],
   "qualification": "receipts/v0.1/qualification-summary.json",
-  "published_download_verification": "receipts/v0.1/closing-audit.json (postpublication)",
+  "published_download_verification": "receipts/v0.1/closing-audit-finalization.json",
   "legacy_r6_manifest": "receipts/r6-manifest.json",
   "checksums": {
     "filename": "SHA256SUMS",
     "sha256": "a3c78f642a1286cea62a518c65846140941d891d834a9408bac703585993cec5",
     "scope": "All8archives pluscatalog andmodelchecksums; thechecksumlistingdoesnot hashitself."
   },
-  "documentation_only_repack": "Onlyrelease-note correction andcomputedintegritymetadata changed afterfullnormalstartup/restore/rollback. Exacttechnicalfiledigests andfinalcleanextraction areverified inreceipts/v0.1/final-doc-only-repack-and-extraction.json."
+  "documentation_only_repack": "Onlyrelease-note correction andcomputedintegritymetadata changed afterfullnormalstartup/restore/rollback. Exacttechnicalfiledigests andfinalcleanextraction areverified inreceipts/v0.1/final-doc-only-repack-and-extraction.json.",
+  "publication": {
+    "status": "released-and-verified",
+    "release_url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/l0xre-v0.1",
+    "release_code_commit": "ef7bdf04cbc5d1077ac98f812324490c27a6a950",
+    "all13_public_assets_verified": true,
+    "closing_audit": "receipts/v0.1/closing-audit.json",
+    "closing_audit_finalization": "receipts/v0.1/closing-audit-finalization.json"
+  }
 }

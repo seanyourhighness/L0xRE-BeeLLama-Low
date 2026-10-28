@@ -1,0 +1,20 @@
+{
+  "complete": true,
+  "passed": true,
+  "all13_published_assets_verified": true,
+  "audit_assets": [
+    {
+      "filename": "closing-audit.json",
+      "sha256": "0ece5a8efd9d85810004c1ded1cbfcccbf5f2c7e5e510f39b474f5825339ed03",
+      "public_download_verified": true,
+      "github_digest": "sha256:0ece5a8efd9d85810004c1ded1cbfcccbf5f2c7e5e510f39b474f5825339ed03"
+    },
+    {
+      "filename": "closing-audit.json.sha256",
+      "sha256": "234d2f3b17a5b34a6ac3a76bf376f7cb74f59ddaf8190d3e81dbe1a02e48ee84",
+      "public_download_verified": true,
+      "github_digest": "sha256:234d2f3b17a5b34a6ac3a76bf376f7cb74f59ddaf8190d3e81dbe1a02e48ee84"
+    }
+  ],
+  "release_url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/l0xre-v0.1"
+}

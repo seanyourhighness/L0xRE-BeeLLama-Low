@@ -1,0 +1,450 @@
+{
+  "schema_version": 1,
+  "completed_utc": "2026-10-28T15:40:16.249140+00:00",
+  "release_complete": true,
+  "release_url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/l0xre-v0.1",
+  "tag": "l0xre-v0.1",
+  "release_code_commit": "ef7bdf04cbc5d1077ac98f812324490c27a6a950",
+  "publication_source_branch": "release/v0.1-20261027",
+  "all_required_release_gates_passed": true,
+  "speed_floor_pct": 2.0,
+  "all9_measured_presets_pass": true,
+  "baselines_unchanged": true,
+  "sean_sm89_decision": {
+    "key": "linux/sm89/12gb",
+    "metric": "narrative_decode",
+    "authority": "Sean, direct instruction, 2026-10-28",
+    "decision": "Accept paired451 in place of the nonreproducible175 narrative peak for this comparison; retain all baselines and the2%floor.",
+    "quote": "accept Linux SM89 12GB. Paired 451 old/new is -0.63% narrative / -1.74% code, both within 2%; the 90.89 narrative baseline (175, I8 cap 4096) is not reproducible by the old build today (88.84).",
+    "paired_sha256": "45688ab5a575bba8c2f6195bc9600b2342b7945816524249359d00e000c5aa0d",
+    "initial_canonical_sha256": "9f5ecc319c761ac31ec7176da82a122c6b79ff556cbf1efd61e60a8a2c4bb291",
+    "baseline_record_sha256": "35553aacabfc86ce748873d7b3e9b879e856ba6d088897809cec59447406e8b2",
+    "fail_drop_pct": 2.0
+  },
+  "sm89_accepted_pair": {
+    "narrative_decode": {
+      "old": 88.84068024734727,
+      "new": 88.28072069415045,
+      "change_pct": -0.6302963368107872,
+      "original_cv_pct": [
+        3.0591575744189528,
+        3.0172088065197507
+      ],
+      "original_drop_pct": 3.1442477957615345,
+      "descriptor": {
+        "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish477/sm89-accepted451.json",
+        "selector": null,
+        "sha256": "f1dcba051cb8bdae62e96902e9dcf07947fcc7ce122d7bd21ff8227759ddd7aa"
+      },
+      "initial": {
+        "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/candidate-sm89-12gb.json",
+        "selector": null,
+        "sha256": "032c32b5b76acc919bd918eb0367603b448ae59b47e1cf87e419cc7fa1ec9b73"
+      },
+      "initial_canonical": {
+        "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/collected/sm89-native-final-performance-429-result.json",
+        "selector": null,
+        "sha256": "9f5ecc319c761ac31ec7176da82a122c6b79ff556cbf1efd61e60a8a2c4bb291"
+      },
+      "paired": {
+        "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish451/collected/result.json",
+        "selector": null,
+        "sha256": "45688ab5a575bba8c2f6195bc9600b2342b7945816524249359d00e000c5aa0d"
+      },
+      "all_four_arm_means": [
+        88.4520314753831,
+        87.52824365422008,
+        89.03319773408082,
+        89.22932901931144
+      ],
+      "baseline_unchanged": true,
+      "user_decision": {
+        "key": "linux/sm89/12gb",
+        "metric": "narrative_decode",
+        "authority": "Sean, direct instruction, 2026-10-28",
+        "decision": "Accept paired451 in place of the nonreproducible175 narrative peak for this comparison; retain all baselines and the2%floor.",
+        "quote": "accept Linux SM89 12GB. Paired 451 old/new is -0.63% narrative / -1.74% code, both within 2%; the 90.89 narrative baseline (175, I8 cap 4096) is not reproducible by the old build today (88.84).",
+        "paired_sha256": "45688ab5a575bba8c2f6195bc9600b2342b7945816524249359d00e000c5aa0d",
+        "initial_canonical_sha256": "9f5ecc319c761ac31ec7176da82a122c6b79ff556cbf1efd61e60a8a2c4bb291",
+        "baseline_record_sha256": "35553aacabfc86ce748873d7b3e9b879e856ba6d088897809cec59447406e8b2",
+        "fail_drop_pct": 2.0
+      }
+    },
+    "code_decode": {
+      "old": 148.86917122256557,
+      "new": 146.2811400436401,
+      "change_pct": -1.7384601241960618,
+      "original_cv_pct": [
+        6.697438977086004,
+        3.2863279306110633
+      ],
+      "original_drop_pct": 2.4096586641315865,
+      "descriptor": {
+        "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish477/sm89-accepted451.json",
+        "selector": null,
+        "sha256": "f1dcba051cb8bdae62e96902e9dcf07947fcc7ce122d7bd21ff8227759ddd7aa"
+      },
+      "initial": {
+        "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/candidate-sm89-12gb.json",
+        "selector": null,
+        "sha256": "032c32b5b76acc919bd918eb0367603b448ae59b47e1cf87e419cc7fa1ec9b73"
+      },
+      "initial_canonical": {
+        "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/collected/sm89-native-final-performance-429-result.json",
+        "selector": null,
+        "sha256": "9f5ecc319c761ac31ec7176da82a122c6b79ff556cbf1efd61e60a8a2c4bb291"
+      },
+      "paired": {
+        "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish451/collected/result.json",
+        "selector": null,
+        "sha256": "45688ab5a575bba8c2f6195bc9600b2342b7945816524249359d00e000c5aa0d"
+      },
+      "all_four_arm_means": [
+        148.30375664975716,
+        145.75967961305045,
+        146.8026004742298,
+        149.43458579537398
+      ],
+      "baseline_unchanged": true
+    }
+  },
+  "all11_public_downloads_verified": true,
+  "public_downloads": [
+    {
+      "filename": "L0xRE-v0.1-evidence.tar.zst",
+      "sha256": "ab330a75281adda9e9efadfcb6ba808d54a858370f11d175a51353d571c905d2",
+      "bytes": 217465,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-evidence.tar.zst",
+      "unauthenticated_public_download": true,
+      "local_file_and_github_digest_match": true,
+      "passed": true
+    },
+    {
+      "filename": "L0xRE-v0.1-linux-sm86.tar.zst",
+      "sha256": "b84c57c4e8cd121d36074b167b3b321c0c4ff1f0824bd5516f558db22a8751cb",
+      "bytes": 756146057,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-linux-sm86.tar.zst",
+      "unauthenticated_public_download": true,
+      "local_file_and_github_digest_match": true,
+      "passed": true
+    },
+    {
+      "filename": "L0xRE-v0.1-source.tar.zst",
+      "sha256": "d5dc41978af181c20947e6a5dfefd22584e347b5909f33e441573c16912b99e4",
+      "bytes": 36833706,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-source.tar.zst",
+      "unauthenticated_public_download": true,
+      "local_file_and_github_digest_match": true,
+      "passed": true
+    },
+    {
+      "filename": "L0xRE-v0.1-linux-sm89.tar.zst",
+      "sha256": "8e501520b658c761be520edc7e76a344df9314bc1f404c0444ef7cc65cd51ed9",
+      "bytes": 745886425,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-linux-sm89.tar.zst",
+      "unauthenticated_public_download": true,
+      "local_file_and_github_digest_match": true,
+      "passed": true
+    },
+    {
+      "filename": "L0xRE-v0.1-linux-sm120.tar.zst",
+      "sha256": "17957354dfd6e130210f97966f85eacae1658e900dc16c791701edf8b7167de8",
+      "bytes": 658157394,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-linux-sm120.tar.zst",
+      "unauthenticated_public_download": true,
+      "local_file_and_github_digest_match": true,
+      "passed": true
+    },
+    {
+      "filename": "L0xRE-v0.1-windows-sm86.zip",
+      "sha256": "1300fcb3e2f2c737df6b3717cda330451c5d2208415240522e1e6ff6198f52b0",
+      "bytes": 715004772,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-windows-sm86.zip",
+      "unauthenticated_public_download": true,
+      "local_file_and_github_digest_match": true,
+      "passed": true
+    },
+    {
+      "filename": "catalog.json",
+      "sha256": "b6f045c0e8637fd774996b1f17b7d15b0d468abbe5e6950a6fc50e3e95649894",
+      "bytes": 8647,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/catalog.json",
+      "unauthenticated_public_download": true,
+      "local_file_and_github_digest_match": true,
+      "passed": true
+    },
+    {
+      "filename": "MODEL-SHA256SUMS",
+      "sha256": "9ade9729fd1bf75b479dcbe5fe9c048414e950ed29f137414d493f21d52f0538",
+      "bytes": 282,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/MODEL-SHA256SUMS",
+      "unauthenticated_public_download": true,
+      "local_file_and_github_digest_match": true,
+      "passed": true
+    },
+    {
+      "filename": "SHA256SUMS",
+      "sha256": "a3c78f642a1286cea62a518c65846140941d891d834a9408bac703585993cec5",
+      "bytes": 920,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/SHA256SUMS",
+      "unauthenticated_public_download": true,
+      "local_file_and_github_digest_match": true,
+      "passed": true
+    },
+    {
+      "filename": "L0xRE-v0.1-windows-sm89.zip",
+      "sha256": "137c1f8261f09fc9c6ddc8dda0a5cc7c360489c09d0eb5761d07b470f5a809d4",
+      "bytes": 713796944,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-windows-sm89.zip",
+      "unauthenticated_public_download": true,
+      "local_file_and_github_digest_match": true,
+      "passed": true
+    },
+    {
+      "filename": "L0xRE-v0.1-windows-sm120.zip",
+      "sha256": "55386da9bd561491fa8324ad13b3995e72d35ee4b55add83945118129a25ea6c",
+      "bytes": 715596204,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-windows-sm120.zip",
+      "unauthenticated_public_download": true,
+      "local_file_and_github_digest_match": true,
+      "passed": true
+    }
+  ],
+  "published_checksum_listing_verified": true,
+  "normal_startup_stream_restore_and_actual_r6_rollback": {
+    "linux/sm86": {
+      "complete": true,
+      "passed": true,
+      "final_archive_sha256": "e554646b155bc6e059e380bb3cfd03311dba2b1745f65d21479449f68b8e5362",
+      "final_archive_bytes": 756146084,
+      "normal_qualified_startup_without_bypass": true,
+      "streaming": true,
+      "vision_ram_checkpoint": true,
+      "all_profile_preflight": true,
+      "reused_full_quality_lifecycle_and_selftests": "Numerical files/argv/env/models unchanged; sealed480identity proof plus prevalidation receipts",
+      "actual_published_r6_archive_sha256": "6d69be5b0e6dcb85be9b08767ffff034a99439658bdc8bac856a545697518781",
+      "rollback_runtime_launcher_startup_verified": true,
+      "published": false
+    },
+    "linux/sm89": {
+      "complete": true,
+      "passed": true,
+      "final_archive_sha256": "d67e111b83187255f0b7f99eb8108aeeff24efcfd9991067a9bd879695676609",
+      "final_archive_bytes": 745886423,
+      "normal_qualified_startup_without_bypass": true,
+      "streaming": true,
+      "vision_ram_checkpoint": true,
+      "all_profile_preflight": true,
+      "reused_full_quality_lifecycle_and_selftests": "Numerical files/argv/env/models unchanged; sealed480identity proof plus prevalidation receipts",
+      "actual_published_r6_archive_sha256": "5bb052aa07c6158d2ab71a80d77aa1c0f547f76ef2c71a5f161d49ddb83633c2",
+      "rollback_runtime_launcher_startup_verified": true,
+      "published": false
+    },
+    "linux/sm120": {
+      "complete": true,
+      "passed": true,
+      "final_archive_sha256": "ddb47588e11c5d7354bc5857a469a777692c0aaac244fd639d1b3f881c6302a6",
+      "final_archive_bytes": 658157375,
+      "normal_qualified_startup_without_bypass": true,
+      "streaming": true,
+      "vision_ram_checkpoint": true,
+      "all_profile_preflight": true,
+      "reused_full_quality_lifecycle_and_selftests": "Numerical files/argv/env/models unchanged; sealed480identity proof plus prevalidation receipts",
+      "actual_published_r6_archive_sha256": "9af12274ef1b7c41923fc35bebea2097a37a20afdba6a6552ea1eb22eccb87ff",
+      "rollback_runtime_launcher_startup_verified": true,
+      "published": false
+    },
+    "windows/sm120": {
+      "complete": true,
+      "passed": true,
+      "final_archive_sha256": "2093ef5cc4eb5ae527029db958b0776a23fdf60d364004f08e66380992df606c",
+      "final_archive_bytes": 715596198,
+      "normal_qualified_startup_without_bypass": true,
+      "streaming": true,
+      "vision_ram_checkpoint": true,
+      "all_profile_preflight": true,
+      "numerical_quality_lifecycle_selftest_receipts_reused": true,
+      "actual_published_r6_archive_sha256": "3f1375870d8876ddaca0d048f81bd10e3b32245322376a8133ae3692aca9bfd7",
+      "rollback_runtime_launcher_startup_verified": true,
+      "published": false
+    }
+  },
+  "final_documentation_only_repack_verification": {
+    "complete": true,
+    "passed": true,
+    "rows": [
+      {
+        "platform": "linux",
+        "architecture": "sm86",
+        "archive_sha256": "b84c57c4e8cd121d36074b167b3b321c0c4ff1f0824bd5516f558db22a8751cb",
+        "bytes": 756146057,
+        "extracted": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish490/extracted/linux-sm86/L0xRE-v0.1-linux-sm86",
+        "all_file_checksums_verified": 194,
+        "all_code_profiles_references_libraries_match_tested_payload": true,
+        "previous_fully_tested_archive_sha256": "e554646b155bc6e059e380bb3cfd03311dba2b1745f65d21479449f68b8e5362",
+        "only_documentation_and_computed_manifest_changes": true,
+        "qualified": true
+      },
+      {
+        "platform": "linux",
+        "architecture": "sm89",
+        "archive_sha256": "8e501520b658c761be520edc7e76a344df9314bc1f404c0444ef7cc65cd51ed9",
+        "bytes": 745886425,
+        "extracted": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish490/extracted/linux-sm89/L0xRE-v0.1-linux-sm89",
+        "all_file_checksums_verified": 122,
+        "all_code_profiles_references_libraries_match_tested_payload": true,
+        "previous_fully_tested_archive_sha256": "d67e111b83187255f0b7f99eb8108aeeff24efcfd9991067a9bd879695676609",
+        "only_documentation_and_computed_manifest_changes": true,
+        "qualified": true
+      },
+      {
+        "platform": "linux",
+        "architecture": "sm120",
+        "archive_sha256": "17957354dfd6e130210f97966f85eacae1658e900dc16c791701edf8b7167de8",
+        "bytes": 658157394,
+        "extracted": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish490/extracted/linux-sm120/L0xRE-v0.1-linux-sm120",
+        "all_file_checksums_verified": 120,
+        "all_code_profiles_references_libraries_match_tested_payload": true,
+        "previous_fully_tested_archive_sha256": "ddb47588e11c5d7354bc5857a469a777692c0aaac244fd639d1b3f881c6302a6",
+        "only_documentation_and_computed_manifest_changes": true,
+        "qualified": true,
+        "final_extracted_normal_preflight_without_bypass": true
+      },
+      {
+        "platform": "windows",
+        "architecture": "sm86",
+        "archive_sha256": "1300fcb3e2f2c737df6b3717cda330451c5d2208415240522e1e6ff6198f52b0",
+        "bytes": 715004772,
+        "extracted": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish490/extracted/windows-sm86/L0xRE-v0.1-windows-sm86",
+        "all_file_checksums_verified": 158,
+        "all_code_profiles_references_libraries_match_tested_payload": true,
+        "previous_fully_tested_archive_sha256": "23e97819ca01dc16776ce3a4b25dd97e1ab0533cedcc280b52f9216cefbacd7a",
+        "only_documentation_and_computed_manifest_changes": true,
+        "qualified": false
+      },
+      {
+        "platform": "windows",
+        "architecture": "sm89",
+        "archive_sha256": "137c1f8261f09fc9c6ddc8dda0a5cc7c360489c09d0eb5761d07b470f5a809d4",
+        "bytes": 713796944,
+        "extracted": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish490/extracted/windows-sm89/L0xRE-v0.1-windows-sm89",
+        "all_file_checksums_verified": 139,
+        "all_code_profiles_references_libraries_match_tested_payload": true,
+        "previous_fully_tested_archive_sha256": "ab351edfa9d55a2b239574d6027e6f82b4f2cdd7d3a9622bde942d23a644cf85",
+        "only_documentation_and_computed_manifest_changes": true,
+        "qualified": false
+      },
+      {
+        "platform": "windows",
+        "architecture": "sm120",
+        "archive_sha256": "55386da9bd561491fa8324ad13b3995e72d35ee4b55add83945118129a25ea6c",
+        "bytes": 715596204,
+        "extracted": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish490/extracted/windows-sm120/L0xRE-v0.1-windows-sm120",
+        "all_file_checksums_verified": 160,
+        "all_code_profiles_references_libraries_match_tested_payload": true,
+        "previous_fully_tested_archive_sha256": "2093ef5cc4eb5ae527029db958b0776a23fdf60d364004f08e66380992df606c",
+        "only_documentation_and_computed_manifest_changes": true,
+        "qualified": true
+      }
+    ],
+    "receipt_reuse": "Rule3: exact executable/helper/profile/reference/library/model identities; only a release-note correction and computed hashes differ from the fully tested normal-startup/restore/rollback archives.",
+    "no_new_numerical_or_policy_changes": true
+  },
+  "source_archive_verification": {
+    "complete": true,
+    "passed": true,
+    "files_verified": 13584,
+    "archive_sha256": "d5dc41978af181c20947e6a5dfefd22584e347b5909f33e441573c16912b99e4",
+    "bytes": 36833706
+  },
+  "windows_sm86_sm89": {
+    "status": "build-verified, hardware validation in progress",
+    "native_hardware_certified": false,
+    "final_archive_checks": {
+      "complete": true,
+      "passed": true,
+      "mode": "load",
+      "rows": [
+        {
+          "architecture": "sm86",
+          "archive_sha256": "23e97819ca01dc16776ce3a4b25dd97e1ab0533cedcc280b52f9216cefbacd7a",
+          "files_verified": 158,
+          "build_verified": true,
+          "hardware_validated": false,
+          "bundled_dll_count": 26,
+          "actual_sm120_refuses_before_models": true
+        },
+        {
+          "architecture": "sm89",
+          "archive_sha256": "ab351edfa9d55a2b239574d6027e6f82b4f2cdd7d3a9622bde942d23a644cf85",
+          "files_verified": 139,
+          "build_verified": true,
+          "hardware_validated": false,
+          "bundled_dll_count": 26,
+          "actual_sm120_refuses_before_models": true
+        }
+      ],
+      "no_native86or89_hardware_claim": true,
+      "published": false
+    }
+  },
+  "tests": {
+    "launcher_linux": {
+      "total": 71,
+      "skipped": 11
+    },
+    "launcher_windows": {
+      "total": 71,
+      "skipped": 13
+    },
+    "linux_installer": 25,
+    "windows_installer_checks": 134,
+    "speed_gate": 28,
+    "legacy_linux_launcher": 29,
+    "legacy_fast_launcher": 18,
+    "legacy_windows_launcher": 15,
+    "release_correctness": 6
+  },
+  "github_ci": [
+    {
+      "conclusion": "success",
+      "headBranch": "main",
+      "name": "Launcher configuration checks",
+      "status": "completed",
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/actions/runs/40716591458"
+    },
+    {
+      "conclusion": "success",
+      "headBranch": "release/v0.1-20261027",
+      "name": "Launcher configuration checks",
+      "status": "completed",
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/actions/runs/40714287560"
+    },
+    {
+      "conclusion": "success",
+      "headBranch": "l0xre-v0.1",
+      "name": "Launcher configuration checks",
+      "status": "completed",
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/actions/runs/40714288101"
+    }
+  ],
+  "known_limits_retained": [
+    "NativeWindows allocation442 passed2240/ub1024, vectorsOFF; graph355 coversLinux/WSL and wasnotre-injected on nativeWindows for this rung, perSean",
+    "Onlydecode_at_10k isreport-only; retained407/417numbers inrelease notes; nofurtherGPUtiming onthismetric",
+    "HistoricalR7frozenreplay,return-to-short,genericcudaMalloc limits retained",
+    "12GB/16GBenvelopes onlargercards arenotphysicalSKUcertification"
+  ],
+  "cleanup": {
+    "original3060service_restored": true,
+    "mirai_mode": "project",
+    "definition_sha256": "2b81f5d6aa32c09d2d582578cdcf4f132cd44e08c1d2a107fa1eaf28fe888752",
+    "definition_matches_original": true,
+    "sm89_idle": true,
+    "test_gpu_jobs_remaining": false,
+    "sm120_idle": true,
+    "strata_stopped": true,
+    "paused_or_retired_native_build_test_processes_remaining": 0,
+    "unrelated_services_untouched": true
+  },
+  "audit_self_download_verification": "Recorded separately after publishing this audit; GitHubdigest andSHA256sidecar are authoritative for the audit file itself."
+}
