@@ -1,0 +1,97 @@
+{
+  "complete": true,
+  "phase2b_build_verification_passed": true,
+  "all_sources_explained": {
+    "sm86": 256,
+    "sm89": 256
+  },
+  "all_backend_target_functions": {
+    "sm86": 10139,
+    "sm89": 10139
+  },
+  "runtime_cubins": 51,
+  "profile_memory_cases": 13,
+  "companion_helper_sass": [
+    {
+      "component": "gdn-masked-sm86",
+      "expected_helpers": [
+        "cast_compact_v",
+        "cast_grouped_qk",
+        "output_to_f32",
+        "pad_g_beta",
+        "state_from_fla",
+        "state_to_fla"
+      ],
+      "architectures": [
+        "86"
+      ],
+      "all_helpers_have_actual_target_sass": true
+    },
+    {
+      "component": "gdn-masked-sm89",
+      "expected_helpers": [
+        "cast_compact_v",
+        "cast_grouped_qk",
+        "output_to_f32",
+        "pad_g_beta",
+        "state_from_fla",
+        "state_to_fla"
+      ],
+      "architectures": [
+        "89"
+      ],
+      "all_helpers_have_actual_target_sass": true
+    },
+    {
+      "component": "gdn-chunk",
+      "expected_helpers": [
+        "cast_compact_v",
+        "cast_grouped_qk",
+        "output_to_f32",
+        "state_from_fla",
+        "state_to_fla"
+      ],
+      "architectures": [
+        "86",
+        "89"
+      ],
+      "all_helpers_have_actual_target_sass": true
+    }
+  ],
+  "evidence": {
+    "all_tu_sources": {
+      "path": "release-finish439/comparison.json",
+      "sha256": "50856c7c6e5b2660b1d93a0bdf9f2214a4c52b198af5511d76df40cc5ffe52cb"
+    },
+    "final_backends_sass": {
+      "path": "release-finish456/result.json",
+      "sha256": "904998edac31803681fa1031ea68e524c5fa81a46d53ea8efbadfc774efde99c"
+    },
+    "corrected_companions": {
+      "path": "release-finish458/verified458.json",
+      "sha256": "035f4988a5f4f1b8e1cc8cb7a129cf6ee999acfced9199c2e096f265447fd6d2"
+    },
+    "gdn_mapping": {
+      "path": "release-finish460/result.json",
+      "sha256": "0e4ed8e3281e2af005cc84f46d948b8acb74ac3e98da181517644b152a1c7522"
+    },
+    "all_runtime_cubins_and_real_arch_refusals": {
+      "path": "release-finish466/result.json",
+      "sha256": "ea315369141c9948b09aaeb3c3b0ffc3d7baaacad949774b1aad2827866cca75"
+    },
+    "profile_and_memory_cases": {
+      "path": "release-finish467/result.json",
+      "sha256": "d32e25c174a7b022f646a9e328df2affb77b49fd8829451756519a4b55809e8c"
+    },
+    "raw_container_rebind": {
+      "path": "release-finish430/review.json",
+      "sha256": "8fc8d9de1442185361a2896b9946f5bf3002d332f9d1513c6815e226447942fd"
+    }
+  },
+  "hardware_validated": false,
+  "qualification_status": "build-verified, hardware validation in progress",
+  "promoted": false,
+  "archive_clean_extraction_pending": true,
+  "raw_object_byte_restoration_claimed": false,
+  "native_graph_fault_work": "Stopped by Sean; no shim/hook/in-process fault work resumed"
+}

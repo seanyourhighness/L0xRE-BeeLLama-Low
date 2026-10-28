@@ -1,0 +1,81 @@
+{
+  "complete": true,
+  "passed": true,
+  "rows": [
+    {
+      "platform": "linux",
+      "architecture": "sm86",
+      "archive_sha256": "b84c57c4e8cd121d36074b167b3b321c0c4ff1f0824bd5516f558db22a8751cb",
+      "bytes": 756146057,
+      "extracted": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish490/extracted/linux-sm86/L0xRE-v0.1-linux-sm86",
+      "all_file_checksums_verified": 194,
+      "all_code_profiles_references_libraries_match_tested_payload": true,
+      "previous_fully_tested_archive_sha256": "e554646b155bc6e059e380bb3cfd03311dba2b1745f65d21479449f68b8e5362",
+      "only_documentation_and_computed_manifest_changes": true,
+      "qualified": true
+    },
+    {
+      "platform": "linux",
+      "architecture": "sm89",
+      "archive_sha256": "8e501520b658c761be520edc7e76a344df9314bc1f404c0444ef7cc65cd51ed9",
+      "bytes": 745886425,
+      "extracted": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish490/extracted/linux-sm89/L0xRE-v0.1-linux-sm89",
+      "all_file_checksums_verified": 122,
+      "all_code_profiles_references_libraries_match_tested_payload": true,
+      "previous_fully_tested_archive_sha256": "d67e111b83187255f0b7f99eb8108aeeff24efcfd9991067a9bd879695676609",
+      "only_documentation_and_computed_manifest_changes": true,
+      "qualified": true
+    },
+    {
+      "platform": "linux",
+      "architecture": "sm120",
+      "archive_sha256": "17957354dfd6e130210f97966f85eacae1658e900dc16c791701edf8b7167de8",
+      "bytes": 658157394,
+      "extracted": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish490/extracted/linux-sm120/L0xRE-v0.1-linux-sm120",
+      "all_file_checksums_verified": 120,
+      "all_code_profiles_references_libraries_match_tested_payload": true,
+      "previous_fully_tested_archive_sha256": "ddb47588e11c5d7354bc5857a469a777692c0aaac244fd639d1b3f881c6302a6",
+      "only_documentation_and_computed_manifest_changes": true,
+      "qualified": true,
+      "final_extracted_normal_preflight_without_bypass": true
+    },
+    {
+      "platform": "windows",
+      "architecture": "sm86",
+      "archive_sha256": "1300fcb3e2f2c737df6b3717cda330451c5d2208415240522e1e6ff6198f52b0",
+      "bytes": 715004772,
+      "extracted": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish490/extracted/windows-sm86/L0xRE-v0.1-windows-sm86",
+      "all_file_checksums_verified": 158,
+      "all_code_profiles_references_libraries_match_tested_payload": true,
+      "previous_fully_tested_archive_sha256": "23e97819ca01dc16776ce3a4b25dd97e1ab0533cedcc280b52f9216cefbacd7a",
+      "only_documentation_and_computed_manifest_changes": true,
+      "qualified": false
+    },
+    {
+      "platform": "windows",
+      "architecture": "sm89",
+      "archive_sha256": "137c1f8261f09fc9c6ddc8dda0a5cc7c360489c09d0eb5761d07b470f5a809d4",
+      "bytes": 713796944,
+      "extracted": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish490/extracted/windows-sm89/L0xRE-v0.1-windows-sm89",
+      "all_file_checksums_verified": 139,
+      "all_code_profiles_references_libraries_match_tested_payload": true,
+      "previous_fully_tested_archive_sha256": "ab351edfa9d55a2b239574d6027e6f82b4f2cdd7d3a9622bde942d23a644cf85",
+      "only_documentation_and_computed_manifest_changes": true,
+      "qualified": false
+    },
+    {
+      "platform": "windows",
+      "architecture": "sm120",
+      "archive_sha256": "55386da9bd561491fa8324ad13b3995e72d35ee4b55add83945118129a25ea6c",
+      "bytes": 715596204,
+      "extracted": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish490/extracted/windows-sm120/L0xRE-v0.1-windows-sm120",
+      "all_file_checksums_verified": 160,
+      "all_code_profiles_references_libraries_match_tested_payload": true,
+      "previous_fully_tested_archive_sha256": "2093ef5cc4eb5ae527029db958b0776a23fdf60d364004f08e66380992df606c",
+      "only_documentation_and_computed_manifest_changes": true,
+      "qualified": true
+    }
+  ],
+  "receipt_reuse": "Rule3: exact executable/helper/profile/reference/library/model identities; only a release-note correction and computed hashes differ from the fully tested normal-startup/restore/rollback archives.",
+  "no_new_numerical_or_policy_changes": true
+}

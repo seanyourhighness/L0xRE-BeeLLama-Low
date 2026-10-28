@@ -1,3 +1,3 @@
 @echo off
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0l0xre.ps1" %*
+"%~dp0runtime\python.exe" -E -s -X utf8 "%~dp0tools\universal\v01-windows-launch.py" %*
 exit /b %errorlevel%

@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "packages": {
+    "linux": {
+      "sm86": {
+        "filename": "L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst",
+        "sha256": "6d69be5b0e6dcb85be9b08767ffff034a99439658bdc8bac856a545697518781",
+        "bytes": 724015593,
+        "status": "certified",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "RTX 30",
+        "profile": "80K / KVarN4/4 / DFlash2 N7 / medium reasoning",
+        "launcher": "tools/universal/r6-launch.py",
+        "launcher_style": "r6",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": "RTX 3060",
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 3060"
+        ]
+      },
+      "sm89": {
+        "filename": "L0xRE-BeeLLama-Low-R6-sm89-linux-rtx4090-certified.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/L0xRE-BeeLLama-Low-R6-sm89-linux-rtx4090-certified.tar.zst",
+        "sha256": "5bb052aa07c6158d2ab71a80d77aa1c0f547f76ef2c71a5f161d49ddb83633c2",
+        "bytes": 986319840,
+        "status": "certified",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "RTX 40",
+        "profile": "80K / KVarN4/4 / DFlash2 N7 / medium reasoning",
+        "launcher": "tools/universal/r6-launch.py",
+        "launcher_style": "r6",
+        "install_reserve_bytes": 5000000000,
+        "launch_profiles": [
+          {
+            "gpu_name": "NVIDIA GeForce RTX 4090",
+            "min_memory_mib": 23000,
+            "profile": "r6-sm89-4090"
+          }
+        ],
+        "certified_gpu_name_contains": "RTX 4090",
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 4090"
+        ]
+      },
+      "sm120": {
+        "filename": "L0xRE-SM120-certified-20261008.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/L0xRE-SM120-certified-20261008.tar.zst",
+        "sha256": "9af12274ef1b7c41923fc35bebea2097a37a20afdba6a6552ea1eb22eccb87ff",
+        "bytes": 1111927641,
+        "status": "certified",
+        "min_memory_mib": 30000,
+        "gpu_name_contains": "RTX 5090",
+        "profile": "80K / KVarN4/4 / DFlash2 N7 / medium reasoning",
+        "launcher": "tools/universal/r6-launch.py",
+        "launcher_style": "r6",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": "RTX 5090",
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 5090"
+        ]
+      },
+      "sm120-12gb": {
+        "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-linux-starter.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/L0xRE-BeeLLama-Low-R6-sm120-12gb-linux-starter.tar.zst",
+        "sha256": "0ad0866a7fe99c272a7d6d4b9b8eeb4816d6472c0b1f76f2d867da1731ed729d",
+        "bytes": 1112801747,
+        "status": "starter",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "RTX 50",
+        "profile": "32K / KVarN4/4 / DFlash2 N7 / no down-weight cache",
+        "launcher": "tools/universal/r6-launch.py",
+        "launcher_style": "r6",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": ""
+      }
+    },
+    "windows": {
+      "sm86": {
+        "filename": "L0xRE-BeeLLama-Low-R6-sm86-windows-starter.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/L0xRE-BeeLLama-Low-R6-sm86-windows-starter.zip",
+        "sha256": "9ae318512be28a851d728c328b201a7aabc7ef052140eb87a50c3773bbe1a93c",
+        "bytes": 892481245,
+        "status": "starter",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "RTX 30",
+        "profile": "80K / KVarN4/4 / DFlash2 N7 / medium reasoning",
+        "launcher": "tools/universal/r6-launch.ps1",
+        "launcher_style": "r6",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": ""
+      },
+      "sm89": {
+        "filename": "L0xRE-BeeLLama-Low-R6-sm89-windows-starter.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/L0xRE-BeeLLama-Low-R6-sm89-windows-starter.zip",
+        "sha256": "5fb57e1525c1bdbe9c6cf3f0f4d40a83bef37c764fe9922b73cb9d21eab8343b",
+        "bytes": 615071754,
+        "status": "starter",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "RTX 40",
+        "profile": "80K / KVarN4/4 / DFlash2 N7 / medium reasoning",
+        "launcher": "tools/universal/r6-launch.ps1",
+        "launcher_style": "r6",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": "",
+        "source_release": "beellama-v0.4.7-r6",
+        "qualification_note": "Refreshed CUDA13.0 source; starter route measured 68/116 t/s on RTX 4070 Ti."
+      },
+      "sm120": {
+        "filename": "l0xre-beellama-low-v0.4.7-r6-windows-x86_64-sm120-cuda130.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/l0xre-beellama-low-v0.4.7-r6-windows-x86_64-sm120-cuda130.zip",
+        "sha256": "3f1375870d8876ddaca0d048f81bd10e3b32245322376a8133ae3692aca9bfd7",
+        "bytes": 617766515,
+        "status": "certified",
+        "min_memory_mib": 30000,
+        "gpu_name_contains": "RTX 5090",
+        "profile": "80K / KVarN4/4 / DFlash2 N7 / medium reasoning",
+        "launcher": "l0xre.ps1",
+        "launcher_style": "sm120-windows",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": "RTX 5090",
+        "gpu_selector_adapter": true,
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 5090"
+        ]
+      },
+      "sm120-12gb": {
+        "filename": "L0xRE-BeeLLama-Low-R6-sm120-12gb-windows-starter.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/L0xRE-BeeLLama-Low-R6-sm120-12gb-windows-starter.zip",
+        "sha256": "5f46cc0804053f11af69bd346d98e0893dc50cf45dcef0c2b85e185313d10ea4",
+        "bytes": 617480059,
+        "status": "starter",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "RTX 50",
+        "profile": "32K / KVarN4/4 / DFlash2 N7 / no down-weight cache",
+        "launcher": "l0xre.ps1",
+        "launcher_style": "sm120-windows",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": ""
+      }
+    }
+  },
+  "models": {
+    "target": {
+      "filename": "L0xRE-27b-Low.gguf",
+      "bytes": 8619127680,
+      "sha256": "b0849250c633aa93853bf119a877dbdafdd7b1a4ebb672bd6b6a1439906f3543",
+      "url": "https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/L0xRE-27b-Low.gguf"
+    },
+    "draft": {
+      "filename": "Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+      "bytes": 1143006816,
+      "sha256": "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd",
+      "url": "https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/Qwen3.8-27B-DFlash2-Q4_K_M.gguf"
+    },
+    "vision": {
+      "filename": "mmproj-Qwen3.8-27B-Q8_0.gguf",
+      "bytes": 629247008,
+      "sha256": "2e968a6af97ce35d8971890b257b9b7edabf20ad91450501fa53162a19ee33eb",
+      "url": "https://huggingface.co/ggml-org/Qwen3.8-27B-GGUF/resolve/71bc7b627595dc8a91039addd9c791ae548d6747/mmproj-Qwen3.8-27B-Q8_0.gguf"
+    },
+    "vision_v01": {
+      "filename": "mmproj-Qwen3.8-27B-Q5_K-MIX.gguf",
+      "bytes": 347213792,
+      "sha256": "023c9b484ba6c2c22dd64623cfe286dd4a888170e68bfad6745957e4bd045c8f",
+      "url": "https://huggingface.co/HermiHg/Qwen3.8-27B-mmproj-Q5_K-MIX-GGUF/resolve/dbf78ac52891f19cf175abb8813997267adb0e92/mmproj-Qwen3.8-27B-Q5_K-MIX.gguf",
+      "source_repo": "HermiHg/Qwen3.8-27B-mmproj-Q5_K-MIX-GGUF",
+      "source_revision": "dbf78ac52891f19cf175abb8813997267adb0e92",
+      "license": "apache-2.0"
+    }
+  },
+  "hardware_target": {
+    "series": [
+      "RTX 30",
+      "RTX 40",
+      "RTX 50"
+    ],
+    "minimum_vram_mib_per_gpu": 12000
+  }
+}

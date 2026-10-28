@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "decisions": [
+    {
+      "key": "linux/sm89/12gb",
+      "metric": "narrative_decode",
+      "authority": "Sean, direct instruction, 2026-10-28",
+      "decision": "Accept paired451 in place of the nonreproducible175 narrative peak for this comparison; retain all baselines and the2%floor.",
+      "quote": "accept Linux SM89 12GB. Paired 451 old/new is -0.63% narrative / -1.74% code, both within 2%; the 90.89 narrative baseline (175, I8 cap 4096) is not reproducible by the old build today (88.84).",
+      "paired_sha256": "45688ab5a575bba8c2f6195bc9600b2342b7945816524249359d00e000c5aa0d",
+      "initial_canonical_sha256": "9f5ecc319c761ac31ec7176da82a122c6b79ff556cbf1efd61e60a8a2c4bb291",
+      "baseline_record_sha256": "35553aacabfc86ce748873d7b3e9b879e856ba6d088897809cec59447406e8b2",
+      "fail_drop_pct": 2.0
+    }
+  ]
+}

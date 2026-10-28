@@ -47,9 +47,26 @@ function Get-InstallGpu([string]$Selector) {
     }
 }
 
+function Get-InstallModelRecords($Catalog, $Plan, [bool]$Vision) {
+    $records = @($Catalog.models.target, $Catalog.models.draft)
+    if ($Vision) {
+        $modern = $Plan.package.PSObject.Properties['launcher_style'] -and $Plan.package.launcher_style -eq 'v01'
+        $key = if ($Plan.package.PSObject.Properties['projector_model']) { $Plan.package.projector_model }
+               elseif ($modern) { 'vision_v01' } else { 'vision' }
+        $property = $Catalog.models.PSObject.Properties[$key]
+        if (-not $property) { throw "Missing projector model record: $key" }
+        $projector = $property.Value
+        $expected = if ($Plan.package.PSObject.Properties['projector_filename']) { $Plan.package.projector_filename }
+                    elseif ($modern) { 'mmproj-Qwen3.8-27B-Q5_K-MIX.gguf' } else { $null }
+        if ($expected -and $projector.filename -ne $expected) { throw 'Projector model record does not match the package filename' }
+        $records += $projector
+    }
+    return $records
+}
+
 function Get-InstallPlan($Catalog, $SelectedGpu, [bool]$Candidates, [string]$Archive) {
     $entry = $Catalog.packages.windows.PSObject.Properties[$SelectedGpu.arch]
-    if ($SelectedGpu.arch -eq 'sm120' -and ($SelectedGpu.memory_mib -lt 30000 -or -not $SelectedGpu.name.Contains('RTX 5090'))) {
+    if ($SelectedGpu.arch -eq 'sm120' -and $entry -and $entry.Value.launcher_style -ne 'v01' -and ($SelectedGpu.memory_mib -lt 30000 -or -not $SelectedGpu.name.Contains('RTX 5090'))) {
         $variant = $Catalog.packages.windows.PSObject.Properties['sm120-12gb']
         if ($variant) { $entry = $variant }
     }
@@ -75,7 +92,8 @@ function Get-InstallPlan($Catalog, $SelectedGpu, [bool]$Candidates, [string]$Arc
             }
         }
     }
-    return [pscustomobject]@{ gpu = $SelectedGpu; package = $package; platform = 'windows'
+    $memoryProfile = if ($SelectedGpu.memory_mib -ge 16000 -and $package.PSObject.Properties['memory_profiles'] -and '16gb' -in $package.memory_profiles) { '16gb' } else { '12gb' }
+    return [pscustomobject]@{ gpu = $SelectedGpu; package = $package; platform = 'windows'; memory_profile = $memoryProfile
         launch_profile = $launchProfile
         hardware_qualified_for_gpu = $qualified }
 }
@@ -91,6 +109,7 @@ function Get-DualInstallPlan($Catalog, [string]$Selectors, [bool]$Candidates, [s
     if ($cards[0].memory_mib -lt 12000 -or $cards[1].memory_mib -lt 12000) { throw 'Dual mode requires at least 12GB VRAM per card.' }
     if (-not $Catalog.PSObject.Properties['dual_addons']) { throw 'This catalog does not contain the experimental dual fast-path add-on.' }
     $plan = Get-InstallPlan $Catalog $cards[0] $true $Archive
+    if ($plan.package.launcher_style -eq 'v01') { throw 'V0.1 supports one GPU per process; select -Gpu instead of -Gpus.' }
     $plan | Add-Member NoteProperty gpus $cards
     $plan | Add-Member NoteProperty mode 'dual-fast-experimental'
     $plan | Add-Member NoteProperty dual_addon $Catalog.dual_addons.windows
@@ -225,9 +244,16 @@ function Write-InstallLauncher([string]$Root, [string]$Runtime, [string]$ModelRo
     } else {
         $launchProfile = if ($Plan.PSObject.Properties['launch_profile']) { $Plan.launch_profile } else { 'r6' }
         $arguments = @('serve', '--profile', $launchProfile, '-m', $target, '-md', $draft, '--host', '127.0.0.1', '--port', "$ListenPort")
+        if ($Plan.package.launcher_style -eq 'v01') {
+            $arguments = @('serve', '--memory-profile', $Plan.memory_profile, '--arch', $Plan.gpu.arch, '--gpu', $Plan.gpu.uuid,
+                '-m', $target, '-md', $draft, '--host', '127.0.0.1', '--port', "$ListenPort")
+        }
         $dryFlag = '--dry-run'
         if ($Plan.package.status -eq 'starter' -or -not $Plan.hardware_qualified_for_gpu) { $arguments += '--qualification-probe' }
-        if ($WithVision) { $arguments += @('--mmproj', (Join-Path $ModelRoot 'mmproj-Qwen3.8-27B-Q8_0.gguf')) }
+        if ($WithVision) {
+            $projector = if ($Plan.package.PSObject.Properties['projector_filename']) { $Plan.package.projector_filename } elseif ($Plan.package.PSObject.Properties['launcher_style'] -and $Plan.package.launcher_style -eq 'v01') { 'mmproj-Qwen3.8-27B-Q5_K-MIX.gguf' } else { 'mmproj-Qwen3.8-27B-Q8_0.gguf' }
+            $arguments += @('--mmproj', (Join-Path $ModelRoot $projector))
+        }
         $callLines = @(('$argsForServer = @(' + (($arguments | ForEach-Object { Quote-InstallString $_ }) -join ', ') + ')'),
             ('if ($DryRun) { $argsForServer += ' + (Quote-InstallString $dryFlag) + ' }'), '& $command @argsForServer')
     }
@@ -345,6 +371,7 @@ function Invoke-L0xreInstall {
     if ($Gpu -and $Gpus) { throw 'Choose -Gpu or -Gpus, not both.' }
     $plan = if ($Gpus) { Get-DualInstallPlan $catalog $Gpus ([bool]$AllowCandidate) $RuntimeArchive }
             else { Get-InstallPlan $catalog (Get-InstallGpu $Gpu) ([bool]$AllowCandidate) $RuntimeArchive }
+    if ($plan.package.PSObject.Properties['requires_projector'] -and $plan.package.requires_projector) { $Vision = $true }
     $modelRoot = if ($ModelsDir) { Get-InstallFullPath $ModelsDir } else { Join-Path $root 'models' }
     if ($DryRun) {
         @{ selection = $plan; install_dir = $root; models_dir = $modelRoot; vision = [bool]$Vision; port = $Port } | ConvertTo-Json -Depth 12
@@ -352,8 +379,7 @@ function Invoke-L0xreInstall {
     }
     if (-not (Get-Command curl.exe -ErrorAction SilentlyContinue)) { throw 'curl.exe is required (included with current Windows installations).' }
     Test-InstallCpu
-    $keys = if ($Vision) { @('target', 'draft', 'vision') } else { @('target', 'draft') }
-    $records = @($keys | ForEach-Object { $catalog.models.PSObject.Properties[$_].Value })
+    $records = @(Get-InstallModelRecords $catalog $plan ([bool]$Vision))
     if (-not $RuntimeOnly) {
         foreach ($record in $records) {
             $path = Join-Path $modelRoot $record.filename

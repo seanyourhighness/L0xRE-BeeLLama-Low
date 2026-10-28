@@ -17,7 +17,9 @@ function New-FixtureRecord([string]$Path) {
         sha256 = (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant(); url = 'https://example.invalid/fixture' }
 }
 try {
-    $catalog = Get-InstallCatalog ''
+    $releaseCatalog = Get-InstallCatalog ''
+    # Preserve every legacy R6 route/launcher/rollback assertion against its pinned fixture.
+    $catalog = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot 'fixtures/catalog-r6.json') | ConvertFrom-Json
     $officialCatalog = $catalog | ConvertTo-Json -Depth 20 | ConvertFrom-Json
     $blackwell = [pscustomobject]@{ index = 0; uuid = 'GPU-fixture'; name = 'NVIDIA GeForce RTX 5090'; arch = 'sm120'; memory_mib = 32607 }
     $ada = [pscustomobject]@{ index = 1; uuid = 'GPU-ada'; name = 'NVIDIA GeForce RTX 4090'; arch = 'sm89'; memory_mib = 24576 }
@@ -271,6 +273,57 @@ $gpuRecords
         }
     }
     Assert-Install ((Get-InstallPlan $officialCatalog $blackwell $false '').hardware_qualified_for_gpu) 'Certified Windows route needs an opt-in'
+    $v01 = $officialCatalog | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+    foreach ($arch in @('sm86','sm89','sm120')) {
+        $entry = $v01.packages.windows.PSObject.Properties[$arch].Value
+        $entry.launcher_style = 'v01'; $entry.launcher = 'l0xre.cmd'
+        $entry.min_memory_mib = 12000; $entry.gpu_name_contains = ''
+        $presets = if ($arch -eq 'sm86') { @('12gb') } else { @('12gb','16gb') }
+        $entry | Add-Member NoteProperty memory_profiles $presets -Force
+        $entry | Add-Member NoteProperty requires_projector $true -Force
+        $entry | Add-Member NoteProperty projector_filename 'mmproj-Qwen3.8-27B-Q5_K-MIX.gguf' -Force
+        $entry | Add-Member NoteProperty gpu_selector_adapter $false -Force
+        foreach ($memory in @(12288,16384)) {
+            $card = [pscustomobject]@{index=0;uuid='GPU-fixture';name='Test RTX';arch=$arch;memory_mib=$memory}
+            $selected = Get-InstallPlan $v01 $card $false ''
+            $expected = if ($memory -ge 16000 -and $arch -ne 'sm86') { '16gb' } else { '12gb' }
+            Assert-Install ($selected.memory_profile -eq $expected -and $selected.package.launcher_style -eq 'v01') 'V0.1 profile selection wrong'
+            Assert-Install (-not $selected.hardware_qualified_for_gpu) 'Unmeasured card inherited hardware certification'
+        }
+    }
+    $modernCard = [pscustomobject]@{index=0;uuid='GPU-fixture';name='NVIDIA GeForce RTX 5090';arch='sm120';memory_mib=32607}
+    $modern = Get-InstallPlan $v01 $modernCard $false ''
+    $modernDir = Join-Path $fixtureRoot 'v01-install'; [IO.Directory]::CreateDirectory($modernDir) | Out-Null
+    $modernRuntime = Join-Path $modernDir 'runtime'; [IO.Directory]::CreateDirectory($modernRuntime) | Out-Null
+    [IO.File]::WriteAllText((Join-Path $modernRuntime 'l0xre.cmd'), '@echo off')
+    $modernScript = Write-InstallLauncher $modernDir $modernRuntime $modelRoot $modern $true 8194
+    $text = [IO.File]::ReadAllText($modernScript)
+    Assert-Install ($text.Contains('--memory-profile') -and $text.Contains('16gb') -and $text.Contains('--gpu')) 'V0.1 launcher lost preset or GPU'
+    Assert-Install ($text.Contains('mmproj-Qwen3.8-27B-Q5_K-MIX.gguf') -and -not $text.Contains('mmproj-Qwen3.8-27B-Q8_0.gguf')) 'V0.1 projector mismatch'
+    Assert-Install (-not $text.Contains("'--profile'")) 'V0.1 launcher received legacy profile controls'
+    $modernModels = @(Get-InstallModelRecords $v01 $modern $true)
+    Assert-Install ($modernModels[-1].filename -eq 'mmproj-Qwen3.8-27B-Q5_K-MIX.gguf') 'V0.1 downloaded wrong projector'
+    Assert-Install ($modernModels[-1].url.Contains('dbf78ac52891f19cf175abb8813997267adb0e92')) 'V0.1 projector source not pinned'
+    $legacy = Get-InstallPlan $officialCatalog $blackwell $false ''
+    $legacyModels = @(Get-InstallModelRecords $officialCatalog $legacy $true)
+    Assert-Install ($legacyModels[-1].filename -eq 'mmproj-Qwen3.8-27B-Q8_0.gguf') 'Legacy projector record changed'
+    $v01.models.vision_v01.filename = 'wrong.gguf'
+    Assert-Rejected { Get-InstallModelRecords $v01 $modern $true } 'Mismatched projector was accepted'
+    # The live v0.1 catalog is tested separately from the unchanged legacy matrix.
+    foreach ($card in $matrix) {
+        $selected = Get-InstallPlan $releaseCatalog $card $false ''
+        $expected = if ($card.memory_mib -ge 16000 -and $card.arch -ne 'sm86') { '16gb' } else { '12gb' }
+        Assert-Install ($selected.package.url -match '/l0xre-v0\.1/' -and $selected.package.filename -match '^L0xRE-v0\.1-windows-') 'V0.1 route points to a legacy or unpublished placeholder'
+        Assert-Install ($selected.memory_profile -eq $expected -and $selected.package.launcher_style -eq 'v01') 'Live V0.1 catalog selected the wrong memory profile'
+        $expectedQualified = $card.name -eq 'NVIDIA GeForce RTX 5090'
+        Assert-Install ($selected.hardware_qualified_for_gpu -eq $expectedQualified) 'Live catalog overstates native Windows hardware validation'
+        if ($card.arch -in @('sm86','sm89')) {
+            Assert-Install ($selected.package.status -eq 'build-verified') 'Build-only Windows status lost'
+        }
+        $models = @(Get-InstallModelRecords $releaseCatalog $selected $true)
+        Assert-Install ($models[-1].filename -eq 'mmproj-Qwen3.8-27B-Q5_K-MIX.gguf') 'Live V0.1 catalog selected a legacy projector'
+    }
+    Assert-Rejected { Get-InstallPlan $releaseCatalog $eightGb $false '' } 'Live V0.1 catalog accepts an 8GB card'
     Write-Host "WINDOWS_INSTALLER_PASS: $checks checks; native PowerShell $($PSVersionTable.PSVersion)"
 } finally {
     Remove-Item -LiteralPath $fixtureRoot -Recurse -Force

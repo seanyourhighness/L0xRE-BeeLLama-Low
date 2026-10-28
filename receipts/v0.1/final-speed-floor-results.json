@@ -1,0 +1,1078 @@
+{
+  "fail_drop_pct": 2.0,
+  "results": [
+    {
+      "key": "linux/sm86/12gb",
+      "receipts": [
+        {
+          "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/candidate-sm86-12gb.json",
+          "selector": null,
+          "sha256": "1ef77adcda83b720230fd38b9c40bd9fdbf78f99c9510553757cb0f4d4c51de2"
+        }
+      ],
+      "metrics": {
+        "narrative_decode": {
+          "baseline": {
+            "value": 34.69664859880417,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm86/native-canonical-final-373/canonical/bench.json",
+            "source_sha256": "e75106c42a0d02524f0834d1d4197ee4bfb7a951745df3e3a08ec34e4894136e",
+            "protocol": "canonical bench.sh a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a;3warm/5narrative/5code/3nominal10K;OFF;head-invariant",
+            "source_cv_pct": 1.9482240996539322,
+            "context_tokens": 131072,
+            "i8_cap": "1024"
+          },
+          "candidate": 34.69664859880417,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "code_decode": {
+          "baseline": {
+            "value": 59.96251154280008,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm86/native-canonical-final-373/canonical/bench.json",
+            "source_sha256": "e75106c42a0d02524f0834d1d4197ee4bfb7a951745df3e3a08ec34e4894136e",
+            "protocol": "canonical bench.sh a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a;3warm/5narrative/5code/3nominal10K;OFF;head-invariant",
+            "source_cv_pct": 2.6785147424639177,
+            "context_tokens": 131072,
+            "i8_cap": "1024"
+          },
+          "candidate": 59.96251154280008,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "prefill_10k": {
+          "baseline": {
+            "value": 665.309926612968,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm86/native-canonical-final-373/canonical/bench.json",
+            "source_sha256": "e75106c42a0d02524f0834d1d4197ee4bfb7a951745df3e3a08ec34e4894136e",
+            "protocol": "canonical bench.sh a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a;3warm/5narrative/5code/3nominal10K;OFF;head-invariant",
+            "source_cv_pct": 0.6830782086674332,
+            "context_tokens": 131072,
+            "i8_cap": "1024"
+          },
+          "candidate": 665.309926612968,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "decode_at_10k": {
+          "baseline": {
+            "value": 46.081809277451505,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm86/native-canonical-final-373/canonical/bench.json",
+            "source_sha256": "e75106c42a0d02524f0834d1d4197ee4bfb7a951745df3e3a08ec34e4894136e",
+            "protocol": "canonical bench.sh a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a;3warm/5narrative/5code/3nominal10K;OFF;head-invariant",
+            "context_tokens": 131072,
+            "i8_cap": "1024"
+          },
+          "candidate": 46.081809277451505,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "short_decode": {
+          "baseline": {
+            "value": 38.239816864551734,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm86/native-regression-check-347-new324/result.json",
+            "source_sha256": "85af90f5dd55909ba822b70962f411f1e96b5ae585ae1f6aa68ae05b4fea46e8",
+            "protocol": "matched1023-token short/128K/short;3reps;head-invariant;OFF",
+            "source_cv_pct": 0.33827705862257873
+          },
+          "candidate": 38.239816864551734,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "short_prefill": {
+          "baseline": {
+            "value": 673.9573116209285,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm86/native-regression-check-347-new324/result.json",
+            "source_sha256": "85af90f5dd55909ba822b70962f411f1e96b5ae585ae1f6aa68ae05b4fea46e8",
+            "protocol": "matched1023-token short/128K/short;3reps;head-invariant;OFF"
+          },
+          "candidate": 673.9573116209285,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "depth_decode": {
+          "baseline": {
+            "value": 31.860127948928266,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm86/native-regression-check-347-new324/result.json",
+            "source_sha256": "85af90f5dd55909ba822b70962f411f1e96b5ae585ae1f6aa68ae05b4fea46e8",
+            "protocol": "matched1023-token short/128K/short;3reps;head-invariant;OFF",
+            "source_cv_pct": 0.046399340194879346
+          },
+          "candidate": 31.860127948928266,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "depth_prefill": {
+          "baseline": {
+            "value": 395.4866795350083,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm86/native-regression-check-347-old255/result.json",
+            "source_sha256": "12bc065e6637a339eeed3927874be80b0c243c38b5f668923d94375071c8e9b1",
+            "protocol": "matched1023-token short/128K/short;3reps;head-invariant;OFF"
+          },
+          "candidate": 395.20270653829465,
+          "change_pct": -0.07180342889109127,
+          "status": "ok"
+        }
+      },
+      "passed": true,
+      "artifact_identity_verified": false,
+      "note": "Throughput gate only; final artifact/configuration hash matching requires its own audit.",
+      "exit_code": 0
+    },
+    {
+      "key": "linux/sm89/12gb",
+      "receipts": [
+        {
+          "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/candidate-sm89-12gb.json",
+          "selector": null,
+          "sha256": "032c32b5b76acc919bd918eb0367603b448ae59b47e1cf87e419cc7fa1ec9b73"
+        }
+      ],
+      "metrics": {
+        "narrative_decode": {
+          "baseline": {
+            "value": 90.89420639778496,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/native-head-canonical-175/invariant/rates/bench.json",
+            "source_sha256": "bb181df6fe4f2d716fde3cf64540a76f8425b58d966eb65eb4eebe679408462f",
+            "protocol": "canonical bench.sh a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a;3warm/5narrative/5code/3nominal10K;OFF;head-invariant",
+            "source_cv_pct": 3.0591575744189528,
+            "context_tokens": 131072,
+            "i8_cap": "4096"
+          },
+          "candidate": 88.03626731664767,
+          "change_pct": -3.1442477957615296,
+          "status": "paired-pass",
+          "paired_comparison": {
+            "old": 88.84068024734727,
+            "new": 88.28072069415045,
+            "change_pct": -0.6302963368107872,
+            "original_cv_pct": [
+              3.0591575744189528,
+              3.0172088065197507
+            ],
+            "original_drop_pct": 3.1442477957615345,
+            "descriptor": {
+              "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish477/sm89-accepted451.json",
+              "selector": null,
+              "sha256": "f1dcba051cb8bdae62e96902e9dcf07947fcc7ce122d7bd21ff8227759ddd7aa"
+            },
+            "initial": {
+              "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/candidate-sm89-12gb.json",
+              "selector": null,
+              "sha256": "032c32b5b76acc919bd918eb0367603b448ae59b47e1cf87e419cc7fa1ec9b73"
+            },
+            "initial_canonical": {
+              "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/collected/sm89-native-final-performance-429-result.json",
+              "selector": null,
+              "sha256": "9f5ecc319c761ac31ec7176da82a122c6b79ff556cbf1efd61e60a8a2c4bb291"
+            },
+            "paired": {
+              "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish451/collected/result.json",
+              "selector": null,
+              "sha256": "45688ab5a575bba8c2f6195bc9600b2342b7945816524249359d00e000c5aa0d"
+            },
+            "all_four_arm_means": [
+              88.4520314753831,
+              87.52824365422008,
+              89.03319773408082,
+              89.22932901931144
+            ],
+            "baseline_unchanged": true,
+            "user_decision": {
+              "key": "linux/sm89/12gb",
+              "metric": "narrative_decode",
+              "authority": "Sean, direct instruction, 2026-10-28",
+              "decision": "Accept paired451 in place of the nonreproducible175 narrative peak for this comparison; retain all baselines and the2%floor.",
+              "quote": "accept Linux SM89 12GB. Paired 451 old/new is -0.63% narrative / -1.74% code, both within 2%; the 90.89 narrative baseline (175, I8 cap 4096) is not reproducible by the old build today (88.84).",
+              "paired_sha256": "45688ab5a575bba8c2f6195bc9600b2342b7945816524249359d00e000c5aa0d",
+              "initial_canonical_sha256": "9f5ecc319c761ac31ec7176da82a122c6b79ff556cbf1efd61e60a8a2c4bb291",
+              "baseline_record_sha256": "35553aacabfc86ce748873d7b3e9b879e856ba6d088897809cec59447406e8b2",
+              "fail_drop_pct": 2.0
+            }
+          }
+        },
+        "code_decode": {
+          "baseline": {
+            "value": 155.57521434136308,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/native-head-canonical-217/cap1024/rates/bench.json",
+            "source_sha256": "f7c0e1736dc2827bbf15a6e157f6b18eecdbdc33f005a174f8a3f925f3caa19f",
+            "protocol": "canonical bench.sh a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a;3warm/5narrative/5code/3nominal10K;OFF;head-invariant",
+            "source_cv_pct": 6.697438977086004,
+            "context_tokens": 131072,
+            "i8_cap": "1024"
+          },
+          "candidate": 151.82638270974513,
+          "change_pct": -2.409658664131589,
+          "status": "paired-pass",
+          "paired_comparison": {
+            "old": 148.86917122256557,
+            "new": 146.2811400436401,
+            "change_pct": -1.7384601241960618,
+            "original_cv_pct": [
+              6.697438977086004,
+              3.2863279306110633
+            ],
+            "original_drop_pct": 2.4096586641315865,
+            "descriptor": {
+              "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish477/sm89-accepted451.json",
+              "selector": null,
+              "sha256": "f1dcba051cb8bdae62e96902e9dcf07947fcc7ce122d7bd21ff8227759ddd7aa"
+            },
+            "initial": {
+              "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/candidate-sm89-12gb.json",
+              "selector": null,
+              "sha256": "032c32b5b76acc919bd918eb0367603b448ae59b47e1cf87e419cc7fa1ec9b73"
+            },
+            "initial_canonical": {
+              "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/collected/sm89-native-final-performance-429-result.json",
+              "selector": null,
+              "sha256": "9f5ecc319c761ac31ec7176da82a122c6b79ff556cbf1efd61e60a8a2c4bb291"
+            },
+            "paired": {
+              "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish451/collected/result.json",
+              "selector": null,
+              "sha256": "45688ab5a575bba8c2f6195bc9600b2342b7945816524249359d00e000c5aa0d"
+            },
+            "all_four_arm_means": [
+              148.30375664975716,
+              145.75967961305045,
+              146.8026004742298,
+              149.43458579537398
+            ],
+            "baseline_unchanged": true
+          }
+        },
+        "prefill_10k": {
+          "baseline": {
+            "value": 2194.3701559286783,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/native-final-performance-429/canonical/bench.json",
+            "source_sha256": "096513316ee50b4343dd316a4eac0fb36b010de53a22de596c06a63e6e153435",
+            "protocol": "canonical bench.sh a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a;3warm/5narrative/5code/3nominal10K;OFF;head-invariant",
+            "source_cv_pct": 0.7450468519814065,
+            "context_tokens": 131072,
+            "i8_cap": "1024"
+          },
+          "candidate": 2194.3701559286783,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "decode_at_10k": {
+          "baseline": {
+            "value": 121.19051785376415,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/native-head-canonical-217/cap1024/rates/bench.json",
+            "source_sha256": "f7c0e1736dc2827bbf15a6e157f6b18eecdbdc33f005a174f8a3f925f3caa19f",
+            "protocol": "canonical bench.sh a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a;3warm/5narrative/5code/3nominal10K;OFF;head-invariant",
+            "context_tokens": 131072,
+            "i8_cap": "1024"
+          },
+          "candidate": 113.02639121508662,
+          "change_pct": -6.736605126589905,
+          "status": "report-only"
+        },
+        "short_decode": {
+          "baseline": {
+            "value": 103.547777876845,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/native-head-depth-224/result.json#results.1",
+            "source_sha256": "e2e34259e8784efd15ae897fcd85ad7c1611f289de750219875d53bb73c8f241",
+            "protocol": "matching exact promptSHA/token counts/1023generated; valid head-depth diagnostic;OFF",
+            "repetitions": 1,
+            "diagnostic_only": true,
+            "arm": "control"
+          },
+          "candidate": 102.7122749072213,
+          "change_pct": -0.8068767739443072,
+          "status": "ok"
+        },
+        "short_prefill": {
+          "baseline": {
+            "value": 1897.7406878198035,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/native-head-depth-224/result.json#results.1",
+            "source_sha256": "e2e34259e8784efd15ae897fcd85ad7c1611f289de750219875d53bb73c8f241",
+            "protocol": "matching exact promptSHA/token counts/1023generated; valid head-depth diagnostic;OFF",
+            "repetitions": 1,
+            "diagnostic_only": true,
+            "arm": "control"
+          },
+          "candidate": 1871.7208090300564,
+          "change_pct": -1.3710976929961742,
+          "status": "warn"
+        },
+        "depth_decode": {
+          "baseline": {
+            "value": 77.43366938687157,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/native-head-depth-224/result.json#results.0",
+            "source_sha256": "e2e34259e8784efd15ae897fcd85ad7c1611f289de750219875d53bb73c8f241",
+            "protocol": "matching exact promptSHA/token counts/1023generated; valid head-depth diagnostic;OFF",
+            "repetitions": 1,
+            "diagnostic_only": true,
+            "arm": "compact"
+          },
+          "candidate": 77.40335482640596,
+          "change_pct": -0.039149068752193185,
+          "status": "ok"
+        },
+        "depth_prefill": {
+          "baseline": {
+            "value": 1486.0555736197025,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/native-head-depth-224/result.json#results.0",
+            "source_sha256": "e2e34259e8784efd15ae897fcd85ad7c1611f289de750219875d53bb73c8f241",
+            "protocol": "matching exact promptSHA/token counts/1023generated; valid head-depth diagnostic;OFF",
+            "repetitions": 1,
+            "diagnostic_only": true,
+            "arm": "compact"
+          },
+          "candidate": 1484.0481379208607,
+          "change_pct": -0.13508483360095186,
+          "status": "ok"
+        }
+      },
+      "passed": true,
+      "artifact_identity_verified": false,
+      "note": "Throughput gate only; final artifact/configuration hash matching requires its own audit.",
+      "exit_code": 0
+    },
+    {
+      "key": "linux/sm89/16gb",
+      "receipts": [
+        {
+          "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/candidate-sm89-16gb.json",
+          "selector": null,
+          "sha256": "fe076c14c5443ceb4951813cc9c995c733b4c131c8cfad9a011507777bf8c656"
+        }
+      ],
+      "metrics": {
+        "narrative_decode": {
+          "baseline": {
+            "value": 88.8007156995059,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/native-final-performance-372/canonical/bench.json",
+            "source_sha256": "ce5a601b8a28cc247839fc106a668dec59861cd952643a5fadfb29dfaa68ed8c",
+            "protocol": "canonical bench.sh a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a;3warm/5narrative/5code/3nominal10K;OFF;head-invariant",
+            "source_cv_pct": 5.3890415060028225,
+            "context_tokens": 262144,
+            "i8_cap": "1024"
+          },
+          "candidate": 88.8007156995059,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "code_decode": {
+          "baseline": {
+            "value": 149.06905106508614,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/native-final-performance-372/canonical/bench.json",
+            "source_sha256": "ce5a601b8a28cc247839fc106a668dec59861cd952643a5fadfb29dfaa68ed8c",
+            "protocol": "canonical bench.sh a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a;3warm/5narrative/5code/3nominal10K;OFF;head-invariant",
+            "source_cv_pct": 5.365455623827831,
+            "context_tokens": 262144,
+            "i8_cap": "1024"
+          },
+          "candidate": 149.06905106508614,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "prefill_10k": {
+          "baseline": {
+            "value": 1152.093291322181,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/native-final-performance-372/canonical/bench.json",
+            "source_sha256": "ce5a601b8a28cc247839fc106a668dec59861cd952643a5fadfb29dfaa68ed8c",
+            "protocol": "canonical bench.sh a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a;3warm/5narrative/5code/3nominal10K;OFF;head-invariant",
+            "source_cv_pct": 22.01519349177205,
+            "context_tokens": 262144,
+            "i8_cap": "1024"
+          },
+          "candidate": 1152.093291322181,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "decode_at_10k": {
+          "baseline": {
+            "value": 97.1337198904246,
+            "source": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/native-final-performance-372/canonical/bench.json",
+            "source_sha256": "ce5a601b8a28cc247839fc106a668dec59861cd952643a5fadfb29dfaa68ed8c",
+            "protocol": "canonical bench.sh a014f33e7fe0d5f06480d3b96b33b390a2d0d123b2cecc5aef63007384c9425a;3warm/5narrative/5code/3nominal10K;OFF;head-invariant",
+            "context_tokens": 262144,
+            "i8_cap": "1024"
+          },
+          "candidate": 97.1337198904246,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "short_decode": {
+          "baseline": {
+            "value": 102.92338198331973,
+            "source": "sm89/native-final-performance-372/result.json",
+            "source_sha256": "27c2fccd7ea3e2b844cfceb71ee9b2af158057bdea2e17fd78e14bb71ceb5637",
+            "protocol": "canonical+matched depth;3reps;head-invariant;OFF"
+          },
+          "candidate": 102.92338198331973,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "short_prefill": {
+          "baseline": {
+            "value": 1865.2082143121645,
+            "source": "sm89/native-final-performance-372/result.json",
+            "source_sha256": "27c2fccd7ea3e2b844cfceb71ee9b2af158057bdea2e17fd78e14bb71ceb5637",
+            "protocol": "canonical+matched depth;3reps;head-invariant;OFF"
+          },
+          "candidate": 1865.2082143121645,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "depth_decode": {
+          "baseline": {
+            "value": 81.78076587120614,
+            "source": "sm89/native-final-performance-372/result.json",
+            "source_sha256": "27c2fccd7ea3e2b844cfceb71ee9b2af158057bdea2e17fd78e14bb71ceb5637",
+            "protocol": "canonical+matched depth;3reps;head-invariant;OFF"
+          },
+          "candidate": 81.78076587120614,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "depth_prefill": {
+          "baseline": {
+            "value": 1718.1699286406288,
+            "source": "sm89/native-final-performance-372/result.json",
+            "source_sha256": "27c2fccd7ea3e2b844cfceb71ee9b2af158057bdea2e17fd78e14bb71ceb5637",
+            "protocol": "canonical+matched depth;3reps;head-invariant;OFF"
+          },
+          "candidate": 1718.1699286406288,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "depth_256k_decode": {
+          "baseline": {
+            "value": 76.22073111120653,
+            "source": "sm89/native-final-performance-372/result.json",
+            "source_sha256": "27c2fccd7ea3e2b844cfceb71ee9b2af158057bdea2e17fd78e14bb71ceb5637",
+            "protocol": "canonical+matched depth;3reps;head-invariant;OFF"
+          },
+          "candidate": 76.22073111120653,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "depth_256k_prefill": {
+          "baseline": {
+            "value": 1136.792560627426,
+            "source": "sm89/native-final-performance-372/result.json",
+            "source_sha256": "27c2fccd7ea3e2b844cfceb71ee9b2af158057bdea2e17fd78e14bb71ceb5637",
+            "protocol": "canonical+matched depth;3reps;head-invariant;OFF"
+          },
+          "candidate": 1136.792560627426,
+          "change_pct": -0.0,
+          "status": "ok"
+        }
+      },
+      "passed": true,
+      "artifact_identity_verified": false,
+      "note": "Throughput gate only; final artifact/configuration hash matching requires its own audit.",
+      "exit_code": 0
+    },
+    {
+      "key": "linux/sm120/12gb",
+      "receipts": [
+        {
+          "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/candidate-sm120-12gb.json",
+          "selector": null,
+          "sha256": "06815b9cb8a76fcd5cf1577596f8255eb9b2a6aa4f2475841b518c4cf4640e16"
+        }
+      ],
+      "metrics": {
+        "narrative_decode": {
+          "baseline": {
+            "value": 104.6487865823359,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-short-prefill-364/result.json#old183",
+            "source_sha256": "7b2f3fefd5a45ba2c23bbe26e84324bb2234817b88de9815f2a3663bd0ab54af",
+            "protocol": "canonical benchmark364;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2 on physical RTX5090; bare-metal Linux throughput not measured"
+          },
+          "candidate": 104.5096529339197,
+          "change_pct": -0.13295294953729572,
+          "status": "ok"
+        },
+        "code_decode": {
+          "baseline": {
+            "value": 181.2200520415959,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-short-prefill-364/result.json#old183",
+            "source_sha256": "7b2f3fefd5a45ba2c23bbe26e84324bb2234817b88de9815f2a3663bd0ab54af",
+            "protocol": "canonical benchmark364;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2 on physical RTX5090; bare-metal Linux throughput not measured"
+          },
+          "candidate": 177.78572010105074,
+          "change_pct": -1.8951169596601036,
+          "status": "warn"
+        },
+        "prefill_10k": {
+          "baseline": {
+            "value": 2811.6540802227005,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-short-prefill-364/result.json#old183",
+            "source_sha256": "7b2f3fefd5a45ba2c23bbe26e84324bb2234817b88de9815f2a3663bd0ab54af",
+            "protocol": "canonical benchmark364;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2 on physical RTX5090; bare-metal Linux throughput not measured"
+          },
+          "candidate": 2760.2608523440445,
+          "change_pct": -1.8278645385347465,
+          "status": "warn"
+        },
+        "decode_at_10k": {
+          "baseline": {
+            "value": 121.62456879607977,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-short-prefill-364/result.json#old183",
+            "source_sha256": "7b2f3fefd5a45ba2c23bbe26e84324bb2234817b88de9815f2a3663bd0ab54af",
+            "protocol": "canonical benchmark364;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2 on physical RTX5090; bare-metal Linux throughput not measured"
+          },
+          "candidate": 115.5067255798457,
+          "change_pct": -5.03010475333439,
+          "status": "report-only"
+        },
+        "short_decode": {
+          "baseline": {
+            "value": 117.32624679299136,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-regression-358/result.json#old183",
+            "source_sha256": "2cf022899fdba9ba265c8b773b08c677d6c7c8e517a02fdd712a4b2c4308d5e1",
+            "protocol": "matched depth358;same exact prompts/output/acceptance;3reps;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2"
+          },
+          "candidate": 116.4133053034966,
+          "change_pct": -0.7781221290625071,
+          "status": "ok"
+        },
+        "short_prefill": {
+          "baseline": {
+            "value": 2011.1159502976263,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-regression-358/result.json#new320",
+            "source_sha256": "2cf022899fdba9ba265c8b773b08c677d6c7c8e517a02fdd712a4b2c4308d5e1",
+            "protocol": "matched depth358;same exact prompts/output/acceptance;3reps;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2"
+          },
+          "candidate": 2011.1159502976263,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "depth_decode": {
+          "baseline": {
+            "value": 86.33677308740945,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-regression-358/result.json#new320",
+            "source_sha256": "2cf022899fdba9ba265c8b773b08c677d6c7c8e517a02fdd712a4b2c4308d5e1",
+            "protocol": "matched depth358;same exact prompts/output/acceptance;3reps;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2"
+          },
+          "candidate": 86.33677308740945,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "depth_prefill": {
+          "baseline": {
+            "value": 1991.8266431810491,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-regression-358/result.json#old183",
+            "source_sha256": "2cf022899fdba9ba265c8b773b08c677d6c7c8e517a02fdd712a4b2c4308d5e1",
+            "protocol": "matched depth358;same exact prompts/output/acceptance;3reps;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2"
+          },
+          "candidate": 1987.5134304848477,
+          "change_pct": -0.21654558698506857,
+          "status": "ok"
+        },
+        "fixed_narrative_decode": {
+          "baseline": {
+            "value": 88.87368609701889,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish367/short-prefill-result.json#old",
+            "source_sha256": "7395c04afaa7d0397a1e73f9c3011c55a5a2a351d2f1808daa39b31970674571",
+            "protocol": "fixed367 distinct protocol; exactinputs/outputs/acceptance;WSL2"
+          },
+          "candidate": 87.9946050825181,
+          "change_pct": -0.9891353145194584,
+          "status": "ok"
+        },
+        "fixed_code_decode": {
+          "baseline": {
+            "value": 188.35279887983748,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish367/short-prefill-result.json#new",
+            "source_sha256": "7395c04afaa7d0397a1e73f9c3011c55a5a2a351d2f1808daa39b31970674571",
+            "protocol": "fixed367 distinct protocol; exactinputs/outputs/acceptance;WSL2"
+          },
+          "candidate": 188.35279887983748,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "fixed_prefill_10k": {
+          "baseline": {
+            "value": 3194.3025760706623,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish367/short-prefill-result.json#new",
+            "source_sha256": "7395c04afaa7d0397a1e73f9c3011c55a5a2a351d2f1808daa39b31970674571",
+            "protocol": "fixed367 distinct protocol; exactinputs/outputs/acceptance;WSL2"
+          },
+          "candidate": 3194.3025760706623,
+          "change_pct": -0.0,
+          "status": "ok"
+        }
+      },
+      "passed": true,
+      "artifact_identity_verified": false,
+      "note": "Throughput gate only; final artifact/configuration hash matching requires its own audit.",
+      "exit_code": 0
+    },
+    {
+      "key": "linux/sm120/16gb",
+      "receipts": [
+        {
+          "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/candidate-sm120-16gb.json",
+          "selector": null,
+          "sha256": "1901105b9b368b4ece5ebb76561a7ec0d5ee5dffeff4711ea567c9bef77af8cb"
+        }
+      ],
+      "metrics": {
+        "narrative_decode": {
+          "baseline": {
+            "value": 105.0621190623109,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/final16-canonical-386/result.json",
+            "source_sha256": "1fd328b6cc7414d0c05ea87e938f698c93b84a0350b382c840630ae055a04eaa",
+            "protocol": "canonical386;head-invariant;OFF;WSL2;16GB/256K;WSLdepth cut approved",
+            "test_environment": "WSL2",
+            "depth_not_measured": "Approved WSL depth scope cut; long-context correctness andN150 remain separate passing gates"
+          },
+          "candidate": 105.0621190623109,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "code_decode": {
+          "baseline": {
+            "value": 188.14424466872845,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/final16-canonical-386/result.json",
+            "source_sha256": "1fd328b6cc7414d0c05ea87e938f698c93b84a0350b382c840630ae055a04eaa",
+            "protocol": "canonical386;head-invariant;OFF;WSL2;16GB/256K;WSLdepth cut approved",
+            "test_environment": "WSL2",
+            "depth_not_measured": "Approved WSL depth scope cut; long-context correctness andN150 remain separate passing gates"
+          },
+          "candidate": 188.14424466872845,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "prefill_10k": {
+          "baseline": {
+            "value": 3014.542249806602,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/final16-canonical-386/result.json",
+            "source_sha256": "1fd328b6cc7414d0c05ea87e938f698c93b84a0350b382c840630ae055a04eaa",
+            "protocol": "canonical386;head-invariant;OFF;WSL2;16GB/256K;WSLdepth cut approved",
+            "test_environment": "WSL2",
+            "depth_not_measured": "Approved WSL depth scope cut; long-context correctness andN150 remain separate passing gates"
+          },
+          "candidate": 3014.542249806602,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "decode_at_10k": {
+          "baseline": {
+            "value": 134.83569027727336,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/final16-canonical-386/result.json",
+            "source_sha256": "1fd328b6cc7414d0c05ea87e938f698c93b84a0350b382c840630ae055a04eaa",
+            "protocol": "canonical386;head-invariant;OFF;WSL2;16GB/256K;WSLdepth cut approved",
+            "test_environment": "WSL2",
+            "depth_not_measured": "Approved WSL depth scope cut; long-context correctness andN150 remain separate passing gates"
+          },
+          "candidate": 134.83569027727336,
+          "change_pct": -0.0,
+          "status": "ok"
+        }
+      },
+      "passed": true,
+      "artifact_identity_verified": false,
+      "note": "Throughput gate only; final artifact/configuration hash matching requires its own audit.",
+      "exit_code": 0
+    },
+    {
+      "key": "wsl/sm120/12gb",
+      "receipts": [
+        {
+          "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/candidate-sm120-12gb.json",
+          "selector": null,
+          "sha256": "06815b9cb8a76fcd5cf1577596f8255eb9b2a6aa4f2475841b518c4cf4640e16"
+        }
+      ],
+      "metrics": {
+        "narrative_decode": {
+          "baseline": {
+            "value": 104.6487865823359,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-short-prefill-364/result.json#old183",
+            "source_sha256": "7b2f3fefd5a45ba2c23bbe26e84324bb2234817b88de9815f2a3663bd0ab54af",
+            "protocol": "canonical benchmark364;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2 on physical RTX5090; bare-metal Linux throughput not measured"
+          },
+          "candidate": 104.5096529339197,
+          "change_pct": -0.13295294953729572,
+          "status": "ok"
+        },
+        "code_decode": {
+          "baseline": {
+            "value": 181.2200520415959,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-short-prefill-364/result.json#old183",
+            "source_sha256": "7b2f3fefd5a45ba2c23bbe26e84324bb2234817b88de9815f2a3663bd0ab54af",
+            "protocol": "canonical benchmark364;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2 on physical RTX5090; bare-metal Linux throughput not measured"
+          },
+          "candidate": 177.78572010105074,
+          "change_pct": -1.8951169596601036,
+          "status": "warn"
+        },
+        "prefill_10k": {
+          "baseline": {
+            "value": 2811.6540802227005,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-short-prefill-364/result.json#old183",
+            "source_sha256": "7b2f3fefd5a45ba2c23bbe26e84324bb2234817b88de9815f2a3663bd0ab54af",
+            "protocol": "canonical benchmark364;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2 on physical RTX5090; bare-metal Linux throughput not measured"
+          },
+          "candidate": 2760.2608523440445,
+          "change_pct": -1.8278645385347465,
+          "status": "warn"
+        },
+        "decode_at_10k": {
+          "baseline": {
+            "value": 121.62456879607977,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-short-prefill-364/result.json#old183",
+            "source_sha256": "7b2f3fefd5a45ba2c23bbe26e84324bb2234817b88de9815f2a3663bd0ab54af",
+            "protocol": "canonical benchmark364;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2 on physical RTX5090; bare-metal Linux throughput not measured"
+          },
+          "candidate": 115.5067255798457,
+          "change_pct": -5.03010475333439,
+          "status": "report-only"
+        },
+        "short_decode": {
+          "baseline": {
+            "value": 117.32624679299136,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-regression-358/result.json#old183",
+            "source_sha256": "2cf022899fdba9ba265c8b773b08c677d6c7c8e517a02fdd712a4b2c4308d5e1",
+            "protocol": "matched depth358;same exact prompts/output/acceptance;3reps;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2"
+          },
+          "candidate": 116.4133053034966,
+          "change_pct": -0.7781221290625071,
+          "status": "ok"
+        },
+        "short_prefill": {
+          "baseline": {
+            "value": 2011.1159502976263,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-regression-358/result.json#new320",
+            "source_sha256": "2cf022899fdba9ba265c8b773b08c677d6c7c8e517a02fdd712a4b2c4308d5e1",
+            "protocol": "matched depth358;same exact prompts/output/acceptance;3reps;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2"
+          },
+          "candidate": 2011.1159502976263,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "depth_decode": {
+          "baseline": {
+            "value": 86.33677308740945,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-regression-358/result.json#new320",
+            "source_sha256": "2cf022899fdba9ba265c8b773b08c677d6c7c8e517a02fdd712a4b2c4308d5e1",
+            "protocol": "matched depth358;same exact prompts/output/acceptance;3reps;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2"
+          },
+          "candidate": 86.33677308740945,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "depth_prefill": {
+          "baseline": {
+            "value": 1991.8266431810491,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/paired-regression-358/result.json#old183",
+            "source_sha256": "2cf022899fdba9ba265c8b773b08c677d6c7c8e517a02fdd712a4b2c4308d5e1",
+            "protocol": "matched depth358;same exact prompts/output/acceptance;3reps;head-invariant;OFF;WSL2",
+            "test_environment": "WSL2"
+          },
+          "candidate": 1987.5134304848477,
+          "change_pct": -0.21654558698506857,
+          "status": "ok"
+        },
+        "fixed_narrative_decode": {
+          "baseline": {
+            "value": 88.87368609701889,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish367/short-prefill-result.json#old",
+            "source_sha256": "7395c04afaa7d0397a1e73f9c3011c55a5a2a351d2f1808daa39b31970674571",
+            "protocol": "fixed367 distinct protocol; exactinputs/outputs/acceptance;WSL2"
+          },
+          "candidate": 87.9946050825181,
+          "change_pct": -0.9891353145194584,
+          "status": "ok"
+        },
+        "fixed_code_decode": {
+          "baseline": {
+            "value": 188.35279887983748,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish367/short-prefill-result.json#new",
+            "source_sha256": "7395c04afaa7d0397a1e73f9c3011c55a5a2a351d2f1808daa39b31970674571",
+            "protocol": "fixed367 distinct protocol; exactinputs/outputs/acceptance;WSL2"
+          },
+          "candidate": 188.35279887983748,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "fixed_prefill_10k": {
+          "baseline": {
+            "value": 3194.3025760706623,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish367/short-prefill-result.json#new",
+            "source_sha256": "7395c04afaa7d0397a1e73f9c3011c55a5a2a351d2f1808daa39b31970674571",
+            "protocol": "fixed367 distinct protocol; exactinputs/outputs/acceptance;WSL2"
+          },
+          "candidate": 3194.3025760706623,
+          "change_pct": -0.0,
+          "status": "ok"
+        }
+      },
+      "passed": true,
+      "artifact_identity_verified": false,
+      "note": "Throughput gate only; final artifact/configuration hash matching requires its own audit.",
+      "exit_code": 0
+    },
+    {
+      "key": "wsl/sm120/16gb",
+      "receipts": [
+        {
+          "path": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish450/candidate-sm120-16gb.json",
+          "selector": null,
+          "sha256": "1901105b9b368b4ece5ebb76561a7ec0d5ee5dffeff4711ea567c9bef77af8cb"
+        }
+      ],
+      "metrics": {
+        "narrative_decode": {
+          "baseline": {
+            "value": 105.0621190623109,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/final16-canonical-386/result.json",
+            "source_sha256": "1fd328b6cc7414d0c05ea87e938f698c93b84a0350b382c840630ae055a04eaa",
+            "protocol": "canonical386;head-invariant;OFF;WSL2;16GB/256K;WSLdepth cut approved",
+            "test_environment": "WSL2",
+            "depth_not_measured": "Approved WSL depth scope cut; long-context correctness andN150 remain separate passing gates"
+          },
+          "candidate": 105.0621190623109,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "code_decode": {
+          "baseline": {
+            "value": 188.14424466872845,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/final16-canonical-386/result.json",
+            "source_sha256": "1fd328b6cc7414d0c05ea87e938f698c93b84a0350b382c840630ae055a04eaa",
+            "protocol": "canonical386;head-invariant;OFF;WSL2;16GB/256K;WSLdepth cut approved",
+            "test_environment": "WSL2",
+            "depth_not_measured": "Approved WSL depth scope cut; long-context correctness andN150 remain separate passing gates"
+          },
+          "candidate": 188.14424466872845,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "prefill_10k": {
+          "baseline": {
+            "value": 3014.542249806602,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/final16-canonical-386/result.json",
+            "source_sha256": "1fd328b6cc7414d0c05ea87e938f698c93b84a0350b382c840630ae055a04eaa",
+            "protocol": "canonical386;head-invariant;OFF;WSL2;16GB/256K;WSLdepth cut approved",
+            "test_environment": "WSL2",
+            "depth_not_measured": "Approved WSL depth scope cut; long-context correctness andN150 remain separate passing gates"
+          },
+          "candidate": 3014.542249806602,
+          "change_pct": -0.0,
+          "status": "ok"
+        },
+        "decode_at_10k": {
+          "baseline": {
+            "value": 134.83569027727336,
+            "source": "/home/sean/work/l0xre-v01-qualification-20261025/sm120/final16-canonical-386/result.json",
+            "source_sha256": "1fd328b6cc7414d0c05ea87e938f698c93b84a0350b382c840630ae055a04eaa",
+            "protocol": "canonical386;head-invariant;OFF;WSL2;16GB/256K;WSLdepth cut approved",
+            "test_environment": "WSL2",
+            "depth_not_measured": "Approved WSL depth scope cut; long-context correctness andN150 remain separate passing gates"
+          },
+          "candidate": 134.83569027727336,
+          "change_pct": -0.0,
+          "status": "ok"
+        }
+      },
+      "passed": true,
+      "artifact_identity_verified": false,
+      "note": "Throughput gate only; final artifact/configuration hash matching requires its own audit.",
+      "exit_code": 0
+    },
+    {
+      "key": "windows/sm120/12gb",
+      "receipts": [
+        {
+          "path": "/mnt/d/l0xre-shipping-tests-20261027/native-windows-final12-performance-407/result.json",
+          "selector": null,
+          "sha256": "ecf2cca4758a5172e0343283c41bd28200739c5ebda3c69f36164b7096525240"
+        }
+      ],
+      "metrics": {
+        "narrative_decode": {
+          "baseline": {
+            "value": 109.91,
+            "source": "native-windows-profile-speed-260"
+          },
+          "candidate": 107.90344048935064,
+          "change_pct": -1.8256387140836623,
+          "status": "warn"
+        },
+        "code_decode": {
+          "baseline": {
+            "value": 182.88,
+            "source": "native-windows-profile-speed-260"
+          },
+          "candidate": 187.98158275098135,
+          "change_pct": 2.7895793695217357,
+          "status": "ok"
+        },
+        "prefill_10k": {
+          "baseline": {
+            "value": 3142.51,
+            "source": "native-windows-tuned-speed-273"
+          },
+          "candidate": 3197.9057698855368,
+          "change_pct": 1.7627873860556222,
+          "status": "ok"
+        },
+        "decode_at_10k": {
+          "baseline": {
+            "value": 147.85,
+            "source": "native-windows-tuned-speed-273"
+          },
+          "candidate": 119.42806823873633,
+          "change_pct": -19.22349121492301,
+          "status": "report-only"
+        },
+        "short_decode": {
+          "baseline": {
+            "value": 122.0,
+            "source": "native-windows-arena-pair-302 (paired302-arena2144-overlap2)"
+          },
+          "candidate": 125.28007770570171,
+          "change_pct": 2.688588283362061,
+          "status": "ok"
+        },
+        "short_prefill": {
+          "baseline": {
+            "value": 2471.42,
+            "source": "native-windows-profile-depth-258"
+          },
+          "candidate": 2452.186038646846,
+          "change_pct": -0.778255470666822,
+          "status": "ok"
+        },
+        "depth_decode": {
+          "baseline": {
+            "value": 97.71,
+            "source": "native-windows-arena-pair-302 (paired302-arena2240-overlap2)"
+          },
+          "candidate": 100.18606677916358,
+          "change_pct": 2.5340976145364733,
+          "status": "ok"
+        },
+        "depth_prefill": {
+          "baseline": {
+            "value": 2061.72,
+            "source": "native-windows-arena-pair-302 (paired302-arena2240-overlap2)"
+          },
+          "candidate": 2068.2634226282034,
+          "change_pct": 0.3173768808666378,
+          "status": "ok"
+        }
+      },
+      "passed": true,
+      "artifact_identity_verified": false,
+      "note": "Throughput gate only; final artifact/configuration hash matching requires its own audit.",
+      "exit_code": 0
+    },
+    {
+      "key": "windows/sm120/16gb",
+      "receipts": [
+        {
+          "path": "/mnt/d/l0xre-shipping-tests-20261027/native-windows-profile-speed-260/result.json",
+          "selector": null,
+          "sha256": "2a7cd38e6663717bf4c3f30853f3977e0dc4f3a2f90152463f260c804b5084d4"
+        },
+        {
+          "path": "/mnt/d/l0xre-shipping-tests-20261027/native-windows-profile-depth-258/result.json",
+          "selector": null,
+          "sha256": "d5e73894e71b2a5f16ad0b3453f0101440a37fd624e6800f2fb007808a46a416"
+        }
+      ],
+      "metrics": {
+        "narrative_decode": {
+          "baseline": {
+            "value": 109.82,
+            "source": "native-windows-profile-speed-260"
+          },
+          "candidate": 109.81989329324118,
+          "change_pct": -9.716514188113008e-05,
+          "status": "ok"
+        },
+        "code_decode": {
+          "baseline": {
+            "value": 182.93,
+            "source": "native-windows-profile-speed-260"
+          },
+          "candidate": 182.93198683670377,
+          "change_pct": 0.0010861185720026996,
+          "status": "ok"
+        },
+        "prefill_10k": {
+          "baseline": {
+            "value": 3042.05,
+            "source": "native-windows-profile-speed-260"
+          },
+          "candidate": 3042.050781887747,
+          "change_pct": 2.5702659279036544e-05,
+          "status": "ok"
+        },
+        "decode_at_10k": {
+          "baseline": {
+            "value": 125.46,
+            "source": "native-windows-profile-speed-260"
+          },
+          "candidate": 125.45625914468343,
+          "change_pct": -0.0029817115547304015,
+          "status": "ok"
+        },
+        "short_decode": {
+          "baseline": {
+            "value": 121.58,
+            "source": "native-windows-profile-depth-258"
+          },
+          "candidate": 121.58370608890932,
+          "change_pct": 0.003048271845143481,
+          "status": "ok"
+        },
+        "short_prefill": {
+          "baseline": {
+            "value": 2534.98,
+            "source": "native-windows-profile-depth-258"
+          },
+          "candidate": 2534.9784422054718,
+          "change_pct": -6.14519455085641e-05,
+          "status": "ok"
+        },
+        "depth_decode": {
+          "baseline": {
+            "value": 104.76,
+            "source": "native-windows-profile-depth-258"
+          },
+          "candidate": 104.75508875027276,
+          "change_pct": -0.004688096341392914,
+          "status": "ok"
+        },
+        "depth_prefill": {
+          "baseline": {
+            "value": 2341.05,
+            "source": "native-windows-profile-depth-258"
+          },
+          "candidate": 2341.0464225098,
+          "change_pct": -0.0001528156254806202,
+          "status": "ok"
+        }
+      },
+      "passed": true,
+      "artifact_identity_verified": false,
+      "note": "Throughput gate only; final artifact/configuration hash matching requires its own audit.",
+      "exit_code": 0
+    }
+  ]
+}

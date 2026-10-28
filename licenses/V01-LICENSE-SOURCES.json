@@ -1,0 +1,125 @@
+{
+  "scope": "Source URLs, revisions and SHA256 of notice inputs. CPU/GPU runtime archives retain applicable notices alongside their actual components.",
+  "sources": [
+    {
+      "file": "qwen-model-info.json",
+      "source": "https://huggingface.co/api/models/Qwen/Qwen3.8-27B?blobs=false",
+      "resolved": "https://huggingface.co/api/models/Qwen/Qwen3.8-27B?blobs=false",
+      "status": 200,
+      "sha256": "de9049a00f27f65296a38887f43f490ebb533af2c5841569b8174ad0cd83038e"
+    },
+    {
+      "file": "cpython-python.props",
+      "source": "https://raw.githubusercontent.com/python/cpython/v3.14.3/PCbuild/python.props",
+      "resolved": "https://raw.githubusercontent.com/python/cpython/v3.14.3/PCbuild/python.props",
+      "status": 200,
+      "sha256": "aedc76360937b257d49a1648a117854239000469821a99021d3fcb83106fa00c"
+    },
+    {
+      "file": "cpython-get-externals.bat",
+      "source": "https://raw.githubusercontent.com/python/cpython/v3.14.3/PCbuild/get_externals.bat",
+      "resolved": "https://raw.githubusercontent.com/python/cpython/v3.14.3/PCbuild/get_externals.bat",
+      "status": 200,
+      "sha256": "d3cfef51d5aa78b6834fa2889b5a0a810e4e1efd0babcf8be988faf9c79fb674"
+    },
+    {
+      "file": "openssl-LICENSE.txt",
+      "source": "https://raw.githubusercontent.com/openssl/openssl/openssl-3.0.18/LICENSE.txt",
+      "resolved": "https://raw.githubusercontent.com/openssl/openssl/openssl-3.0.18/LICENSE.txt",
+      "status": 200,
+      "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a"
+    },
+    {
+      "file": "sqlite-copyright.html",
+      "source": "https://www.sqlite.org/copyright.html",
+      "resolved": "https://www.sqlite.org/copyright.html",
+      "status": 200,
+      "sha256": "44ca9f793055c8e32fc65f65a4f5bcf813a33f5bdaaa084067dd617a4ed3cc70"
+    },
+    {
+      "file": "qwen-LICENSE.txt",
+      "source": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/LICENSE",
+      "resolved": "https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3.8-27B/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/LICENSE?%2FQwen%2FQwen3.8-27B%2Fresolve%2F1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0%2FLICENSE=&etag=%22f938136e3adacfd92be087f6e113b5d6d97f678f%22",
+      "status": 200,
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a"
+    },
+    {
+      "file": "zlib-ng-LICENSE.md",
+      "source": "https://raw.githubusercontent.com/zlib-ng/zlib-ng/2.2.4/LICENSE.md",
+      "resolved": "https://raw.githubusercontent.com/zlib-ng/zlib-ng/2.2.4/LICENSE.md",
+      "status": 200,
+      "sha256": "6c9f0d975b41afaa34d22f55bb8986ce69e5cb7ad327cb2b28820cd425edf5ee"
+    },
+    {
+      "file": "libffi-LICENSE.txt",
+      "source": "https://raw.githubusercontent.com/libffi/libffi/v3.4.4/LICENSE",
+      "resolved": "https://raw.githubusercontent.com/libffi/libffi/v3.4.4/LICENSE",
+      "status": 200,
+      "sha256": "2c9c2acb9743e6b007b91350475308aee44691d96aa20eacef8e199988c8c388"
+    },
+    {
+      "file": "sqlite-LICENSE.md",
+      "source": "https://raw.githubusercontent.com/sqlite/sqlite/version-3.50.4/LICENSE.md",
+      "resolved": "https://raw.githubusercontent.com/sqlite/sqlite/version-3.50.4/LICENSE.md",
+      "status": 200,
+      "sha256": "a7a58d6022c090c528e3167026167b3141d682efc6a3c188b473ba59f1788fc7"
+    },
+    {
+      "file": "microsoft-cruntime-license.html",
+      "source": "https://visualstudio.microsoft.com/license-terms/vs2022-cruntime/",
+      "resolved": "https://visualstudio.microsoft.com/license-terms/vs2022-cruntime/",
+      "status": 200,
+      "sha256": "eb96d0038c2632cedfaefdde15cd1cb01e6017a19d4c89f91eddaa16a81347e1"
+    },
+    {
+      "file": "xz-COPYING.txt",
+      "url": "https://raw.githubusercontent.com/python/cpython-source-deps/xz-5.2.5/COPYING",
+      "status": 200,
+      "sha256": "bcb02973ef6e87ea73d331b3a80df7748407f17efdb784b61b47e0e610d3bb5c"
+    },
+    {
+      "file": "mpdecimal-COPYRIGHT.txt",
+      "url": "https://raw.githubusercontent.com/python/cpython-source-deps/mpdecimal-4.0.0/COPYRIGHT.txt",
+      "status": 200,
+      "sha256": "2713324211652ce4a60e6e21e54f9dc3004299e591b0933a352f1a89c5fb53c2"
+    },
+    {
+      "file": "expat-COPYING.txt",
+      "url": "https://raw.githubusercontent.com/python/cpython/v3.14.3/Modules/expat/COPYING",
+      "status": 200,
+      "sha256": "122f2c27000472a201d337b9b31f7eb2b52d091b02857061a8880371612d9534"
+    },
+    {
+      "file": "unicode-LICENSE.txt",
+      "url": "https://www.unicode.org/license.txt",
+      "status": 200,
+      "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+    },
+    {
+      "file": "zstd-LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/facebook/zstd/v1.5.7/LICENSE",
+      "status": 200,
+      "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8"
+    },
+    {
+      "source": "https://visualstudio.microsoft.com/wp-content/uploads/2021/09/Visual-C-Runtime-2015-2022-License-1.docx",
+      "sha256": "f1e3d56ceb2ad68aae0711b910375009e651ac5530fa0760f0dea6e81e54fae1",
+      "official_landing_page": "https://visualstudio.microsoft.com/license-terms/vs2022-cruntime/",
+      "original_preserved": true
+    }
+  ],
+  "included_files_sha256": {
+    "OpenSSL-3.0.18-LICENSE.txt": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a",
+    "zlib-ng-2.2.4-LICENSE.md": "6c9f0d975b41afaa34d22f55bb8986ce69e5cb7ad327cb2b28820cd425edf5ee",
+    "libffi-3.4.4-LICENSE.txt": "2c9c2acb9743e6b007b91350475308aee44691d96aa20eacef8e199988c8c388",
+    "SQLite-3.50.4-LICENSE.md": "a7a58d6022c090c528e3167026167b3141d682efc6a3c188b473ba59f1788fc7",
+    "XZ-5.2.5-COPYING.txt": "bcb02973ef6e87ea73d331b3a80df7748407f17efdb784b61b47e0e610d3bb5c",
+    "mpdecimal-4.0.0-COPYRIGHT.txt": "2713324211652ce4a60e6e21e54f9dc3004299e591b0933a352f1a89c5fb53c2",
+    "Expat-COPYING.txt": "122f2c27000472a201d337b9b31f7eb2b52d091b02857061a8880371612d9534",
+    "Unicode-LICENSE.txt": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
+    "Zstandard-1.5.7-LICENSE.txt": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8",
+    "Qwen-Apache-2.0-LICENSE.txt": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+    "Microsoft-Visual-C-Runtime-2015-2022-License.docx": "f1e3d56ceb2ad68aae0711b910375009e651ac5530fa0760f0dea6e81e54fae1",
+    "Microsoft-Visual-C-Runtime-license-readable.txt": "447126c4fc3baadcb15b58fc76b195d4b397fc1e07881b9a0600e6a79fac7082"
+  }
+}

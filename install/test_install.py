@@ -16,7 +16,9 @@ SOURCE = Path(__file__).with_name("install.py")
 spec = importlib.util.spec_from_file_location("l0xre_install", SOURCE)
 installer = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(installer)
-CATALOG = installer.load_catalog()
+RELEASE_CATALOG = installer.load_catalog()
+# Retain the complete legacy suite against its pinned R6 catalog.
+CATALOG = json.loads((Path(__file__).parent / "fixtures/catalog-r6.json").read_text())
 
 
 def gpu(arch="sm86", name="NVIDIA GeForce RTX 3060", memory=12288):
@@ -37,6 +39,66 @@ def archive_at(path, files):
             item.mode = 0o755
             tar.addfile(item, io.BytesIO(data))
     path.write_bytes(subprocess.check_output(["zstd", "--quiet", "--compress", "--stdout"], input=stream.getvalue()))
+
+
+class V01SelectionTests(unittest.TestCase):
+    def setUp(self):
+        self.catalog = copy.deepcopy(CATALOG)
+        for arch, entry in self.catalog['packages']['linux'].items():
+            if arch not in ['sm86', 'sm89', 'sm120']:
+                continue
+            entry.update(launcher_style='v01', launcher='tools/universal/v01-launch.py',
+                         gpu_name_contains='',
+                         min_memory_mib=12000, memory_profiles=['12gb'] if arch == 'sm86' else ['12gb', '16gb'],
+                         requires_projector=True, projector_filename='mmproj-Qwen3.8-27B-Q5_K-MIX.gguf')
+
+    def test_memory_profiles_follow_supported_capacity(self):
+        for arch, name in [('sm86', 'NVIDIA GeForce RTX 3060'), ('sm89', 'NVIDIA GeForce RTX 4090'),
+                           ('sm120', 'NVIDIA GeForce RTX 5060 Ti')]:
+            for memory in [12288, 16384]:
+                plan = installer.make_plan(self.catalog, gpu(arch, name, memory))
+                expected = '16gb' if memory >= 16000 and arch != 'sm86' else '12gb'
+                self.assertEqual(plan['memory_profile'], expected)
+                self.assertEqual(plan['package']['launcher_style'], 'v01')
+            with self.assertRaises(ValueError):
+                installer.make_plan(self.catalog, gpu(arch, name, 8192))
+
+    def test_launcher_uses_v01_controls_and_matching_projector(self):
+        plan = installer.make_plan(self.catalog, gpu('sm120', 'NVIDIA GeForce RTX 5090', 32607))
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            script = installer.write_launcher(root, root / 'runtime', root / 'models', plan, True, 8080).read_text()
+            self.assertIn('--memory-profile 16gb', script)
+            self.assertIn('--gpu GPU-fixture', script)
+            self.assertNotIn('--profile ', script)
+            self.assertIn('mmproj-Qwen3.8-27B-Q5_K-MIX.gguf', script)
+            self.assertNotIn('mmproj-Qwen3.8-27B-Q8_0.gguf', script)
+
+    def test_default_install_includes_required_projector(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'catalog.json'
+            path.write_text(json.dumps(self.catalog))
+            output = io.StringIO()
+            with patch.object(installer, 'detect_gpu', return_value=gpu()), \
+                 patch('sys.argv', ['install.py', '--catalog', str(path), '--dry-run']), \
+                 patch('sys.stdout', output):
+                installer.main()
+            self.assertTrue(json.loads(output.getvalue())['vision'])
+
+    def test_projector_download_matches_v01_filename_and_keeps_legacy_record(self):
+        modern = installer.make_plan(self.catalog, gpu())
+        records = installer.select_model_records(self.catalog, modern, True)
+        self.assertEqual(records[-1]['filename'], 'mmproj-Qwen3.8-27B-Q5_K-MIX.gguf')
+        self.assertEqual(records[-1]['sha256'], '023c9b484ba6c2c22dd64623cfe286dd4a888170e68bfad6745957e4bd045c8f')
+        self.assertIn('dbf78ac52891f19cf175abb8813997267adb0e92', records[-1]['url'])
+        legacy = installer.make_plan(CATALOG, gpu())
+        self.assertEqual(installer.select_model_records(CATALOG, legacy, True)[-1]['filename'], 'mmproj-Qwen3.8-27B-Q8_0.gguf')
+
+    def test_projector_mismatch_is_refused_before_download(self):
+        plan = installer.make_plan(self.catalog, gpu())
+        self.catalog['models']['vision_v01']['filename'] = 'wrong.gguf'
+        with self.assertRaisesRegex(ValueError, 'does not match'):
+            installer.select_model_records(self.catalog, plan, True)
 
 
 class SelectionTests(unittest.TestCase):
@@ -284,6 +346,37 @@ class IntegrationTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,"checksum mismatch"):
                     installer.main(args)
 
+
+
+
+class PublishedV01CatalogTests(unittest.TestCase):
+    def test_live_routes_cover_supported_presets_without_certifying_other_cards(self):
+        cards = [('sm86', 'NVIDIA GeForce RTX 3060', True),
+                 ('sm86', 'NVIDIA GeForce RTX 3090', False),
+                 ('sm89', 'NVIDIA GeForce RTX 4090', True),
+                 ('sm89', 'NVIDIA GeForce RTX 4070 Ti', False),
+                 ('sm120', 'NVIDIA GeForce RTX 5090', True),
+                 ('sm120', 'NVIDIA GeForce RTX 5060 Ti', False)]
+        for arch, name, qualified in cards:
+            for memory in [12288, 16384, 32768]:
+                with self.subTest(arch=arch, name=name, memory=memory):
+                    plan = installer.make_plan(RELEASE_CATALOG, gpu(arch, name, memory))
+                    expected = '16gb' if memory >= 16000 and arch != 'sm86' else '12gb'
+                    self.assertEqual(plan['memory_profile'], expected)
+                    self.assertEqual(plan['package']['launcher_style'], 'v01')
+                    self.assertIn('/l0xre-v0.1/', plan['package']['url'])
+                    self.assertRegex(plan['package']['sha256'], r'^[a-f0-9]{64}$')
+                    self.assertEqual(plan['hardware_qualified_for_gpu'], qualified)
+                    self.assertEqual(installer.select_model_records(RELEASE_CATALOG, plan, True)[-1]['filename'], 'mmproj-Qwen3.8-27B-Q5_K-MIX.gguf')
+
+    def test_live_catalog_rejects_low_vram_and_unsupported_architecture(self):
+        for arch in ['sm86', 'sm89', 'sm120', 'sm80']:
+            with self.subTest(arch=arch), self.assertRaises(ValueError):
+                installer.make_plan(RELEASE_CATALOG, gpu(arch, 'Unmeasured GPU', 8192))
+
+    def test_legacy_vision_record_survives_and_v01_source_is_pinned(self):
+        self.assertEqual(RELEASE_CATALOG['models']['vision']['filename'], 'mmproj-Qwen3.8-27B-Q8_0.gguf')
+        self.assertIn('dbf78ac52891f19cf175abb8813997267adb0e92', RELEASE_CATALOG['models']['vision_v01']['url'])
 
 if __name__ == "__main__":
     unittest.main()

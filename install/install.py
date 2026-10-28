@@ -54,9 +54,25 @@ def detect_gpu(selector=None):
         raise ValueError("Cannot detect the GPU; check nvidia-smi and the NVIDIA driver") from error
 
 
+def select_model_records(catalog, plan, vision):
+    records = [catalog['models'][key] for key in ['target', 'draft']]
+    if vision:
+        package = plan['package']
+        modern = package.get('launcher_style') == 'v01'
+        key = package.get('projector_model', 'vision_v01' if modern else 'vision')
+        if key not in catalog['models']:
+            raise ValueError('Missing projector model record: ' + key)
+        projector = catalog['models'][key]
+        expected = package.get('projector_filename', 'mmproj-Qwen3.8-27B-Q5_K-MIX.gguf' if modern else None)
+        if expected and projector['filename'] != expected:
+            raise ValueError('Projector model record does not match the package filename')
+        records.append(projector)
+    return records
+
+
 def make_plan(catalog, gpu, allow_candidate=False, runtime_archive=None):
     package = catalog["packages"]["linux"].get(gpu["arch"])
-    if gpu["arch"] == "sm120" and (gpu["memory_mib"] < 30000 or "RTX 5090" not in gpu["name"]):
+    if package and package.get("launcher_style") != "v01" and gpu["arch"] == "sm120" and (gpu["memory_mib"] < 30000 or "RTX 5090" not in gpu["name"]):
         package = catalog["packages"]["linux"].get("sm120-12gb", package)
     if not package:
         raise ValueError(f"Unsupported GPU architecture: {gpu['arch']}")
@@ -75,7 +91,8 @@ def make_plan(catalog, gpu, allow_candidate=False, runtime_archive=None):
         if gpu["name"] == preset["gpu_name"] and gpu["memory_mib"] >= preset.get("min_memory_mib", 0):
             launch_profile = preset["profile"]
             break
-    return {"gpu": gpu, "package": package, "platform": "linux",
+    memory_profile = "16gb" if gpu["memory_mib"] >= 16000 and "16gb" in package.get("memory_profiles", []) else "12gb"
+    return {"gpu": gpu, "package": package, "platform": "linux", "memory_profile": memory_profile,
             "launch_profile": launch_profile,
             "hardware_qualified_for_gpu": qualified}
 
@@ -93,6 +110,8 @@ def make_dual_plan(catalog, selectors, allow_candidate=False, runtime_archive=No
     if min(g["memory_mib"] for g in gpus) < 12000:
         raise ValueError("Dual mode requires at least 12GB VRAM per card")
     plan = make_plan(catalog, a, True, runtime_archive)
+    if plan["package"].get("launcher_style") == "v01":
+        raise ValueError("V0.1 supports one GPU per process; select --gpu instead of --gpus")
     addon = catalog.get("dual_addons", {}).get("linux")
     if not addon:
         raise ValueError("This catalog does not contain the experimental dual fast-path add-on")
@@ -222,10 +241,13 @@ def write_launcher(install_dir, runtime, models_dir, plan, vision, port):
             "--profile", plan.get("launch_profile", "r6"),
             "-m", str(models_dir / "L0xRE-27b-Low.gguf"), "-md", str(models_dir / "Qwen3.8-27B-DFlash2-Q4_K_M.gguf"),
             "--host", "127.0.0.1", "--port", str(port)]
+    if plan["package"].get("launcher_style") == "v01":
+        index = args.index("--profile")
+        args[index:index + 2] = ["--memory-profile", plan["memory_profile"], "--gpu", plan["gpu"]["uuid"]]
     if plan["package"]["status"] == "candidate" or not plan.get("hardware_qualified_for_gpu", False):
         args += ["--qualification-probe"]
     if vision:
-        args += ["--mmproj", str(models_dir / "mmproj-Qwen3.8-27B-Q8_0.gguf")]
+        args += ["--mmproj", str(models_dir / plan["package"].get("projector_filename", "mmproj-Qwen3.8-27B-Q5_K-MIX.gguf" if plan["package"].get("launcher_style") == "v01" else "mmproj-Qwen3.8-27B-Q8_0.gguf"))]
     if plan.get("mode") == "dual-fast-experimental":
         source = Path(__file__).with_name("dual-launch.py")
         helper = install_dir / "launchers" / sha256(source)[:16] / source.name
@@ -315,6 +337,7 @@ def main(argv=None):
         raise ValueError("Choose --gpu or --gpus, not both")
     plan = (make_dual_plan(catalog, options.gpus, options.allow_candidate, options.runtime_archive) if options.gpus else
             make_plan(catalog, detect_gpu(options.gpu), options.allow_candidate, options.runtime_archive))
+    options.vision = options.vision or plan["package"].get("requires_projector", False)
     install_dir = options.dir.expanduser().resolve()
     models_dir = (options.models_dir or install_dir / "models").expanduser().resolve()
     plan.update({"install_dir": str(install_dir), "models_dir": str(models_dir), "vision": options.vision, "port": options.port})
@@ -326,7 +349,7 @@ def main(argv=None):
             raise ValueError(f"Missing {command}. On Ubuntu / Debian: sudo apt-get install curl zstd numactl")
     if len(os.sched_getaffinity(0).intersection(range(8))) != 8:
         raise ValueError("The packaged profile requires CPU cores 0–7 to be accessible")
-    records = [catalog["models"][k] for k in (["target", "draft", "vision"] if options.vision else ["target", "draft"])]
+    records = select_model_records(catalog, plan, options.vision)
     if not options.runtime_only:
         for record in records:
             path = models_dir / record["filename"]
