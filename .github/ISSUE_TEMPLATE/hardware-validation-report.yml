@@ -1,0 +1,47 @@
+name: Hardware validation report
+description: Share an L0xRE selftest receipt for your GPU and operating system.
+title: "[Hardware validation] GPU / operating system"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Close GPU apps, browsers and overlays before testing. Run `l0xre selftest` with the same model paths and preset you use for `l0xre serve`.
+        Add `--deep` only if you want the optional 128K depth smoke and your preset supports it.
+        The command writes `receipt.json`, `SUMMARY.txt` and diagnostic logs. It does not submit a report automatically.
+  - type: input
+    id: hardware
+    attributes:
+      label: GPU model and VRAM
+      placeholder: RTX 4070 12GB
+    validations:
+      required: true
+  - type: dropdown
+    id: operating_system
+    attributes:
+      label: Operating system
+      options:
+        - Native Windows
+        - WSL2
+        - Native Linux
+    validations:
+      required: true
+  - type: textarea
+    id: desktop
+    attributes:
+      label: Display setup and background GPU usage
+      description: Include monitor count, resolution, HDR, whether this GPU drives the displays, which GPU apps were closed, and any desktop-reserve override.
+    validations:
+      required: true
+  - type: textarea
+    id: receipt
+    attributes:
+      label: Selftest receipt
+      description: Paste the complete receipt.json, or attach it here. Include failures; do not edit scores, hashes or checks.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Readable summary and additional context
+      description: Paste SUMMARY.txt. Attach server.log or requests.json if a check failed, and describe any extra startup flags.
