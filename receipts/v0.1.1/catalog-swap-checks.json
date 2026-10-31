@@ -2,7 +2,6 @@
   "catalog_download_sha_verified": true,
   "public_catalog_equal_installer": true,
   "candidate_checksum_file_consistent": true,
-  "current_uploaded_checksum_file_rejected": true,
   "negative_checks": [
     {
       "case": "old_catalog_hash",
@@ -34,5 +33,7 @@
   "current_checksum_receipt": "checksum-asset-swap.json",
   "final_draft_check": "PASS",
   "public_draft_ready": true,
-  "final_draft_check_receipt": "catalog-swap-final-gate.json"
+  "final_draft_check_receipt": "catalog-swap-final-gate.json",
+  "historical_stale_uploaded_checksum_file_rejected": true,
+  "current_uploaded_checksum_file_matches_assets": true
 }

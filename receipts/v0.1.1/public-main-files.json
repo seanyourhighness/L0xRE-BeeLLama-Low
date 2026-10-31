@@ -117,7 +117,7 @@
     },
     {
       "path": "receipts/v0.1.1/SHA256SUMS.receipts",
-      "sha256": "e7eaa433292fb24bb1917fa03f89509ef0ab9835d9547cb1743c29e31f3e4c99"
+      "sha256": "50b03fb38ea79001f05c5c8d09335861edebb73b4fbb52b37a024921e349d483"
     },
     {
       "path": "receipts/v0.1.1/attribution-copy.json",
@@ -133,7 +133,7 @@
     },
     {
       "path": "receipts/v0.1.1/catalog-swap-checks.json",
-      "sha256": "52ba945ec3dcd016e287fdf2173e4507b57b23b190bf739f8bf8eafc9d4866f9"
+      "sha256": "45127bdca9bb9ee6595a40991fa13adeb0d02e6c916db046afe276a2fc7f6116"
     },
     {
       "path": "receipts/v0.1.1/catalog-swap-final-gate.json",
