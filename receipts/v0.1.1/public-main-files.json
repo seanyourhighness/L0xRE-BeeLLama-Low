@@ -40,6 +40,10 @@
       "sha256": "3b39683116a56e9b955d0e1f6b80cfe7d8084ffa103fd1cc0fac270536171232"
     },
     {
+      "path": "install/test-windows.ps1",
+      "sha256": "b997b21388df740a39d6c51da1626eef8d3c289af209156870606c52d92b3f56"
+    },
+    {
       "path": "install/test_install.py",
       "sha256": "6818623375153040dcd79a16a3a1275660ac479f291558fd51399fa013d67791"
     },
