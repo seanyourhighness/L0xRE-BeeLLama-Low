@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "catalog_actual_download_sha256": "3b39683116a56e9b955d0e1f6b80cfe7d8084ffa103fd1cc0fac270536171232",
+  "catalog_equals_installer": true,
+  "other_ten_asset_ids_sizes_and_hashes_unchanged": [
+    "gates-core.json",
+    "L0xRE-v0.1.1-linux-sm120.tar.zst",
+    "L0xRE-v0.1.1-linux-sm86.tar.zst",
+    "L0xRE-v0.1.1-linux-sm89.tar.zst",
+    "L0xRE-v0.1.1-source.tar.gz",
+    "L0xRE-v0.1.1-windows-sm120.zip",
+    "L0xRE-v0.1.1-windows-sm86.zip",
+    "L0xRE-v0.1.1-windows-sm89.zip",
+    "MODEL-SHA256SUMS",
+    "SHA256SUMS"
+  ],
+  "notes_unchanged": true,
+  "draft_unpublished": true,
+  "tag_name_restored": "l0xre-v0.1.1",
+  "draft_ready": true,
+  "checksum_replacement_authorized_and_verified": true,
+  "current_checksum_receipt": "checksum-asset-swap.json",
+  "final_draft_check": "PASS",
+  "public_draft_ready": true,
+  "final_draft_check_receipt": "catalog-swap-final-gate.json",
+  "historical_at_catalog_swap": true
+}

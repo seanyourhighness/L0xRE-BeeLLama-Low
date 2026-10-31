@@ -1,0 +1,8 @@
+{
+  "repository": "seanyourhighness/L0xRE-BeeLLama-Low",
+  "tag": "l0xre-v0.1.1",
+  "anonymous_release_tag_status": 404,
+  "expected_while_draft": 404,
+  "passed": true,
+  "meaning": "Draft is hidden from anonymous release requests; authenticated upload/download checks are separate. No publication performed."
+}

@@ -1,0 +1,43 @@
+{
+  "repository": "seanyourhighness/L0xRE-BeeLLama-Low",
+  "tag": "l0xre-v0.1",
+  "release_id": 426833667,
+  "assets": [
+    {
+      "name": "L0xRE-v0.1-linux-sm120.tar.zst",
+      "sha256": "17957354dfd6e130210f97966f85eacae1658e900dc16c791701edf8b7167de8",
+      "bytes": 658157394,
+      "asset_id": 685412072
+    },
+    {
+      "name": "L0xRE-v0.1-linux-sm86.tar.zst",
+      "sha256": "b84c57c4e8cd121d36074b167b3b321c0c4ff1f0824bd5516f558db22a8751cb",
+      "bytes": 756146057,
+      "asset_id": 685412041
+    },
+    {
+      "name": "L0xRE-v0.1-linux-sm89.tar.zst",
+      "sha256": "8e501520b658c761be520edc7e76a344df9314bc1f404c0444ef7cc65cd51ed9",
+      "bytes": 745886425,
+      "asset_id": 685412205
+    },
+    {
+      "name": "L0xRE-v0.1-windows-sm120.zip",
+      "sha256": "55386da9bd561491fa8324ad13b3995e72d35ee4b55add83945118129a25ea6c",
+      "bytes": 715596204,
+      "asset_id": 685413564
+    },
+    {
+      "name": "L0xRE-v0.1-windows-sm86.zip",
+      "sha256": "1300fcb3e2f2c737df6b3717cda330451c5d2208415240522e1e6ff6198f52b0",
+      "bytes": 715004772,
+      "asset_id": 685414128
+    },
+    {
+      "name": "L0xRE-v0.1-windows-sm89.zip",
+      "sha256": "137c1f8261f09fc9c6ddc8dda0a5cc7c360489c09d0eb5761d07b470f5a809d4",
+      "bytes": 713796944,
+      "asset_id": 685414274
+    }
+  ]
+}

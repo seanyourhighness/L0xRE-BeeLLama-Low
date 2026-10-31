@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "scope": "Exact selected certification copies and public v0.1 baseline metadata; origin pointers are identifiers, not public paths",
+  "source_commit": "5da9c28f7283815f627931376de96fe9a2a4fb0e",
+  "files": [
+    {
+      "file": "qualification-archive-copy.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "assembly/qualification-archive-complete.json",
+      "sha256": "d34cc52e3a6e5793a08a55ac901bc3f4edc9f2d58a02052a925a2325b150d584",
+      "bytes": 2796,
+      "byte_identical": true
+    },
+    {
+      "file": "lifecycle-cleanup.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "assembly/final-lifecycle-cleanup-ready.json",
+      "sha256": "909467b0e66c316aca9cca319076e9ad018409c43609c99ee0f18c42a385c6ae",
+      "bytes": 926,
+      "byte_identical": true
+    },
+    {
+      "file": "RELEASE-NOTES.md",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "RELEASE-NOTES.md",
+      "sha256": "9b0fd63cbf85ca1da24b696edfecc81a6d618e6aba33b2d84e445415e4506829",
+      "bytes": 11356,
+      "byte_identical": true
+    },
+    {
+      "file": "final-gates.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "gates.json",
+      "sha256": "2c7b83765b38b2fc473200f164d725db51ad0076c46de93a47cfc0ef1495febc",
+      "bytes": 1267157,
+      "byte_identical": true
+    },
+    {
+      "file": "MODEL-SHA256SUMS",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "MODEL-SHA256SUMS",
+      "sha256": "9ade9729fd1bf75b479dcbe5fe9c048414e950ed29f137414d493f21d52f0538",
+      "bytes": 282,
+      "byte_identical": true
+    },
+    {
+      "file": "lifecycle-handoff.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "assembly/final-archive-lifecycle-HANDOFF.json",
+      "sha256": "2b20bf9b5a2dc90c1b95565a0e933d8a71022707bc494fbf2815e397d07b1015",
+      "bytes": 5259,
+      "byte_identical": true
+    },
+    {
+      "file": "source-kernel-exactness.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "assembly/rc16-clean-source-build/kernel-exactness.json",
+      "sha256": "4e3cf3f89bc08340d7ec6809c88132a806fc2487dd6480dabb627cc6b3e6acf9",
+      "bytes": 7110,
+      "byte_identical": true
+    },
+    {
+      "file": "service-state.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "assembly/final-service-state.json",
+      "sha256": "bb24544cce821c92a5c376e825e7f47d80c5960c2772c357afa2e37479ae4ac0",
+      "bytes": 1036,
+      "byte_identical": true
+    },
+    {
+      "file": "private-closing-audit.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "assembly/closing-audit.json",
+      "sha256": "9e89b03d1ffe83830cc417d7a5546a72de00be322d9b37c265ca3f08a885f7b9",
+      "bytes": 2098,
+      "byte_identical": true
+    },
+    {
+      "file": "gates-core.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "gates-core.json",
+      "sha256": "9e6342f0f88f4527474b4b2c579a287f92a3afdcab79e8e1cb3e51e3d5904594",
+      "bytes": 1086176,
+      "byte_identical": true
+    },
+    {
+      "file": "SHA256SUMS.assets.before-public-catalog-swap",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "SHA256SUMS",
+      "sha256": "2fdb85b2398a9ea2dea222d8650b147800b6406d089e41fe16314dfd6a9cff48",
+      "bytes": 928,
+      "byte_identical": true
+    },
+    {
+      "file": "source-extract-build.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "source-extract-build.json",
+      "sha256": "2260d12e852df80a999ed4fb5f28b01b35afd713642a4dca9534608895b2ecb8",
+      "bytes": 61891,
+      "byte_identical": true
+    },
+    {
+      "file": "source-build-result.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "assembly/rc16-clean-source-build/result.json",
+      "sha256": "f4b101178b518d88c16f68c9fc595521c36433d7810d4819b368c09d963fda8c",
+      "bytes": 690,
+      "byte_identical": true
+    },
+    {
+      "file": "decisions/sean-native16-allocation-known-limitation-bound.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "decisions/sean-native16-allocation-known-limitation-bound.json",
+      "sha256": "6e8019ab98554e4b2755f98839d235309677855a3a6e972985bc809504f1db06",
+      "bytes": 22277,
+      "byte_identical": true
+    },
+    {
+      "file": "decisions/sean-sm89-cli24-variance-approval.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "decisions/sean-sm89-cli24-variance-approval.json",
+      "sha256": "b4a079af1da2cc65e974d37392e06c3b8060bc1cc2718f73bbd906ea4815406c",
+      "bytes": 1636,
+      "byte_identical": true
+    },
+    {
+      "file": "decisions/sean-20261030-wsl16-short-prefill-acceptance.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "decisions/sean-20261030-wsl16-short-prefill-acceptance.json",
+      "sha256": "b05ef241eeff4d696b7026f685c5f51fc020a5dd0c09add087a9af0bc0184442",
+      "bytes": 14457,
+      "byte_identical": true
+    },
+    {
+      "file": "decisions/sean-mirai-cli-standing-rule.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "decisions/sean-mirai-cli-standing-rule.json",
+      "sha256": "7bc86014e2a8c91995a2512d0b5148d1cdf7833e2f46d6528b9f1b3a4ccf8541",
+      "bytes": 1591,
+      "byte_identical": true
+    },
+    {
+      "file": "decisions/sean-native16-allocation-known-limitation.json",
+      "origin": "frozen-v0.1.1-private-certification",
+      "origin_relative_path": "decisions/sean-native16-allocation-known-limitation.json",
+      "sha256": "2a21ccd9feaba7b04306c8ad54b36375066fb0e4bb1891f1aa36daf676d6ffba",
+      "bytes": 2095,
+      "byte_identical": true
+    },
+    {
+      "file": "previous-v0.1-install-catalog.json",
+      "origin": "public-distribution-base",
+      "origin_relative_path": "cf10d07:install/catalog.json",
+      "sha256": "b6f045c0e8637fd774996b1f17b7d15b0d468abbe5e6950a6fc50e3e95649894",
+      "bytes": 8647,
+      "byte_identical": true
+    },
+    {
+      "file": "previous-v0.1-MANIFEST.json",
+      "origin": "public-distribution-base",
+      "origin_relative_path": "cf10d07:MANIFEST.json",
+      "sha256": "b0ce152c0d2dab4be71e95d2249a510079e6d06a514e36a24a4de4fa94b483c0",
+      "bytes": 17401,
+      "byte_identical": true
+    }
+  ],
+  "excluded_parent_owned_file": "expected-assets.json",
+  "private_inputs_modified": false,
+  "new_gpu_or_service_work": false,
+  "retained_private_originals_not_committed": [
+    "private-draft-metadata.json",
+    "catalog-v0.1.1.json",
+    "private-review-result.json",
+    "private-draft-downloads.json",
+    "INDEPENDENT-FINDINGS.txt",
+    "REVIEW.txt"
+  ]
+}

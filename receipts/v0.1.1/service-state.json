@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "passed": true,
+  "checked_at_utc": "2026-10-31T04:31:51.105231+00:00",
+  "scope": "Read-only final service continuity check after qualification archive verification; no model requests, service writes, pause, restart or GPU measurement.",
+  "z840_original_sm86_service": {
+    "MainPID": "1945269",
+    "ExecMainStartTimestampMonotonic": "521438615086",
+    "ActiveState": "active",
+    "SubState": "running",
+    "FragmentPath": "/home/sean/.config/systemd/user/l0xre-v01-sm86-rc.service",
+    "fragment_sha256": "f8efa8ec4907f274e028a5d520eb56596e6044d3508fd5fecf8b009de51f94fa",
+    "health_http_status": 200,
+    "health": {
+      "status": "ok"
+    }
+  },
+  "local_strata": {
+    "LoadState": "loaded",
+    "ActiveState": "inactive",
+    "SubState": "dead",
+    "UnitFileState": "disabled"
+  },
+  "service_changes_performed": false,
+  "new_gpu_measurement": false,
+  "raw_data_deleted": false,
+  "prior_cpu_service_identity_binding": "assembly/linux-sm86-triton-cpu-lifecycle.json"
+}

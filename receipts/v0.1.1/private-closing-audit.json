@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "complete": true,
+  "scope": "Final automated closeout before independent second pass; no publication",
+  "checks": {
+    "private_repository": true,
+    "private_draft": true,
+    "exact_asset_set": true,
+    "all_asset_download_hashes_match": true,
+    "final_stage_tags_exact": true,
+    "source_and_publication_trees_clean": true,
+    "all_owned_workers_exited": true,
+    "original3060_service_healthy": true,
+    "strata_inactive_disabled": true,
+    "qualification_archive_verified_raw_retained": true
+  },
+  "source_commit": "5da9c28f7283815f627931376de96fe9a2a4fb0e",
+  "exact_private_tags": {
+    "l0xre-v0.1.1": "5da9c28f7283815f627931376de96fe9a2a4fb0e",
+    "l0xre-v0.1.1-rc16": "5da9c28f7283815f627931376de96fe9a2a4fb0e",
+    "l0xre-v0.1.1-rc7": "9badd53f6f9211fddbf5b59e3e64301e15c3e0be",
+    "l0xre-v0.1.1-rc8": "1ef9f59a91f6a146c21226591006d447c9c13904",
+    "l0xre-v0.1.1-rc6": "fa9548f532e0d2cea91385e641a857cd28eb8227",
+    "l0xre-v0.1.1-rc10": "58289e61ace3bceef95c5498ebfcab1f7e468808",
+    "l0xre-v0.1.1-rc9": "807da1a4fbb8ec76cbe817f08b7f7b71829c57ea"
+  },
+  "actual_private_draft": {
+    "path": "releases/v0.1.1/actual-private-draft.json",
+    "sha256": "0216c8615b37d3fbc9bd43e419ddd325e067c533c94c6afd83f71cbe892e5317"
+  },
+  "draft_asset_downloads": {
+    "path": "releases/v0.1.1/draft-asset-downloads.json",
+    "sha256": "7bea11f01df3ec597c7d18bfbb1a963359bca16d583d5d5194df1917189424a2"
+  },
+  "final_service_state": {
+    "path": "releases/v0.1.1/assembly/final-service-state.json",
+    "sha256": "bb24544cce821c92a5c376e825e7f47d80c5960c2772c357afa2e37479ae4ac0"
+  },
+  "final_lifecycle_cleanup": {
+    "path": "releases/v0.1.1/assembly/final-lifecycle-cleanup-ready.json",
+    "sha256": "909467b0e66c316aca9cca319076e9ad018409c43609c99ee0f18c42a385c6ae"
+  },
+  "qualification_archive_copy": {
+    "path": "releases/v0.1.1/assembly/qualification-archive-complete.json",
+    "sha256": "d34cc52e3a6e5793a08a55ac901bc3f4edc9f2d58a02052a925a2325b150d584"
+  },
+  "publication_allowed": false,
+  "raw_data_deleted": false
+}

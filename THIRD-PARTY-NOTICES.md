@@ -1,9 +1,11 @@
-# Third-party notices for v0.1
+# Third-party notices for v0.1.1
 
 These notices accompany the components included in the architecture manifests. The original license texts in `licenses/` remain authoritative. Source snapshots preserve their copyright headers; build records identify modifications and exact inputs.
 
 | Component | Attribution and license files |
 | --- | --- |
+| Escha Runtime / code-GEMM dependencies | Escha Runtime contributors; `licenses/Escha-runtime/LICENSE` (Apache-2.0), `licenses/Escha-runtime/THIRD_PARTY_LICENSES/THIRD_PARTY_NOTICES.md`, and the accompanying MIT, BSD-3-Clause, exllamav3, SGLang and AQLM texts. Recovered upstream revision: `c095d630c589347633eb1762563898adcab0ad77`. |
+| Triton contributions in generated kernels | Triton contributors; `licenses/Triton-MIT-LICENSE.txt` (MIT). The preserved Triton 3.5.1 wheel and Triton 3.8.0 installed notice contain identical text; generated-kernel provenance includes `triton/language/standard.py` contributions. |
 | BeeLLaMA and ggml-derived runtime | The ggml authors and Anbeeld; `licenses/BeeLLaMA-LICENSE`. L0xRE includes modified inference, cache, vision and host integration code. |
 | vLLM FLA reference kernels | `licenses/vLLM-Apache-2.0-LICENSE.txt`; pinned source commit `01efc7ef781391e744ed08c3292817a773d654e6`. Generated-source manifests retain the extracted references and modifications. |
 | SGLang GDN kernels | `licenses/SGLang-Apache-2.0-LICENSE` and `licenses/GDN-KERNEL-NOTICE.md`. Generated-kernel manifests record source and cache provenance. |
@@ -30,3 +32,9 @@ The Python dependency versions above are recorded by CPython v3.14.3's build inp
 Model weights and the drafter are acquired separately from their pinned source repository. The Q5 vision projector is published by HermiHg in `HermiHg/Qwen3.8-27B-mmproj-Q5_K-MIX-GGUF`, revision `dbf78ac52891f19cf175abb8813997267adb0e92`. Its model card declares Apache 2.0 and identifies `Qwen/Qwen3.8-27B` as the base. The pinned LFS SHA256 matches the projector used in qualification. The upstream Qwen license is retained as `licenses/Qwen-Apache-2.0-LICENSE.txt`; model provenance is recorded in `docs/V01-PROVENANCE.md`.
 
 Optional control-vector files are user-provided and are not redistributed by these runtime archives. The runtime license does not grant rights to an independently supplied vector. Hardware validation status and source/build verification remain separate from licensing; see the release matrix.
+
+## Supplemental notices and complete build source for v0.1.1
+
+The Escha upstream notice is retained verbatim. Its descriptions of its wheel and serving engine refer to the upstream distribution. The retained original wheel inventory did not contain the license texts described as embedded there; the recovered repository copies are supplied separately here. L0xRE architecture manifests identify the components actually shipped. These supplemental texts are non-executable notices.
+
+The complete build-source release asset is `L0xRE-v0.1.1-source.tar.gz`, pinned to source revision `5da9c28f7283815f627931376de96fe9a2a4fb0e` and SHA256 `ddd7db47f7f17b884f4e8ab75ad66dd649382f8931b1fb11c5a0ab58c66e99d9`. Public distribution tags identify release metadata and documentation; this named archive supplies the complete build-source snapshot and its pinned build and attribution provenance.

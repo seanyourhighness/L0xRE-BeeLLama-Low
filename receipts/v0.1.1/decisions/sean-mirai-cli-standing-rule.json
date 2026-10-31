@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "author": "Sean",
+  "approved": true,
+  "decision": "mirai-agentic-cli-case-variance-standing-rule",
+  "approval_text": "standing rule for agentic CLI quality cases in Mirai mode, where histories diverge because of timestamps and tool-call IDs: run the case alone 5 times per build, alternating order. If both builds show passes and failures, classify it as case variance without asking me, and record both pass rates plus the original mismatch in REVIEW.md. It's a blocker only if v0.1 passes consistently and the candidate fails consistently. Apply this to Windows 12GB CLI-24 and CLI-40 and 16GB CLI-39. Also tell me exactly what's missing for native Windows 16GB allocation-recovery coverage, and whether it's a v0.1 gap or new.",
+  "direct_decision_source": "Sean direct reply forwarded verbatim by user/parent in central final-gates delegation, 2026-10-30 America/Los_Angeles",
+  "scope": {
+    "mode": "mirai",
+    "pack": "cli-40",
+    "dynamic_timestamp_and_tool_call_id_histories_required": true,
+    "case_only_invocations": true,
+    "episodes_per_build": 5,
+    "alternating_builds": true
+  },
+  "explicit_current_cases": {
+    "windows/sm120/12gb": [
+      "CLI-24",
+      "CLI-40"
+    ],
+    "windows/sm120/16gb": [
+      "CLI-39"
+    ]
+  },
+  "classification": {
+    "both_builds_mixed": "case_variance",
+    "old_five_candidate_zero": "blocker",
+    "all_other_complete_patterns": "not_consistent_regression"
+  },
+  "original_full_suite_comparison_retained": true,
+  "other_cases_modes_and_gates_unchanged": true,
+  "publication_allowed": false
+}

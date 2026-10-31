@@ -1,0 +1,39 @@
+{
+  "catalog_download_sha_verified": true,
+  "public_catalog_equal_installer": true,
+  "candidate_checksum_file_consistent": true,
+  "negative_checks": [
+    {
+      "case": "old_catalog_hash",
+      "rejected": true
+    },
+    {
+      "case": "missing_entry",
+      "rejected": true
+    },
+    {
+      "case": "duplicate_entry",
+      "rejected": true
+    },
+    {
+      "case": "wrong_checksum",
+      "rejected": true
+    },
+    {
+      "case": "path_escape",
+      "rejected": true
+    },
+    {
+      "case": "malformed_line",
+      "rejected": true
+    }
+  ],
+  "draft_ready": true,
+  "checksum_replacement_authorized_and_verified": true,
+  "current_checksum_receipt": "checksum-asset-swap.json",
+  "final_draft_check": "PASS",
+  "public_draft_ready": true,
+  "final_draft_check_receipt": "catalog-swap-final-gate.json",
+  "historical_stale_uploaded_checksum_file_rejected": true,
+  "current_uploaded_checksum_file_matches_assets": true
+}

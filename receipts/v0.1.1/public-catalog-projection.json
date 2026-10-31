@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "public_install_catalog_sha256": "3b39683116a56e9b955d0e1f6b80cfe7d8084ffa103fd1cc0fac270536171232",
+  "changes": {
+    "package_download_urls": 6,
+    "removed_package_private_draft_only_markers": 6,
+    "removed_top_level_workflow_keys": [
+      "private_draft",
+      "publication_allowed"
+    ]
+  },
+  "all_package_hashes_sizes_model_pins_build_tags_profiles_and_hardware_status_preserved": true,
+  "immutable_release_catalog_is_not_the_live_installer_catalog": false,
+  "original_private_catalog_sha256": "90aa7e6d1818b38b141151e466e9b899cb8ed29bf966321ecd183ddbaddf1c95",
+  "current_public_release_catalog_sha256": "3b39683116a56e9b955d0e1f6b80cfe7d8084ffa103fd1cc0fac270536171232",
+  "public_release_catalog_equals_installer_byte_for_byte": true,
+  "swap_receipt": "catalog-asset-swap.json"
+}

@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "owner_authorization": "Sean replied yes to replacing exactly PUBLIC draft l0xre-v0.1.1 SHA256SUMS asset694523652 with the prepared candidate.",
+  "repository": "seanyourhighness/L0xRE-BeeLLama-Low",
+  "release_id": 429753062,
+  "tag": "l0xre-v0.1.1",
+  "old_asset_id": 694523652,
+  "new_asset_id": 695647640,
+  "old_sha256": "2fdb85b2398a9ea2dea222d8650b147800b6406d089e41fe16314dfd6a9cff48",
+  "new_sha256": "0f2f18d75a6b8b3f5f0c447e5c231bcaccb8c27b4a0161e8c692fe208ac2dc27",
+  "new_bytes": 928,
+  "actual_download_sha256": "0f2f18d75a6b8b3f5f0c447e5c231bcaccb8c27b4a0161e8c692fe208ac2dc27",
+  "github_digest": "sha256:0f2f18d75a6b8b3f5f0c447e5c231bcaccb8c27b4a0161e8c692fe208ac2dc27",
+  "only_catalog_checksum_line_changed": true,
+  "other_ten_assets_unchanged": true,
+  "notes_unchanged": true,
+  "draft_unpublished": true,
+  "private_source_release_assets_unchanged": true
+}

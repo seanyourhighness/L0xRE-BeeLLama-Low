@@ -1,0 +1,271 @@
+{
+  "repository": "seanyourhighness/L0xRE-BeeLLama-Low",
+  "release": "l0xre-v0.1.1",
+  "scope": "Prepared public branch files; excludes this manifest and historical initial staging result",
+  "files": [
+    {
+      "path": "MANIFEST.json",
+      "sha256": "1c28d1278c383614d21287ae24b7b1624cb20725b7056b6ac9783f9d18743e76"
+    },
+    {
+      "path": "README.md",
+      "sha256": "fdafdd39973e3990a71c9d5415dd9b4f74243b88dae08e656afa93f6538971f9"
+    },
+    {
+      "path": "THIRD-PARTY-NOTICES.md",
+      "sha256": "4deefe98d0513422d342bc8865a9eebd0bf877936c42b35fe8de1733db91d3e1"
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "9151616b8d73df7f824a79e5ad0aecd6a193f10caaf1026cea74b90504748ed1"
+    },
+    {
+      "path": "docs/V011-PROVENANCE.md",
+      "sha256": "21c600d33c3c65afbe2cd4b8b0822738cbee670555db1cc5a861adb8306a5192"
+    },
+    {
+      "path": "docs/V011-RELEASE.md",
+      "sha256": "9b0fd63cbf85ca1da24b696edfecc81a6d618e6aba33b2d84e445415e4506829"
+    },
+    {
+      "path": "docs/V011-ROLLBACK.md",
+      "sha256": "4d1c3542d906aca1aca92b6676faf48c117cf1517d5db6a229b589eb8aab9382"
+    },
+    {
+      "path": "install/README.md",
+      "sha256": "b517afc710a553b235f4c513d06826ccffbf1b5695d4fb4de2ed6839d812caf1"
+    },
+    {
+      "path": "install/catalog.json",
+      "sha256": "3b39683116a56e9b955d0e1f6b80cfe7d8084ffa103fd1cc0fac270536171232"
+    },
+    {
+      "path": "install/test-windows.ps1",
+      "sha256": "b997b21388df740a39d6c51da1626eef8d3c289af209156870606c52d92b3f56"
+    },
+    {
+      "path": "install/test_install.py",
+      "sha256": "6818623375153040dcd79a16a3a1275660ac479f291558fd51399fa013d67791"
+    },
+    {
+      "path": "licenses/Escha-runtime/LICENSE",
+      "sha256": "f8345fca166d03a3391600339ea291fa179eb7c2c8ad16b09f9885d39c4402e7"
+    },
+    {
+      "path": "licenses/Escha-runtime/THIRD_PARTY_LICENSES/AQLM-NOTICE.txt",
+      "sha256": "a5399cbcf0ad95cbbfe22911f71be49a5a821659c3be3310ee1a1dc59ac95ffe"
+    },
+    {
+      "path": "licenses/Escha-runtime/THIRD_PARTY_LICENSES/BSD-3-Clause.txt",
+      "sha256": "91672afe02506f86786739dc784b6b335499ffd4c85067336445d0fc3928b1a2"
+    },
+    {
+      "path": "licenses/Escha-runtime/THIRD_PARTY_LICENSES/MIT.txt",
+      "sha256": "103f00253b79eca952b067101b3e9426bf065623fbcf7dfcaeb1f3b591561821"
+    },
+    {
+      "path": "licenses/Escha-runtime/THIRD_PARTY_LICENSES/SGLang-LICENSE.txt",
+      "sha256": "1495e1e757ef4d0925a2350563cf5754bb23c51701a8ec4fb3c5cdcbedae6747"
+    },
+    {
+      "path": "licenses/Escha-runtime/THIRD_PARTY_LICENSES/THIRD_PARTY_NOTICES.md",
+      "sha256": "74c9f7cf63342e048e0ffd04c6addb178bf3586a059a3b653760fd24031d848a"
+    },
+    {
+      "path": "licenses/Escha-runtime/THIRD_PARTY_LICENSES/exllamav3-LICENSE.txt",
+      "sha256": "82146bab3b716a2cae5fe8065a62c29ffa08bd6e9f5f3f9ce7c73a4fd6592d67"
+    },
+    {
+      "path": "licenses/Triton-MIT-LICENSE.txt",
+      "sha256": "92640fb97222fd0a698ff28ce0c3782c172623f8d6c609b557636a80f28fb946"
+    },
+    {
+      "path": "receipts/v0.1.1/COPY-MANIFEST.json",
+      "sha256": "a5afad5ace777d6437f739cb9aa9c890bf4203da8709f36f302864b5066ec9ad"
+    },
+    {
+      "path": "receipts/v0.1.1/MODEL-SHA256SUMS",
+      "sha256": "9ade9729fd1bf75b479dcbe5fe9c048414e950ed29f137414d493f21d52f0538"
+    },
+    {
+      "path": "receipts/v0.1.1/RELEASE-NOTES.md",
+      "sha256": "9b0fd63cbf85ca1da24b696edfecc81a6d618e6aba33b2d84e445415e4506829"
+    },
+    {
+      "path": "receipts/v0.1.1/REVIEW-SUMMARY.md",
+      "sha256": "b9f652f6301dbbe4646c48423c54886899e124d3bfb72f886f3b894313a65850"
+    },
+    {
+      "path": "receipts/v0.1.1/REVIEW.before-checksum-approval.md",
+      "sha256": "84498903edcc22eb1cca042caee45c3ab4c999be27f3b887064976487ea1492c"
+    },
+    {
+      "path": "receipts/v0.1.1/REVIEW.md",
+      "sha256": "ed0f67f10752d17d77b1f00f7044abdbbde75177c325a9e4d38d495d55de4c8b"
+    },
+    {
+      "path": "receipts/v0.1.1/SHA256SUMS.assets",
+      "sha256": "0f2f18d75a6b8b3f5f0c447e5c231bcaccb8c27b4a0161e8c692fe208ac2dc27"
+    },
+    {
+      "path": "receipts/v0.1.1/SHA256SUMS.assets.before-public-catalog-swap",
+      "sha256": "2fdb85b2398a9ea2dea222d8650b147800b6406d089e41fe16314dfd6a9cff48"
+    },
+    {
+      "path": "receipts/v0.1.1/SHA256SUMS.public-candidate",
+      "sha256": "0f2f18d75a6b8b3f5f0c447e5c231bcaccb8c27b4a0161e8c692fe208ac2dc27"
+    },
+    {
+      "path": "receipts/v0.1.1/SHA256SUMS.receipts",
+      "sha256": "50b03fb38ea79001f05c5c8d09335861edebb73b4fbb52b37a024921e349d483"
+    },
+    {
+      "path": "receipts/v0.1.1/attribution-copy.json",
+      "sha256": "7fd368b6a63c1ef583a780f7d8ba79a673d2bb34b0daf9e6bc9cffa43ddfc94f"
+    },
+    {
+      "path": "receipts/v0.1.1/catalog-asset-swap.before-checksum-approval.json",
+      "sha256": "0ae1dc64720f050f58cc2138e431e754c3528dd1bc8998c1ee2508f0e0eb9139"
+    },
+    {
+      "path": "receipts/v0.1.1/catalog-asset-swap.json",
+      "sha256": "02dc8770e7c993bf1ac24c93e0d15fc4742de3a31bce91abf6fbb840a93bd143"
+    },
+    {
+      "path": "receipts/v0.1.1/catalog-swap-checks.json",
+      "sha256": "45127bdca9bb9ee6595a40991fa13adeb0d02e6c916db046afe276a2fc7f6116"
+    },
+    {
+      "path": "receipts/v0.1.1/catalog-swap-final-gate.json",
+      "sha256": "3ccfdbc95ed0cb016625fb3a878beae92fa805aafb9563242c6a81f53127ed5a"
+    },
+    {
+      "path": "receipts/v0.1.1/catalog-swap-live-gate.json",
+      "sha256": "c01184c6f98d3eb62cb73feec9c704252d54aa0daed5201fe52150fbfb6be65d"
+    },
+    {
+      "path": "receipts/v0.1.1/catalog-swap-upload-verification.json",
+      "sha256": "6c5fe4fd1651215ee7d58cfe72a965e8c9390572a9a456e49450bf09a756dd1f"
+    },
+    {
+      "path": "receipts/v0.1.1/catalog-swap-verifier-review.json",
+      "sha256": "7b78ecfaf16995ea17c10d9aa4b5d409165a8f12292a1a08d1a56a1a5768d2cf"
+    },
+    {
+      "path": "receipts/v0.1.1/checksum-asset-swap.json",
+      "sha256": "19251c7c1da276ec029e78ac33e7e4035582733f70a22ee55cd016bea04ff8ed"
+    },
+    {
+      "path": "receipts/v0.1.1/decisions/sean-20261030-wsl16-short-prefill-acceptance.json",
+      "sha256": "b05ef241eeff4d696b7026f685c5f51fc020a5dd0c09add087a9af0bc0184442"
+    },
+    {
+      "path": "receipts/v0.1.1/decisions/sean-mirai-cli-standing-rule.json",
+      "sha256": "7bc86014e2a8c91995a2512d0b5148d1cdf7833e2f46d6528b9f1b3a4ccf8541"
+    },
+    {
+      "path": "receipts/v0.1.1/decisions/sean-native16-allocation-known-limitation-bound.json",
+      "sha256": "6e8019ab98554e4b2755f98839d235309677855a3a6e972985bc809504f1db06"
+    },
+    {
+      "path": "receipts/v0.1.1/decisions/sean-native16-allocation-known-limitation.json",
+      "sha256": "2a21ccd9feaba7b04306c8ad54b36375066fb0e4bb1891f1aa36daf676d6ffba"
+    },
+    {
+      "path": "receipts/v0.1.1/decisions/sean-sm89-cli24-variance-approval.json",
+      "sha256": "b4a079af1da2cc65e974d37392e06c3b8060bc1cc2718f73bbd906ea4815406c"
+    },
+    {
+      "path": "receipts/v0.1.1/draft-not-published.json",
+      "sha256": "db155b67dc4512beef7e23da4c7f3a5d9508832faf2c36562567d55f820524c6"
+    },
+    {
+      "path": "receipts/v0.1.1/expected-assets.json",
+      "sha256": "2c1feda68b8bf140b577734493eff6fb1dd785ad6d12b0f2dcb3953425737ce6"
+    },
+    {
+      "path": "receipts/v0.1.1/final-gates.json",
+      "sha256": "2c7b83765b38b2fc473200f164d725db51ad0076c46de93a47cfc0ef1495febc"
+    },
+    {
+      "path": "receipts/v0.1.1/gates-core.json",
+      "sha256": "9e6342f0f88f4527474b4b2c579a287f92a3afdcab79e8e1cb3e51e3d5904594"
+    },
+    {
+      "path": "receipts/v0.1.1/lifecycle-cleanup.json",
+      "sha256": "909467b0e66c316aca9cca319076e9ad018409c43609c99ee0f18c42a385c6ae"
+    },
+    {
+      "path": "receipts/v0.1.1/lifecycle-handoff.json",
+      "sha256": "2b20bf9b5a2dc90c1b95565a0e933d8a71022707bc494fbf2815e397d07b1015"
+    },
+    {
+      "path": "receipts/v0.1.1/previous-v0.1-MANIFEST.json",
+      "sha256": "b0ce152c0d2dab4be71e95d2249a510079e6d06a514e36a24a4de4fa94b483c0"
+    },
+    {
+      "path": "receipts/v0.1.1/previous-v0.1-install-catalog.json",
+      "sha256": "b6f045c0e8637fd774996b1f17b7d15b0d468abbe5e6950a6fc50e3e95649894"
+    },
+    {
+      "path": "receipts/v0.1.1/private-closing-audit.json",
+      "sha256": "9e89b03d1ffe83830cc417d7a5546a72de00be322d9b37c265ca3f08a885f7b9"
+    },
+    {
+      "path": "receipts/v0.1.1/public-catalog-projection.json",
+      "sha256": "307e28f9e3e593c90e444a1b83ebe7dc4d5b70ee33075dcd82d92ee09971289d"
+    },
+    {
+      "path": "receipts/v0.1.1/public-draft-upload-hashes.json",
+      "sha256": "c597a6583518a6df74fc91d74a988fbc0bf150f1f88d0e809c72ffbae64e3b58"
+    },
+    {
+      "path": "receipts/v0.1.1/qualification-archive-copy.json",
+      "sha256": "d34cc52e3a6e5793a08a55ac901bc3f4edc9f2d58a02052a925a2325b150d584"
+    },
+    {
+      "path": "receipts/v0.1.1/qualification-summary.json",
+      "sha256": "27fbeffb3c65495de615e86c65544d5f8116fe2569c5cc5ad3a87c7fc955516f"
+    },
+    {
+      "path": "receipts/v0.1.1/rollback-catalog-v0.1.json",
+      "sha256": "b6f045c0e8637fd774996b1f17b7d15b0d468abbe5e6950a6fc50e3e95649894"
+    },
+    {
+      "path": "receipts/v0.1.1/rollback-public-availability.json",
+      "sha256": "becfe9f29342ff0dc7429ade95f2a9571f1e471494d40213fc8b5a897b131f92"
+    },
+    {
+      "path": "receipts/v0.1.1/rollback-v0.1-assets.json",
+      "sha256": "70e15b8cde04f692bc9566d454a045aec131dc08521e7fc570d7a5aefeb7cfcf"
+    },
+    {
+      "path": "receipts/v0.1.1/service-state.json",
+      "sha256": "bb24544cce821c92a5c376e825e7f47d80c5960c2772c357afa2e37479ae4ac0"
+    },
+    {
+      "path": "receipts/v0.1.1/source-build-result.json",
+      "sha256": "f4b101178b518d88c16f68c9fc595521c36433d7810d4819b368c09d963fda8c"
+    },
+    {
+      "path": "receipts/v0.1.1/source-extract-build.json",
+      "sha256": "2260d12e852df80a999ed4fb5f28b01b35afd713642a4dca9534608895b2ecb8"
+    },
+    {
+      "path": "receipts/v0.1.1/source-kernel-exactness.json",
+      "sha256": "4e3cf3f89bc08340d7ec6809c88132a806fc2487dd6480dabb627cc6b3e6acf9"
+    },
+    {
+      "path": "receipts/v0.1.1/verifier-negative-checks.json",
+      "sha256": "a8c012db55fba823658febe01c9a259fe2f0c07a241b487ec3acf67a7080d419"
+    },
+    {
+      "path": "receipts/v0.1.1/verifier-review.json",
+      "sha256": "9a9d9b3c9116b23e77ca4490e5d868f59cc5edf8e5681065ecaa07b0456fe9cc"
+    },
+    {
+      "path": "tools/verify-public.py",
+      "sha256": "d2f2722b3960de15eaa3e5234ca8ee7f3cefdffc3eabdfde6421b29df68ca407"
+    }
+  ]
+}

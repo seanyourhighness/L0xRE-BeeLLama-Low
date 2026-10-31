@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "source_commit": "5da9c28f7283815f627931376de96fe9a2a4fb0e",
+  "source_archive_sha256": "ddd7db47f7f17b884f4e8ab75ad66dd649382f8931b1fb11c5a0ab58c66e99d9",
+  "all_seventeen_full_sha256_exact": true,
+  "fresh_assembly_only": true,
+  "rows": [
+    {
+      "kind": "matched-triton",
+      "name": "cumsum",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/kernel-build/cumsum.cubin",
+      "sha256": "94935a0d150c4b736ef3255e5b86bb6564966b8532ac2b947b0894a6d452639f",
+      "expected_sha256": "94935a0d150c4b736ef3255e5b86bb6564966b8532ac2b947b0894a6d452639f"
+    },
+    {
+      "kind": "matched-triton",
+      "name": "kkt",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/kernel-build/kkt.cubin",
+      "sha256": "b69701c925e29c19094d52d8b7ba9f7a9153c4d4acd143493943f990b5bcf4dc",
+      "expected_sha256": "b69701c925e29c19094d52d8b7ba9f7a9153c4d4acd143493943f990b5bcf4dc"
+    },
+    {
+      "kind": "matched-triton",
+      "name": "merge",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/kernel-build/merge.cubin",
+      "sha256": "60a3f95358667eb9b90984554489ef52282f5d1bc180d23ec6a89818cb2fd8a8",
+      "expected_sha256": "60a3f95358667eb9b90984554489ef52282f5d1bc180d23ec6a89818cb2fd8a8"
+    },
+    {
+      "kind": "matched-triton",
+      "name": "output",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/kernel-build/output.cubin",
+      "sha256": "3a1eb73fa637653d949a6a446ba04d1cb478a718e3a8b7dc91e788be4f6736e6",
+      "expected_sha256": "3a1eb73fa637653d949a6a446ba04d1cb478a718e3a8b7dc91e788be4f6736e6"
+    },
+    {
+      "kind": "matched-triton",
+      "name": "recompute",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/kernel-build/recompute.cubin",
+      "sha256": "11996c432ca61e65369265caeeb0014c625a811535c056703f6c4389500f1a47",
+      "expected_sha256": "11996c432ca61e65369265caeeb0014c625a811535c056703f6c4389500f1a47"
+    },
+    {
+      "kind": "matched-triton",
+      "name": "solve",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/kernel-build/solve.cubin",
+      "sha256": "9c2a744851d9f14a28b093e94bc12f3e69a809dafafaf45ba212410efe265842",
+      "expected_sha256": "9c2a744851d9f14a28b093e94bc12f3e69a809dafafaf45ba212410efe265842"
+    },
+    {
+      "kind": "matched-triton",
+      "name": "state",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/kernel-build/state.cubin",
+      "sha256": "7cabaae9c9a105955ec0875029b75f305dbf0acbfc0513b1e9531524709dba06",
+      "expected_sha256": "7cabaae9c9a105955ec0875029b75f305dbf0acbfc0513b1e9531524709dba06"
+    },
+    {
+      "kind": "retained-ptx-fresh-assembly",
+      "name": "architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/cumsum.cubin",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/ptx-build/architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/cumsum.cubin",
+      "sha256": "077401ad1739308886e0c59f6aab844767838e30451d647a03fa07da350ae4f5",
+      "expected_sha256": "077401ad1739308886e0c59f6aab844767838e30451d647a03fa07da350ae4f5"
+    },
+    {
+      "kind": "retained-ptx-fresh-assembly",
+      "name": "architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/kkt.cubin",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/ptx-build/architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/kkt.cubin",
+      "sha256": "3ef3998e7970d60d27ba558eb28712218880725197f03081b0c8e8fc0da3df14",
+      "expected_sha256": "3ef3998e7970d60d27ba558eb28712218880725197f03081b0c8e8fc0da3df14"
+    },
+    {
+      "kind": "retained-ptx-fresh-assembly",
+      "name": "architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/merge.cubin",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/ptx-build/architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/merge.cubin",
+      "sha256": "ef65a4f4ab5279712a2f03348410bd9c5cd4f7583c4da8358c1cf1e74814092d",
+      "expected_sha256": "ef65a4f4ab5279712a2f03348410bd9c5cd4f7583c4da8358c1cf1e74814092d"
+    },
+    {
+      "kind": "retained-ptx-fresh-assembly",
+      "name": "architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/output.cubin",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/ptx-build/architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/output.cubin",
+      "sha256": "8658cd3e881602ffd88583ea379cfd54dc7dd4d4b37b899ea1c4d9823ad57f36",
+      "expected_sha256": "8658cd3e881602ffd88583ea379cfd54dc7dd4d4b37b899ea1c4d9823ad57f36"
+    },
+    {
+      "kind": "retained-ptx-fresh-assembly",
+      "name": "architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/recompute.cubin",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/ptx-build/architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/recompute.cubin",
+      "sha256": "7767821d30d9c7e052f7fdd02c17d532e128c4a0794485d6005ec786624cc60f",
+      "expected_sha256": "7767821d30d9c7e052f7fdd02c17d532e128c4a0794485d6005ec786624cc60f"
+    },
+    {
+      "kind": "retained-ptx-fresh-assembly",
+      "name": "architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/solve.cubin",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/ptx-build/architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/solve.cubin",
+      "sha256": "44762ca99f93a77270083899ed47da37d95665017677a9cf21553fde98af6f5c",
+      "expected_sha256": "44762ca99f93a77270083899ed47da37d95665017677a9cf21553fde98af6f5c"
+    },
+    {
+      "kind": "retained-ptx-fresh-assembly",
+      "name": "architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/state.cubin",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/ptx-build/architectures/sm120/deps/L0XRE_GDN_MASKED_CUBIN_ROOT/state.cubin",
+      "sha256": "d6dedc347fc4f5417750c69ce3a347033b03b3fee2093cc24ea75a14633d4337",
+      "expected_sha256": "d6dedc347fc4f5417750c69ce3a347033b03b3fee2093cc24ea75a14633d4337"
+    },
+    {
+      "kind": "retained-ptx-fresh-assembly",
+      "name": "architectures/sm120/deps/ESCHA_OFFICIAL_CODE_GEMM_CUBIN/f32_input.sm120.cubin",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/ptx-build/architectures/sm120/deps/ESCHA_OFFICIAL_CODE_GEMM_CUBIN/f32_input.sm120.cubin",
+      "sha256": "04692f328b386967c02b68a2061e6ec846675f82e516978a7f1ab9555c99e39b",
+      "expected_sha256": "04692f328b386967c02b68a2061e6ec846675f82e516978a7f1ab9555c99e39b"
+    },
+    {
+      "kind": "retained-ptx-fresh-assembly",
+      "name": "architectures/sm120/deps/L0XRE_DECODE_TRANSFORM_CUBIN/packed-input.cubin",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/ptx-build/architectures/sm120/deps/L0XRE_DECODE_TRANSFORM_CUBIN/packed-input.cubin",
+      "sha256": "562c5a664b275d25239c04435e0bc26b0f598b5c9e16ef57ec1e1ae46c0f570c",
+      "expected_sha256": "562c5a664b275d25239c04435e0bc26b0f598b5c9e16ef57ec1e1ae46c0f570c"
+    },
+    {
+      "kind": "retained-ptx-fresh-assembly",
+      "name": "architectures/sm120/deps/L0XRE_K3_VECTOR_CUBIN/k3-vector-all.cubin",
+      "path": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/ptx-build/architectures/sm120/deps/L0XRE_K3_VECTOR_CUBIN/k3-vector-all.cubin",
+      "sha256": "672b506cedd079347579eac1195e6df379825fe41c1dc5f6facdf1b2b8a58b53",
+      "expected_sha256": "672b506cedd079347579eac1195e6df379825fe41c1dc5f6facdf1b2b8a58b53"
+    }
+  ]
+}

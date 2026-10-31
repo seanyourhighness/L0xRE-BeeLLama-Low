@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "scope": "Final archive lifecycle execution evidence only; no final independent review or publication claim",
+  "complete": true,
+  "passed": true,
+  "measured_profile_count": 6,
+  "measured_profiles": [
+    "linux/sm89/12gb",
+    "linux/sm89/16gb",
+    "windows/sm120/12gb",
+    "windows/sm120/16gb",
+    "wsl/sm120/12gb",
+    "wsl/sm120/16gb"
+  ],
+  "measured_groups": {
+    "linux/sm89": {
+      "actual_gpu_lifecycle": {
+        "path": "/home/sean/work/l0xre-src/releases/v0.1.1/assembly/sm89-final-archive-lifecycle.json",
+        "sha256": "3837f037f61ee7fef1865fa01eceb9121ee82397c0d02572cc155c529cf5e090",
+        "bytes": 66958
+      },
+      "actual_final_license_cpu_lifecycle": {
+        "path": "/home/sean/work/l0xre-src/releases/v0.1.1/assembly/linux-sm89-triton-cpu-lifecycle.json",
+        "sha256": "31914e4eb873173e32697e723b676f504f80097529fc7bcbe3024b84f653c6a8",
+        "bytes": 30946
+      },
+      "effective_final_archive": {
+        "path": "/mnt/ssd/ai-builds/l0xre-v011/releases/v0.1.1/certification/rc6/final-lifecycle-owned/triton-cpu-0xkpp0ua/L0xRE-v0.1.1-linux-sm89.tar.zst",
+        "sha256": "4d1cf8d71f22244d9ccbcb682ea9d4dff2781dbc6c077ef762b061e2ef2398c8",
+        "bytes": 739383060
+      },
+      "direct_final_archive_gpu_startup_performed": false,
+      "prior_gpu_receipts_reused_by_strict_whole_runtime_and_configuration_identity": true
+    },
+    "windows/sm120": {
+      "actual_final_archive_gpu_lifecycle": {
+        "path": "/home/sean/work/l0xre-src/releases/v0.1.1/assembly/windows-sm120-final-archive-lifecycle.json",
+        "sha256": "30923244738c7fa3ca3c01dc31ca7285dcfafe4982baf2c2b861d3c864428c36",
+        "bytes": 58033
+      },
+      "final_archive": {
+        "path": "/home/sean/work/l0xre-src/releases/v0.1.1/assembly/final-package-windows-sm120-qualified-45b0k42c/L0xRE-v0.1.1-windows-sm120.zip",
+        "sha256": "7477f49df5f971f09af135d749116bba924b5d33021d234c2b868432a679fc06",
+        "bytes": 703906182
+      },
+      "direct_final_archive_gpu_startup_performed": true
+    },
+    "wsl/sm120": {
+      "actual_final_archive_gpu_lifecycle": {
+        "path": "/home/sean/work/l0xre-src/releases/v0.1.1/assembly/wsl-sm120-final-archive-lifecycle.json",
+        "sha256": "694842868bb591a08308cee177d351bc1e8cfe6d8ac3dd09c750534fe1163e4f",
+        "bytes": 37236
+      },
+      "final_archive": {
+        "path": "/home/sean/work/l0xre-src/releases/v0.1.1/assembly/final-package-wsl-sm120-prepared-ii6a97jk/L0xRE-v0.1.1-linux-sm120.tar.zst",
+        "sha256": "15b731e1dbe5552a0276e8e2f06d2c474ea6ffebbfa6eda59ebbb9c9c717e761",
+        "bytes": 653884998
+      },
+      "direct_final_archive_gpu_startup_performed": true
+    }
+  },
+  "sm86_conditional_license_supplement": {
+    "actual_cpu_lifecycle": {
+      "path": "/home/sean/work/l0xre-src/releases/v0.1.1/assembly/linux-sm86-triton-cpu-lifecycle.json",
+      "sha256": "951f88a21787709325b25caf264d915f363804e02db70e99dbc98108370dab53",
+      "bytes": 30933
+    },
+    "effective_final_archive": {
+      "path": "/mnt/ssd/ai-builds/l0xre-v011/releases/v0.1.1/certification/rc6/final-lifecycle-owned/triton-cpu-0xkpp0ua/L0xRE-v0.1.1-linux-sm86.tar.zst",
+      "sha256": "dd54ab4a836c2d42f6d1a117d44c5092805a85b6a98d88e82e8e8f1b94b83f77",
+      "bytes": 750603358
+    },
+    "new_gpu_or_model_startup_performed": false,
+    "original_corrected09ef_gpu_receipt_chain_reused_honestly": true
+  },
+  "windows_build_only_sm86_sm89": {
+    "hardware_qualified_unchanged_false": true,
+    "new_hardware_test_or_claim": false,
+    "archive_static_verification_owner": "Socrates"
+  },
+  "native16_inherited_allocation": {
+    "disposition": "KNOWN LIMITATION, NOT PASS",
+    "execution_pass": false,
+    "decision": {
+      "path": "/home/sean/work/l0xre-src/releases/v0.1.1/certification/final-lifecycle/dispatch/native-windows-moua1_t4/collected/native16-known-limitation.json",
+      "sha256": "2a21ccd9feaba7b04306c8ad54b36375066fb0e4bb1891f1aa36daf676d6ffba",
+      "bytes": 2095
+    },
+    "re_injected_during_lifecycle": false
+  },
+  "wsl16_quality_case_variance_context": {
+    "source": {
+      "path": "/home/sean/work/l0xre-src/releases/v0.1.1/certification/final-lifecycle/dispatch/wsl-lifecycle-pksej9i5/quality-case-variance-HANDOFF.json",
+      "sha256": "fc8c9c8d108104126662ed289af9de7eceabb5b523dc7fa52526d7109fcd6be6",
+      "bytes": 3539
+    },
+    "classification": "case_variance under direct standing rule; accepted by bound core approval",
+    "original_full_quality_observation": "old118/new117 with original loss and false flag retained",
+    "fixed_case_diagnostic": "All10 valid; five old/five new; old3/5 and new3/5 both mixed",
+    "original_quality_scores_or_flags_rewritten": false,
+    "quality_resampling_performed_by_lifecycle": false
+  },
+  "original_quality_scores_or_flags_rewritten": false,
+  "all_owned_gpu_and_cpu_workers_finished": true,
+  "physical5090_after_cleanup_quiet": true,
+  "card_and_native_phase_locks_released": true,
+  "production3060_actions_performed": false,
+  "z840_or_q_archive_work_queued_by_huygens": false,
+  "source_or_central_gates_modified": false,
+  "release_complete": false,
+  "independent_review_performed": false,
+  "publication_allowed": false
+}

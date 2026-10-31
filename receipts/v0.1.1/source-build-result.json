@@ -1,0 +1,16 @@
+{
+  "complete": true,
+  "passed": true,
+  "source_tag": "l0xre-v0.1.1-rc16",
+  "source_commit": "5da9c28f7283815f627931376de96fe9a2a4fb0e",
+  "source_archive_sha256": "ddd7db47f7f17b884f4e8ab75ad66dd649382f8931b1fb11c5a0ab58c66e99d9",
+  "source_receipt_sha256": "2260d12e852df80a999ed4fb5f28b01b35afd713642a4dca9534608895b2ecb8",
+  "extracted_source": "/tmp/l0xre-v0.1.1-source-review-ip6i_zms/L0xRE-v0.1.1-source",
+  "historical_debug_paths_absent_before_and_after": true,
+  "no_retained_objects": true,
+  "gpu_used": false,
+  "finished_at": "2026-10-31T03:59:29.385518+00:00",
+  "supervisor_complete": true,
+  "namespace_returncode": 0,
+  "historical_host_sha_and_stat_unchanged": true
+}

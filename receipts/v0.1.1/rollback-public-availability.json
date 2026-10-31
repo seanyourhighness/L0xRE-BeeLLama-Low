@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "previous_release": "l0xre-v0.1",
+  "assets_unchanged": [
+    {
+      "name": "L0xRE-v0.1-linux-sm120.tar.zst",
+      "bytes": 658157394,
+      "sha256": "17957354dfd6e130210f97966f85eacae1658e900dc16c791701edf8b7167de8",
+      "passed": true,
+      "authentication": "none"
+    },
+    {
+      "name": "L0xRE-v0.1-linux-sm86.tar.zst",
+      "bytes": 756146057,
+      "sha256": "b84c57c4e8cd121d36074b167b3b321c0c4ff1f0824bd5516f558db22a8751cb",
+      "passed": true,
+      "authentication": "none"
+    },
+    {
+      "name": "L0xRE-v0.1-linux-sm89.tar.zst",
+      "bytes": 745886425,
+      "sha256": "8e501520b658c761be520edc7e76a344df9314bc1f404c0444ef7cc65cd51ed9",
+      "passed": true,
+      "authentication": "none"
+    },
+    {
+      "name": "L0xRE-v0.1-windows-sm120.zip",
+      "bytes": 715596204,
+      "sha256": "55386da9bd561491fa8324ad13b3995e72d35ee4b55add83945118129a25ea6c",
+      "passed": true,
+      "authentication": "none"
+    },
+    {
+      "name": "L0xRE-v0.1-windows-sm86.zip",
+      "bytes": 715004772,
+      "sha256": "1300fcb3e2f2c737df6b3717cda330451c5d2208415240522e1e6ff6198f52b0",
+      "passed": true,
+      "authentication": "none"
+    },
+    {
+      "name": "L0xRE-v0.1-windows-sm89.zip",
+      "bytes": 713796944,
+      "sha256": "137c1f8261f09fc9c6ddc8dda0a5cc7c360489c09d0eb5761d07b470f5a809d4",
+      "passed": true,
+      "authentication": "none"
+    }
+  ],
+  "installer_offline_suite": "Downloading model.gguf (0.00 GB)\nDownloading model.gguf (0.00 GB)\nReusing verified model.gguf\n{\n  \"gpu\": {\n    \"index\": 0,\n    \"uuid\": \"GPU-fixture\",\n    \"name\": \"NVIDIA GeForce RTX 3060\",\n    \"arch\": \"sm86\",\n    \"memory_mib\": 12288\n  },\n  \"package\": {\n    \"filename\": \"L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst\",\n    \"url\": \"https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst\",\n    \"sha256\": \"6d69be5b0e6dcb85be9b08767ffff034a99439658bdc8bac856a545697518781\",\n    \"bytes\": 724015593,\n    \"status\": \"certified\",\n    \"min_memory_mib\": 12000,\n    \"gpu_name_contains\": \"RTX 30\",\n    \"profile\": \"80K / KVarN4/4 / DFlash2 N7 / medium reasoning\",\n    \"launcher\": \"tools/universal/r6-launch.py\",\n    \"launcher_style\": \"r6\",\n    \"install_reserve_bytes\": 5000000000,\n    \"certified_gpu_name_contains\": \"RTX 3060\",\n    \"certified_gpu_names\": [\n      \"NVIDIA GeForce RTX 3060\"\n    ]\n  },\n  \"platform\": \"linux\",\n  \"memory_profile\": \"12gb\",\n  \"launch_profile\": \"r6\",\n  \"hardware_qualified_for_gpu\": true,\n  \"install_dir\": \"/tmp/tmpa1jk3u3d\",\n  \"models_dir\": \"/tmp/tmpa1jk3u3d/models elsewhere\",\n  \"vision\": true,\n  \"port\": 8191\n}\nVerified 1 package files\nPrevious runtime: /tmp/tmpa1jk3u3d/old\nVerified 1 package files\nPrevious runtime: /tmp/tmpa1jk3u3d/old\nGPU: NVIDIA GeForce RTX 3060 / sm86\nPackage: certified\nProfile: 80K / KVarN4/4 / DFlash2 N7 / medium reasoning\nInstall: /tmp/l0xre dual 'rx2we8xb/installation\nModels: /tmp/l0xre dual 'rx2we8xb/models\nCertified on selected GPU: False\nDual GPU: EXPERIMENTAL / UNTESTED / UNCERTIFIED; performance parity is unmeasured.\nVerified 3 package files\nReusing verified dual.tar.zst\nVerified 1 package files\nReusing verified L0xRE-27b-Low.gguf\nReusing verified Qwen3.8-27B-DFlash2-Q4_K_M.gguf\nSetup complete. Start: '/tmp/l0xre dual '\"'\"'rx2we8xb/installation/start.sh'\nCheck the launcher: '/tmp/l0xre dual '\"'\"'rx2we8xb/installation/start.sh' --dry-run\nAPI: http://127.0.0.1:8080/v1\nGPU: NVIDIA GeForce RTX 3060 / sm86\nPackage: certified\nProfile: 80K / KVarN4/4 / DFlash2 N7 / medium reasoning\nInstall: /tmp/l0xre dual 'rx2we8xb/installation\nModels: /tmp/l0xre dual 'rx2we8xb/models\nCertified on selected GPU: False\nDual GPU: EXPERIMENTAL / UNTESTED / UNCERTIFIED; performance parity is unmeasured.\nVerified 3 package files\nReusing verified dual.tar.zst\nVerified 1 package files\nReusing verified L0xRE-27b-Low.gguf\nReusing verified Qwen3.8-27B-DFlash2-Q4_K_M.gguf\nSetup complete. Start: '/tmp/l0xre dual '\"'\"'rx2we8xb/installation/start.sh'\nCheck the launcher: '/tmp/l0xre dual '\"'\"'rx2we8xb/installation/start.sh' --dry-run\nAPI: http://127.0.0.1:8080/v1\nGPU: NVIDIA GeForce RTX 3060 / sm86\nPackage: certified\nProfile: 80K / KVarN4/4 / DFlash2 N7 / medium reasoning\nInstall: /tmp/l0xre fixtures 'ydj6keo5/installation\nModels: /tmp/l0xre fixtures 'ydj6keo5/models with spaces '\nCertified on selected GPU: True\nVerified 1 package files\nReusing verified L0xRE-27b-Low.gguf\nReusing verified Qwen3.8-27B-DFlash2-Q4_K_M.gguf\nReusing verified mmproj-Qwen3.8-27B-Q8_0.gguf\nSetup complete. Start: '/tmp/l0xre fixtures '\"'\"'ydj6keo5/installation/start.sh'\nCheck the launcher: '/tmp/l0xre fixtures '\"'\"'ydj6keo5/installation/start.sh' --dry-run\nAPI: http://127.0.0.1:8190/v1\nGPU: NVIDIA GeForce RTX 3060 / sm86\nPackage: certified\nProfile: 80K / KVarN4/4 / DFlash2 N7 / medium reasoning\nInstall: /tmp/l0xre fixtures 'ydj6keo5/installation\nModels: /tmp/l0xre fixtures 'ydj6keo5/models with spaces '\nCertified on selected GPU: True\nVerified 1 package files\nReusing verified L0xRE-27b-Low.gguf\nReusing verified Qwen3.8-27B-DFlash2-Q4_K_M.gguf\nReusing verified mmproj-Qwen3.8-27B-Q8_0.gguf\nSetup complete. Start: '/tmp/l0xre fixtures '\"'\"'ydj6keo5/installation/start.sh'\nCheck the launcher: '/tmp/l0xre fixtures '\"'\"'ydj6keo5/installation/start.sh' --dry-run\nAPI: http://127.0.0.1:8190/v1\nGPU: NVIDIA GeForce RTX 3060 / sm86\nPackage: certified\nProfile: 80K / KVarN4/4 / DFlash2 N7 / medium reasoning\nInstall: /tmp/l0xre fixtures 'ydj6keo5/installation\nModels: /tmp/l0xre fixtures 'ydj6keo5/models with spaces '\nCertified on selected GPU: True\n{\n  \"gpu\": {\n    \"index\": 0,\n    \"uuid\": \"GPU-fixture\",\n    \"name\": \"NVIDIA GeForce RTX 3060\",\n    \"arch\": \"sm86\",\n    \"memory_mib\": 12288\n  },\n  \"package\": {\n    \"filename\": \"L0xRE-v0.1.1-linux-sm86.tar.zst\",\n    \"url\": \"https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-linux-sm86.tar.zst\",\n    \"sha256\": \"dd54ab4a836c2d42f6d1a117d44c5092805a85b6a98d88e82e8e8f1b94b83f77\",\n    \"bytes\": 750603358,\n    \"status\": \"certified\",\n    \"min_memory_mib\": 12000,\n    \"gpu_name_contains\": \"\",\n    \"profile\": \"v0.1.1: 12GB/128K\",\n    \"launcher\": \"tools/universal/v01-launch.py\",\n    \"launcher_style\": \"v01\",\n    \"memory_profiles\": [\n      \"12gb\"\n    ],\n    \"requires_projector\": true,\n    \"projector_model\": \"vision_v01\",\n    \"projector_filename\": \"mmproj-Qwen3.8-27B-Q5_K-MIX.gguf\",\n    \"install_reserve_bytes\": 5000000000,\n    \"certified_gpu_name_contains\": \"NVIDIA GeForce RTX 3060\",\n    \"certified_gpu_names\": [\n      \"NVIDIA GeForce RTX 3060\"\n    ],\n    \"hardware_validation_status\": \"validated_on_recorded_hardware\",\n    \"validation_scope\": \"NativeLinuxRTX3060;12GB/128K\",\n    \"gpu_selector_adapter\": false,\n    \"artifact_build_tag\": \"l0xre-v0.1.1-rc6\",\n    \"artifact_build_commit\": \"fa9548f532e0d2cea91385e641a857cd28eb8227\",\n    \"manifest_sha256\": \"cd2a16cbce4a7a442d49f99a96c7222db2c6de115ed360ca9c41ac25e6717658\"\n  },\n  \"platform\": \"linux\",\n  \"memory_profile\": \"12gb\",\n  \"launch_profile\": \"r6\",\n  \"hardware_qualified_for_gpu\": true,\n  \"install_dir\": \"/tmp/tmpw41u_9u_/not-created\",\n  \"models_dir\": \"/tmp/tmpw41u_9u_/not-created/models\",\n  \"vision\": true,\n  \"port\": 8080\n}\n.........................\n----------------------------------------------------------------------\nRan 25 tests in 0.192s\n\nOK\n",
+  "scope": "Published archive preservation and offline installer rollback logic; no live service or GPU is changed. Actual GPU startup/rollback evidence remains in the certification receipts."
+}

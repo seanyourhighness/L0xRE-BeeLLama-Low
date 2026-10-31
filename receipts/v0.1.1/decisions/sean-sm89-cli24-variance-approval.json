@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "author": "Sean",
+  "direct_decision_source": "Codex conversation: send_user_message_question_reply for call_xSnFZvIgw0Xow2HhWzfPbRip",
+  "approved": true,
+  "decision": "case-variance-not-candidate-regression",
+  "approval_text": "Approve this CLI-24 variance ruling",
+  "question_text": "Approve classifying only SM89 12GB Mirai CLI-24 as case variance? In the fixed five-episode comparison, unchanged v0.1 passed 1/5 and rc6 passed 3/5; both passed and failed. The original full-suite old-pass/new-fail result and all ten diagnostic episodes will remain in REVIEW.md. All other quality cases and gates stay unchanged.",
+  "recorded_at": "2026-10-31T00:10:43.933676+00:00",
+  "key": "linux/sm89/12gb",
+  "mode": "mirai",
+  "pack_id": "cli-40",
+  "case_id": "CLI-24",
+  "candidate_tag": "l0xre-v0.1.1-rc6",
+  "diagnostic_handoff": {
+    "path": "releases/v0.1.1/assembly/cli24-repeat-HANDOFF.json",
+    "sha256": "46ab8c5e594e9d4f86edac9bea9ff1f26be391b6154cd9df1e57e913af6105e2"
+  },
+  "episodes_per_runtime": 5,
+  "pass_counts": {
+    "old": 1,
+    "new": 3
+  },
+  "outcomes": {
+    "old": {
+      "passed": 1,
+      "total": 5,
+      "pass_rate": 0.2,
+      "outcomes": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ]
+    },
+    "new": {
+      "passed": 3,
+      "total": 5,
+      "pass_rate": 0.6,
+      "outcomes": [
+        true,
+        false,
+        false,
+        true,
+        true
+      ]
+    }
+  },
+  "original_full_suite_comparison_preserved": true,
+  "all_other_cases_and_gates_unchanged": true,
+  "speed_floor_drop_pct": 2,
+  "publication_allowed": false
+}
