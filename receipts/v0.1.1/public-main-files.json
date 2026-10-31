@@ -1,15 +1,15 @@
 {
   "repository": "seanyourhighness/L0xRE-BeeLLama-Low",
   "release": "l0xre-v0.1.1",
-  "scope": "Prepared changed public files; excludes this self-referential manifest and the final check result",
+  "scope": "Prepared public branch files; excludes this manifest and the historical staging result",
   "files": [
     {
       "path": "MANIFEST.json",
-      "sha256": "1f621b36c3f906347a2182bb2a3efa7d5a32196e2b8eae31ed384408736eb5f7"
+      "sha256": "67a0ee2ae32a2e537fe1054a8d5a3b7379cbfa205ac326af8bd353cf9d7281d9"
     },
     {
       "path": "README.md",
-      "sha256": "39de8a93b5a90fcd8f56954dfedc3bc3f58dbd1b36bbd5c7b563f3e3b5d57ab0"
+      "sha256": "fdafdd39973e3990a71c9d5415dd9b4f74243b88dae08e656afa93f6538971f9"
     },
     {
       "path": "THIRD-PARTY-NOTICES.md",
@@ -21,7 +21,7 @@
     },
     {
       "path": "docs/V011-PROVENANCE.md",
-      "sha256": "c08a20f487ff43fa198e66a4a0510c87fe3db918768156422a656620cc1152f1"
+      "sha256": "cfd12797383d867ea8ecbf8a3343b2333f87cbfd0236640137f74900dd5d1060"
     },
     {
       "path": "docs/V011-RELEASE.md",
@@ -33,7 +33,7 @@
     },
     {
       "path": "install/README.md",
-      "sha256": "5b6a0ddc09960b2d21e47a2f0fc72bea72f8bd91abd2a09087a7275357a5507d"
+      "sha256": "b517afc710a553b235f4c513d06826ccffbf1b5695d4fb4de2ed6839d812caf1"
     },
     {
       "path": "install/catalog.json",
@@ -93,19 +93,47 @@
     },
     {
       "path": "receipts/v0.1.1/REVIEW-SUMMARY.md",
-      "sha256": "aa03a62d7ce9eae36fbb0728d43d2d426c3254143d90f85c55c7be086dc82546"
+      "sha256": "66a6dd5f864a70a707f550fd329953c0ee971f734966e1c815c21c12d94af140"
+    },
+    {
+      "path": "receipts/v0.1.1/REVIEW.md",
+      "sha256": "84498903edcc22eb1cca042caee45c3ab4c999be27f3b887064976487ea1492c"
     },
     {
       "path": "receipts/v0.1.1/SHA256SUMS.assets",
       "sha256": "2fdb85b2398a9ea2dea222d8650b147800b6406d089e41fe16314dfd6a9cff48"
     },
     {
+      "path": "receipts/v0.1.1/SHA256SUMS.public-candidate",
+      "sha256": "0f2f18d75a6b8b3f5f0c447e5c231bcaccb8c27b4a0161e8c692fe208ac2dc27"
+    },
+    {
       "path": "receipts/v0.1.1/SHA256SUMS.receipts",
-      "sha256": "df0acafa3efae79d344a9d7f569d6354825b7b0d89584bcca2787df5abb5bccc"
+      "sha256": "dbea0397427e4c11aaf1876cfb8f3cb0853b0a821e5fbecf21f975f0f2320b60"
     },
     {
       "path": "receipts/v0.1.1/attribution-copy.json",
       "sha256": "7fd368b6a63c1ef583a780f7d8ba79a673d2bb34b0daf9e6bc9cffa43ddfc94f"
+    },
+    {
+      "path": "receipts/v0.1.1/catalog-asset-swap.json",
+      "sha256": "0ae1dc64720f050f58cc2138e431e754c3528dd1bc8998c1ee2508f0e0eb9139"
+    },
+    {
+      "path": "receipts/v0.1.1/catalog-swap-checks.json",
+      "sha256": "5bafdcacb8b01715051ed5e518e8cb978274d8a6a9fe196156f508c2c2aeeeec"
+    },
+    {
+      "path": "receipts/v0.1.1/catalog-swap-live-gate.json",
+      "sha256": "c01184c6f98d3eb62cb73feec9c704252d54aa0daed5201fe52150fbfb6be65d"
+    },
+    {
+      "path": "receipts/v0.1.1/catalog-swap-upload-verification.json",
+      "sha256": "05d62042359f5803e4d40e11c25079bec65e9640e80bc2be7db676226bec72c7"
+    },
+    {
+      "path": "receipts/v0.1.1/catalog-swap-verifier-review.json",
+      "sha256": "a740f0294b10b63c1e2ffaafe03614688696193ac9c6703fd08b8ec37467cc18"
     },
     {
       "path": "receipts/v0.1.1/decisions/sean-20261030-wsl16-short-prefill-acceptance.json",
@@ -133,7 +161,7 @@
     },
     {
       "path": "receipts/v0.1.1/expected-assets.json",
-      "sha256": "d0fe7d4b1224961baa73856cac20a6ec6da00992af3e75f04076dc2e19c77bd4"
+      "sha256": "dae0edaaa57d83f377a860a351319b56f05658175ba746e3e17668702a040917"
     },
     {
       "path": "receipts/v0.1.1/final-gates.json",
@@ -165,11 +193,11 @@
     },
     {
       "path": "receipts/v0.1.1/public-catalog-projection.json",
-      "sha256": "e0a712bd3212151a99fb7593d7ec9515221e7fbe47b39467a746985e120ac7d9"
+      "sha256": "307e28f9e3e593c90e444a1b83ebe7dc4d5b70ee33075dcd82d92ee09971289d"
     },
     {
       "path": "receipts/v0.1.1/public-draft-upload-hashes.json",
-      "sha256": "e0d175c38e6954173e94540e940212f6f4a89437bd681ef97c36af6986c22fb7"
+      "sha256": "846d4042d1ed258ac4359d1d7366a87202b0055248b40c7a2c2a4c023dae3b5e"
     },
     {
       "path": "receipts/v0.1.1/qualification-archive-copy.json",
@@ -213,11 +241,11 @@
     },
     {
       "path": "receipts/v0.1.1/verifier-review.json",
-      "sha256": "3705cbe378847d019ff1ca8f62e702021ef467c1b855122f91f2a0f48f86e7ab"
+      "sha256": "9a9d9b3c9116b23e77ca4490e5d868f59cc5edf8e5681065ecaa07b0456fe9cc"
     },
     {
       "path": "tools/verify-public.py",
-      "sha256": "2fdb6fb8e52369010075071620e57f81bf13fbe496451d8010ecfa27575b719f"
+      "sha256": "d2f2722b3960de15eaa3e5234ca8ee7f3cefdffc3eabdfde6421b29df68ca407"
     }
   ]
 }

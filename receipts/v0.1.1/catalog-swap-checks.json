@@ -1,0 +1,34 @@
+{
+  "catalog_download_sha_verified": true,
+  "public_catalog_equal_installer": true,
+  "candidate_checksum_file_consistent": true,
+  "current_uploaded_checksum_file_rejected": true,
+  "negative_checks": [
+    {
+      "case": "old_catalog_hash",
+      "rejected": true
+    },
+    {
+      "case": "missing_entry",
+      "rejected": true
+    },
+    {
+      "case": "duplicate_entry",
+      "rejected": true
+    },
+    {
+      "case": "wrong_checksum",
+      "rejected": true
+    },
+    {
+      "case": "path_escape",
+      "rejected": true
+    },
+    {
+      "case": "malformed_line",
+      "rejected": true
+    }
+  ],
+  "draft_ready": false,
+  "blocker": "Only the additional SHA256SUMS asset replacement awaits direct owner authorization."
+}

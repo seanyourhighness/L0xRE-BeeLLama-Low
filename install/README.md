@@ -1,6 +1,6 @@
 # Guided L0xRE v0.1.1 install
 
-The [public catalog](catalog.json) pins six platform/architecture archives and unchanged model hashes. Use this maintained catalog, not the frozen catalog-v0.1.1.json release asset, whose private URLs and workflow metadata are retained only as qualification provenance.
+The [public catalog](catalog.json) pins six platform/architecture archives and unchanged model hashes. The catalog-v0.1.1.json release asset matches this maintained catalog byte for byte; the public catalog contains public download URLs and no draft-only fields.
 
 Linux SM86 has12GB/128K; Linux SM89 and Linux/WSL SM120 have12GB/128K and16GB/256K. Native Windows SM120 has both profiles. Windows SM86/SM89 are build-verified, hardware validation in progress; no native throughput/quality/VRAM claim is made. WSL was measured on RTX5090, not separately on bare-metal Linux. See the [qualification matrix](../README.md).
 

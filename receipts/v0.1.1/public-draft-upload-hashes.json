@@ -85,5 +85,9 @@
       "passed": true,
       "authentication": "draft asset via gh"
     }
-  ]
+  ],
+  "historical_verification_before_catalog_swap": true,
+  "current_catalog_receipt": "catalog-asset-swap.json",
+  "current_draft_ready": false,
+  "current_blocker": "Pending exact-list authorization to replace SHA256SUMS with the new catalog checksum."
 }

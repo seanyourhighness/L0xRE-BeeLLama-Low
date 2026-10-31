@@ -1,0 +1,201 @@
+{
+  "repository": "seanyourhighness/L0xRE-BeeLLama-Low",
+  "tag": "l0xre-v0.1.1",
+  "checked_at": "2026-10-31T14:34:03.310281+00:00",
+  "passed": false,
+  "repository_paths_checked": [
+    {
+      "document": "README.md",
+      "target": "install/README.md"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/V011-RELEASE.md"
+    },
+    {
+      "document": "README.md",
+      "target": "receipts/v0.1.1/REVIEW-SUMMARY.md"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/V011-PROVENANCE.md"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/V011-ROLLBACK.md"
+    },
+    {
+      "document": "README.md",
+      "target": "MANIFEST.json"
+    },
+    {
+      "document": "README.md",
+      "target": "install/catalog.json"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/V01-RELEASE.md"
+    },
+    {
+      "document": "README.md",
+      "target": "receipts/v0.1.1/qualification-summary.json"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/V011-RELEASE.md"
+    },
+    {
+      "document": "README.md",
+      "target": "receipts/v0.1.1/REVIEW-SUMMARY.md"
+    },
+    {
+      "document": "README.md",
+      "target": "MODEL-SHA256SUMS"
+    },
+    {
+      "document": "README.md",
+      "target": "THIRD-PARTY-NOTICES.md"
+    },
+    {
+      "document": "README.md",
+      "target": "licenses/"
+    },
+    {
+      "document": "README.md",
+      "target": "receipts/v0.1.1/REVIEW.md"
+    },
+    {
+      "document": "install/README.md",
+      "target": "catalog.json"
+    },
+    {
+      "document": "install/README.md",
+      "target": "../README.md"
+    },
+    {
+      "document": "install/README.md",
+      "target": "../docs/V011-ROLLBACK.md"
+    },
+    {
+      "document": "install/README.md",
+      "target": "../docs/V011-RELEASE.md"
+    },
+    {
+      "document": "install/README.md",
+      "target": "../docs/V011-PROVENANCE.md"
+    },
+    {
+      "document": "install/README.md",
+      "target": "../MODEL-SHA256SUMS"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "V011-RELEASE.md"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "V011-PROVENANCE.md"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "V011-ROLLBACK.md"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "../receipts/v0.1.1/REVIEW-SUMMARY.md"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "../MANIFEST.json"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "../install/catalog.json"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "V01-RELEASE.md"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "V01-PROVENANCE.md"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "V01-ROLLBACK.md"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/source-build-result.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/source-extract-build.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/source-kernel-exactness.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/qualification-summary.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/gates-core.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/REVIEW-SUMMARY.md"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/COPY-MANIFEST.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/expected-assets.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../install/catalog.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/REVIEW.md"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "V011-RELEASE.md"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "V01-PROVENANCE.md"
+    },
+    {
+      "document": "docs/V011-ROLLBACK.md",
+      "target": "../install/README.md"
+    },
+    {
+      "document": "docs/V011-ROLLBACK.md",
+      "target": "../receipts/v0.1.1/rollback-catalog-v0.1.json"
+    },
+    {
+      "document": "docs/V011-ROLLBACK.md",
+      "target": "../receipts/v0.1.1/rollback-v0.1-assets.json"
+    },
+    {
+      "document": "docs/V011-ROLLBACK.md",
+      "target": "V01-ROLLBACK.md"
+    },
+    {
+      "document": "docs/V011-ROLLBACK.md",
+      "target": "../receipts/v0.1.1/lifecycle-handoff.json"
+    },
+    {
+      "document": "docs/V011-ROLLBACK.md",
+      "target": "../receipts/v0.1.1/REVIEW-SUMMARY.md"
+    }
+  ],
+  "error": "Release SHA256SUMS does not match the current asset hashes"
+}

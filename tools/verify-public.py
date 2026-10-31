@@ -125,6 +125,25 @@ def validate_catalog_projection(frozen, public):
     require(projected == public, "Public catalog changed something other than distribution URLs/private-draft markers")
 
 
+def validate_release_checksums(data, expected):
+    records = {record["name"]: record["sha256"] for record in expected["assets"] if record["name"] != "SHA256SUMS"}
+    found = {}
+    for line in data.decode("ascii").splitlines():
+        match = re.fullmatch(r"([a-f0-9]{64})  ([^/\\]+)", line)
+        require(match is not None, "Invalid release SHA256SUMS line")
+        checksum, name = match.groups()
+        require(name not in found, "Duplicate release checksum: " + name)
+        found[name] = checksum
+    require(found == records, "Release SHA256SUMS does not match the current asset hashes")
+
+
+def release_asset_bytes(asset, draft):
+    if draft:
+        return subprocess.check_output(["gh", "api", "repos/" + REPO + "/releases/assets/" + str(asset["id"]), "-H", "Accept: application/octet-stream"])
+    with anonymous_open(DOWNLOAD + TAG + "/" + urllib.parse.quote(asset["name"])) as stream:
+        return stream.read()
+
+
 def main_file_records():
     records = read_json(RECEIPTS / "public-main-files.json")["files"]
     require(isinstance(records, list) and records, "Empty public main file manifest")
@@ -138,6 +157,8 @@ def main_file_records():
         "receipts/v0.1.1/rollback-v0.1-assets.json",
         "receipts/v0.1.1/public-draft-upload-hashes.json",
         "receipts/v0.1.1/public-catalog-projection.json",
+        "receipts/v0.1.1/REVIEW.md", "receipts/v0.1.1/catalog-asset-swap.json",
+        "receipts/v0.1.1/SHA256SUMS.public-candidate",
         "receipts/v0.1.1/gates-core.json", "receipts/v0.1.1/source-extract-build.json",
     }
     require(required.issubset(paths), "Public main file manifest omits critical files: " + ", ".join(sorted(required - set(paths))))
@@ -251,16 +272,14 @@ def main():
                 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
                     result["public_main_files_verified"] = list(pool.map(check_public_file, main_files))
             assets = validate_release(release, expected, args.check_draft)
+            catalog_bytes = release_asset_bytes(assets["catalog-v0.1.1.json"], args.check_draft)
+            require(catalog_bytes == (ROOT / "install/catalog.json").read_bytes(), "Uploaded catalog must equal the public installer catalog byte for byte")
+            validate_catalog_projection(json.loads(catalog_bytes), catalog)
+            validate_release_checksums(release_asset_bytes(assets["SHA256SUMS"], args.check_draft), expected)
             with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
                 futures = [pool.submit(download, record, assets[record["name"]] if args.check_draft else None) for record in expected["assets"]]
                 result["downloads"] = [future.result() for future in futures]
-            catalog_asset = assets["catalog-v0.1.1.json"]
-            if args.check_draft:
-                frozen = json.loads(subprocess.check_output(["gh", "api", "repos/" + REPO + "/releases/assets/" + str(catalog_asset["id"]), "-H", "Accept: application/octet-stream"]))
-            else:
-                frozen = anonymous_json(DOWNLOAD + TAG + "/catalog-v0.1.1.json")
-            validate_catalog_projection(frozen, catalog)
-            result.update(release_id=release["id"], draft=release["draft"], release_url=release["html_url"], notes_sha256=expected["notes_sha256"], public_catalog_projection_only=True)
+            result.update(release_id=release["id"], draft=release["draft"], release_url=release["html_url"], notes_sha256=expected["notes_sha256"], public_catalog_matches_installer=True, release_checksums_match_assets=True)
         if args.check_rollback:
             result["rollback"] = check_rollback()
         result["passed"] = True
