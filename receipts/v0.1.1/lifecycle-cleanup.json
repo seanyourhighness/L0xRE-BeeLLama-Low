@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "ready": true,
+  "complete": true,
+  "passed": true,
+  "scope": "All six measured lifecycle targets plus approved license-only CPU roundtrips complete",
+  "lifecycle_handoff": {
+    "path": "/home/sean/work/l0xre-src/releases/v0.1.1/assembly/final-archive-lifecycle-HANDOFF.json",
+    "sha256": "2b20bf9b5a2dc90c1b95565a0e933d8a71022707bc494fbf2815e397d07b1015",
+    "bytes": 5259
+  },
+  "all_owned_gpu_and_cpu_workers_finished": true,
+  "physical5090_after_cleanup_quiet": true,
+  "card_and_native_phase_locks_released": true,
+  "new_gpu_jobs_queued_by_huygens": false,
+  "native16_inherited_allocation_execution_pass": false,
+  "original_wsl_quality_loss_and_false_flag_preserved": true,
+  "production3060_actions_performed": false,
+  "no_z840_or_q_archive_actions_pending": true,
+  "next_gpu_work_requires_parent_coordination": true,
+  "release_complete": false,
+  "publication_allowed": false
+}

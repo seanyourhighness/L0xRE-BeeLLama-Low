@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "case": "extra_asset",
+      "rejected": true
+    },
+    {
+      "case": "wrong_asset_digest",
+      "rejected": true
+    },
+    {
+      "case": "changed_notes",
+      "rejected": true
+    },
+    {
+      "case": "wrong_tag",
+      "rejected": true
+    },
+    {
+      "case": "published_unexpectedly",
+      "rejected": true
+    },
+    {
+      "case": "tampered_download",
+      "rejected": true
+    },
+    {
+      "case": "truncated_download",
+      "rejected": true
+    },
+    {
+      "case": "duplicate_asset_record",
+      "rejected": true
+    },
+    {
+      "case": "empty_main_file_manifest",
+      "rejected": true
+    },
+    {
+      "case": "omitted_critical_main_files",
+      "rejected": true
+    },
+    {
+      "case": "duplicate_main_file_paths",
+      "rejected": true
+    },
+    {
+      "case": "empty_rollback_baseline",
+      "rejected": true
+    }
+  ],
+  "anonymous_request_authentication_header_absent": true
+}

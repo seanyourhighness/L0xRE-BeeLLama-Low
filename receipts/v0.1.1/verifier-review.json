@@ -1,0 +1,13 @@
+{
+  "scope": "Independent bounded read-only verification-tool review, not a fresh GPU certification",
+  "reviewer_thread": "01a18f01-d277-7611-a4b3-99ff533e6241",
+  "verifier_sha256": "2fdb6fb8e52369010075071620e57f81bf13fbe496451d8010ecfa27575b719f",
+  "passed": true,
+  "findings_fixed": [
+    "Reject an empty or incomplete public main file manifest; require critical paths, canonical unique paths and valid hashes.",
+    "Reject duplicate release asset records before converting the list into a dictionary."
+  ],
+  "reported_validation": "In-memory/no-network fixtures: valid16-critical records pass; empty/duplicate/missing/noncanonicalpath/badSHA manifests allREJECTED; rawduplicate12thasset nowREJECTED. Publiclatestcheck onlyin --verify-public branch, correctly anonymous; no private-source downloadassumptions. Exactnotes, assetidentity+actualstreamhash, catalog-only projection, rollbackscope sound.",
+  "limits": "File inventory and documentation were still being assembled during the bounded review; final local/draft checks are recorded separately. Anonymous v0.1.1 publication checks cannot pass before owner publication and PR merge. No GPU, service, GitHub mutation or new fault-injection work.",
+  "additional_rollback_guard_review": "Read-only no-network confirmation: empty baseline, wrong repository, wrong tag, five assets, duplicate replacing one and wrong architecture/platform filename all rejected before network. The correct six passes the guard. Zero-archive rollback pass is excluded."
+}

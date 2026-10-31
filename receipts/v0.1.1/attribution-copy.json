@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "scope": "Eight authentic text copies from the frozen qualified runtime payloads; inherited public license texts preserved",
+  "files": [
+    {
+      "path": "licenses/Escha-runtime/LICENSE",
+      "sha256": "f8345fca166d03a3391600339ea291fa179eb7c2c8ad16b09f9885d39c4402e7"
+    },
+    {
+      "path": "licenses/Escha-runtime/THIRD_PARTY_LICENSES/THIRD_PARTY_NOTICES.md",
+      "sha256": "74c9f7cf63342e048e0ffd04c6addb178bf3586a059a3b653760fd24031d848a"
+    },
+    {
+      "path": "licenses/Escha-runtime/THIRD_PARTY_LICENSES/MIT.txt",
+      "sha256": "103f00253b79eca952b067101b3e9426bf065623fbcf7dfcaeb1f3b591561821"
+    },
+    {
+      "path": "licenses/Escha-runtime/THIRD_PARTY_LICENSES/BSD-3-Clause.txt",
+      "sha256": "91672afe02506f86786739dc784b6b335499ffd4c85067336445d0fc3928b1a2"
+    },
+    {
+      "path": "licenses/Escha-runtime/THIRD_PARTY_LICENSES/exllamav3-LICENSE.txt",
+      "sha256": "82146bab3b716a2cae5fe8065a62c29ffa08bd6e9f5f3f9ce7c73a4fd6592d67"
+    },
+    {
+      "path": "licenses/Escha-runtime/THIRD_PARTY_LICENSES/SGLang-LICENSE.txt",
+      "sha256": "1495e1e757ef4d0925a2350563cf5754bb23c51701a8ec4fb3c5cdcbedae6747"
+    },
+    {
+      "path": "licenses/Escha-runtime/THIRD_PARTY_LICENSES/AQLM-NOTICE.txt",
+      "sha256": "a5399cbcf0ad95cbbfe22911f71be49a5a821659c3be3310ee1a1dc59ac95ffe"
+    },
+    {
+      "path": "licenses/Triton-MIT-LICENSE.txt",
+      "sha256": "92640fb97222fd0a698ff28ce0c3782c172623f8d6c609b557636a80f28fb946"
+    }
+  ]
+}

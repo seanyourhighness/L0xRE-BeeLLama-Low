@@ -1,0 +1,15 @@
+# v0.1.1 source and evidence
+
+Build from the named release asset [L0xRE-v0.1.1-source.tar.gz](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-source.tar.gz). Its SHA256 is `ddd7db47f7f17b884f4e8ab75ad66dd649382f8931b1fb11c5a0ab58c66e99d9`; its exact source commit is `5da9c28f7283815f627931376de96fe9a2a4fb0e`.
+
+The public distribution tag identifies this installer/documentation metadata tree. GitHub's automatic **Source code (zip/tar.gz)** downloads contain the public repository, not the complete runtime source. The named source asset was checked against git archive of the exact source commit during private qualification. This does not claim it matches git archive of the public distribution tag. Private source history has not been pushed into this repository.
+
+The [source-build result](../receipts/v0.1.1/source-build-result.json), [five-stage cache](../receipts/v0.1.1/source-extract-build.json) and [kernel identities](../receipts/v0.1.1/source-kernel-exactness.json) preserve the completed clean extraction build: full host server, 256 CUDA objects, three companions, seven matched kernels and ten PTX kernels. No retained objects were used. These are copied build proofs, not a new compilation.
+
+The [qualification summary](../receipts/v0.1.1/qualification-summary.json), [core gates](../receipts/v0.1.1/gates-core.json), [review summary](../receipts/v0.1.1/REVIEW-SUMMARY.md), [copy provenance](../receipts/v0.1.1/COPY-MANIFEST.json) and [asset expectations](../receipts/v0.1.1/expected-assets.json) distinguish original certification from public distribution verification. Raw metadata contains historical internal paths; the complete referenced raw logs, outputs and qualification tree are not distributed here. Those strings are provenance identifiers, not public repository links.
+
+All eleven release assets remain byte-identical to the qualified private draft. This includes the frozen catalog-v0.1.1.json asset, which retains six private URLs and private workflow fields as historical provenance. **Do not use that asset to install.** The maintained [public install catalog](../install/catalog.json) changes only the six package URLs and removes the eight private workflow fields; model pins, profiles, qualification status, build tags and payload hashes remain unchanged.
+
+Runtime components retain their actual rc6/rc9/rc10 build identities; source16 review policy and provenance changes do not relabel compiled runtime bytes. Windows SM86/SM89 remain build-only. WSL measurements are WSL claims. See [release notes](V011-RELEASE.md) for every accepted exception and limitation. [v0.1 provenance](V01-PROVENANCE.md) remains historical.
+
+Sean takes two go-live steps: publish the public draft and mark it latest, then merge the metadata PR. After both steps, run `python3 tools/verify-public.py --verify-public --check-rollback` to check anonymous downloads, the public main files and retained rollback archives. Publishing first makes the assets available before the live catalog points at them. This staging task does not publish, merge or change services.

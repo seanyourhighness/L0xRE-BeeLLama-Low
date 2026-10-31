@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "packages": {
+    "linux": {
+      "sm86": {
+        "filename": "L0xRE-v0.1-linux-sm86.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-linux-sm86.tar.zst",
+        "sha256": "b84c57c4e8cd121d36074b167b3b321c0c4ff1f0824bd5516f558db22a8751cb",
+        "bytes": 756146057,
+        "status": "certified",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "",
+        "profile": "v0.1: 12GB/128K",
+        "launcher": "tools/universal/v01-launch.py",
+        "launcher_style": "v01",
+        "memory_profiles": [
+          "12gb"
+        ],
+        "requires_projector": true,
+        "projector_model": "vision_v01",
+        "projector_filename": "mmproj-Qwen3.8-27B-Q5_K-MIX.gguf",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": "NVIDIA GeForce RTX 3060",
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 3060"
+        ],
+        "hardware_validation_status": "validated_on_recorded_hardware",
+        "validation_scope": "NativeLinuxRTX3060;12GB/128K",
+        "gpu_selector_adapter": false
+      },
+      "sm89": {
+        "filename": "L0xRE-v0.1-linux-sm89.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-linux-sm89.tar.zst",
+        "sha256": "8e501520b658c761be520edc7e76a344df9314bc1f404c0444ef7cc65cd51ed9",
+        "bytes": 745886425,
+        "status": "certified",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "",
+        "profile": "v0.1: 12GB/128K and16GB/256K",
+        "launcher": "tools/universal/v01-launch.py",
+        "launcher_style": "v01",
+        "memory_profiles": [
+          "12gb",
+          "16gb"
+        ],
+        "requires_projector": true,
+        "projector_model": "vision_v01",
+        "projector_filename": "mmproj-Qwen3.8-27B-Q5_K-MIX.gguf",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": "NVIDIA GeForce RTX 4090",
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 4090"
+        ],
+        "hardware_validation_status": "validated_on_recorded_hardware",
+        "validation_scope": "NativeLinuxRTX4090;12GB/128Kand16GB/256Kenvelopes",
+        "gpu_selector_adapter": false
+      },
+      "sm120": {
+        "filename": "L0xRE-v0.1-linux-sm120.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-linux-sm120.tar.zst",
+        "sha256": "17957354dfd6e130210f97966f85eacae1658e900dc16c791701edf8b7167de8",
+        "bytes": 658157394,
+        "status": "certified",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "",
+        "profile": "v0.1: 12GB/128K and16GB/256K",
+        "launcher": "tools/universal/v01-launch.py",
+        "launcher_style": "v01",
+        "memory_profiles": [
+          "12gb",
+          "16gb"
+        ],
+        "requires_projector": true,
+        "projector_model": "vision_v01",
+        "projector_filename": "mmproj-Qwen3.8-27B-Q5_K-MIX.gguf",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": "NVIDIA GeForce RTX 5090",
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 5090"
+        ],
+        "hardware_validation_status": "validated_on_recorded_hardware",
+        "validation_scope": "WSL2 RTX5090; tested12GB/128K and16GB/256K envelopes; no separatebare-metalLinuxthroughput measurement",
+        "gpu_selector_adapter": false
+      }
+    },
+    "windows": {
+      "sm86": {
+        "filename": "L0xRE-v0.1-windows-sm86.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-windows-sm86.zip",
+        "sha256": "1300fcb3e2f2c737df6b3717cda330451c5d2208415240522e1e6ff6198f52b0",
+        "bytes": 715004772,
+        "status": "build-verified",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "",
+        "profile": "v0.1: 12GB/128K",
+        "launcher": "l0xre.cmd",
+        "launcher_style": "v01",
+        "memory_profiles": [
+          "12gb"
+        ],
+        "requires_projector": true,
+        "projector_model": "vision_v01",
+        "projector_filename": "mmproj-Qwen3.8-27B-Q5_K-MIX.gguf",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": "",
+        "certified_gpu_names": [],
+        "hardware_validation_status": "build-verified, hardware validation in progress",
+        "validation_scope": "Windows sm86: build-verified, hardware validation in progress; no native throughput/quality/VRAM measurement",
+        "gpu_selector_adapter": false
+      },
+      "sm89": {
+        "filename": "L0xRE-v0.1-windows-sm89.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-windows-sm89.zip",
+        "sha256": "137c1f8261f09fc9c6ddc8dda0a5cc7c360489c09d0eb5761d07b470f5a809d4",
+        "bytes": 713796944,
+        "status": "build-verified",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "",
+        "profile": "v0.1: 12GB/128K and16GB/256K",
+        "launcher": "l0xre.cmd",
+        "launcher_style": "v01",
+        "memory_profiles": [
+          "12gb",
+          "16gb"
+        ],
+        "requires_projector": true,
+        "projector_model": "vision_v01",
+        "projector_filename": "mmproj-Qwen3.8-27B-Q5_K-MIX.gguf",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": "",
+        "certified_gpu_names": [],
+        "hardware_validation_status": "build-verified, hardware validation in progress",
+        "validation_scope": "Windows sm89: build-verified, hardware validation in progress; no native throughput/quality/VRAM measurement",
+        "gpu_selector_adapter": false
+      },
+      "sm120": {
+        "filename": "L0xRE-v0.1-windows-sm120.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-windows-sm120.zip",
+        "sha256": "55386da9bd561491fa8324ad13b3995e72d35ee4b55add83945118129a25ea6c",
+        "bytes": 715596204,
+        "status": "certified",
+        "min_memory_mib": 12000,
+        "gpu_name_contains": "",
+        "profile": "v0.1: 12GB/128K and16GB/256K",
+        "launcher": "l0xre.cmd",
+        "launcher_style": "v01",
+        "memory_profiles": [
+          "12gb",
+          "16gb"
+        ],
+        "requires_projector": true,
+        "projector_model": "vision_v01",
+        "projector_filename": "mmproj-Qwen3.8-27B-Q5_K-MIX.gguf",
+        "install_reserve_bytes": 5000000000,
+        "certified_gpu_name_contains": "NVIDIA GeForce RTX 5090",
+        "certified_gpu_names": [
+          "NVIDIA GeForce RTX 5090"
+        ],
+        "hardware_validation_status": "validated_on_recorded_hardware",
+        "validation_scope": "Native Windows RTX5090; tested12GB/128K and16GB/256K envelopes",
+        "gpu_selector_adapter": false
+      }
+    }
+  },
+  "models": {
+    "target": {
+      "filename": "L0xRE-27b-Low.gguf",
+      "bytes": 8619127680,
+      "sha256": "b0849250c633aa93853bf119a877dbdafdd7b1a4ebb672bd6b6a1439906f3543",
+      "url": "https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/L0xRE-27b-Low.gguf"
+    },
+    "draft": {
+      "filename": "Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+      "bytes": 1143006816,
+      "sha256": "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd",
+      "url": "https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/Qwen3.8-27B-DFlash2-Q4_K_M.gguf"
+    },
+    "vision": {
+      "filename": "mmproj-Qwen3.8-27B-Q8_0.gguf",
+      "bytes": 629247008,
+      "sha256": "2e968a6af97ce35d8971890b257b9b7edabf20ad91450501fa53162a19ee33eb",
+      "url": "https://huggingface.co/ggml-org/Qwen3.8-27B-GGUF/resolve/71bc7b627595dc8a91039addd9c791ae548d6747/mmproj-Qwen3.8-27B-Q8_0.gguf"
+    },
+    "vision_v01": {
+      "filename": "mmproj-Qwen3.8-27B-Q5_K-MIX.gguf",
+      "bytes": 347213792,
+      "sha256": "023c9b484ba6c2c22dd64623cfe286dd4a888170e68bfad6745957e4bd045c8f",
+      "url": "https://huggingface.co/HermiHg/Qwen3.8-27B-mmproj-Q5_K-MIX-GGUF/resolve/dbf78ac52891f19cf175abb8813997267adb0e92/mmproj-Qwen3.8-27B-Q5_K-MIX.gguf",
+      "source_repo": "HermiHg/Qwen3.8-27B-mmproj-Q5_K-MIX-GGUF",
+      "source_revision": "dbf78ac52891f19cf175abb8813997267adb0e92",
+      "license": "apache-2.0"
+    }
+  },
+  "hardware_target": {
+    "series": [
+      "RTX 30",
+      "RTX 40",
+      "RTX 50"
+    ],
+    "minimum_vram_mib_per_gpu": 12000
+  },
+  "release": "l0xre-v0.1"
+}

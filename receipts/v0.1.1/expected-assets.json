@@ -1,0 +1,62 @@
+{
+  "repository": "seanyourhighness/L0xRE-BeeLLama-Low",
+  "tag": "l0xre-v0.1.1",
+  "notes_sha256": "9b0fd63cbf85ca1da24b696edfecc81a6d618e6aba33b2d84e445415e4506829",
+  "assets": [
+    {
+      "name": "catalog-v0.1.1.json",
+      "sha256": "90aa7e6d1818b38b141151e466e9b899cb8ed29bf966321ecd183ddbaddf1c95",
+      "bytes": 12547
+    },
+    {
+      "name": "gates-core.json",
+      "sha256": "9e6342f0f88f4527474b4b2c579a287f92a3afdcab79e8e1cb3e51e3d5904594",
+      "bytes": 1086176
+    },
+    {
+      "name": "L0xRE-v0.1.1-linux-sm120.tar.zst",
+      "sha256": "15b731e1dbe5552a0276e8e2f06d2c474ea6ffebbfa6eda59ebbb9c9c717e761",
+      "bytes": 653884998
+    },
+    {
+      "name": "L0xRE-v0.1.1-linux-sm86.tar.zst",
+      "sha256": "dd54ab4a836c2d42f6d1a117d44c5092805a85b6a98d88e82e8e8f1b94b83f77",
+      "bytes": 750603358
+    },
+    {
+      "name": "L0xRE-v0.1.1-linux-sm89.tar.zst",
+      "sha256": "4d1cf8d71f22244d9ccbcb682ea9d4dff2781dbc6c077ef762b061e2ef2398c8",
+      "bytes": 739383060
+    },
+    {
+      "name": "L0xRE-v0.1.1-source.tar.gz",
+      "sha256": "ddd7db47f7f17b884f4e8ab75ad66dd649382f8931b1fb11c5a0ab58c66e99d9",
+      "bytes": 47333371
+    },
+    {
+      "name": "L0xRE-v0.1.1-windows-sm120.zip",
+      "sha256": "7477f49df5f971f09af135d749116bba924b5d33021d234c2b868432a679fc06",
+      "bytes": 703906182
+    },
+    {
+      "name": "L0xRE-v0.1.1-windows-sm86.zip",
+      "sha256": "e8814a2ab93eb5b62f1688db6d58a8e7d1332b5d3809f53b55fe70630101feb3",
+      "bytes": 672411484
+    },
+    {
+      "name": "L0xRE-v0.1.1-windows-sm89.zip",
+      "sha256": "a8d858df6a6348a141ad8fe7f515f77af5bcf3f23f0a88aa522909d5621c863b",
+      "bytes": 670811294
+    },
+    {
+      "name": "MODEL-SHA256SUMS",
+      "sha256": "9ade9729fd1bf75b479dcbe5fe9c048414e950ed29f137414d493f21d52f0538",
+      "bytes": 282
+    },
+    {
+      "name": "SHA256SUMS",
+      "sha256": "2fdb85b2398a9ea2dea222d8650b147800b6406d089e41fe16314dfd6a9cff48",
+      "bytes": 928
+    }
+  ]
+}

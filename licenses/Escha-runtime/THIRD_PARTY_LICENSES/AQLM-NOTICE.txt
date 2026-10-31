@@ -1,0 +1,15 @@
+AQLM — https://github.com/Vahe1994/AQLM
+
+Licensed under the Apache License, Version 2.0.
+Copyright the AQLM authors.
+
+The `escha` runtime's additive-codebook GEMV/HMMA kernels (`escha_aqlm_*`, compiled
+into `escha/_C`) are an independent implementation that follows the AQLM additive
+codebook *numeric format*; they are adapted from the escha runtime's own
+kernels rather than copied from AQLM source. This notice is provided out of an
+abundance of caution.
+
+The full text of the Apache License, Version 2.0 is reproduced in
+`SGLang-LICENSE.txt` in this directory (the license body is identical for every
+Apache-2.0 component in this release; only the per-component copyright line
+differs).

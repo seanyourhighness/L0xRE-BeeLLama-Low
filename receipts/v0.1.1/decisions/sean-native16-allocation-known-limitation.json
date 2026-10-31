@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-31T03:11:55.268677+00:00",
+  "author": "Sean",
+  "approved": true,
+  "decision": "accept-inherited-unreinjected-native16-allocation-known-limitation",
+  "key": "windows/sm120/16gb",
+  "arena_mib": 5120,
+  "context_tokens": 262144,
+  "ubatch": 1024,
+  "no_native5120_pass_claim": true,
+  "no_new_gpu_fault_hook_or_inprocess_test_authorized": true,
+  "existing_native_graph_limitation_unchanged": true,
+  "source": "direct-user-message",
+  "direct_reply_source": "direct-user-message",
+  "direct_reply": "Sean here: accept native Windows SM120 16GB allocation recovery (5120 MiB / 256K / ub1024) as an inherited, un-reinjected known limitation for v0.1.1, explicitly NOT a pass. Keep the Linux/WSL 16GB and native Windows 12GB recovery evidence in the notes. No new fault injection, shim, hook or in-process patching.",
+  "exact_reply": "Sean here: accept native Windows SM120 16GB allocation recovery (5120 MiB / 256K / ub1024) as an inherited, un-reinjected known limitation for v0.1.1, explicitly NOT a pass. Keep the Linux/WSL 16GB and native Windows 12GB recovery evidence in the notes. No new fault injection, shim, hook or in-process patching.",
+  "question_item_id": "[\"request_user_input_async\",\"call_jyv8u1eulL1PjtbsT07Rozn4\",0]",
+  "retain_evidence_in_notes": [
+    "Linux/WSL SM120 16GB recovery receipt355",
+    "native Windows SM120 12GB allocation receipt442 with existing449 graph limitation"
+  ],
+  "proposal": {
+    "path": "releases/v0.1.1/assembly/recovery-win16-owner-ruling-proposal.json",
+    "sha256": "62e4476daffa1fd37ebb25ee46728b7f62b7e25b7fc2b9ae62d6d316c9068725"
+  },
+  "rung_comparison": {
+    "path": "releases/v0.1.1/assembly/native-windows16-v01-rung-comparison.json",
+    "sha256": "bd3a47f6281490aa1b385e2bbd73914a2285f805ff7795fd89228f80f35787ab"
+  },
+  "scope": "This accepts this specific inherited recovery coverage limitation for v0.1.1. It does not establish a native5120 allocation-recovery execution or authorize new tests. All other gates and existing449 graph limitation remain unchanged."
+}

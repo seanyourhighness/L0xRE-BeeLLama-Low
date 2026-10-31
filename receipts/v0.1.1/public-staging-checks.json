@@ -1,0 +1,326 @@
+{
+  "repository": "seanyourhighness/L0xRE-BeeLLama-Low",
+  "tag": "l0xre-v0.1.1",
+  "checked_at": "2026-10-31T06:22:02.654589+00:00",
+  "passed": true,
+  "repository_paths_checked": [
+    {
+      "document": "README.md",
+      "target": "install/README.md"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/V011-RELEASE.md"
+    },
+    {
+      "document": "README.md",
+      "target": "receipts/v0.1.1/REVIEW-SUMMARY.md"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/V011-PROVENANCE.md"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/V011-ROLLBACK.md"
+    },
+    {
+      "document": "README.md",
+      "target": "MANIFEST.json"
+    },
+    {
+      "document": "README.md",
+      "target": "install/catalog.json"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/V01-RELEASE.md"
+    },
+    {
+      "document": "README.md",
+      "target": "receipts/v0.1.1/qualification-summary.json"
+    },
+    {
+      "document": "README.md",
+      "target": "docs/V011-RELEASE.md"
+    },
+    {
+      "document": "README.md",
+      "target": "receipts/v0.1.1/REVIEW-SUMMARY.md"
+    },
+    {
+      "document": "README.md",
+      "target": "MODEL-SHA256SUMS"
+    },
+    {
+      "document": "README.md",
+      "target": "THIRD-PARTY-NOTICES.md"
+    },
+    {
+      "document": "README.md",
+      "target": "licenses/"
+    },
+    {
+      "document": "install/README.md",
+      "target": "catalog.json"
+    },
+    {
+      "document": "install/README.md",
+      "target": "../README.md"
+    },
+    {
+      "document": "install/README.md",
+      "target": "../docs/V011-ROLLBACK.md"
+    },
+    {
+      "document": "install/README.md",
+      "target": "../docs/V011-RELEASE.md"
+    },
+    {
+      "document": "install/README.md",
+      "target": "../docs/V011-PROVENANCE.md"
+    },
+    {
+      "document": "install/README.md",
+      "target": "../MODEL-SHA256SUMS"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "V011-RELEASE.md"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "V011-PROVENANCE.md"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "V011-ROLLBACK.md"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "../receipts/v0.1.1/REVIEW-SUMMARY.md"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "../MANIFEST.json"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "../install/catalog.json"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "V01-RELEASE.md"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "V01-PROVENANCE.md"
+    },
+    {
+      "document": "docs/README.md",
+      "target": "V01-ROLLBACK.md"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/source-build-result.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/source-extract-build.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/source-kernel-exactness.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/qualification-summary.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/gates-core.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/REVIEW-SUMMARY.md"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/COPY-MANIFEST.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../receipts/v0.1.1/expected-assets.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "../install/catalog.json"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "V011-RELEASE.md"
+    },
+    {
+      "document": "docs/V011-PROVENANCE.md",
+      "target": "V01-PROVENANCE.md"
+    },
+    {
+      "document": "docs/V011-ROLLBACK.md",
+      "target": "../install/README.md"
+    },
+    {
+      "document": "docs/V011-ROLLBACK.md",
+      "target": "../receipts/v0.1.1/rollback-catalog-v0.1.json"
+    },
+    {
+      "document": "docs/V011-ROLLBACK.md",
+      "target": "../receipts/v0.1.1/rollback-v0.1-assets.json"
+    },
+    {
+      "document": "docs/V011-ROLLBACK.md",
+      "target": "V01-ROLLBACK.md"
+    },
+    {
+      "document": "docs/V011-ROLLBACK.md",
+      "target": "../receipts/v0.1.1/lifecycle-handoff.json"
+    },
+    {
+      "document": "docs/V011-ROLLBACK.md",
+      "target": "../receipts/v0.1.1/REVIEW-SUMMARY.md"
+    }
+  ],
+  "downloads": [
+    {
+      "name": "catalog-v0.1.1.json",
+      "bytes": 12547,
+      "sha256": "90aa7e6d1818b38b141151e466e9b899cb8ed29bf966321ecd183ddbaddf1c95",
+      "passed": true,
+      "authentication": "draft asset via gh"
+    },
+    {
+      "name": "gates-core.json",
+      "bytes": 1086176,
+      "sha256": "9e6342f0f88f4527474b4b2c579a287f92a3afdcab79e8e1cb3e51e3d5904594",
+      "passed": true,
+      "authentication": "draft asset via gh"
+    },
+    {
+      "name": "L0xRE-v0.1.1-linux-sm120.tar.zst",
+      "bytes": 653884998,
+      "sha256": "15b731e1dbe5552a0276e8e2f06d2c474ea6ffebbfa6eda59ebbb9c9c717e761",
+      "passed": true,
+      "authentication": "draft asset via gh"
+    },
+    {
+      "name": "L0xRE-v0.1.1-linux-sm86.tar.zst",
+      "bytes": 750603358,
+      "sha256": "dd54ab4a836c2d42f6d1a117d44c5092805a85b6a98d88e82e8e8f1b94b83f77",
+      "passed": true,
+      "authentication": "draft asset via gh"
+    },
+    {
+      "name": "L0xRE-v0.1.1-linux-sm89.tar.zst",
+      "bytes": 739383060,
+      "sha256": "4d1cf8d71f22244d9ccbcb682ea9d4dff2781dbc6c077ef762b061e2ef2398c8",
+      "passed": true,
+      "authentication": "draft asset via gh"
+    },
+    {
+      "name": "L0xRE-v0.1.1-source.tar.gz",
+      "bytes": 47333371,
+      "sha256": "ddd7db47f7f17b884f4e8ab75ad66dd649382f8931b1fb11c5a0ab58c66e99d9",
+      "passed": true,
+      "authentication": "draft asset via gh"
+    },
+    {
+      "name": "L0xRE-v0.1.1-windows-sm120.zip",
+      "bytes": 703906182,
+      "sha256": "7477f49df5f971f09af135d749116bba924b5d33021d234c2b868432a679fc06",
+      "passed": true,
+      "authentication": "draft asset via gh"
+    },
+    {
+      "name": "L0xRE-v0.1.1-windows-sm86.zip",
+      "bytes": 672411484,
+      "sha256": "e8814a2ab93eb5b62f1688db6d58a8e7d1332b5d3809f53b55fe70630101feb3",
+      "passed": true,
+      "authentication": "draft asset via gh"
+    },
+    {
+      "name": "L0xRE-v0.1.1-windows-sm89.zip",
+      "bytes": 670811294,
+      "sha256": "a8d858df6a6348a141ad8fe7f515f77af5bcf3f23f0a88aa522909d5621c863b",
+      "passed": true,
+      "authentication": "draft asset via gh"
+    },
+    {
+      "name": "MODEL-SHA256SUMS",
+      "bytes": 282,
+      "sha256": "9ade9729fd1bf75b479dcbe5fe9c048414e950ed29f137414d493f21d52f0538",
+      "passed": true,
+      "authentication": "draft asset via gh"
+    },
+    {
+      "name": "SHA256SUMS",
+      "bytes": 928,
+      "sha256": "2fdb85b2398a9ea2dea222d8650b147800b6406d089e41fe16314dfd6a9cff48",
+      "passed": true,
+      "authentication": "draft asset via gh"
+    }
+  ],
+  "release_id": 429753062,
+  "draft": true,
+  "release_url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/untagged-8fb08723dd2b5850ea9e",
+  "notes_sha256": "9b0fd63cbf85ca1da24b696edfecc81a6d618e6aba33b2d84e445415e4506829",
+  "public_catalog_projection_only": true,
+  "rollback": {
+    "passed": true,
+    "previous_release": "l0xre-v0.1",
+    "assets_unchanged": [
+      {
+        "name": "L0xRE-v0.1-linux-sm120.tar.zst",
+        "bytes": 658157394,
+        "sha256": "17957354dfd6e130210f97966f85eacae1658e900dc16c791701edf8b7167de8",
+        "passed": true,
+        "authentication": "none"
+      },
+      {
+        "name": "L0xRE-v0.1-linux-sm86.tar.zst",
+        "bytes": 756146057,
+        "sha256": "b84c57c4e8cd121d36074b167b3b321c0c4ff1f0824bd5516f558db22a8751cb",
+        "passed": true,
+        "authentication": "none"
+      },
+      {
+        "name": "L0xRE-v0.1-linux-sm89.tar.zst",
+        "bytes": 745886425,
+        "sha256": "8e501520b658c761be520edc7e76a344df9314bc1f404c0444ef7cc65cd51ed9",
+        "passed": true,
+        "authentication": "none"
+      },
+      {
+        "name": "L0xRE-v0.1-windows-sm120.zip",
+        "bytes": 715596204,
+        "sha256": "55386da9bd561491fa8324ad13b3995e72d35ee4b55add83945118129a25ea6c",
+        "passed": true,
+        "authentication": "none"
+      },
+      {
+        "name": "L0xRE-v0.1-windows-sm86.zip",
+        "bytes": 715004772,
+        "sha256": "1300fcb3e2f2c737df6b3717cda330451c5d2208415240522e1e6ff6198f52b0",
+        "passed": true,
+        "authentication": "none"
+      },
+      {
+        "name": "L0xRE-v0.1-windows-sm89.zip",
+        "bytes": 713796944,
+        "sha256": "137c1f8261f09fc9c6ddc8dda0a5cc7c360489c09d0eb5761d07b470f5a809d4",
+        "passed": true,
+        "authentication": "none"
+      }
+    ],
+    "installer_offline_suite": "Downloading model.gguf (0.00 GB)\nDownloading model.gguf (0.00 GB)\nReusing verified model.gguf\n{\n  \"gpu\": {\n    \"index\": 0,\n    \"uuid\": \"GPU-fixture\",\n    \"name\": \"NVIDIA GeForce RTX 3060\",\n    \"arch\": \"sm86\",\n    \"memory_mib\": 12288\n  },\n  \"package\": {\n    \"filename\": \"L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst\",\n    \"url\": \"https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/beellama-v0.4.7-r6/L0xRE-BeeLLama-Low-R6-sm86-linux.tar.zst\",\n    \"sha256\": \"6d69be5b0e6dcb85be9b08767ffff034a99439658bdc8bac856a545697518781\",\n    \"bytes\": 724015593,\n    \"status\": \"certified\",\n    \"min_memory_mib\": 12000,\n    \"gpu_name_contains\": \"RTX 30\",\n    \"profile\": \"80K / KVarN4/4 / DFlash2 N7 / medium reasoning\",\n    \"launcher\": \"tools/universal/r6-launch.py\",\n    \"launcher_style\": \"r6\",\n    \"install_reserve_bytes\": 5000000000,\n    \"certified_gpu_name_contains\": \"RTX 3060\",\n    \"certified_gpu_names\": [\n      \"NVIDIA GeForce RTX 3060\"\n    ]\n  },\n  \"platform\": \"linux\",\n  \"memory_profile\": \"12gb\",\n  \"launch_profile\": \"r6\",\n  \"hardware_qualified_for_gpu\": true,\n  \"install_dir\": \"/tmp/tmp1fqi0rx3\",\n  \"models_dir\": \"/tmp/tmp1fqi0rx3/models elsewhere\",\n  \"vision\": true,\n  \"port\": 8191\n}\nVerified 1 package files\nPrevious runtime: /tmp/tmp1fqi0rx3/old\nVerified 1 package files\nPrevious runtime: /tmp/tmp1fqi0rx3/old\nGPU: NVIDIA GeForce RTX 3060 / sm86\nPackage: certified\nProfile: 80K / KVarN4/4 / DFlash2 N7 / medium reasoning\nInstall: /tmp/l0xre dual 'nf8nf3qb/installation\nModels: /tmp/l0xre dual 'nf8nf3qb/models\nCertified on selected GPU: False\nDual GPU: EXPERIMENTAL / UNTESTED / UNCERTIFIED; performance parity is unmeasured.\nVerified 3 package files\nReusing verified dual.tar.zst\nVerified 1 package files\nReusing verified L0xRE-27b-Low.gguf\nReusing verified Qwen3.8-27B-DFlash2-Q4_K_M.gguf\nSetup complete. Start: '/tmp/l0xre dual '\"'\"'nf8nf3qb/installation/start.sh'\nCheck the launcher: '/tmp/l0xre dual '\"'\"'nf8nf3qb/installation/start.sh' --dry-run\nAPI: http://127.0.0.1:8080/v1\nGPU: NVIDIA GeForce RTX 3060 / sm86\nPackage: certified\nProfile: 80K / KVarN4/4 / DFlash2 N7 / medium reasoning\nInstall: /tmp/l0xre dual 'nf8nf3qb/installation\nModels: /tmp/l0xre dual 'nf8nf3qb/models\nCertified on selected GPU: False\nDual GPU: EXPERIMENTAL / UNTESTED / UNCERTIFIED; performance parity is unmeasured.\nVerified 3 package files\nReusing verified dual.tar.zst\nVerified 1 package files\nReusing verified L0xRE-27b-Low.gguf\nReusing verified Qwen3.8-27B-DFlash2-Q4_K_M.gguf\nSetup complete. Start: '/tmp/l0xre dual '\"'\"'nf8nf3qb/installation/start.sh'\nCheck the launcher: '/tmp/l0xre dual '\"'\"'nf8nf3qb/installation/start.sh' --dry-run\nAPI: http://127.0.0.1:8080/v1\nGPU: NVIDIA GeForce RTX 3060 / sm86\nPackage: certified\nProfile: 80K / KVarN4/4 / DFlash2 N7 / medium reasoning\nInstall: /tmp/l0xre fixtures 'hujhq3ro/installation\nModels: /tmp/l0xre fixtures 'hujhq3ro/models with spaces '\nCertified on selected GPU: True\nVerified 1 package files\nReusing verified L0xRE-27b-Low.gguf\nReusing verified Qwen3.8-27B-DFlash2-Q4_K_M.gguf\nReusing verified mmproj-Qwen3.8-27B-Q8_0.gguf\nSetup complete. Start: '/tmp/l0xre fixtures '\"'\"'hujhq3ro/installation/start.sh'\nCheck the launcher: '/tmp/l0xre fixtures '\"'\"'hujhq3ro/installation/start.sh' --dry-run\nAPI: http://127.0.0.1:8190/v1\nGPU: NVIDIA GeForce RTX 3060 / sm86\nPackage: certified\nProfile: 80K / KVarN4/4 / DFlash2 N7 / medium reasoning\nInstall: /tmp/l0xre fixtures 'hujhq3ro/installation\nModels: /tmp/l0xre fixtures 'hujhq3ro/models with spaces '\nCertified on selected GPU: True\nVerified 1 package files\nReusing verified L0xRE-27b-Low.gguf\nReusing verified Qwen3.8-27B-DFlash2-Q4_K_M.gguf\nReusing verified mmproj-Qwen3.8-27B-Q8_0.gguf\nSetup complete. Start: '/tmp/l0xre fixtures '\"'\"'hujhq3ro/installation/start.sh'\nCheck the launcher: '/tmp/l0xre fixtures '\"'\"'hujhq3ro/installation/start.sh' --dry-run\nAPI: http://127.0.0.1:8190/v1\nGPU: NVIDIA GeForce RTX 3060 / sm86\nPackage: certified\nProfile: 80K / KVarN4/4 / DFlash2 N7 / medium reasoning\nInstall: /tmp/l0xre fixtures 'hujhq3ro/installation\nModels: /tmp/l0xre fixtures 'hujhq3ro/models with spaces '\nCertified on selected GPU: True\n{\n  \"gpu\": {\n    \"index\": 0,\n    \"uuid\": \"GPU-fixture\",\n    \"name\": \"NVIDIA GeForce RTX 3060\",\n    \"arch\": \"sm86\",\n    \"memory_mib\": 12288\n  },\n  \"package\": {\n    \"filename\": \"L0xRE-v0.1.1-linux-sm86.tar.zst\",\n    \"url\": \"https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-linux-sm86.tar.zst\",\n    \"sha256\": \"dd54ab4a836c2d42f6d1a117d44c5092805a85b6a98d88e82e8e8f1b94b83f77\",\n    \"bytes\": 750603358,\n    \"status\": \"certified\",\n    \"min_memory_mib\": 12000,\n    \"gpu_name_contains\": \"\",\n    \"profile\": \"v0.1.1: 12GB/128K\",\n    \"launcher\": \"tools/universal/v01-launch.py\",\n    \"launcher_style\": \"v01\",\n    \"memory_profiles\": [\n      \"12gb\"\n    ],\n    \"requires_projector\": true,\n    \"projector_model\": \"vision_v01\",\n    \"projector_filename\": \"mmproj-Qwen3.8-27B-Q5_K-MIX.gguf\",\n    \"install_reserve_bytes\": 5000000000,\n    \"certified_gpu_name_contains\": \"NVIDIA GeForce RTX 3060\",\n    \"certified_gpu_names\": [\n      \"NVIDIA GeForce RTX 3060\"\n    ],\n    \"hardware_validation_status\": \"validated_on_recorded_hardware\",\n    \"validation_scope\": \"NativeLinuxRTX3060;12GB/128K\",\n    \"gpu_selector_adapter\": false,\n    \"artifact_build_tag\": \"l0xre-v0.1.1-rc6\",\n    \"artifact_build_commit\": \"fa9548f532e0d2cea91385e641a857cd28eb8227\",\n    \"manifest_sha256\": \"cd2a16cbce4a7a442d49f99a96c7222db2c6de115ed360ca9c41ac25e6717658\"\n  },\n  \"platform\": \"linux\",\n  \"memory_profile\": \"12gb\",\n  \"launch_profile\": \"r6\",\n  \"hardware_qualified_for_gpu\": true,\n  \"install_dir\": \"/tmp/tmp0r5l25wg/not-created\",\n  \"models_dir\": \"/tmp/tmp0r5l25wg/not-created/models\",\n  \"vision\": true,\n  \"port\": 8080\n}\n.........................\n----------------------------------------------------------------------\nRan 25 tests in 0.198s\n\nOK\n",
+    "scope": "Published archive preservation and offline installer rollback logic; no live service or GPU is changed. Actual GPU startup/rollback evidence remains in the certification receipts."
+  }
+}

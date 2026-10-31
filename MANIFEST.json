@@ -1,84 +1,8 @@
 {
-  "schema_version": 2,
-  "release": "l0xre-v0.1",
-  "date": "2026-10-28",
+  "schema_version": 1,
+  "release": "l0xre-v0.1.1",
   "upstream_runtime": "BeeLLaMA v0.4.7 derived",
   "catalog": "install/catalog.json",
-  "source_and_evidence": "GitHub release assets listed below",
-  "assets": [
-    {
-      "filename": "L0xRE-v0.1-evidence.tar.zst",
-      "sha256": "ab330a75281adda9e9efadfcb6ba808d54a858370f11d175a51353d571c905d2",
-      "bytes": 217465,
-      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-evidence.tar.zst"
-    },
-    {
-      "filename": "L0xRE-v0.1-linux-sm120.tar.zst",
-      "sha256": "17957354dfd6e130210f97966f85eacae1658e900dc16c791701edf8b7167de8",
-      "bytes": 658157394,
-      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-linux-sm120.tar.zst"
-    },
-    {
-      "filename": "L0xRE-v0.1-linux-sm86.tar.zst",
-      "sha256": "b84c57c4e8cd121d36074b167b3b321c0c4ff1f0824bd5516f558db22a8751cb",
-      "bytes": 756146057,
-      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-linux-sm86.tar.zst"
-    },
-    {
-      "filename": "L0xRE-v0.1-linux-sm89.tar.zst",
-      "sha256": "8e501520b658c761be520edc7e76a344df9314bc1f404c0444ef7cc65cd51ed9",
-      "bytes": 745886425,
-      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-linux-sm89.tar.zst"
-    },
-    {
-      "filename": "L0xRE-v0.1-source.tar.zst",
-      "sha256": "d5dc41978af181c20947e6a5dfefd22584e347b5909f33e441573c16912b99e4",
-      "bytes": 36833706,
-      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-source.tar.zst"
-    },
-    {
-      "filename": "L0xRE-v0.1-windows-sm120.zip",
-      "sha256": "55386da9bd561491fa8324ad13b3995e72d35ee4b55add83945118129a25ea6c",
-      "bytes": 715596204,
-      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-windows-sm120.zip"
-    },
-    {
-      "filename": "L0xRE-v0.1-windows-sm86.zip",
-      "sha256": "1300fcb3e2f2c737df6b3717cda330451c5d2208415240522e1e6ff6198f52b0",
-      "bytes": 715004772,
-      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-windows-sm86.zip"
-    },
-    {
-      "filename": "L0xRE-v0.1-windows-sm89.zip",
-      "sha256": "137c1f8261f09fc9c6ddc8dda0a5cc7c360489c09d0eb5761d07b470f5a809d4",
-      "bytes": 713796944,
-      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/L0xRE-v0.1-windows-sm89.zip"
-    },
-    {
-      "filename": "catalog.json",
-      "sha256": "b6f045c0e8637fd774996b1f17b7d15b0d468abbe5e6950a6fc50e3e95649894",
-      "bytes": 8647,
-      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/catalog.json"
-    },
-    {
-      "filename": "MODEL-SHA256SUMS",
-      "sha256": "9ade9729fd1bf75b479dcbe5fe9c048414e950ed29f137414d493f21d52f0538",
-      "bytes": 282,
-      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/MODEL-SHA256SUMS"
-    },
-    {
-      "filename": "closing-audit.json",
-      "sha256": "0ece5a8efd9d85810004c1ded1cbfcccbf5f2c7e5e510f39b474f5825339ed03",
-      "bytes": 20544,
-      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/closing-audit.json"
-    },
-    {
-      "filename": "closing-audit.json.sha256",
-      "sha256": "234d2f3b17a5b34a6ac3a76bf376f7cb74f59ddaf8190d3e81dbe1a02e48ee84",
-      "bytes": 85,
-      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1/closing-audit.json.sha256"
-    }
-  ],
   "models": {
     "target": {
       "filename": "L0xRE-27b-Low.gguf",
@@ -108,234 +32,207 @@
       "license": "apache-2.0"
     }
   },
+  "assets": [
+    {
+      "filename": "L0xRE-v0.1.1-linux-sm120.tar.zst",
+      "sha256": "15b731e1dbe5552a0276e8e2f06d2c474ea6ffebbfa6eda59ebbb9c9c717e761",
+      "bytes": 653884998,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-linux-sm120.tar.zst"
+    },
+    {
+      "filename": "L0xRE-v0.1.1-linux-sm86.tar.zst",
+      "sha256": "dd54ab4a836c2d42f6d1a117d44c5092805a85b6a98d88e82e8e8f1b94b83f77",
+      "bytes": 750603358,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-linux-sm86.tar.zst"
+    },
+    {
+      "filename": "L0xRE-v0.1.1-linux-sm89.tar.zst",
+      "sha256": "4d1cf8d71f22244d9ccbcb682ea9d4dff2781dbc6c077ef762b061e2ef2398c8",
+      "bytes": 739383060,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-linux-sm89.tar.zst"
+    },
+    {
+      "filename": "L0xRE-v0.1.1-windows-sm120.zip",
+      "sha256": "7477f49df5f971f09af135d749116bba924b5d33021d234c2b868432a679fc06",
+      "bytes": 703906182,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-windows-sm120.zip"
+    },
+    {
+      "filename": "L0xRE-v0.1.1-windows-sm86.zip",
+      "sha256": "e8814a2ab93eb5b62f1688db6d58a8e7d1332b5d3809f53b55fe70630101feb3",
+      "bytes": 672411484,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-windows-sm86.zip"
+    },
+    {
+      "filename": "L0xRE-v0.1.1-windows-sm89.zip",
+      "sha256": "a8d858df6a6348a141ad8fe7f515f77af5bcf3f23f0a88aa522909d5621c863b",
+      "bytes": 670811294,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-windows-sm89.zip"
+    },
+    {
+      "filename": "L0xRE-v0.1.1-source.tar.gz",
+      "sha256": "ddd7db47f7f17b884f4e8ab75ad66dd649382f8931b1fb11c5a0ab58c66e99d9",
+      "bytes": 47333371,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-source.tar.gz"
+    },
+    {
+      "filename": "MODEL-SHA256SUMS",
+      "sha256": "9ade9729fd1bf75b479dcbe5fe9c048414e950ed29f137414d493f21d52f0538",
+      "bytes": 282,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/MODEL-SHA256SUMS"
+    },
+    {
+      "filename": "catalog-v0.1.1.json",
+      "sha256": "90aa7e6d1818b38b141151e466e9b899cb8ed29bf966321ecd183ddbaddf1c95",
+      "bytes": 12547,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/catalog-v0.1.1.json"
+    },
+    {
+      "filename": "gates-core.json",
+      "sha256": "9e6342f0f88f4527474b4b2c579a287f92a3afdcab79e8e1cb3e51e3d5904594",
+      "bytes": 1086176,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/gates-core.json"
+    },
+    {
+      "filename": "SHA256SUMS",
+      "sha256": "2fdb85b2398a9ea2dea222d8650b147800b6406d089e41fe16314dfd6a9cff48",
+      "bytes": 928,
+      "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/SHA256SUMS"
+    }
+  ],
+  "source": {
+    "filename": "L0xRE-v0.1.1-source.tar.gz",
+    "sha256": "ddd7db47f7f17b884f4e8ab75ad66dd649382f8931b1fb11c5a0ab58c66e99d9",
+    "source_commit": "5da9c28f7283815f627931376de96fe9a2a4fb0e",
+    "private_review_tag": "l0xre-v0.1.1-rc16",
+    "source_build_result": "receipts/v0.1.1/source-build-result.json",
+    "fresh_clean_extract_stages_passed": 5,
+    "fresh_cuda_objects": 256,
+    "exact_kernel_outputs": 17,
+    "no_retained_objects": true
+  },
+  "distribution": {
+    "repository": "seanyourhighness/L0xRE-BeeLLama-Low",
+    "tag": "l0xre-v0.1.1",
+    "tag_role": "Public distribution metadata tree, distinct from exact source archive commit",
+    "public_source_history_pushed": false,
+    "go_live_order": [
+      "Owner publishes public draft",
+      "Owner merges metadata PR only after public asset verification"
+    ],
+    "agent_may_publish": false,
+    "agent_may_merge": false
+  },
   "runtime_qualification": [
     {
-      "complete": true,
-      "sealed": true,
-      "filename": "L0xRE-v0.1-linux-sm86.tar.zst",
-      "archive": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/release-final-480/assets/L0xRE-v0.1-linux-sm86.tar.zst",
-      "sha256": "b84c57c4e8cd121d36074b167b3b321c0c4ff1f0824bd5516f558db22a8751cb",
-      "bytes": 756146057,
-      "package": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/release-final-480/L0xRE-v0.1-linux-sm86",
-      "architecture": "sm86",
-      "platform": "linux",
-      "qualified": true,
-      "validation_scope": "NativeLinuxRTX3060;12GB/128K",
-      "numerical_files_unchanged": true,
-      "manifest_sha256": "05ec68e340b032b9a9b644c505e4c5586e33f51bae4c98fcd13873ba3cee0686",
-      "source_manifest_sha256": "1320b73f5c3ac84ed89ff060adaf344f3f733300f679a8b445a672587d90c8b8",
-      "prevalidation": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm86/clean-install-468/independent-review472.json",
-      "final_extraction_startup_pending": false,
-      "published": true,
-      "documentation_only_repack": {
-        "previous_archive_sha256": "e554646b155bc6e059e380bb3cfd03311dba2b1745f65d21479449f68b8e5362",
-        "changed_payload_file": "docs/V01-RELEASE.md",
-        "computed_metadata_updated": [
-          "V0.1-MANIFEST.json",
-          "ARCHIVE-FILES.json",
-          "SHA256SUMS"
-        ],
-        "all_executables_helpers_profiles_references_models_libraries_unchanged": true,
-        "technical_files_digest": "077e2bf745093a4f3728006bcfb059082afbe4e4a5544d9a94df041908936788",
-        "technical_files": 191
-      },
-      "final_archive_checks_complete": true,
-      "native_hardware_validation_pending": false
+      "filename": "L0xRE-v0.1.1-linux-sm120.tar.zst",
+      "sha256": "15b731e1dbe5552a0276e8e2f06d2c474ea6ffebbfa6eda59ebbb9c9c717e761",
+      "manifest_sha256": "db9b7ff59829193f099a92c2707126317de28aa6769e644c5a080410304e1064",
+      "platforms": [
+        "wsl/sm120/12gb",
+        "wsl/sm120/16gb"
+      ],
+      "hardware_qualified": true,
+      "build_tag": "l0xre-v0.1.1-rc6",
+      "build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227"
     },
     {
-      "complete": true,
-      "sealed": true,
-      "filename": "L0xRE-v0.1-linux-sm89.tar.zst",
-      "archive": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/release-final-480/assets/L0xRE-v0.1-linux-sm89.tar.zst",
-      "sha256": "8e501520b658c761be520edc7e76a344df9314bc1f404c0444ef7cc65cd51ed9",
-      "bytes": 745886425,
-      "package": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/release-final-480/L0xRE-v0.1-linux-sm89",
-      "architecture": "sm89",
-      "platform": "linux",
-      "qualified": true,
-      "validation_scope": "NativeLinuxRTX4090;12GB/128Kand16GB/256Kenvelopes",
-      "numerical_files_unchanged": true,
-      "manifest_sha256": "bf53580bbe9defecaa253993353a9e900206aebdf8726d11130873d0b1a91d17",
-      "source_manifest_sha256": "2e4e25c6773c69ebe1b3a3fd99d28ac4d3633bf97ff8e934b9ebf9df19c2b61b",
-      "prevalidation": "/mnt/ssd/ai-builds/l0xre-r8-speed-recovery-20261023/v01-release-20261025/sm89/clean-install-478/result.json",
-      "final_extraction_startup_pending": false,
-      "published": true,
-      "documentation_only_repack": {
-        "previous_archive_sha256": "d67e111b83187255f0b7f99eb8108aeeff24efcfd9991067a9bd879695676609",
-        "changed_payload_file": "docs/V01-RELEASE.md",
-        "computed_metadata_updated": [
-          "V0.1-MANIFEST.json",
-          "ARCHIVE-FILES.json",
-          "SHA256SUMS"
-        ],
-        "all_executables_helpers_profiles_references_models_libraries_unchanged": true,
-        "technical_files_digest": "f38bc886ad4ccb4eeb760672aac002b2dc7b9c9275de2044a86c4511c2df1c95",
-        "technical_files": 119
-      },
-      "final_archive_checks_complete": true,
-      "native_hardware_validation_pending": false
+      "filename": "L0xRE-v0.1.1-linux-sm86.tar.zst",
+      "sha256": "dd54ab4a836c2d42f6d1a117d44c5092805a85b6a98d88e82e8e8f1b94b83f77",
+      "manifest_sha256": "cd2a16cbce4a7a442d49f99a96c7222db2c6de115ed360ca9c41ac25e6717658",
+      "platforms": [
+        "linux/sm86/12gb"
+      ],
+      "hardware_qualified": true,
+      "build_tag": "l0xre-v0.1.1-rc6",
+      "build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227"
     },
     {
-      "complete": true,
-      "sealed": true,
-      "filename": "L0xRE-v0.1-linux-sm120.tar.zst",
-      "archive": "/home/sean/work/l0xre-v01-release-20261028/assets/L0xRE-v0.1-linux-sm120.tar.zst",
-      "sha256": "17957354dfd6e130210f97966f85eacae1658e900dc16c791701edf8b7167de8",
-      "bytes": 658157394,
-      "package": "/home/sean/work/l0xre-v01-qualification-20261025/release-final-482/L0xRE-v0.1-linux-sm120",
-      "architecture": "sm120",
-      "platform": "linux",
-      "qualified": true,
-      "validation_scope": "WSL2 RTX5090; tested12GB/128K and16GB/256K envelopes; no separatebare-metalLinuxthroughput measurement",
-      "numerical_files_unchanged": true,
-      "manifest_sha256": "b2eb59c060b1a3066121b25a0fd807406f1ee918ed0e48ea61523bc707232296",
-      "source_manifest_sha256": "75056f86451d5110ac2a93edb5b5dd705fbfbbc466935b78fd834b5632a024d1",
-      "prevalidation": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish472/wsl-sm120-review.json",
-      "final_extraction_startup_pending": false,
-      "published": true,
-      "documentation_only_repack": {
-        "previous_archive_sha256": "ddb47588e11c5d7354bc5857a469a777692c0aaac244fd639d1b3f881c6302a6",
-        "changed_payload_file": "docs/V01-RELEASE.md",
-        "computed_metadata_updated": [
-          "V0.1-MANIFEST.json",
-          "ARCHIVE-FILES.json",
-          "SHA256SUMS"
-        ],
-        "all_executables_helpers_profiles_references_models_libraries_unchanged": true,
-        "technical_files_digest": "ef5667cae53261b8859ba01da4e89534d1c562e4e4f561dfac21c6f6bf91d209",
-        "technical_files": 117
-      },
-      "final_archive_checks_complete": true,
-      "native_hardware_validation_pending": false
+      "filename": "L0xRE-v0.1.1-linux-sm89.tar.zst",
+      "sha256": "4d1cf8d71f22244d9ccbcb682ea9d4dff2781dbc6c077ef762b061e2ef2398c8",
+      "manifest_sha256": "cda0f179dd1f3c11cbfc10a72f4c0da1aedf8394cbc3f5310258a4eaacc549b0",
+      "platforms": [
+        "linux/sm89/12gb",
+        "linux/sm89/16gb"
+      ],
+      "hardware_qualified": true,
+      "build_tag": "l0xre-v0.1.1-rc6",
+      "build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227"
     },
     {
-      "complete": true,
-      "sealed": true,
-      "filename": "L0xRE-v0.1-windows-sm86.zip",
-      "archive": "/home/sean/work/l0xre-v01-release-20261028/assets/L0xRE-v0.1-windows-sm86.zip",
-      "sha256": "1300fcb3e2f2c737df6b3717cda330451c5d2208415240522e1e6ff6198f52b0",
-      "bytes": 715004772,
-      "package": "/mnt/d/l0xre-shipping-tests-20261027/release-final-480/L0xRE-v0.1-windows-sm86",
-      "architecture": "sm86",
-      "platform": "windows",
-      "qualified": false,
-      "validation_scope": "Windows sm86: build-verified, hardware validation in progress; no native throughput/quality/VRAM measurement",
-      "numerical_files_unchanged": true,
-      "manifest_sha256": "ff5ba5900e722ab8cdaff2879109f6abcef2bb7a489619db8ca8b3931276fb1c",
-      "source_manifest_sha256": "e51ac857e71c94cc616a2239d93cd2335e4dfb0ebb338e8e7f1c68d80bfae762",
-      "prevalidation": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish476/phase2b-result.json",
-      "final_extraction_startup_pending": false,
-      "published": true,
-      "documentation_only_repack": {
-        "previous_archive_sha256": "23e97819ca01dc16776ce3a4b25dd97e1ab0533cedcc280b52f9216cefbacd7a",
-        "changed_payload_file": "docs/V01-RELEASE.md",
-        "computed_metadata_updated": [
-          "V0.1-MANIFEST.json",
-          "ARCHIVE-FILES.json",
-          "SHA256SUMS"
-        ],
-        "all_executables_helpers_profiles_references_models_libraries_unchanged": true,
-        "technical_files_digest": "a4eb5b54b71b7755f9c497d15b53b22745221e39f5cf84a25a808a2016e18678",
-        "technical_files": 155
-      },
-      "final_archive_checks_complete": true,
-      "native_hardware_validation_pending": true
+      "filename": "L0xRE-v0.1.1-windows-sm120.zip",
+      "sha256": "7477f49df5f971f09af135d749116bba924b5d33021d234c2b868432a679fc06",
+      "manifest_sha256": "8190f7169a5a82e84d9065e9b83a62e1b3ed52cdc4013a1d1e84d0d71513fab4",
+      "platforms": [
+        "windows/sm120/12gb",
+        "windows/sm120/16gb"
+      ],
+      "hardware_qualified": true,
+      "build_tag": "l0xre-v0.1.1-rc10",
+      "build_commit": "58289e61ace3bceef95c5498ebfcab1f7e468808"
     },
     {
-      "complete": true,
-      "sealed": true,
-      "filename": "L0xRE-v0.1-windows-sm89.zip",
-      "archive": "/home/sean/work/l0xre-v01-release-20261028/assets/L0xRE-v0.1-windows-sm89.zip",
-      "sha256": "137c1f8261f09fc9c6ddc8dda0a5cc7c360489c09d0eb5761d07b470f5a809d4",
-      "bytes": 713796944,
-      "package": "/mnt/d/l0xre-shipping-tests-20261027/release-final-480/L0xRE-v0.1-windows-sm89",
-      "architecture": "sm89",
-      "platform": "windows",
-      "qualified": false,
-      "validation_scope": "Windows sm89: build-verified, hardware validation in progress; no native throughput/quality/VRAM measurement",
-      "numerical_files_unchanged": true,
-      "manifest_sha256": "ca04c62332363b4b770401d6f2a36b7540e13b09697d9bb6b2b59ec8fe6d35f1",
-      "source_manifest_sha256": "3dcc61289ead33df8f943d55a7fd7d837e87f8bb67c05906f417f3a1af61c01a",
-      "prevalidation": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish476/phase2b-result.json",
-      "final_extraction_startup_pending": false,
-      "published": true,
-      "documentation_only_repack": {
-        "previous_archive_sha256": "ab351edfa9d55a2b239574d6027e6f82b4f2cdd7d3a9622bde942d23a644cf85",
-        "changed_payload_file": "docs/V01-RELEASE.md",
-        "computed_metadata_updated": [
-          "V0.1-MANIFEST.json",
-          "ARCHIVE-FILES.json",
-          "SHA256SUMS"
-        ],
-        "all_executables_helpers_profiles_references_models_libraries_unchanged": true,
-        "technical_files_digest": "fd2481d56631eedb7346113852b39077f755b87965773920d622fcd83eacc0a8",
-        "technical_files": 136
-      },
-      "final_archive_checks_complete": true,
-      "native_hardware_validation_pending": true
+      "filename": "L0xRE-v0.1.1-windows-sm86.zip",
+      "sha256": "e8814a2ab93eb5b62f1688db6d58a8e7d1332b5d3809f53b55fe70630101feb3",
+      "manifest_sha256": "828645f630f85d573352c0d88eab0b7492cc28331454a2f0d73a0e5e804d3369",
+      "platforms": [
+        "windows/sm86/12gb"
+      ],
+      "hardware_qualified": false,
+      "build_tag": "l0xre-v0.1.1-rc6",
+      "build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227"
     },
     {
-      "complete": true,
-      "sealed": true,
-      "filename": "L0xRE-v0.1-windows-sm120.zip",
-      "archive": "/home/sean/work/l0xre-v01-release-20261028/assets/L0xRE-v0.1-windows-sm120.zip",
-      "sha256": "55386da9bd561491fa8324ad13b3995e72d35ee4b55add83945118129a25ea6c",
-      "bytes": 715596204,
-      "package": "/mnt/d/l0xre-shipping-tests-20261027/release-final-480/L0xRE-v0.1-windows-sm120",
-      "architecture": "sm120",
-      "platform": "windows",
-      "qualified": true,
-      "validation_scope": "Native Windows RTX5090; tested12GB/128K and16GB/256K envelopes",
-      "numerical_files_unchanged": true,
-      "manifest_sha256": "47921e4c9c607e815ffd9039e9c2db0b0f384809c339e189a646a46e12b6bdcb",
-      "source_manifest_sha256": "77cc6a11b87eb3eeb508c6d4caa2852ee60eb16e78fb756dfcc83bacaaba1493",
-      "prevalidation": "/home/sean/work/l0xre-v01-qualification-20261025/release-finish464/verified-result.json",
-      "final_extraction_startup_pending": false,
-      "published": true,
-      "documentation_only_repack": {
-        "previous_archive_sha256": "2093ef5cc4eb5ae527029db958b0776a23fdf60d364004f08e66380992df606c",
-        "changed_payload_file": "docs/V01-RELEASE.md",
-        "computed_metadata_updated": [
-          "V0.1-MANIFEST.json",
-          "ARCHIVE-FILES.json",
-          "SHA256SUMS"
-        ],
-        "all_executables_helpers_profiles_references_models_libraries_unchanged": true,
-        "technical_files_digest": "0303f725d269532df7c8e491f6d70e3b03140f76af1b8de85c6e3d2cb9c6f243",
-        "technical_files": 157
-      },
-      "final_archive_checks_complete": true,
-      "native_hardware_validation_pending": false
+      "filename": "L0xRE-v0.1.1-windows-sm89.zip",
+      "sha256": "a8d858df6a6348a141ad8fe7f515f77af5bcf3f23f0a88aa522909d5621c863b",
+      "manifest_sha256": "6d8f3db25e49dcce45fbf9a8db3bf31086bf52cf54f53b4dc5e9c844e5d2c37b",
+      "platforms": [
+        "windows/sm89/12gb",
+        "windows/sm89/16gb"
+      ],
+      "hardware_qualified": false,
+      "build_tag": "l0xre-v0.1.1-rc6",
+      "build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227"
     }
   ],
   "speed_floor": {
     "fail_drop_pct": 2.0,
-    "measured_presets_passed": 9,
-    "baseline_lowered": false,
-    "sean_sm89_decision": "Paired451 narrative-0.63%,code-1.74%; historical17590.89 retained; oldtoday88.84",
-    "report_only_metric": "decode_at_10k only"
+    "gated_metrics": 72,
+    "measured_profiles": 7,
+    "cross_preset_exception": "Only WSL SM12016GB versus12GB short_prefill -2.028086%; direct scoped owner acceptance",
+    "report_only_metric": "decode_at_10k"
   },
   "known_limits": [
-    "WindowsSM86/SM89:build-verified,hardwarevalidationinprogress; no native speed/quality/VRAMclaim",
-    "NativeWindows graph-instantiation recovery not re-injected on2240ub1024; Linux/WSL355covered,allocation442passed",
-    "Memoryenvelopes onlargercards arenot physicalSKUcertification",
-    "HistoricalR7replay,return-to-short,genericcudaMalloc limits retained"
+    "Native Windows graph-instantiation recovery was not re-injected for the selected rung. Actual native allocation recovery covers the twelve-gigabyte OFF profile; the sixteen-gigabyte contract has its separate direct owner-accepted inherited coverage limitation, explicitly not a native allocation recovery PASS. Linux/WSL graph evidence and actual source equivalence are retained.",
+    "The first request after a context change can show lower prefill throughput. The missing per-depth warmup investigation and a runtime fix are deferred.",
+    "Windows Ampere and Ada packages are build-only until matching hardware receipts exist. WSL throughput is measured under WSL; it is not a bare-metal Linux throughput claim.",
+    "The previous source archive omitted the model implementation directory and did not build standalone. Complete source and a clean-extract build are required for this draft.",
+    "Inherited project library origins preserve original sources and recorded recipes. The original Linux chunk-wrapper compiler invocation was not recorded; its retained source mapping and static binary identity are reported separately from newly compiled stages.",
+    "Native Windows SM120 sixteen-gigabyte allocation recovery is an inherited, un-reinjected coverage limitation explicitly accepted by Sean. No native allocation recovery PASS is claimed for that contract; actual Linux/WSL and native smaller-profile evidence and the native graph limitation remain recorded.",
+    "Inherited Windows Ampere and Ada GDN kernels retain exact published bytes, original PTX/source and target-SASS identity audits. They are project-generated retained origins, not newly compiled stages or relabeled vendor artifacts.",
+    "Original full-suite Windows Mirai mismatches are preserved: twelve-gigabyte CLI-24 and CLI-40 and sixteen-gigabyte CLI-39 each passed unchanged v0.1 and failed the candidate. Their separate isolated pass rates and standing-rule classifications do not replace those original outcomes."
   ],
-  "qualification": "receipts/v0.1/qualification-summary.json",
-  "published_download_verification": "receipts/v0.1/closing-audit-finalization.json",
-  "legacy_r6_manifest": "receipts/r6-manifest.json",
+  "qualification": "receipts/v0.1.1/qualification-summary.json",
+  "private_certification_review": "receipts/v0.1.1/REVIEW-SUMMARY.md",
+  "independent_findings": "receipts/v0.1.1/REVIEW-SUMMARY.md",
+  "receipt_provenance": "receipts/v0.1.1/COPY-MANIFEST.json",
   "checksums": {
-    "filename": "SHA256SUMS",
-    "sha256": "a3c78f642a1286cea62a518c65846140941d891d834a9408bac703585993cec5",
-    "scope": "All8archives pluscatalog andmodelchecksums; thechecksumlistingdoesnot hashitself."
+    "asset_listing": "receipts/v0.1.1/SHA256SUMS.assets",
+    "sha256": "2fdb85b2398a9ea2dea222d8650b147800b6406d089e41fe16314dfd6a9cff48",
+    "scope": "Ten payload/metadata assets; SHA256SUMS is eleventh asset and does not hash itself"
   },
-  "documentation_only_repack": "Onlyrelease-note correction andcomputedintegritymetadata changed afterfullnormalstartup/restore/rollback. Exacttechnicalfiledigests andfinalcleanextraction areverified inreceipts/v0.1/final-doc-only-repack-and-extraction.json.",
+  "previous_release": {
+    "release": "l0xre-v0.1",
+    "catalog": "receipts/v0.1.1/previous-v0.1-install-catalog.json",
+    "manifest": "receipts/v0.1.1/previous-v0.1-MANIFEST.json"
+  },
+  "public_verification": {
+    "status": "Public draft asset uploads/download SHA verification completed; publication/live-main verification remains separate",
+    "expected_assets": "receipts/v0.1.1/expected-assets.json",
+    "draft_downloads": "receipts/v0.1.1/public-draft-upload-hashes.json"
+  },
   "publication": {
-    "status": "released-and-verified",
-    "release_url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/l0xre-v0.1",
-    "release_code_commit": "ef7bdf04cbc5d1077ac98f812324490c27a6a950",
-    "all13_public_assets_verified": true,
-    "closing_audit": "receipts/v0.1/closing-audit.json",
-    "closing_audit_finalization": "receipts/v0.1/closing-audit-finalization.json"
+    "status_at_preparation": "Draft-only; no publication or merge performed by documentation task",
+    "release_url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/l0xre-v0.1.1"
   }
 }

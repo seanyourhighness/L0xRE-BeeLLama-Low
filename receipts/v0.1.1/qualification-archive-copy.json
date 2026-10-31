@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "complete": true,
+  "passed": true,
+  "completed_at_utc": "2026-10-31T04:10:17.001916+00:00",
+  "source": "/home/sean/work/l0xre-v01-qualification-20261025",
+  "archive_host": "z840",
+  "archive": "/mnt/ssd/ai-builds/l0xre-v011/qualification-archive/snapshot-20261031T031353Z/l0xre-v01-qualification-20261025.tar.zst",
+  "archive_sha256": "f7435e0fb3adbb0ebf8eb10212ae64ef8d12fc7fee2180c34188a2882176434f",
+  "verified_entries": 114710,
+  "local_source_retained": true,
+  "raw_data_deleted": false,
+  "verification": "Full streamed file content SHA256, modes, types, symlink targets and hardlink contents",
+  "proofs": {
+    "manifest.json": {
+      "path": "releases/v0.1.1/assembly/qualification-archive/snapshot-20261031T031353Z/manifest.json",
+      "sha256": "c4a26c18d463dd8fc8ba029d615c52438aacf1c014d0ce82c1e76f916958285f",
+      "bytes": 33658403
+    },
+    "transfer.json": {
+      "path": "releases/v0.1.1/assembly/qualification-archive/snapshot-20261031T031353Z/transfer.json",
+      "sha256": "cf922c7c00be1ae6103e1dccbc612da16c8fd76d8427ee52caa709d8503040b6",
+      "bytes": 298
+    },
+    "result.json": {
+      "path": "releases/v0.1.1/assembly/qualification-archive/snapshot-20261031T031353Z/result.json",
+      "sha256": "0791aab9bf89049a1e82b78196d62d13e8148c43b0556b8d773439313a837466",
+      "bytes": 654
+    },
+    "remote-verification-full.json": {
+      "path": "releases/v0.1.1/assembly/qualification-archive/snapshot-20261031T031353Z/remote-verification-full.json",
+      "sha256": "f8b52a9a11b47731cf469ba80401ebf7b6c4b2fa7f3cee2c3e5a388d2878192f",
+      "bytes": 507
+    },
+    "remote-verification-stdout.json": {
+      "path": "releases/v0.1.1/assembly/qualification-archive/snapshot-20261031T031353Z/remote-verification-stdout.json",
+      "sha256": "8d09bcb9b0f34546fa44c02574b8051e2fd20c7ba2f9a3199cfab0e2997aa5e4",
+      "bytes": 452
+    },
+    "remote-verification-stderr.log": {
+      "path": "releases/v0.1.1/assembly/qualification-archive/snapshot-20261031T031353Z/remote-verification-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "script": {
+    "path": "releases/v0.1.1/assembly/qualification-archive/archive_qualification.py",
+    "sha256": "76ed6ccde79705b86292930fbd81747efce908bdd9fc7012d3390fd80bc303ca",
+    "bytes": 10017
+  },
+  "notes": [
+    "Full remote verification.json retains empty failure/missing lists. Local result.json is its successful stdout summary and intentionally omits those lists.",
+    "The snapshot preserves the qualification directory as captured before transfer; later derived cursor updates do not alter this verified historical snapshot.",
+    "No raw qualification directory or historical file was removed."
+  ]
+}
