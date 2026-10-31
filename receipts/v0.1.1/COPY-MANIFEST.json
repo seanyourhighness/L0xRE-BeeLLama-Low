@@ -84,7 +84,7 @@
       "byte_identical": true
     },
     {
-      "file": "SHA256SUMS.assets",
+      "file": "SHA256SUMS.assets.before-public-catalog-swap",
       "origin": "frozen-v0.1.1-private-certification",
       "origin_relative_path": "SHA256SUMS",
       "sha256": "2fdb85b2398a9ea2dea222d8650b147800b6406d089e41fe16314dfd6a9cff48",

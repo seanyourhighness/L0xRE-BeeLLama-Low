@@ -17,6 +17,11 @@
   "notes_unchanged": true,
   "draft_unpublished": true,
   "tag_name_restored": "l0xre-v0.1.1",
-  "draft_ready": false,
-  "blocker": "SHA256SUMS references the previous catalog hash; additional asset replacement authorization pending."
+  "draft_ready": true,
+  "checksum_replacement_authorized_and_verified": true,
+  "current_checksum_receipt": "checksum-asset-swap.json",
+  "final_draft_check": "PASS",
+  "public_draft_ready": true,
+  "final_draft_check_receipt": "catalog-swap-final-gate.json",
+  "historical_at_catalog_swap": true
 }

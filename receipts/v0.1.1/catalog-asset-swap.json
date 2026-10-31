@@ -19,8 +19,12 @@
     "old_sha256": "2fdb85b2398a9ea2dea222d8650b147800b6406d089e41fe16314dfd6a9cff48",
     "new_sha256": "0f2f18d75a6b8b3f5f0c447e5c231bcaccb8c27b4a0161e8c692fe208ac2dc27",
     "old_asset_id": 694523652,
-    "status": "prepared; not replaced pending exact-list owner authorization",
-    "new_bytes": 928
+    "status": "owner-authorized replacement uploaded and actual download hash verified",
+    "new_bytes": 928,
+    "new_asset_id": 695647640,
+    "actual_download_sha256": "0f2f18d75a6b8b3f5f0c447e5c231bcaccb8c27b4a0161e8c692fe208ac2dc27",
+    "new_github_digest": "sha256:0f2f18d75a6b8b3f5f0c447e5c231bcaccb8c27b4a0161e8c692fe208ac2dc27",
+    "owner_authorization": "Sean replied yes to replacing exactly PUBLIC draft l0xre-v0.1.1 SHA256SUMS asset694523652 with the prepared candidate."
   },
   "scope": "Six public download URLs; remove six package and two top-level draft workflow fields; all package hashes, sizes, model pins, profiles and qualification status unchanged.",
   "catalog_matches_pr6_installer_byte_for_byte": true,
@@ -28,12 +32,15 @@
   "removed_draft_only_fields": 8,
   "artifact_hashes_pins_profiles_and_hardware_status_unchanged": true,
   "notes_unchanged": true,
-  "public_draft_ready": false,
-  "blocker": "SHA256SUMS still contains the prior catalog digest. Replacement is prepared; exact-list authorization is required before replacing this additional release asset.",
+  "public_draft_ready": true,
   "private_review": {
     "before_sha256": "3154ced2239619bd85e4bb4cf73b810c1880f5c3970e1ca70995998ad7d413ad",
     "after_sha256": "8edc781507442df0974d4edc9cd3743068826b5fe5435faabba7f5947fedcdab",
     "original_review_preserved_as_prefix": true,
-    "owner_requested_appendix_only": true
-  }
+    "owner_requested_appendix_only": true,
+    "after_checksum_completion_sha256": "045df7872d488317aeceb0ea9a54929180ed72954e730d535caa74f586a57db4",
+    "after_final_checksum_verification_sha256": "d437a0b037cc7358f6701c9ec8bf24f97c3d8f3e46e3166707c368a1c741b406"
+  },
+  "final_draft_check": "PASS",
+  "final_draft_check_receipt": "catalog-swap-final-gate.json"
 }

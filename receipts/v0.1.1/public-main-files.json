@@ -1,11 +1,11 @@
 {
   "repository": "seanyourhighness/L0xRE-BeeLLama-Low",
   "release": "l0xre-v0.1.1",
-  "scope": "Prepared public branch files; excludes this manifest and the historical staging result",
+  "scope": "Prepared public branch files; excludes this manifest and historical initial staging result",
   "files": [
     {
       "path": "MANIFEST.json",
-      "sha256": "67a0ee2ae32a2e537fe1054a8d5a3b7379cbfa205ac326af8bd353cf9d7281d9"
+      "sha256": "1c28d1278c383614d21287ae24b7b1624cb20725b7056b6ac9783f9d18743e76"
     },
     {
       "path": "README.md",
@@ -21,7 +21,7 @@
     },
     {
       "path": "docs/V011-PROVENANCE.md",
-      "sha256": "cfd12797383d867ea8ecbf8a3343b2333f87cbfd0236640137f74900dd5d1060"
+      "sha256": "21c600d33c3c65afbe2cd4b8b0822738cbee670555db1cc5a861adb8306a5192"
     },
     {
       "path": "docs/V011-RELEASE.md",
@@ -81,7 +81,7 @@
     },
     {
       "path": "receipts/v0.1.1/COPY-MANIFEST.json",
-      "sha256": "0b47c98d534776c1c22a40a7f34eb7bcf5a726eee166219c0329d632d9da7ef3"
+      "sha256": "a5afad5ace777d6437f739cb9aa9c890bf4203da8709f36f302864b5066ec9ad"
     },
     {
       "path": "receipts/v0.1.1/MODEL-SHA256SUMS",
@@ -93,14 +93,22 @@
     },
     {
       "path": "receipts/v0.1.1/REVIEW-SUMMARY.md",
-      "sha256": "66a6dd5f864a70a707f550fd329953c0ee971f734966e1c815c21c12d94af140"
+      "sha256": "b9f652f6301dbbe4646c48423c54886899e124d3bfb72f886f3b894313a65850"
     },
     {
-      "path": "receipts/v0.1.1/REVIEW.md",
+      "path": "receipts/v0.1.1/REVIEW.before-checksum-approval.md",
       "sha256": "84498903edcc22eb1cca042caee45c3ab4c999be27f3b887064976487ea1492c"
     },
     {
+      "path": "receipts/v0.1.1/REVIEW.md",
+      "sha256": "ed0f67f10752d17d77b1f00f7044abdbbde75177c325a9e4d38d495d55de4c8b"
+    },
+    {
       "path": "receipts/v0.1.1/SHA256SUMS.assets",
+      "sha256": "0f2f18d75a6b8b3f5f0c447e5c231bcaccb8c27b4a0161e8c692fe208ac2dc27"
+    },
+    {
+      "path": "receipts/v0.1.1/SHA256SUMS.assets.before-public-catalog-swap",
       "sha256": "2fdb85b2398a9ea2dea222d8650b147800b6406d089e41fe16314dfd6a9cff48"
     },
     {
@@ -109,19 +117,27 @@
     },
     {
       "path": "receipts/v0.1.1/SHA256SUMS.receipts",
-      "sha256": "dbea0397427e4c11aaf1876cfb8f3cb0853b0a821e5fbecf21f975f0f2320b60"
+      "sha256": "e7eaa433292fb24bb1917fa03f89509ef0ab9835d9547cb1743c29e31f3e4c99"
     },
     {
       "path": "receipts/v0.1.1/attribution-copy.json",
       "sha256": "7fd368b6a63c1ef583a780f7d8ba79a673d2bb34b0daf9e6bc9cffa43ddfc94f"
     },
     {
-      "path": "receipts/v0.1.1/catalog-asset-swap.json",
+      "path": "receipts/v0.1.1/catalog-asset-swap.before-checksum-approval.json",
       "sha256": "0ae1dc64720f050f58cc2138e431e754c3528dd1bc8998c1ee2508f0e0eb9139"
     },
     {
+      "path": "receipts/v0.1.1/catalog-asset-swap.json",
+      "sha256": "02dc8770e7c993bf1ac24c93e0d15fc4742de3a31bce91abf6fbb840a93bd143"
+    },
+    {
       "path": "receipts/v0.1.1/catalog-swap-checks.json",
-      "sha256": "5bafdcacb8b01715051ed5e518e8cb978274d8a6a9fe196156f508c2c2aeeeec"
+      "sha256": "52ba945ec3dcd016e287fdf2173e4507b57b23b190bf739f8bf8eafc9d4866f9"
+    },
+    {
+      "path": "receipts/v0.1.1/catalog-swap-final-gate.json",
+      "sha256": "3ccfdbc95ed0cb016625fb3a878beae92fa805aafb9563242c6a81f53127ed5a"
     },
     {
       "path": "receipts/v0.1.1/catalog-swap-live-gate.json",
@@ -129,11 +145,15 @@
     },
     {
       "path": "receipts/v0.1.1/catalog-swap-upload-verification.json",
-      "sha256": "05d62042359f5803e4d40e11c25079bec65e9640e80bc2be7db676226bec72c7"
+      "sha256": "6c5fe4fd1651215ee7d58cfe72a965e8c9390572a9a456e49450bf09a756dd1f"
     },
     {
       "path": "receipts/v0.1.1/catalog-swap-verifier-review.json",
-      "sha256": "a740f0294b10b63c1e2ffaafe03614688696193ac9c6703fd08b8ec37467cc18"
+      "sha256": "7b78ecfaf16995ea17c10d9aa4b5d409165a8f12292a1a08d1a56a1a5768d2cf"
+    },
+    {
+      "path": "receipts/v0.1.1/checksum-asset-swap.json",
+      "sha256": "19251c7c1da276ec029e78ac33e7e4035582733f70a22ee55cd016bea04ff8ed"
     },
     {
       "path": "receipts/v0.1.1/decisions/sean-20261030-wsl16-short-prefill-acceptance.json",
@@ -161,7 +181,7 @@
     },
     {
       "path": "receipts/v0.1.1/expected-assets.json",
-      "sha256": "dae0edaaa57d83f377a860a351319b56f05658175ba746e3e17668702a040917"
+      "sha256": "2c1feda68b8bf140b577734493eff6fb1dd785ad6d12b0f2dcb3953425737ce6"
     },
     {
       "path": "receipts/v0.1.1/final-gates.json",
@@ -197,7 +217,7 @@
     },
     {
       "path": "receipts/v0.1.1/public-draft-upload-hashes.json",
-      "sha256": "846d4042d1ed258ac4359d1d7366a87202b0055248b40c7a2c2a4c023dae3b5e"
+      "sha256": "c597a6583518a6df74fc91d74a988fbc0bf150f1f88d0e809c72ffbae64e3b58"
     },
     {
       "path": "receipts/v0.1.1/qualification-archive-copy.json",
