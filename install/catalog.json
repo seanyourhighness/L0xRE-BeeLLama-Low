@@ -3,8 +3,8 @@
   "packages": {
     "linux": {
       "sm86": {
-        "filename": "L0xRE-v0.1.1-linux-sm86.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-linux-sm86.tar.zst",
+        "filename": "L0xRE-v0.1.2-linux-sm86.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-linux-sm86.tar.zst",
         "sha256": "dd54ab4a836c2d42f6d1a117d44c5092805a85b6a98d88e82e8e8f1b94b83f77",
         "bytes": 750603358,
         "status": "certified",
@@ -32,8 +32,8 @@
         "manifest_sha256": "cd2a16cbce4a7a442d49f99a96c7222db2c6de115ed360ca9c41ac25e6717658"
       },
       "sm89": {
-        "filename": "L0xRE-v0.1.1-linux-sm89.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-linux-sm89.tar.zst",
+        "filename": "L0xRE-v0.1.2-linux-sm89.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-linux-sm89.tar.zst",
         "sha256": "4d1cf8d71f22244d9ccbcb682ea9d4dff2781dbc6c077ef762b061e2ef2398c8",
         "bytes": 739383060,
         "status": "certified",
@@ -62,8 +62,8 @@
         "manifest_sha256": "cda0f179dd1f3c11cbfc10a72f4c0da1aedf8394cbc3f5310258a4eaacc549b0"
       },
       "sm120": {
-        "filename": "L0xRE-v0.1.1-linux-sm120.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-linux-sm120.tar.zst",
+        "filename": "L0xRE-v0.1.2-linux-sm120.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-linux-sm120.tar.zst",
         "sha256": "15b731e1dbe5552a0276e8e2f06d2c474ea6ffebbfa6eda59ebbb9c9c717e761",
         "bytes": 653884998,
         "status": "certified",
@@ -94,8 +94,8 @@
     },
     "windows": {
       "sm86": {
-        "filename": "L0xRE-v0.1.1-windows-sm86.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-windows-sm86.zip",
+        "filename": "L0xRE-v0.1.2-windows-sm86.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-windows-sm86.zip",
         "sha256": "e8814a2ab93eb5b62f1688db6d58a8e7d1332b5d3809f53b55fe70630101feb3",
         "bytes": 672411484,
         "status": "build-verified",
@@ -121,8 +121,8 @@
         "manifest_sha256": "828645f630f85d573352c0d88eab0b7492cc28331454a2f0d73a0e5e804d3369"
       },
       "sm89": {
-        "filename": "L0xRE-v0.1.1-windows-sm89.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-windows-sm89.zip",
+        "filename": "L0xRE-v0.1.2-windows-sm89.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-windows-sm89.zip",
         "sha256": "a8d858df6a6348a141ad8fe7f515f77af5bcf3f23f0a88aa522909d5621c863b",
         "bytes": 670811294,
         "status": "build-verified",
@@ -149,8 +149,8 @@
         "manifest_sha256": "6d8f3db25e49dcce45fbf9a8db3bf31086bf52cf54f53b4dc5e9c844e5d2c37b"
       },
       "sm120": {
-        "filename": "L0xRE-v0.1.1-windows-sm120.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-windows-sm120.zip",
+        "filename": "L0xRE-v0.1.2-windows-sm120.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-windows-sm120.zip",
         "sha256": "7477f49df5f971f09af135d749116bba924b5d33021d234c2b868432a679fc06",
         "bytes": 703906182,
         "status": "certified",
