@@ -1,6 +1,8 @@
-# Guided L0xRE v0.1.1 install
+# Guided L0xRE v0.1.2 install
 
-The [public catalog](catalog.json) pins six platform/architecture archives and unchanged model hashes. The catalog-v0.1.1.json release asset matches this maintained catalog byte for byte; the public catalog contains public download URLs and no draft-only fields.
+The [public catalog](catalog.json) pins six platform/architecture archives and unchanged model hashes. The catalog-v0.1.2.json release asset matches this maintained catalog byte for byte; the public catalog contains public download URLs and no draft-only fields.
+
+The v0.1.2 distribution reuses the exact v0.1.1 runtime bytes. An installed runtime reporting version 0.1.1 is expected; tooling and release metadata are version 0.1.2.
 
 Linux SM86 has12GB/128K; Linux SM89 and Linux/WSL SM120 have12GB/128K and16GB/256K. Native Windows SM120 has both profiles. Windows SM86/SM89 are build-verified, hardware validation in progress; no native throughput/quality/VRAM claim is made. WSL was measured on RTX5090, not separately on bare-metal Linux. See the [qualification matrix](../README.md).
 
@@ -25,6 +27,4 @@ Run the start command printed by setup. Vision selects the pinned Q5 projector. 
 
 Use --runtime-archive / -RuntimeArchive for an already downloaded exact catalog archive, --runtime-only / -RuntimeOnly to supply models later, and --catalog / -CatalogPath for an explicit local catalog. Setup checks archive/model hashes and extracted package checksums and prints a launcher; it does not start an inference service or alter drivers/clocks.
 
-Stop the server before --update / -Update. Keep previous runtime, receipt, launcher and models. See [rollback instructions](../docs/V011-ROLLBACK.md), [release notes](../docs/V011-RELEASE.md), [source provenance](../docs/V011-PROVENANCE.md) and [model checksums](../MODEL-SHA256SUMS).
-
-Sean publishes the public draft and marks it latest, then merges the metadata PR. After both steps, run `python3 tools/verify-public.py --verify-public --check-rollback` from the merged checkout. Publishing first makes the assets available before the live catalog points at them. Neither publication nor merge is performed by this documentation task.
+Stop the server before --update / -Update. Keep previous runtime, receipt, launcher and models. See [rollback instructions](../docs/V011-ROLLBACK.md), [v0.1.2 release notes](../docs/V012-RELEASE.md), [source provenance](../docs/V011-PROVENANCE.md) and [model checksums](../MODEL-SHA256SUMS).

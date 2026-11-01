@@ -1,10 +1,12 @@
-# L0xRE v0.1.1
+# L0xRE v0.1.2
+
+Current release: **[v0.1.2](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/l0xre-v0.1.2)**. This updates tooling and documentation while reusing the exact v0.1.1 runtime archives. Runtime version and inherited qualification records remain v0.1.1.
 
 Run L0xRE-27b-Low with DFlash2 speculative decoding, GPU vision, Q4 KV streaming and explicit128K/256K memory profiles. Thinking is off by default. Target, drafter and qualified Q5 projector pins are unchanged from v0.1.
 
-Start with the [guided installer](install/README.md), [release notes](docs/V011-RELEASE.md), [review summary](receipts/v0.1.1/REVIEW-SUMMARY.md), [provenance](docs/V011-PROVENANCE.md) and [rollback instructions](docs/V011-ROLLBACK.md). The [manifest](MANIFEST.json) indexes the eleven immutable assets; the [public install catalog](install/catalog.json) supplies current install URLs.
+Start with the [guided installer](install/README.md), [v0.1.2 release notes](docs/V012-RELEASE.md), [review summary](receipts/v0.1.1/REVIEW-SUMMARY.md), [provenance](docs/V011-PROVENANCE.md) and [rollback instructions](docs/V011-ROLLBACK.md). The [manifest](MANIFEST.json) indexes the eleven immutable assets; the [public install catalog](install/catalog.json) supplies current install URLs.
 
-For complete runtime source use the named [L0xRE-v0.1.1-source.tar.gz asset](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.1/L0xRE-v0.1.1-source.tar.gz), SHA256 `ddd7db47f7f17b884f4e8ab75ad66dd649382f8931b1fb11c5a0ab58c66e99d9`, exact source commit `5da9c28f7283815f627931376de96fe9a2a4fb0e`. GitHub's automatic Source code(zip/tar.gz) archives contain this public installer/documentation tree, not the complete runtime source. The public distribution tag is distinct from the exact source commit. The named asset has a completed five-stage clean extraction build and17 exact kernel outputs.
+For complete runtime source and current release tooling, use the named [L0xRE-v0.1.2-source.tar.gz asset](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-source.tar.gz), SHA256 `66611aab459a7ac7f8342407d30a58e4c359909b6a2a216ec93f37cfea695bf1`, exact source commit `84c7c7b3fd3738065a34f15ef408e3186a21d90c`. GitHub's automatic Source code (zip/tar.gz) archives contain this public installer/documentation tree, not the complete runtime source. The public distribution tag is distinct from the exact source commit. Runtime reproduction evidence is inherited from unchanged v0.1.1 inputs; v0.1.2 does not claim a fresh runtime rebuild. See the [release notes](docs/V012-RELEASE.md) for the exact scope.
 
 | Package | Profiles | Actual qualification |
 | --- | --- | --- |
@@ -37,10 +39,10 @@ Known limits: WSL16GB short prefill versus12GB is -2.028086%, directly accepted 
 
 Model files remain SHA-pinned in [MODEL-SHA256SUMS](MODEL-SHA256SUMS). Optional Mirai vectors are user-provided. See [third-party notices](THIRD-PARTY-NOTICES.md) and [licenses](licenses/); complete source/notice provenance ships in the named source asset.
 
-The catalog-v0.1.1.json release asset now matches the public install/catalog.json byte for byte. The [catalog swap review](receipts/v0.1.1/REVIEW.md) records both hashes and checksum-file readiness. Sean publishes the draft and marks it latest, then merges the metadata PR. After both steps, run `python3 tools/verify-public.py --verify-public --check-rollback` for anonymous download, public main and rollback checks. No agent publishes or merges this preparation.
+The current installer uses the published v0.1.2 catalog. Historical release records and checksums remain unchanged. Older development branches are preserved as [source archive tags](docs/SOURCE-ARCHIVES.md); use those tags for historical builds.
 
 <!-- l0xre-v012-expectations:start -->
-## What to expect in v0.1.2
+## Runtime expectations in v0.1.2
 
 This tooling release reuses the unchanged v0.1.1 runtime. The earlier qualification disclosures above remain preserved. See the [v0.1.2 release notes](docs/V012-RELEASE.md).
 

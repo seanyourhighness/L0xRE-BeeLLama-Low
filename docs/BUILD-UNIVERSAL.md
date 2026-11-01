@@ -1,6 +1,8 @@
+> Historical build instructions for pre-v0.1 releases. For current source, use the named source asset linked in the [main README](../README.md). Retired branch tips are retained as [archive tags](SOURCE-ARCHIVES.md).
+
 # Universal r4 prefill build and provenance
 
-Linux SM86 retains its qualified original server/CUDA backend and loads the exact promoted INT8 bridge plus libqk16-context-gate.so using LD_PRELOAD. The original backend is retained to preserve measured decode. The new source is in source/sm86-prefill and the full-source branch release/sm86-prefill-80k; commit `5073ba019cbaec387530b64d33e73b7fc6a41338` is pinned in the manifests. build-linux.sh reconstructs bridge/interposer against the full source and a matching retained backend; a fresh compilation needs independent qualification.
+Linux SM86 retains its qualified original server/CUDA backend and loads the exact promoted INT8 bridge plus libqk16-context-gate.so using LD_PRELOAD. The original backend is retained to preserve measured decode. The new source is in source/sm86-prefill and the full-source archive tag `archive/2026-11-01/release/sm86-prefill-80k`; commit `5073ba019cbaec387530b64d33e73b7fc6a41338` is pinned in the manifests. build-linux.sh reconstructs bridge/interposer against the full source and a matching retained backend; a fresh compilation needs independent qualification.
 
 Windows rebuilds only ggml-cuda.cu, escha-moe.cu and fattn-kvarn-dispatch.cu from the retained CUDA13.3/MSVC universal object cache. The qualifying attention branch runs before the original dispatch; fallback follows the original implementation. INT8 scratch/cuBLAS initialization is an explicit export called by the backend during initialization, before graph capture, never from DllMain. The separate bridge DLL carries SM86 device code; other architecture routes use their original bridges. Existing executable provenance remains be30274; changed backend/bridge source identity is pinned separately in the r4 manifest. Build/PE/launcher/architecture checks do not imply Windows GPU performance.
 
@@ -12,7 +14,7 @@ Historical retained payload provenance follows.
 
 r3 changes the portable launchers, 12 GB defaults, examples and documentation. It reuses the verified r2 compiled payloads without rebuilding kernels or changing weights. The executable build/commit metadata below describes those retained binaries; configuration provenance is the r3 tag. The new 80K profile is tested on Linux SM86, with other architecture/Windows profile inference still pending.
 
-The [committed SM86 / Windows source](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/tree/be302741801080a4fa2ea713fdf9409e2ef599d5) is `be302741801080a4fa2ea713fdf9409e2ef599d5` on `release/sm86-b84-universal`. It contains the opt-in head128 backend change in `ggml/src/ggml-cuda/lowgpu.cu`, the B74 CUDA bridge and PTX reconstruction inputs, Windows export/build support, and the universal architecture-list build-script fix. The source worktree was clean when published.
+The [committed SM86 / Windows source](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/tree/be302741801080a4fa2ea713fdf9409e2ef599d5) is `be302741801080a4fa2ea713fdf9409e2ef599d5` preserved by tag `archive/2026-11-01/release/sm86-b84-universal`. It contains the opt-in head128 backend change in `ggml/src/ggml-cuda/lowgpu.cu`, the B74 CUDA bridge and PTX reconstruction inputs, Windows export/build support, and the universal architecture-list build-script fix. The source worktree was clean when published.
 
 ## Linux / WSL
 
@@ -23,7 +25,7 @@ Original SM86 compiler: CUDA 12.8.93 / GCC 13.3.0; Release, shared libraries, `C
 To build the committed source with an explicit compiler and portable CPU setting:
 
 ```bash
-git clone --branch release/sm86-b84-universal https://github.com/seanyourhighness/L0xRE-BeeLLama-Low.git l0xre-source
+git clone --branch archive/2026-11-01/release/sm86-b84-universal https://github.com/seanyourhighness/L0xRE-BeeLLama-Low.git l0xre-source
 cd l0xre-source
 git checkout be302741801080a4fa2ea713fdf9409e2ef599d5
 cmake -S . -B build-sm86 -DCMAKE_BUILD_TYPE=Release \
@@ -48,7 +50,7 @@ SM89 and SM120 historical payloads and receipts were consolidated into the offic
 Toolchain: CUDA 13.3, MSVC 19.44.35228.0, CMake / Ninja, Release, shared libraries, `GGML_NATIVE=OFF`, CUDA FlashAttention/KVarN enabled, default quant matrices, backend dynamic loading enabled, architectures `86;89;120` (the backend selects `120a` during configuration).
 
 ```powershell
-git clone --branch release/sm86-b84-universal https://github.com/seanyourhighness/L0xRE-BeeLLama-Low.git l0xre-source
+git clone --branch archive/2026-11-01/release/sm86-b84-universal https://github.com/seanyourhighness/L0xRE-BeeLLama-Low.git l0xre-source
 Set-Location l0xre-source
 git checkout be302741801080a4fa2ea713fdf9409e2ef599d5
 powershell -ExecutionPolicy Bypass -File scripts\build-win-l0xre.ps1 `
