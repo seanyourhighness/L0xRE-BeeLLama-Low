@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "release": "l0xre-v0.1.2",
+  "public_base_commit": "8f21526c79f5b1447e7773bc835de15c4d1564f6",
+  "frozen_sha256": "096200ea10774a0866d6cda9996fcbe052f9a0243751b1343d8e45bb7d4662a9",
+  "prerequisite_sha256": "e5afd3db1ec1d7340336587fa70bca1cd59e19f53c791f5e7e633ef3efb40127",
+  "previous_release_id": 429753062,
+  "published_metadata_sha256": "6c8ef81268b309c284bf54f385cb76177dc349a441f65d3ed149035dc3914286",
+  "rollback_assets": [
+    {
+      "name": "L0xRE-v0.1.1-linux-sm120.tar.zst",
+      "asset_id": 694522503,
+      "sha256": "15b731e1dbe5552a0276e8e2f06d2c474ea6ffebbfa6eda59ebbb9c9c717e761",
+      "bytes": 653884998
+    },
+    {
+      "name": "L0xRE-v0.1.1-linux-sm86.tar.zst",
+      "asset_id": 694522505,
+      "sha256": "dd54ab4a836c2d42f6d1a117d44c5092805a85b6a98d88e82e8e8f1b94b83f77",
+      "bytes": 750603358
+    },
+    {
+      "name": "L0xRE-v0.1.1-linux-sm89.tar.zst",
+      "asset_id": 694522501,
+      "sha256": "4d1cf8d71f22244d9ccbcb682ea9d4dff2781dbc6c077ef762b061e2ef2398c8",
+      "bytes": 739383060
+    },
+    {
+      "name": "L0xRE-v0.1.1-windows-sm120.zip",
+      "asset_id": 694522536,
+      "sha256": "7477f49df5f971f09af135d749116bba924b5d33021d234c2b868432a679fc06",
+      "bytes": 703906182
+    },
+    {
+      "name": "L0xRE-v0.1.1-windows-sm86.zip",
+      "asset_id": 694522583,
+      "sha256": "e8814a2ab93eb5b62f1688db6d58a8e7d1332b5d3809f53b55fe70630101feb3",
+      "bytes": 672411484
+    },
+    {
+      "name": "L0xRE-v0.1.1-windows-sm89.zip",
+      "asset_id": 694523523,
+      "sha256": "a8d858df6a6348a141ad8fe7f515f77af5bcf3f23f0a88aa522909d5621c863b",
+      "bytes": 670811294
+    }
+  ],
+  "base_files_sha256": {
+    "README.md": "fdafdd39973e3990a71c9d5415dd9b4f74243b88dae08e656afa93f6538971f9",
+    "docs/README.md": "9151616b8d73df7f824a79e5ad0aecd6a193f10caaf1026cea74b90504748ed1",
+    "MANIFEST.json": "1c28d1278c383614d21287ae24b7b1624cb20725b7056b6ac9783f9d18743e76",
+    "install/catalog.json": "3b39683116a56e9b955d0e1f6b80cfe7d8084ffa103fd1cc0fac270536171232",
+    "receipts/v0.1.1/expected-assets.json": "2c1feda68b8bf140b577734493eff6fb1dd785ad6d12b0f2dcb3953425737ce6"
+  },
+  "source_docs_sha256": {
+    "README.md": "f62599299b43c79acabd5777ff653a97d64794d30872ab37ff4b6a486e1fa765",
+    "docs/WINDOWS-QUICKSTART.md": "54ef840ac1e1d3f82037e067598b629cdd16faca62a81c04b34795402e97b3a1"
+  },
+  "publication_performed": false,
+  "merge_performed": false
+}
