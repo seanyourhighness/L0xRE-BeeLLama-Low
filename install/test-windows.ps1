@@ -247,7 +247,10 @@ $gpuRecords
     Assert-Rejected { Expand-InstallPackage $badZip (Join-Path $fixtureRoot 'unsafe-runtime') $fixturePackage } 'ZIP traversal accepted'
     Assert-Install (-not (Test-Path -LiteralPath (Join-Path $fixtureRoot 'escaped.txt'))) 'ZIP escaped extraction root'
     $receipt = Get-Content -Raw -LiteralPath (Join-Path $InstallDir 'INSTALLATION.json') | ConvertFrom-Json
-    [IO.File]::WriteAllText((Join-Path $receipt.runtime 'l0xre.ps1'), 'changed')
+    $tampered = Join-Path $receipt.runtime 'l0xre.ps1'
+    # Packaged files may be read-only (ZIP Unix mode is preserved); clear it to simulate tampering.
+    [IO.File]::SetAttributes($tampered, [IO.File]::GetAttributes($tampered) -band (-bnot [IO.FileAttributes]::ReadOnly))
+    [IO.File]::WriteAllText($tampered, 'changed')
     Assert-Rejected { Invoke-L0xreInstall } 'Tampered installed payload reused'
 
     # Full-release route matrix: every supported architecture resolves for 12GB-plus cards.
