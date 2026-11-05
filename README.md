@@ -1,10 +1,10 @@
-# L0xRE v0.1.3.1
+# L0xRE v0.1.3.2
 
-Current release: **[v0.1.3.1](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/l0xre-v0.1.3.1)**: v0.1.3 (faster decode, much faster prompt reuse: TTFT, follow-up turns, cached system prompts) plus a launcher patch: 12 GB cards that also drive a display now default to the 1856 MiB desktop arena, leaving headroom for an agent, a browser and messaging apps (`--arena-mib 2048` or `1920` trades headroom for deep-context speed).
+Current release: **[v0.1.3.2](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/l0xre-v0.1.3.2)**: v0.1.3 (faster decode, much faster prompt reuse: TTFT, follow-up turns, cached system prompts) plus two launcher patches. v0.1.3.1: 12 GB cards that also drive a display default to the 1856 MiB desktop arena, leaving headroom for an agent, a browser and messaging apps (`--arena-mib 2048` or `1920` trades headroom for deep-context speed). v0.1.3.2: when L0xRE is slow, `doctor` (double-click `doctor.cmd` on Windows) says why, including whether Windows is paging GPU memory into system RAM, and the server window warns when that happens.
 
-Start with the [guided installer](install/README.md), [v0.1.3.1 patch notes](docs/V0131-RELEASE.md), [v0.1.3 release notes](docs/V013-RELEASE.md), [review summary](receipts/v0.1.1/REVIEW-SUMMARY.md), [provenance](docs/V011-PROVENANCE.md) and [rollback instructions](docs/V011-ROLLBACK.md). The [public install catalog](install/catalog.json) supplies current install URLs.
+Start with the [guided installer](install/README.md), [v0.1.3.2 patch notes](docs/V0132-RELEASE.md), [v0.1.3.1 patch notes](docs/V0131-RELEASE.md), [v0.1.3 release notes](docs/V013-RELEASE.md), [review summary](receipts/v0.1.1/REVIEW-SUMMARY.md), [provenance](docs/V011-PROVENANCE.md) and [rollback instructions](docs/V011-ROLLBACK.md). The [public install catalog](install/catalog.json) supplies current install URLs.
 
-For complete runtime source and current release tooling, use the named [L0xRE-v0.1.3.1-source.tar.gz asset](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.3.1/L0xRE-v0.1.3.1-source.tar.gz), SHA256 `8ea5dd67f993fe93ab12a90a82c7d57a883ac93981008f3bf869554353403772`, exact source commit `75046c1ddf96a36e5c8b714456d37fe8e17a2c9d`. GitHub's automatic Source code (zip/tar.gz) archives contain this public installer/documentation tree, not the complete runtime source.
+For complete runtime source and current release tooling, use the named [L0xRE-v0.1.3.2-source.tar.gz asset](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.3.2/L0xRE-v0.1.3.2-source.tar.gz), SHA256 `80831a438c7507c30655056e57fab36314edee0fa426187f7fa65b6018ac3a79`, exact source commit `6c4c4c392a51304fc6bd276e7ea98ed9f98d0f6c`. GitHub's automatic Source code (zip/tar.gz) archives contain this public installer/documentation tree, not the complete runtime source.
 
 ## Inherited v0.1.1 qualification record
 
@@ -41,7 +41,7 @@ Known limits: WSL16GB short prefill versus12GB is -2.028086%, directly accepted 
 
 Model files remain SHA-pinned in [MODEL-SHA256SUMS](MODEL-SHA256SUMS). Optional Mirai vectors are user-provided. See [third-party notices](THIRD-PARTY-NOTICES.md) and [licenses](licenses/); complete source/notice provenance ships in the named source asset.
 
-The current installer uses the published v0.1.3.1 catalog. Historical release records and checksums remain unchanged. Older development branches are preserved as [source archive tags](docs/SOURCE-ARCHIVES.md); use those tags for historical builds.
+The current installer uses the published v0.1.3.2 catalog. Historical release records and checksums remain unchanged. Older development branches are preserved as [source archive tags](docs/SOURCE-ARCHIVES.md); use those tags for historical builds.
 
 <!-- l0xre-v013-expectations:start -->
 ## Runtime expectations in v0.1.3
