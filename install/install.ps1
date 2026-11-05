@@ -347,6 +347,12 @@ function Write-InstallLauncher([string]$Root, [string]$Runtime, [string]$ModelRo
         ('  & $installer -Update -InstallDir ' + (Quote-InstallString $Root) + ' -DryRun:$DryRun -Yes:$Yes -Rollback:$Rollback'),
         '} finally { Remove-Item -LiteralPath $stage -Recurse -Force }')
     [IO.File]::WriteAllText((Join-Path $Root 'update.ps1'), ($updateLines -join "`r`n"), (New-Object Text.UTF8Encoding $true))
+    # Batch wrappers are not subject to PowerShell execution policy, so users can double-click
+    # or run start.cmd / update.cmd without typing -ExecutionPolicy Bypass. ASCII: cmd rejects a BOM.
+    foreach ($name in @('start','update')) {
+        $cmdText = "@echo off`r`npowershell.exe -NoProfile -ExecutionPolicy Bypass -File `"%~dp0$name.ps1`" %*`r`nexit /b %ERRORLEVEL%`r`n"
+        [IO.File]::WriteAllText((Join-Path $Root "$name.cmd"), $cmdText, (New-Object Text.ASCIIEncoding))
+    }
     return $script
 }
 
@@ -431,8 +437,9 @@ function Invoke-L0xreInstall {
     }
     if (-not $RuntimeOnly) { foreach ($record in $records) { Get-InstallArtifact $record $modelRoot | Out-Null } }
     $script = Write-InstallLauncher $root $runtime $modelRoot $plan ([bool]$Vision) $Port
-    Write-Host "Setup complete. Start: & $(Quote-InstallString $script)"
-    Write-Host "Check the launcher: & $(Quote-InstallString $script) -DryRun"
+    $startCmd = [IO.Path]::ChangeExtension($script, '.cmd')
+    Write-Host "Setup complete. Start: `"$startCmd`"  (or double-click start.cmd)"
+    Write-Host "Check the launcher: `"$startCmd`" -DryRun"
     Write-Host "API: http://127.0.0.1:$Port/v1"
     if ($RuntimeOnly) { Write-Host 'Runtime-only setup: supply the pinned models or rerun without -RuntimeOnly before starting.' }
 }

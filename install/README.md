@@ -17,13 +17,13 @@ bash install-l0xre.sh --vision
 
 Native Windows requires x64 Windows10/11, PowerShell and a working NVIDIA driver; runtime DLLs and Python are bundled:
 
-```powershell
-Invoke-WebRequest -UseBasicParsing 'https://raw.githubusercontent.com/seanyourhighness/L0xRE-BeeLLama-Low/main/install/install.ps1' -OutFile install-l0xre.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File .\install-l0xre.ps1 -DryRun -Vision
-powershell -NoProfile -ExecutionPolicy Bypass -File .\install-l0xre.ps1 -Vision
+```bat
+curl.exe -LO https://raw.githubusercontent.com/seanyourhighness/L0xRE-BeeLLama-Low/main/install/install.cmd
+install.cmd -DryRun -Vision
+install.cmd -Vision
 ```
 
-Run the start command printed by setup. Vision selects the pinned Q5 projector. Reuse models with --models-dir / -ModelsDir; choose a GPU with --gpu / -Gpu. The installer selects16gb where supported and detected memory is at least16000MiB, otherwise12gb. The launcher still performs actual-free-VRAM preflight and offers Retry, explicitly consented Start slower where a validated fitting rung exists, or Quit. No silent fallback is allowed. An envelope does not certify another GPU merely because its capacity matches.
+`install.cmd` runs `install.ps1` for you, so PowerShell's script execution policy never blocks it. It takes the same options as `install.ps1`. Start the server with `start.cmd` in the install folder (or double-click it); update with `update.cmd`. Vision selects the pinned Q5 projector. Reuse models with --models-dir / -ModelsDir; choose a GPU with --gpu / -Gpu. The installer selects16gb where supported and detected memory is at least16000MiB, otherwise12gb. The launcher still performs actual-free-VRAM preflight and offers Retry, explicitly consented Start slower where a validated fitting rung exists, or Quit. No silent fallback is allowed. An envelope does not certify another GPU merely because its capacity matches.
 
 Use --runtime-archive / -RuntimeArchive for an already downloaded exact catalog archive, --runtime-only / -RuntimeOnly to supply models later, and --catalog / -CatalogPath for an explicit local catalog. Setup checks archive/model hashes and extracted package checksums and prints a launcher; it does not start an inference service or alter drivers/clocks.
 
