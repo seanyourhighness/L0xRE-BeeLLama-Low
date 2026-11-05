@@ -247,7 +247,10 @@ $gpuRecords
     Assert-Rejected { Expand-InstallPackage $badZip (Join-Path $fixtureRoot 'unsafe-runtime') $fixturePackage } 'ZIP traversal accepted'
     Assert-Install (-not (Test-Path -LiteralPath (Join-Path $fixtureRoot 'escaped.txt'))) 'ZIP escaped extraction root'
     $receipt = Get-Content -Raw -LiteralPath (Join-Path $InstallDir 'INSTALLATION.json') | ConvertFrom-Json
-    [IO.File]::WriteAllText((Join-Path $receipt.runtime 'l0xre.ps1'), 'changed')
+    $tampered = Join-Path $receipt.runtime 'l0xre.ps1'
+    # Packaged files may be read-only (ZIP Unix mode is preserved); clear it to simulate tampering.
+    [IO.File]::SetAttributes($tampered, [IO.File]::GetAttributes($tampered) -band (-bnot [IO.FileAttributes]::ReadOnly))
+    [IO.File]::WriteAllText($tampered, 'changed')
     Assert-Rejected { Invoke-L0xreInstall } 'Tampered installed payload reused'
 
     # Full-release route matrix: every supported architecture resolves for 12GB-plus cards.
@@ -313,7 +316,9 @@ $gpuRecords
     foreach ($card in $matrix) {
         $selected = Get-InstallPlan $releaseCatalog $card $false ''
         $expected = if ($card.memory_mib -ge 16000 -and $card.arch -ne 'sm86') { '16gb' } else { '12gb' }
-        Assert-Install ($selected.package.url -match '/l0xre-v0\.1\.1/' -and $selected.package.filename -match '^L0xRE-v0\.1\.1-windows-') 'V0.1.1 route points to a legacy or unpublished placeholder'
+        $releaseTag = [string]$releaseCatalog.release
+        $releaseVersion = $releaseTag -replace '^l0xre-', ''
+        Assert-Install ($releaseTag -and $selected.package.url.Contains("/$releaseTag/") -and $selected.package.filename.StartsWith("L0xRE-$releaseVersion-windows-")) "$releaseTag route points to a legacy or unpublished placeholder"
         Assert-Install ($selected.memory_profile -eq $expected -and $selected.package.launcher_style -eq 'v01') 'Live V0.1 catalog selected the wrong memory profile'
         $expectedQualified = $card.name -eq 'NVIDIA GeForce RTX 5090'
         Assert-Install ($selected.hardware_qualified_for_gpu -eq $expectedQualified) 'Live catalog overstates native Windows hardware validation'

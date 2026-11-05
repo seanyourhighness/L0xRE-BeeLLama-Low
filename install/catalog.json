@@ -3,14 +3,14 @@
   "packages": {
     "linux": {
       "sm86": {
-        "filename": "L0xRE-v0.1.2-linux-sm86.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-linux-sm86.tar.zst",
-        "sha256": "dd54ab4a836c2d42f6d1a117d44c5092805a85b6a98d88e82e8e8f1b94b83f77",
-        "bytes": 750603358,
+        "filename": "L0xRE-v0.1.3-linux-sm86.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.3/L0xRE-v0.1.3-linux-sm86.tar.zst",
+        "sha256": "409f2bb9d1c115c0b318716b99b3a911336ffc35d33e979fe2e0cc0e55fa9827",
+        "bytes": 750514419,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.1: 12GB/128K",
+        "profile": "v0.1.3: 12GB/128K; 12GB with a display: 2048 MiB desktop arena (--arena-mib 1920/1856 lower)",
         "launcher": "tools/universal/v01-launch.py",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -32,14 +32,14 @@
         "manifest_sha256": "cd2a16cbce4a7a442d49f99a96c7222db2c6de115ed360ca9c41ac25e6717658"
       },
       "sm89": {
-        "filename": "L0xRE-v0.1.2-linux-sm89.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-linux-sm89.tar.zst",
-        "sha256": "4d1cf8d71f22244d9ccbcb682ea9d4dff2781dbc6c077ef762b061e2ef2398c8",
-        "bytes": 739383060,
+        "filename": "L0xRE-v0.1.3-linux-sm89.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.3/L0xRE-v0.1.3-linux-sm89.tar.zst",
+        "sha256": "9e9e473fdbff66c04c562e21e4e0746537b4c3b003de2763aa668f72ea287068",
+        "bytes": 740206791,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.1: 12GB/128K and16GB/256K",
+        "profile": "v0.1.3: 12GB/128K and16GB/256K; 12GB with a display: 2048 MiB desktop arena (--arena-mib 1920/1856 lower)",
         "launcher": "tools/universal/v01-launch.py",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -62,14 +62,14 @@
         "manifest_sha256": "cda0f179dd1f3c11cbfc10a72f4c0da1aedf8394cbc3f5310258a4eaacc549b0"
       },
       "sm120": {
-        "filename": "L0xRE-v0.1.2-linux-sm120.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-linux-sm120.tar.zst",
-        "sha256": "15b731e1dbe5552a0276e8e2f06d2c474ea6ffebbfa6eda59ebbb9c9c717e761",
-        "bytes": 653884998,
+        "filename": "L0xRE-v0.1.3-linux-sm120.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.3/L0xRE-v0.1.3-linux-sm120.tar.zst",
+        "sha256": "ff940c066509aa750bc1bbb123372c920a5f23bc344d3a6dd91f96f04702b552",
+        "bytes": 654187139,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.1: 12GB/128K and16GB/256K",
+        "profile": "v0.1.3: 12GB/128K and16GB/256K; 12GB with a display: 2048 MiB desktop arena (--arena-mib 1920/1856 lower)",
         "launcher": "tools/universal/v01-launch.py",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -94,14 +94,14 @@
     },
     "windows": {
       "sm86": {
-        "filename": "L0xRE-v0.1.2-windows-sm86.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-windows-sm86.zip",
-        "sha256": "e8814a2ab93eb5b62f1688db6d58a8e7d1332b5d3809f53b55fe70630101feb3",
-        "bytes": 672411484,
+        "filename": "L0xRE-v0.1.3-windows-sm86.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.3/L0xRE-v0.1.3-windows-sm86.zip",
+        "sha256": "d354f9f8816d3f6e770995b530bb328b4baf20bc9a61d92c7c2a158ccf40adcb",
+        "bytes": 672766081,
         "status": "build-verified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.1: 12GB/128K",
+        "profile": "v0.1.3: 12GB/128K; 12GB with a display: 2048 MiB desktop arena (--arena-mib 1920/1856 lower)",
         "launcher": "l0xre.cmd",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -114,21 +114,21 @@
         "certified_gpu_name_contains": "",
         "certified_gpu_names": [],
         "hardware_validation_status": "build-verified, hardware validation in progress",
-        "validation_scope": "Windows sm86: build-verified, hardware validation in progress; no native throughput/quality/VRAM measurement",
+        "validation_scope": "Windows sm86: build-verified; launcher, presets and selftest references fixed in v0.1.3 (loads with a display at the 2048 MiB arena); no native throughput/quality measurement claimed",
         "gpu_selector_adapter": false,
         "artifact_build_tag": "l0xre-v0.1.1-rc6",
         "artifact_build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227",
         "manifest_sha256": "828645f630f85d573352c0d88eab0b7492cc28331454a2f0d73a0e5e804d3369"
       },
       "sm89": {
-        "filename": "L0xRE-v0.1.2-windows-sm89.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-windows-sm89.zip",
-        "sha256": "a8d858df6a6348a141ad8fe7f515f77af5bcf3f23f0a88aa522909d5621c863b",
-        "bytes": 670811294,
+        "filename": "L0xRE-v0.1.3-windows-sm89.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.3/L0xRE-v0.1.3-windows-sm89.zip",
+        "sha256": "8fe92b1b51ae380c34ec33b8eb4286fc821e3ee4d3d0c0a448534597395a1db7",
+        "bytes": 671124372,
         "status": "build-verified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.1: 12GB/128K and16GB/256K",
+        "profile": "v0.1.3: 12GB/128K and16GB/256K; 12GB with a display: 2048 MiB desktop arena (--arena-mib 1920/1856 lower)",
         "launcher": "l0xre.cmd",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -142,21 +142,21 @@
         "certified_gpu_name_contains": "",
         "certified_gpu_names": [],
         "hardware_validation_status": "build-verified, hardware validation in progress",
-        "validation_scope": "Windows sm89: build-verified, hardware validation in progress; no native throughput/quality/VRAM measurement",
+        "validation_scope": "Windows sm89: build-verified; launcher, presets and selftest references fixed in v0.1.3 (loads with a display at the 2048 MiB arena); no native throughput/quality measurement claimed",
         "gpu_selector_adapter": false,
         "artifact_build_tag": "l0xre-v0.1.1-rc6",
         "artifact_build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227",
         "manifest_sha256": "6d8f3db25e49dcce45fbf9a8db3bf31086bf52cf54f53b4dc5e9c844e5d2c37b"
       },
       "sm120": {
-        "filename": "L0xRE-v0.1.2-windows-sm120.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-windows-sm120.zip",
-        "sha256": "7477f49df5f971f09af135d749116bba924b5d33021d234c2b868432a679fc06",
-        "bytes": 703906182,
+        "filename": "L0xRE-v0.1.3-windows-sm120.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.3/L0xRE-v0.1.3-windows-sm120.zip",
+        "sha256": "c7202506bfb4c5c27d0569905a2bc61528cc222b8dcd1bd560d75212b2842cb9",
+        "bytes": 704230711,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.1: 12GB/128K and16GB/256K",
+        "profile": "v0.1.3: 12GB/128K and16GB/256K; 12GB with a display: 2048 MiB desktop arena (--arena-mib 1920/1856 lower)",
         "launcher": "l0xre.cmd",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -218,68 +218,15 @@
     ],
     "minimum_vram_mib_per_gpu": 12000
   },
-  "release": "l0xre-v0.1.1",
-  "release_source_commit": "5da9c28f7283815f627931376de96fe9a2a4fb0e",
-  "measured_platforms": {
-    "wsl/sm120/12gb": {
-      "build_tag": "l0xre-v0.1.1-rc6",
-      "build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227",
-      "context_tokens": 131072,
-      "status": "measured"
-    },
-    "wsl/sm120/16gb": {
-      "build_tag": "l0xre-v0.1.1-rc6",
-      "build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227",
-      "context_tokens": 262144,
-      "status": "measured"
-    },
-    "linux/sm89/12gb": {
-      "build_tag": "l0xre-v0.1.1-rc6",
-      "build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227",
-      "context_tokens": 131072,
-      "status": "measured"
-    },
-    "linux/sm89/16gb": {
-      "build_tag": "l0xre-v0.1.1-rc6",
-      "build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227",
-      "context_tokens": 262144,
-      "status": "measured"
-    },
-    "linux/sm86/12gb": {
-      "build_tag": "l0xre-v0.1.1-rc6",
-      "build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227",
-      "context_tokens": 131072,
-      "status": "measured"
-    },
-    "windows/sm86/12gb": {
-      "build_tag": "l0xre-v0.1.1-rc6",
-      "build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227",
-      "context_tokens": 131072,
-      "status": "build-only"
-    },
-    "windows/sm89/12gb": {
-      "build_tag": "l0xre-v0.1.1-rc6",
-      "build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227",
-      "context_tokens": 131072,
-      "status": "build-only"
-    },
-    "windows/sm89/16gb": {
-      "build_tag": "l0xre-v0.1.1-rc6",
-      "build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227",
-      "context_tokens": 262144,
-      "status": "build-only"
-    },
-    "windows/sm120/12gb": {
-      "build_tag": "l0xre-v0.1.1-rc10",
-      "build_commit": "58289e61ace3bceef95c5498ebfcab1f7e468808",
-      "context_tokens": 131072,
-      "status": "measured"
-    },
-    "windows/sm120/16gb": {
-      "build_tag": "l0xre-v0.1.1-rc10",
-      "build_commit": "58289e61ace3bceef95c5498ebfcab1f7e468808",
-      "context_tokens": 262144,
-      "status": "measured"
-    }
-  }
+  "release": "l0xre-v0.1.3",
+  "release_source_commit": "471761584b3da01547d019149eae9c8f5cf1b7fe",
+  "measured_platforms": [
+    "linux/sm86/12gb",
+    "linux/sm89/12gb",
+    "linux/sm89/16gb",
+    "windows/sm120/12gb",
+    "windows/sm120/16gb",
+    "wsl/sm120/12gb",
+    "wsl/sm120/16gb"
+  ]
 }

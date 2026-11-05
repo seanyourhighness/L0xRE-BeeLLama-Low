@@ -167,6 +167,8 @@ function Test-InstallPackage([string]$Root) {
         if (-not $line) { continue }
         if ($line -notmatch '^([a-fA-F0-9]{64}) [ *](.+)$') { throw 'Invalid package checksum entry.' }
         $expected = $Matches[1].ToLowerInvariant(); $relative = $Matches[2]
+        # Bytecode caches are rewritten by Python at runtime; never part of the verified runtime.
+        if ($relative -replace '\\', '/' -match '(^|/)__pycache__/') { continue }
         $path = Get-PackagePath $Root $relative
         if (-not (Test-Path -LiteralPath $path -PathType Leaf) -or
             (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expected) {
@@ -192,6 +194,23 @@ function Expand-InstallPackage([string]$Archive, [string]$Destination, $Package)
             }
         } finally { $zip.Dispose() }
         [IO.Compression.ZipFile]::ExtractToDirectory($Archive, $stage)
+        # .NET Framework extraction drops ZIP Unix modes. NT can enforce only
+        # the declared writable/read-only state, not POSIX execute/group bits.
+        $zip = [IO.Compression.ZipFile]::OpenRead($Archive)
+        try {
+            foreach ($entry in $zip.Entries) {
+                if ($entry.FullName.EndsWith('/')) { continue }
+                $path = Get-PackagePath $stage $entry.FullName
+                $mode = ($entry.ExternalAttributes -shr 16) -band 0xFFF
+                $attributes = [IO.File]::GetAttributes($path)
+                if (($mode -band 0x92) -eq 0) { # Unix write bits 0222
+                    $attributes = $attributes -bor [IO.FileAttributes]::ReadOnly
+                } else {
+                    $attributes = $attributes -band (-bnot [IO.FileAttributes]::ReadOnly)
+                }
+                [IO.File]::SetAttributes($path, $attributes)
+            }
+        } finally { $zip.Dispose() }
         $roots = @(@($stage) + @(Get-ChildItem -LiteralPath $stage -Directory | ForEach-Object { $_.FullName }) |
             Where-Object { Test-Path -LiteralPath (Join-Path $_ $Package.launcher) -PathType Leaf })
         if ($roots.Count -ne 1) { throw 'Cannot identify the package launcher in this archive.' }
