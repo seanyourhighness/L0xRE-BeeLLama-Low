@@ -26,18 +26,18 @@ Both runtimes, same card, same benchmark. The 3060 rows are where the 72 tok/s h
 
 **RTX 3060 12 GB · Linux, headless**
 
-| | L0xRE | Bonsai | Faster |
-|---|---:|---:|---:|
-| Code decode | **72 tok/s** | 54 tok/s | **1.3×** |
-| First token | **0.23 s** | 0.57 s | **2.5×** |
+| | L0xRE | Bonsai |
+|---|---:|---:|
+| Code decode · **1.3× faster** | **72 tok/s** | 54 tok/s |
+| First token · **2.5× faster** | **0.23 s** | 0.57 s |
 
 **RTX 4070 Ti 12 GB · Windows 11, with a display**
 
-| | L0xRE | Bonsai | Faster |
-|---|---:|---:|---:|
-| Decode, full 128K context | **54 tok/s** | 30 tok/s | **1.8×** |
-| Read a 128K prompt | **883 tok/s** | 714 tok/s | **1.2×** |
-| Code decode | **118 tok/s** | 86 tok/s | **1.4×** |
+| | L0xRE | Bonsai |
+|---|---:|---:|
+| Decode at 128K · **1.8× faster** | **54 tok/s** | 30 tok/s |
+| Read 128K prompt · **1.2× faster** | **883 tok/s** | 714 tok/s |
+| Code decode · **1.4× faster** | **118 tok/s** | 86 tok/s |
 
 **Quality** — Club-3090 8-pack, /150, thinking off, pass@1: **L0xRE 120** vs **Bonsai 108**.
 
