@@ -1,16 +1,19 @@
 <div align="center">
 
 <pre>
-.--------------------------.
-| #    #### #  # ###  #### |
-| #    #  # #  # #  # #    |
-| #    #  #  ##  #  # #    |
-| #    #  #  ##  ###  ###  |
-| #    #  #  ##  # #  #    |
-| #    #  # #  # #  # #    |
-| #### #### #  # #  # #### |
-|  v0.1.3.2 / 27B / 12 GB  |
-'--------------------------'
+.=================================.
+|██     ███          ████   █████ |
+|██▒   ██▒██  ██ ██  ██▒██  ██▒▒▒▒|
+|██▒   ██▒██▒  ███▒▒ ██▒██▒ ██▒   |
+|██▒   ██▒██▒   █▒▒  ████▒▒ ████  |
+|██▒   ██▒██▒  ███   ███▒▒  ██▒▒▒ |
+|██▒   ██▒██▒ ██▒██  ██▒██  ██▒   |
+|█████  ███▒▒  ▒▒ ▒▒ ██▒██▒ █████ |
+| ▒▒▒▒▒  ▒▒▒          ▒▒ ▒▒  ▒▒▒▒▒|
+|                                 |
+|&lt; INTELLIGENCE &gt; &lt; UNRESTRICTED &gt;|
+|   root@l0xre:~$ decode --truth  |
+'================================='
 </pre>
 
 # 72 tok/s code · 128K context · vision
@@ -23,28 +26,20 @@
 
 </div>
 
-### Faster than Bonsai on both cards
+### 1.8× faster than Bonsai with a full 128K context
 
 Both runtimes, same card, same benchmark. The 3060 rows are where the 72 tok/s headline comes from.
 
-**RTX 3060 12 GB · Linux, headless**
+| L0xRE vs Ternary Bonsai 2 27B | **L0xRE** | Bonsai | |
+|---|---:|---:|---|
+| Decode at 128K · RTX 4070 Ti | **54 tok/s** | 30 tok/s | **1.8× faster** |
+| Read 128K prompt · RTX 4070 Ti | **883 tok/s** | 714 tok/s | **1.2× faster** |
+| Code decode · RTX 4070 Ti | **118 tok/s** | 86 tok/s | **1.4× faster** |
+| Code decode · RTX 3060 | **72 tok/s** | 54 tok/s | **1.3× faster** |
+| First token · RTX 3060 | **0.23 s** | 0.57 s | **2.5× faster** |
+| Quality (Club-3090 8-pack, /150) | **120** | 108 | **+12** |
 
-| | L0xRE | Bonsai |
-|---|---:|---:|
-| Code decode, tok/s · **1.3× faster** | **72** | 54 |
-| First token, seconds · **2.5× faster** | **0.23** | 0.57 |
-
-**RTX 4070 Ti 12 GB · Windows 11, with a display**
-
-| | L0xRE | Bonsai |
-|---|---:|---:|
-| Decode at 128K, tok/s · **1.8× faster** | **54** | 30 |
-| Read 128K prompt, tok/s · **1.2× faster** | **883** | 714 |
-| Code decode, tok/s · **1.4× faster** | **118** | 86 |
-
-**Quality** — Club-3090 8-pack, /150, thinking off, pass@1: **L0xRE 120** vs **Bonsai 108**.
-
-<sub>Same benchmark for both runtimes on each card. Bonsai is shown in its fastest measured configuration. Quality: L0xRE on the RTX 3060, Bonsai's 108 from Club-3090 on an RTX 5090. Sources and method: [benchmarks](docs/BENCHMARKS.md).</sub>
+<sub>RTX 3060 12 GB: Linux, headless. RTX 4070 Ti 12 GB: Windows 11, with a display. Bonsai is shown in its fastest measured configuration. Quality: thinking off, pass@1; L0xRE on the RTX 3060, Bonsai's 108 from Club-3090 on an RTX 5090. Sources and method: [benchmarks](docs/BENCHMARKS.md).</sub>
 
 ## What to expect on your card
 
