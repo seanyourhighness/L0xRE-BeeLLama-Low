@@ -1,47 +1,47 @@
 <div align="center">
 
-```text
-     .-======================================================================-.
-   (O)                                                                      (O)
-  |  0x01 // KNOWLEDGE                                  SOURCE // 0xFF   |
-  |                                                                      |
-  |   ████           ██████                  ████████     ██████████     |
-  |   ████▒▒       ████▒▒████   ████  ████   ████▒▒████   ████▒▒▒▒▒▒▒▒   |
-  |   ████▒▒       ████▒▒████▒▒   ██████▒▒▒▒ ████▒▒████▒▒ ████▒▒         |
-  |   ████▒▒       ████▒▒████▒▒     ██▒▒▒▒   ████████▒▒▒▒ ████████       |
-  |   ████▒▒       ████▒▒████▒▒   ██████     ██████▒▒▒▒   ████▒▒▒▒▒▒     |
-  |   ████▒▒       ████▒▒████▒▒ ████▒▒████   ████▒▒████   ████▒▒         |
-  |   ██████████     ██████▒▒▒▒   ▒▒▒▒  ▒▒▒▒ ████▒▒████▒▒ ██████████     |
-  |     ▒▒▒▒▒▒▒▒▒▒     ▒▒▒▒▒▒                  ▒▒▒▒  ▒▒▒▒   ▒▒▒▒▒▒▒▒▒▒   |
-  |                                                                      |
-  |          < INTELLIGENCE >                 < UNRESTRICTED >           |
-  |           root@l0xre:~$ decode --truth     ACCESS::GRANTED           |
-   (O)______________________________________________________________________(O)
-    '-======================================================================-'
-```
+<pre>
+.------------------------.
+| L0xRE // BEELLAMA R6   |
+| 27B / 128K / vision    |
+| 12 GB / NO CPU OFFLOAD |
+| > decode --truth       |
+| ACCESS::GRANTED        |
+'------------------------'
+</pre>
 
-# 72 tok/s code · 128K context · vision · 12 GB
+# 72 tok/s code · 128K context · vision
 
-**L0xRE enables 128K context, vision, fast decode and fast prefill, all at the same time, all on 12 GB, and ALL ON GPU!**
+**On a 12 GB RTX 3060.** L0xRE keeps 128K context, vision, fast prefill and fast decode running at the same time — every model layer on the GPU, no CPU offload.
 
-<sub>Every model layer runs on the GPU. There is no CPU layer offload.</sub>
+<sub>Headline numbers: RTX 3060 12 GB, native Linux, headless. Every table below names the card it was measured on.</sub>
 
 **[⬇ Download the latest release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/latest)** · **[Install](#install)** · **[Point your AI agent at it](#let-your-ai-agent-install-it)**
 
 </div>
 
-### 1.8× faster than Bonsai with a full 128K context
+### Faster than Bonsai on both cards
 
-| L0xRE vs Ternary Bonsai 2 27B | **L0xRE** | Bonsai | |
-|---|---:|---:|---|
-| Decode with a full 128K context · RTX 4070 Ti | **54 tok/s** | 30 tok/s | **1.8× faster** |
-| Reading a 128K prompt · RTX 4070 Ti | **883 tok/s** | 714 tok/s | **1.2× faster** |
-| Code decode · RTX 4070 Ti | **118 tok/s** | 86 tok/s | **1.4× faster** |
-| Code decode · RTX 3060 | **72 tok/s** | 54 tok/s | **1.3× faster** |
-| First token, short prompt · RTX 3060 | **0.23 s** | 0.57 s | **2.5× faster** |
-| Quality (Club-3090 8-pack, /150) | **120** | 108 | **+12** |
+Both runtimes, same card, same benchmark. The 3060 rows are where the 72 tok/s headline comes from.
 
-<sub>Each card ran both runtimes with the same benchmark: RTX 4070 Ti 12 GB on Windows 11, RTX 3060 12 GB on Linux. Bonsai is shown in its fastest configuration measured. Quality: thinking off, pass@1. Sources and method: [benchmarks](docs/BENCHMARKS.md).</sub>
+**RTX 3060 12 GB · Linux, headless**
+
+| | L0xRE | Bonsai |
+|---|---:|---:|
+| Code decode, tok/s · **1.3× faster** | **72** | 54 |
+| First token, seconds · **2.5× faster** | **0.23** | 0.57 |
+
+**RTX 4070 Ti 12 GB · Windows 11, with a display**
+
+| | L0xRE | Bonsai |
+|---|---:|---:|
+| Decode at 128K, tok/s · **1.8× faster** | **54** | 30 |
+| Read 128K prompt, tok/s · **1.2× faster** | **883** | 714 |
+| Code decode, tok/s · **1.4× faster** | **118** | 86 |
+
+**Quality** — Club-3090 8-pack, /150, thinking off, pass@1: **L0xRE 120** vs **Bonsai 108**.
+
+<sub>Same benchmark for both runtimes on each card. Bonsai is shown in its fastest measured configuration. Quality: L0xRE on the RTX 3060, Bonsai's 108 from Club-3090 on an RTX 5090. Sources and method: [benchmarks](docs/BENCHMARKS.md).</sub>
 
 ## What to expect on your card
 
