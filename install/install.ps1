@@ -439,8 +439,8 @@ function Invoke-L0xreInstall {
     if (-not $RuntimeOnly) { foreach ($record in $records) { Get-InstallArtifact $record $modelRoot | Out-Null } }
     $script = Write-InstallLauncher $root $runtime $modelRoot $plan ([bool]$Vision) $Port
     $startCmd = [IO.Path]::ChangeExtension($script, '.cmd')
-    Write-Host "Setup complete. Start: `"$startCmd`"  (or double-click start.cmd)"
-    Write-Host "Check the launcher: `"$startCmd`" -DryRun"
+    Write-Host "Setup complete. Start: double-click start.cmd in $(Split-Path -Parent $startCmd)"
+    Write-Host "Check the launcher from PowerShell: & $(Quote-InstallString $startCmd) -DryRun"
     Write-Host "API: http://127.0.0.1:$Port/v1"
     if ($RuntimeOnly) { Write-Host 'Runtime-only setup: supply the pinned models or rerun without -RuntimeOnly before starting.' }
 }

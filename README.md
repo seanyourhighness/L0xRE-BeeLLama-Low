@@ -18,9 +18,9 @@
 
 # 72 tok/s code · 128K context · vision
 
-**v0.1.3.2 — on a 12 GB RTX 3060.** L0xRE keeps 128K context, vision, fast prefill and fast decode running at the same time — every model layer on the GPU, no CPU offload.
+**L0xRE enables 128K context, vision, fast decode and fast prefill, all at the same time, all on 12 GB, and ALL ON GPU!**
 
-<sub>Headline numbers: v0.1.3.2 on an RTX 3060 12 GB, native Linux, headless. Every table below names the card it was measured on.</sub>
+<sub>Every model layer runs on the GPU, with no CPU layer offload. Headline numbers: RTX 3060 12 GB, native Linux, headless. Every table below names the card it was measured on.</sub>
 
 **[⬇ Download the latest release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/latest)** · **[Install](#install)** · **[Point your AI agent at it](#let-your-ai-agent-install-it)**
 
@@ -39,21 +39,20 @@ Both runtimes, same card, same benchmark. The 3060 rows are where the 72 tok/s h
 | First token · RTX 3060 | **0.23 s** | 0.57 s | **2.5× faster** |
 | Quality (Club-3090 8-pack, /150) | **120** | 108 | **+12** |
 
-<sub>RTX 3060 12 GB: Linux, headless. RTX 4070 Ti 12 GB: Windows 11, with a display. Bonsai is shown in its fastest measured configuration. Quality: thinking off, pass@1; L0xRE on the RTX 3060, Bonsai's 108 from Club-3090 on an RTX 5090. Sources and method: [benchmarks](docs/BENCHMARKS.md).</sub>
+<sub>RTX 3060 12 GB: Linux, headless. RTX 4070 Ti 12 GB: Windows 11, with a display, at the 2048 MiB arena (the numbers in the next table use the 1856 MiB desktop default). Bonsai is shown in its fastest measured configuration. Quality: thinking off, pass@1; L0xRE on the RTX 3060, Bonsai's 108 from Club-3090 on an RTX 5090. Sources and method: [benchmarks](docs/BENCHMARKS.md).</sub>
 
 ## What to expect on your card
 
 | Card (12 GB) | Story / chat | Code | 128K prompt in | Decode at 128K |
 |---|---:|---:|---:|---:|
-| **RTX 3060**, Linux | ~40 tok/s | ~72 tok/s | ~400 tok/s | ~22 tok/s |
+| **RTX 3060**, Linux | ~40 tok/s | ~72 tok/s | ~400 tok/s | 35.9 tok/s |
 | **RTX 4070 Ti**, Windows 11 with a display, browser and messaging apps open | ~67 tok/s | ~100–118 tok/s | ~920 tok/s | ~53 tok/s |
 
 <sub>A 12 GB card that drives your monitor automatically leaves room for your desktop apps. Faster cards are faster still. Details: [benchmarks](docs/BENCHMARKS.md).</sub>
 
+<!-- Add this section back when the example is ready:
 ## Made with L0xRE
-
-<!-- Example coming soon: something built with L0xRE. -->
-*Example coming soon.*
+-->
 
 ## Install
 
@@ -63,7 +62,7 @@ You need an NVIDIA GPU with 12 GB or more (RTX 30, 40 or 50 series), a recent NV
 
 ```bat
 curl.exe -LO https://raw.githubusercontent.com/seanyourhighness/L0xRE-BeeLLama-Low/main/install/install.cmd
-install.cmd -Vision
+.\install.cmd -Vision
 ```
 
 Then double-click **`start.cmd`** in the install folder. Setup prints where that is.

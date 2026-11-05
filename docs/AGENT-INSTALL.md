@@ -17,8 +17,8 @@ Run `nvidia-smi --query-gpu=name,memory.total,compute_cap,driver_version --forma
 
 ```bat
 curl.exe -LO https://raw.githubusercontent.com/seanyourhighness/L0xRE-BeeLLama-Low/main/install/install.cmd
-install.cmd -DryRun -Vision
-install.cmd -Vision -Yes
+.\install.cmd -DryRun -Vision
+.\install.cmd -Vision -Yes
 ```
 
 **Linux or WSL2:**
