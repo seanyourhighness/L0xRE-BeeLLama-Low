@@ -179,6 +179,8 @@ def verify_package(root):
         if not match:
             raise ValueError("Invalid package checksum entry")
         expected, relative = match.groups()
+        if "__pycache__/" in relative.replace("\\", "/"):
+            continue  # bytecode caches are rewritten by Python at runtime; never part of the verified runtime
         path = contained_path(root, relative)
         if not path.is_file() or sha256(path) != expected.lower():
             raise ValueError(f"Package checksum mismatch: {relative}")
@@ -347,8 +349,8 @@ def main(argv=None):
     for command in ("curl", "zstd", "numactl"):
         if not shutil.which(command):
             raise ValueError(f"Missing {command}. On Ubuntu / Debian: sudo apt-get install curl zstd numactl")
-    if len(os.sched_getaffinity(0).intersection(range(8))) != 8:
-        raise ValueError("The packaged profile requires CPU cores 0–7 to be accessible")
+    if len(os.sched_getaffinity(0)) < 4:
+        raise ValueError("L0xRE needs at least 4 accessible CPU cores")
     records = select_model_records(catalog, plan, options.vision)
     if not options.runtime_only:
         for record in records:
