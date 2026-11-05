@@ -87,31 +87,9 @@ Quality (Club 8-pack, 150 cases, temperature 0):
 
 Owner-accepted exception: wsl/sm120/16gb prefill_10k -2.43% versus l0xre-v0.1.2 (1. accept).
 
-Speed gains that differ from the reference target, with the owner ruling:
-- linux/sm89/12gb code_decode: lets keep it, 4090 isn't the target card its a 4070ti or similar 12gb sm89 so i will test 1.2 and 1.3 on that machine on windows myself. if all the code reaches the build and no regressions are present lets continue the release
-- linux/sm89/12gb depth_10k_decode: lets keep it, 4090 isn't the target card its a 4070ti or similar 12gb sm89 so i will test 1.2 and 1.3 on that machine on windows myself. if all the code reaches the build and no regressions are present lets continue the release
-- linux/sm89/12gb depth_32k_decode: lets keep it, 4090 isn't the target card its a 4070ti or similar 12gb sm89 so i will test 1.2 and 1.3 on that machine on windows myself. if all the code reaches the build and no regressions are present lets continue the release
-- linux/sm89/12gb narrative_decode: lets keep it, 4090 isn't the target card its a 4070ti or similar 12gb sm89 so i will test 1.2 and 1.3 on that machine on windows myself. if all the code reaches the build and no regressions are present lets continue the release
-- linux/sm89/16gb code_decode: lets keep it, 4090 isn't the target card its a 4070ti or similar 12gb sm89 so i will test 1.2 and 1.3 on that machine on windows myself. if all the code reaches the build and no regressions are present lets continue the release
-- linux/sm89/16gb depth_10k_decode: lets keep it, 4090 isn't the target card its a 4070ti or similar 12gb sm89 so i will test 1.2 and 1.3 on that machine on windows myself. if all the code reaches the build and no regressions are present lets continue the release
-- linux/sm89/16gb depth_32k_decode: lets keep it, 4090 isn't the target card its a 4070ti or similar 12gb sm89 so i will test 1.2 and 1.3 on that machine on windows myself. if all the code reaches the build and no regressions are present lets continue the release
-- linux/sm89/16gb narrative_decode: lets keep it, 4090 isn't the target card its a 4070ti or similar 12gb sm89 so i will test 1.2 and 1.3 on that machine on windows myself. if all the code reaches the build and no regressions are present lets continue the release
-- windows/sm120/12gb code_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- windows/sm120/12gb depth_10k_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- windows/sm120/12gb depth_32k_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- windows/sm120/12gb narrative_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- windows/sm120/16gb code_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- windows/sm120/16gb depth_10k_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- windows/sm120/16gb depth_32k_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- windows/sm120/16gb narrative_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- wsl/sm120/12gb code_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- wsl/sm120/12gb depth_10k_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- wsl/sm120/12gb depth_32k_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- wsl/sm120/12gb narrative_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- wsl/sm120/16gb code_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- wsl/sm120/16gb depth_10k_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- wsl/sm120/16gb depth_32k_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
-- wsl/sm120/16gb narrative_decode: nope the 5090 is also not the target card its a 5060 ti or 5070 that were targeting 12gb and 16gb cards so that gain is reasonable and better than zero on sm89
+Speed results that differ from the reference card (RTX 3060), reviewed and accepted by the owner:
+- linux/sm89 12gb and 16gb (code, narrative, depth 10K/32K decode, roughly flat): the RTX 4090 is a stand-in, not the target card. The 12 GB SM89 target (RTX 4070 Ti class) will be checked separately against v0.1.2 on that hardware.
+- windows/sm120 and wsl/sm120 12gb and 16gb (code, narrative, depth 10K/32K decode, about +6-10%): the RTX 5090 is a stand-in for the 12/16 GB SM120 targets (RTX 5060 Ti / 5070); a smaller gain than on the 3060 is expected there.
 
 Known limitations:
 - Decode speedups were developed on the RTX 3060 (+17-22%). Measured stand-ins: RTX 5090 +9-10%, RTX 4090 about 0% (decode not kernel-bound on large cards); TTFT and cache gains transfer everywhere.
