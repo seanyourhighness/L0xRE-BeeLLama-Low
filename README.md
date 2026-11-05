@@ -1,12 +1,14 @@
-# L0xRE v0.1.2
+# L0xRE v0.1.3
 
-Current release: **[v0.1.2](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/l0xre-v0.1.2)**. This updates tooling and documentation while reusing the exact v0.1.1 runtime archives. Runtime version and inherited qualification records remain v0.1.1.
+Current release: **[v0.1.3](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/l0xre-v0.1.3)**: faster decode, much faster prompt reuse (TTFT, follow-up turns, cached system prompts), and 12 GB cards that also drive a display now load (2048 MiB desktop arena; `--arena-mib 1920` or `1856` frees more VRAM).
 
-Run L0xRE-27b-Low with DFlash2 speculative decoding, GPU vision, Q4 KV streaming and explicit128K/256K memory profiles. Thinking is off by default. Target, drafter and qualified Q5 projector pins are unchanged from v0.1.
+Start with the [guided installer](install/README.md), [v0.1.3 release notes](docs/V013-RELEASE.md), [review summary](receipts/v0.1.1/REVIEW-SUMMARY.md), [provenance](docs/V011-PROVENANCE.md) and [rollback instructions](docs/V011-ROLLBACK.md). The [public install catalog](install/catalog.json) supplies current install URLs.
 
-Start with the [guided installer](install/README.md), [v0.1.2 release notes](docs/V012-RELEASE.md), [review summary](receipts/v0.1.1/REVIEW-SUMMARY.md), [provenance](docs/V011-PROVENANCE.md) and [rollback instructions](docs/V011-ROLLBACK.md). The [manifest](MANIFEST.json) indexes the eleven immutable assets; the [public install catalog](install/catalog.json) supplies current install URLs.
+For complete runtime source and current release tooling, use the named [L0xRE-v0.1.3-source.tar.gz asset](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.3/L0xRE-v0.1.3-source.tar.gz), SHA256 `ba662bbb6d31d998fde2bc05054a4b90e4efb03dd5c75f013895dfdc6dae1982`, exact source commit `471761584b3da01547d019149eae9c8f5cf1b7fe`. GitHub's automatic Source code (zip/tar.gz) archives contain this public installer/documentation tree, not the complete runtime source.
 
-For complete runtime source and current release tooling, use the named [L0xRE-v0.1.2-source.tar.gz asset](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-source.tar.gz), SHA256 `66611aab459a7ac7f8342407d30a58e4c359909b6a2a216ec93f37cfea695bf1`, exact source commit `84c7c7b3fd3738065a34f15ef408e3186a21d90c`. GitHub's automatic Source code (zip/tar.gz) archives contain this public installer/documentation tree, not the complete runtime source. The public distribution tag is distinct from the exact source commit. Runtime reproduction evidence is inherited from unchanged v0.1.1 inputs; v0.1.2 does not claim a fresh runtime rebuild. See the [release notes](docs/V012-RELEASE.md) for the exact scope.
+## Inherited v0.1.1 qualification record
+
+The hardware qualification matrix and gate results below are the v0.1.1 record, preserved unchanged. Current v0.1.3 speeds are in [Runtime expectations](#runtime-expectations-in-v013).
 
 | Package | Profiles | Actual qualification |
 | --- | --- | --- |
@@ -39,25 +41,23 @@ Known limits: WSL16GB short prefill versus12GB is -2.028086%, directly accepted 
 
 Model files remain SHA-pinned in [MODEL-SHA256SUMS](MODEL-SHA256SUMS). Optional Mirai vectors are user-provided. See [third-party notices](THIRD-PARTY-NOTICES.md) and [licenses](licenses/); complete source/notice provenance ships in the named source asset.
 
-The current installer uses the published v0.1.2 catalog. Historical release records and checksums remain unchanged. Older development branches are preserved as [source archive tags](docs/SOURCE-ARCHIVES.md); use those tags for historical builds.
+The current installer uses the published v0.1.3 catalog. Historical release records and checksums remain unchanged. Older development branches are preserved as [source archive tags](docs/SOURCE-ARCHIVES.md); use those tags for historical builds.
 
-<!-- l0xre-v012-expectations:start -->
-## Runtime expectations in v0.1.2
+<!-- l0xre-v013-expectations:start -->
+## Runtime expectations in v0.1.3
 
-This tooling release reuses the unchanged v0.1.1 runtime. The earlier qualification disclosures above remain preserved. See the [v0.1.2 release notes](docs/V012-RELEASE.md).
+Rounded v0.1.3 measurements on the named cards, 12GB profile, measured against v0.1.2 on the same GPU in the same session. They are workload examples, not forecasts for every compatible GPU. Full per-target tables, quality results and accepted exceptions are in the [v0.1.3 release notes](docs/V013-RELEASE.md).
 
-What to expect with the unchanged v0.1.1 runtime: these rounded token rates are measurements on the named cards, using the canonical-v2 narrative/code workloads and 12GB profile. They are workload examples, not forecasts for every compatible GPU. The source is the published [v0.1.1 notes](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/blob/main/docs/V011-RELEASE.md), frozen notes SHA256 `9b0fd63cbf85ca1da24b696edfecc81a6d618e6aba33b2d84e445415e4506829`.
+| Measured card / platform | Narrative decode, tok/s | Code decode, tok/s | Short TTFT, ms | Follow-up TTFT, ms |
+| --- | ---: | ---: | ---: | ---: |
+| RTX 3060 / native Linux (SM86) | about 40 (+17%) | about 72 (+21%) | 494 (-50%) | 873 (-45%) |
+| RTX 4090 / native Linux (SM89) | about 89 (±0%) | about 152 (-1%) | 293 (-47%) | 548 (-45%) |
+| RTX 5090 / WSL2 (SM120) | about 115 (+10%) | about 199 (+9%) | 376 (-49%) | 399 (-57%) |
+| RTX 5090 / native Windows (SM120) | about 124 (+10%) | about 209 (+7%) | 159 (-45%) | 264 (-42%) |
 
-| Measured card / platform | Narrative decode, tok/s | Code decode, tok/s | Free VRAM for default 12GB rung, MiB |
-| --- | ---: | ---: | ---: |
-| RTX 3060 / native Linux (SM86) | about 35 | about 60 | 11,691 |
-| RTX 4090 / native Linux (SM89) | about 94 | about 148 | 12,082 |
-| RTX 5090 / WSL2 (SM120) | about 112 | about 178 | 12,058 |
-| RTX 5090 / native Windows (SM120) | about 123 | about 197 | 12,090 |
-
-The memory column is each preset in the [complete source archive](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.2/L0xRE-v0.1.2-source.tar.gz)'s measured `required_free_mib` plus the unchanged 64MiB safety margin. It means actual driver-reported free VRAM before launch, not the GPU's advertised capacity. Windows SM120 also has an explicitly consented slower 12GB rung needing 11,130MiB free. Native Linux SM89 16GB needs 14,898MiB; WSL SM120 16GB needs 15,036MiB; Windows SM120 16GB needs 14,972MiB. These envelopes were measured on larger 24GB/32GB cards and do not certify every physical 12GB/16GB card. Other GPU applications and desktop use reduce available memory.
+Decode speedups were developed on the RTX 3060; large cards gain less on decode, while TTFT and prompt-cache gains transfer everywhere. A GPU that also drives a display uses the 2048 MiB desktop arena; smaller arenas lower deep-context (about 128K) decode on fast cards. Free VRAM must cover the preset's measured requirement plus 64MiB; other GPU applications and desktop use reduce available memory.
 
 When preflight cannot fit the default, Retry means free memory and check again; Start slower explicitly accepts a validated smaller rung and its speed cost where one exists; Quit stops. Services and selftests also require explicit slower-speed consent. The launcher never silently downgrades or treats an unvalidated setting as qualified. Native Windows SM86/SM89 remain build-only until matching hardware receipts are reviewed.
 
-Use the [two-minute Windows quickstart](docs/WINDOWS-QUICKSTART.md) for setup. WSL uses Linux packages and has its own measurements: the v0.1.1 WSL SM120 16GB short-prefill comparison was **-2.028086% versus 12GB**, directly accepted only for that comparison. Preserve that measured exception; it does not waive the 2% floor elsewhere. The published notes above retain the exact result and limitations. First-request prefill after a context change remains a known runtime issue for v0.1.3.
-<!-- l0xre-v012-expectations:end -->
+Use the [two-minute Windows quickstart](docs/WINDOWS-QUICKSTART.md) for setup. Accepted exception: WSL SM120 16GB cold 10K prefill is -2.43% versus v0.1.2; cached and follow-up turns are much faster on the same profile.
+<!-- l0xre-v013-expectations:end -->
