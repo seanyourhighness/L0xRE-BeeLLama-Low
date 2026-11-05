@@ -1,20 +1,20 @@
 <div align="center">
 
 <pre>
-.------------------------.
-| L0xRE // BEELLAMA R6   |
-| 27B / 128K / vision    |
-| 12 GB / NO CPU OFFLOAD |
-| > decode --truth       |
-| ACCESS::GRANTED        |
-'------------------------'
+#    #### #  # ###  ####
+#    #  # #  # #  # #   
+#    #  #  ##  #  # #   
+#    #  #  ##  ###  ### 
+#    #  #  ##  # #  #   
+#    #  # #  # #  # #   
+#### #### #  # #  # ####
 </pre>
 
 # 72 tok/s code · 128K context · vision
 
-**On a 12 GB RTX 3060.** L0xRE keeps 128K context, vision, fast prefill and fast decode running at the same time — every model layer on the GPU, no CPU offload.
+**v0.1.3.2 — on a 12 GB RTX 3060.** L0xRE keeps 128K context, vision, fast prefill and fast decode running at the same time — every model layer on the GPU, no CPU offload.
 
-<sub>Headline numbers: RTX 3060 12 GB, native Linux, headless. Every table below names the card it was measured on.</sub>
+<sub>Headline numbers: v0.1.3.2 on an RTX 3060 12 GB, native Linux, headless. Every table below names the card it was measured on.</sub>
 
 **[⬇ Download the latest release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/latest)** · **[Install](#install)** · **[Point your AI agent at it](#let-your-ai-agent-install-it)**
 
