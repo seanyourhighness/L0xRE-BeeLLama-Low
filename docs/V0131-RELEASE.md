@@ -26,4 +26,4 @@ The 4090 and 5090 are stand-ins for the 12 GB target cards. They reserve memory 
 
 ## Upgrade
 
-Run `install.py --update` (Linux/WSL) or `install.ps1 -Update` (Windows). `--rollback` / `-Rollback` restores v0.1.3.
+Linux/WSL: run `install.py --update`. Windows: run `update.cmd` in your install folder; on an install made before `update.cmd` existed, download [`install.cmd`](https://raw.githubusercontent.com/seanyourhighness/L0xRE-BeeLLama-Low/main/install/install.cmd) and run `install.cmd -Update -InstallDir <your install folder>`. No `-ExecutionPolicy` flag is needed. `--rollback` / `-Rollback` restores v0.1.3.

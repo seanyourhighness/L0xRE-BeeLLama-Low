@@ -125,6 +125,10 @@ param([Parameter(Mandatory=$true)][string]$Model, [Parameter(Mandatory=$true)][s
     Assert-Install ($result.vision -eq (Join-Path $modelRoot 'mmproj-Qwen3.8-27B-Q8_0.gguf')) 'CPU vision path missing'
     Assert-Install ($result.gpu -eq 'GPU-fixture' -and $result.port -eq 8190 -and $result.dry) 'GPU, port or dry-run forwarding failed'
     Assert-Install (Test-Path -LiteralPath (Join-Path $InstallDir 'update.ps1')) 'Update entry point missing'
+    Assert-Install (Test-Path -LiteralPath (Join-Path $InstallDir 'update.cmd')) 'update.cmd wrapper missing'
+    $cmdResult = & cmd.exe /d /c ('"' + (Join-Path $InstallDir 'start.cmd') + '" -DryRun') | ConvertFrom-Json
+    Assert-Install ($LASTEXITCODE -eq 0) 'start.cmd wrapper failed'
+    Assert-Install ($cmdResult.model -eq $result.model -and $cmdResult.port -eq 8190 -and $cmdResult.dry) 'start.cmd did not forward to start.ps1'
     $oldReceipt = Get-Content -Raw -LiteralPath (Join-Path $InstallDir 'INSTALLATION.json') | ConvertFrom-Json
     $nextRuntime = Join-Path $InstallDir 'fixture-next'
     Copy-Item -LiteralPath $oldReceipt.runtime -Destination $nextRuntime -Recurse
