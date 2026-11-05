@@ -2,6 +2,29 @@
 
 This page holds the numbers behind the [README](../README.md) tables: where each one comes from and what it does and doesn't show. Unless a row says otherwise, numbers are from the v0.1.3 runtime. Later patch releases changed only the launcher, so the same numbers apply to them.
 
+## L0xRE vs Ternary Bonsai 2 27B on an RTX 4070 Ti 12 GB
+
+Both runtimes ran on the same RTX 4070 Ti 12 GB under native Windows 11, on 2026-11-05. L0xRE was v0.1.3 at the 2048 MiB arena. Each figure is one run, verified by the maintainer.
+
+**Full context:** a 130,048-token prompt, 1,023 tokens generated, in a 131,072-token context.
+
+| Metric | L0xRE | Bonsai MTP |
+|---|---:|---:|
+| Reading the prompt (prefill) | 883 tok/s | 714 tok/s |
+| Decode | 54.1 tok/s | 29.8 tok/s |
+| Total time | 166 s | 217 s |
+
+Bonsai's token IDs were incomplete in this run, so its output could not be checked token by token. Its timings are the server's own.
+
+**Short prompts** (`bench.sh`):
+
+| Metric | L0xRE | Bonsai |
+|---|---:|---:|
+| Code decode | 118 tok/s | 86 tok/s |
+| Narrative decode | 68.4 tok/s | 72.0 tok/s |
+
+Bonsai is ahead on short narrative decode on this card. With the v0.1.3.1 desktop default (1856 MiB arena), the same card measured 921 tok/s prefill and 53.4 tok/s decode on a 130,048-token prompt.
+
 ## L0xRE vs Ternary Bonsai 2 27B on an RTX 3060 12 GB
 
 Both ran on the same RTX 3060 12 GB under native Linux, with the same `bench.sh` script (the Club-3090 prompt set) and thinking off. Bonsai ran on PrismML's llama.cpp fork (club pin b12128-d7b2896). Each Bonsai figure is its fastest configuration for that metric:
