@@ -1,10 +1,10 @@
-# L0xRE v0.1.3
+# L0xRE v0.1.3.1
 
-Current release: **[v0.1.3](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/l0xre-v0.1.3)**: faster decode, much faster prompt reuse (TTFT, follow-up turns, cached system prompts), and 12 GB cards that also drive a display now load (2048 MiB desktop arena; `--arena-mib 1920` or `1856` frees more VRAM).
+Current release: **[v0.1.3.1](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/tag/l0xre-v0.1.3.1)**: v0.1.3 (faster decode, much faster prompt reuse: TTFT, follow-up turns, cached system prompts) plus a launcher patch: 12 GB cards that also drive a display now default to the 1856 MiB desktop arena, leaving headroom for an agent, a browser and messaging apps (`--arena-mib 2048` or `1920` trades headroom for deep-context speed).
 
-Start with the [guided installer](install/README.md), [v0.1.3 release notes](docs/V013-RELEASE.md), [review summary](receipts/v0.1.1/REVIEW-SUMMARY.md), [provenance](docs/V011-PROVENANCE.md) and [rollback instructions](docs/V011-ROLLBACK.md). The [public install catalog](install/catalog.json) supplies current install URLs.
+Start with the [guided installer](install/README.md), [v0.1.3.1 patch notes](docs/V0131-RELEASE.md), [v0.1.3 release notes](docs/V013-RELEASE.md), [review summary](receipts/v0.1.1/REVIEW-SUMMARY.md), [provenance](docs/V011-PROVENANCE.md) and [rollback instructions](docs/V011-ROLLBACK.md). The [public install catalog](install/catalog.json) supplies current install URLs.
 
-For complete runtime source and current release tooling, use the named [L0xRE-v0.1.3-source.tar.gz asset](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.3/L0xRE-v0.1.3-source.tar.gz), SHA256 `ba662bbb6d31d998fde2bc05054a4b90e4efb03dd5c75f013895dfdc6dae1982`, exact source commit `471761584b3da01547d019149eae9c8f5cf1b7fe`. GitHub's automatic Source code (zip/tar.gz) archives contain this public installer/documentation tree, not the complete runtime source.
+For complete runtime source and current release tooling, use the named [L0xRE-v0.1.3.1-source.tar.gz asset](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.3.1/L0xRE-v0.1.3.1-source.tar.gz), SHA256 `8ea5dd67f993fe93ab12a90a82c7d57a883ac93981008f3bf869554353403772`, exact source commit `75046c1ddf96a36e5c8b714456d37fe8e17a2c9d`. GitHub's automatic Source code (zip/tar.gz) archives contain this public installer/documentation tree, not the complete runtime source.
 
 ## Inherited v0.1.1 qualification record
 
@@ -41,7 +41,7 @@ Known limits: WSL16GB short prefill versus12GB is -2.028086%, directly accepted 
 
 Model files remain SHA-pinned in [MODEL-SHA256SUMS](MODEL-SHA256SUMS). Optional Mirai vectors are user-provided. See [third-party notices](THIRD-PARTY-NOTICES.md) and [licenses](licenses/); complete source/notice provenance ships in the named source asset.
 
-The current installer uses the published v0.1.3 catalog. Historical release records and checksums remain unchanged. Older development branches are preserved as [source archive tags](docs/SOURCE-ARCHIVES.md); use those tags for historical builds.
+The current installer uses the published v0.1.3.1 catalog. Historical release records and checksums remain unchanged. Older development branches are preserved as [source archive tags](docs/SOURCE-ARCHIVES.md); use those tags for historical builds.
 
 <!-- l0xre-v013-expectations:start -->
 ## Runtime expectations in v0.1.3
@@ -55,7 +55,7 @@ Rounded v0.1.3 measurements on the named cards, 12GB profile, measured against v
 | RTX 5090 / WSL2 (SM120) | about 115 (+10%) | about 199 (+9%) | 376 (-49%) | 399 (-57%) |
 | RTX 5090 / native Windows (SM120) | about 124 (+10%) | about 209 (+7%) | 159 (-45%) | 264 (-42%) |
 
-Decode speedups were developed on the RTX 3060; large cards gain less on decode, while TTFT and prompt-cache gains transfer everywhere. A GPU that also drives a display uses the 2048 MiB desktop arena; smaller arenas lower deep-context (about 128K) decode on fast cards. Free VRAM must cover the preset's measured requirement plus 64MiB; other GPU applications and desktop use reduce available memory.
+Decode speedups were developed on the RTX 3060; large cards gain less on decode, while TTFT and prompt-cache gains transfer everywhere. A 12 GB GPU that also drives a display uses the 1856 MiB desktop arena (v0.1.3.1); it costs about 2% deep-context (about 128K) decode on the RTX 3060 and more on fast stand-in cards, and `--arena-mib 2048` or `1920` restores some of it. Free VRAM must cover the preset's measured requirement plus 64MiB; other GPU applications and desktop use reduce available memory.
 
 When preflight cannot fit the default, Retry means free memory and check again; Start slower explicitly accepts a validated smaller rung and its speed cost where one exists; Quit stops. Services and selftests also require explicit slower-speed consent. The launcher never silently downgrades or treats an unvalidated setting as qualified. Native Windows SM86/SM89 remain build-only until matching hardware receipts are reviewed.
 
