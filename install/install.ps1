@@ -255,7 +255,8 @@ function Write-InstallLauncher([string]$Root, [string]$Runtime, [string]$ModelRo
     $draft = Join-Path $ModelRoot 'Qwen3.8-27B-DFlash2-Q4_K_M.gguf'
     if ($Plan.package.launcher_style -eq 'sm120-windows') {
         $parameters = @{ Model = $target; Draft = $draft; BindAddress = '127.0.0.1'; Port = $ListenPort }
-        if ($Plan.package.status -eq 'starter' -or -not $Plan.hardware_qualified_for_gpu) { $parameters.QualificationProbe = $true }
+        # Probe only staged starter packages; released packages reject the flag (see install.py).
+        if ($Plan.package.status -eq 'starter') { $parameters.QualificationProbe = $true }
         if ($WithVision) { $parameters.Mmproj = Join-Path $ModelRoot 'mmproj-Qwen3.8-27B-Q8_0.gguf' }
         $entries = @($parameters.Keys | ForEach-Object { $_ + ' = ' + $(if ($parameters[$_] -is [bool]) { '$true' } else { Quote-InstallString $parameters[$_] }) })
         $callLines = @(('$serverParameters = @{ ' + ($entries -join '; ') + ' }'),
@@ -268,7 +269,7 @@ function Write-InstallLauncher([string]$Root, [string]$Runtime, [string]$ModelRo
                 '-m', $target, '-md', $draft, '--host', '127.0.0.1', '--port', "$ListenPort")
         }
         $dryFlag = '--dry-run'
-        if ($Plan.package.status -eq 'starter' -or -not $Plan.hardware_qualified_for_gpu) { $arguments += '--qualification-probe' }
+        if ($Plan.package.status -eq 'starter') { $arguments += '--qualification-probe' }
         if ($WithVision) {
             $projector = if ($Plan.package.PSObject.Properties['projector_filename']) { $Plan.package.projector_filename } elseif ($Plan.package.PSObject.Properties['launcher_style'] -and $Plan.package.launcher_style -eq 'v01') { 'mmproj-Qwen3.8-27B-Q5_K-MIX.gguf' } else { 'mmproj-Qwen3.8-27B-Q8_0.gguf' }
             $arguments += @('--mmproj', (Join-Path $ModelRoot $projector))

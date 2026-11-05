@@ -246,7 +246,10 @@ def write_launcher(install_dir, runtime, models_dir, plan, vision, port):
     if plan["package"].get("launcher_style") == "v01":
         index = args.index("--profile")
         args[index:index + 2] = ["--memory-profile", plan["memory_profile"], "--gpu", plan["gpu"]["uuid"]]
-    if plan["package"]["status"] == "candidate" or not plan.get("hardware_qualified_for_gpu", False):
+    # The probe flag is only for staged candidate packages. A released package qualifies itself by
+    # architecture and memory profile; a GPU model that is not on the measured list still starts
+    # normally (and the launcher rejects the probe flag on released packages).
+    if plan["package"]["status"] == "candidate":
         args += ["--qualification-probe"]
     if vision:
         args += ["--mmproj", str(models_dir / plan["package"].get("projector_filename", "mmproj-Qwen3.8-27B-Q5_K-MIX.gguf" if plan["package"].get("launcher_style") == "v01" else "mmproj-Qwen3.8-27B-Q8_0.gguf"))]
