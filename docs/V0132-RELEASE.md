@@ -42,4 +42,6 @@ Binaries, presets, arenas, models and selftest references are identical to v0.1.
 
 ## Upgrade
 
-Run `install.py --update` (Linux/WSL) or `install.ps1 -Update` (Windows). `--rollback` / `-Rollback` restores v0.1.3.1.
+Linux/WSL: run `install.py --update`. Windows: run `update.cmd` in your install folder; on an install made before `update.cmd` existed, download [`install.cmd`](https://raw.githubusercontent.com/seanyourhighness/L0xRE-BeeLLama-Low/main/install/install.cmd) and run `install.cmd -Update -InstallDir <your install folder>`. No `-ExecutionPolicy` flag is needed. `--rollback` / `-Rollback` restores v0.1.3.1.
+
+If `start` fails with "hardware qualification is pending; --qualification-probe applies only to a staged candidate", your start script was written by an older installer for a GPU model that is not on the measured list (for example an RTX 4070 Ti, 5060 Ti or 5070). Run the update above once; it rewrites the start script without that flag.
