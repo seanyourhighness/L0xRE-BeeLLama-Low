@@ -1,6 +1,6 @@
 <div align="center">
 
-```text
+<pre>
 .------------------------.
 | L0xRE // BEELLAMA R6   |
 | 27B / 128K / vision    |
@@ -8,7 +8,7 @@
 | > decode --truth       |
 | ACCESS::GRANTED        |
 '------------------------'
-```
+</pre>
 
 # 72 tok/s code · 128K context · vision
 
