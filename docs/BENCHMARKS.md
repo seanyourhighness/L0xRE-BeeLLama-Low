@@ -45,7 +45,7 @@ Both ran on the same RTX 3060 12 GB under native Linux, with the same `bench.sh`
 
 | Card | Story / chat | Code | 128K prompt in | Decode at 128K | Source |
 |---|---:|---:|---:|---:|---|
-| RTX 3060 12 GB, native Linux, headless | ~40 tok/s | ~72 tok/s | ~400 tok/s | ~22 tok/s | `bench.sh` as above; 128K figures from a 123,860-token fill on v0.1.2 (v0.1.3 decodes faster at depth: +17% at 32K) |
+| RTX 3060 12 GB, native Linux, headless | ~40 tok/s | ~72 tok/s | ~400 tok/s | 35.9 tok/s | `bench.sh` as above; 128K figures from the shipped v0.1.3 deep selftest (130,048-token prompt, 1,023 tokens generated: 394 tok/s in, 35.9 tok/s out; one run). The v0.1.1 release gate, with a different depth workload, measured 395.6 tok/s in and 32.06 tok/s out (10 runs) |
 | RTX 4070 Ti 12 GB, native Windows 11, drives the display, with Hermes, a browser and WhatsApp open | ~67 tok/s | ~100–118 tok/s | ~920 tok/s | ~53 tok/s | v0.1.3.1 selftest at the 1856 MiB desktop arena (192-token samples: 66.9 / 102.2; 130,048-token prompt: 921 tok/s in, 53.4 tok/s out); 117.9 tok/s on a 2,048-token code sample ([report](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/issues/13)) |
 
 The 4070 Ti numbers are single runs on a working desktop, not a clean benchmark. The 3060 has no display attached.

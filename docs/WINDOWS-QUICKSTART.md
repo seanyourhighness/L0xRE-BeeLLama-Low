@@ -6,13 +6,13 @@ Allow about two minutes to start setup; model downloads take longer. Use x64 Win
 
    ```bat
    curl.exe -LO https://raw.githubusercontent.com/seanyourhighness/L0xRE-BeeLLama-Low/main/install/install.cmd
-   install.cmd -DryRun -Vision
+   .\install.cmd -DryRun -Vision
    ```
 
 2. Read the selected GPU, package, model locations and space requirements. Close other GPU applications, then install:
 
    ```bat
-   install.cmd -Vision
+   .\install.cmd -Vision
    ```
 
    Add `-ModelsDir 'D:\Models'` to reuse existing pinned models. The installer checks hashes and prints the start command. It leaves the service stopped.
