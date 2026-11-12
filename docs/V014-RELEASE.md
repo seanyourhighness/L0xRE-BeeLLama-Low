@@ -12,7 +12,7 @@ Frozen source: `e7c3a18defbfadb96a877d923e4b1c9c3157d530`.
 | Windows SM89 | Build-verified: checksums, launcher tests, install/update/rollback, every DLL import and native load; no matching hardware run | Available |
 | Linux SM86 | Production bytes packaged; GPU reference checks pending | Pending |
 | Linux SM89 | Selective CUDA/bridge rebuild; 4090 smoke checks pending | Pending |
-| Linux SM120 (WSL) | Selective CUDA/bridge rebuild; 5090 reference checks pending | Pending |
+| Linux SM120 (WSL) | Parked:12GB ABBA short TTFT+21.25%, depth10K decode-5.73%, depth32K decode-3.64% vs0.1.3.2; selftests/smoke/recovery/quality passed | Withheld |
 | Windows SM120 | Host, selective CUDA and bridge rebuild; 5090 reference checks pending | Pending |
 
 The catalog retains v0.1.3.2 for unfinished targets. Windows build-only binaries have corrected profile/component hash bindings and launcher status metadata; final checks include every advertised preset launcher dry-run. No v0.1.4 speed or quality improvement is claimed from build-only coverage.
@@ -34,3 +34,7 @@ P2 CPU render/tokenization proofs cover the shared Linux host bytes. Carry-over 
 Windows: run `.\install.cmd`; an existing installation uses `update.cmd`. Linux/WSL: use `install.sh` or `install.py --update`. The previous verified runtime is v0.1.3.2; `--rollback` on Linux/WSL or `-Rollback` on Windows restores it after an update. Published downloads use the public L0xRE repository.
 
 This remains a draft. Sean publishes at the catalog PR merge commit, merges the PR and marks the release Latest after reviewing the final lane results and any parked targets.
+
+## Parked target
+
+Linux SM120 remains on v0.1.3.2 in the catalog after the speed regressions above. Its OFF quality result is120/150 versus119/150 with no worsened cases (HA-02 improved), and both preset deep selftests passed. Those results do not waive the2% performance floor. All ABBA samples are retained for owner review. Native Windows qualification continues independently.
