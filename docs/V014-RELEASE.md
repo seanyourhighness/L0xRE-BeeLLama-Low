@@ -10,7 +10,7 @@ Frozen source: `e7c3a18defbfadb96a877d923e4b1c9c3157d530`.
 |---|---|---|
 | Windows SM86 | Build-verified: checksums, launcher tests, install/update/rollback, every DLL import and native load; no matching hardware run | Available |
 | Windows SM89 | Build-verified: checksums, launcher tests, install/update/rollback, every DLL import and native load; no matching hardware run | Available |
-| Linux SM86 | Production bytes packaged; GPU reference checks pending | Pending |
+| Linux SM86 | Fully tested on RTX3060: deep selftest, changed-path, recovery, OFF quality carried/Mirai117, same-session ABBA and unlisted-card stock start | Available |
 | Linux SM89 | Selective CUDA/bridge rebuild; 4090 smoke checks pending | Pending |
 | Linux SM120 (WSL) | Parked:12GB ABBA short TTFT+21.25%, depth10K decode-5.73%, depth32K decode-3.64% vs0.1.3.2; selftests/smoke/recovery/quality passed | Withheld |
 | Windows SM120 | Host, selective CUDA and bridge rebuild; 5090 reference checks pending | Pending |
@@ -38,3 +38,20 @@ This remains a draft. Sean publishes at the catalog PR merge commit, merges the 
 ## Parked target
 
 Linux SM120 remains on v0.1.3.2 in the catalog after the speed regressions above. Its OFF quality result is120/150 versus119/150 with no worsened cases (HA-02 improved), and both preset deep selftests passed. Those results do not waive the2% performance floor. All ABBA samples are retained for owner review. Native Windows qualification continues independently.
+
+## RTX3060 measured packaging comparison
+
+One completed ABBA block against v0.1.3.2, default OFF, same card/session. The earlier block stopped on an output-pipe failure; partial samples were retained and not mixed into this diagnostic block.
+
+| Metric | v0.1.3.2 | v0.1.4 | Change |
+|---|---:|---:|---:|
+| narrative_decode | 42.758 | 44.253 | +3.50% |
+| code_decode | 75.567 | 76.947 | +1.83% |
+| prefill_10k | 732.722 | 733.567 | +0.12% |
+| short_ttft_ms | 442.950 | 425.548 | -3.93% |
+| cached_prompt_ttft_ms | 636.616 | 324.012 | -49.10% |
+| followup_ttft_ms | 758.288 | 491.850 | -35.14% |
+| depth_10k_decode | 43.360 | 43.085 | -0.64% |
+| depth_32k_decode | 37.924 | 39.139 | +3.20% |
+
+Decode/prefill values are tokens/s; TTFT values are milliseconds (lower is better). Every metric passes the2% no-regression rule. Mirai quality:117/150 vs116, no worsened cases; HA-17 improved. OFF120/150 and P2 CPU render/tokenization proofs carry only with the verified production bytes and effective argv. A fresh public-branch installer with the3060 name removed from its local catalog generated a stock start.sh without a probe flag; startup, reply, effective argv and all five loaded production hashes passed. Final archive hashes and install/update/rollback passed. The historical P2.1 warm-overhead waiver remains bound to its original production proof; it was not needed to clear this ABBA block.
