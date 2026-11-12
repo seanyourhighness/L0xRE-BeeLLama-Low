@@ -13,7 +13,7 @@ Frozen source: `e7c3a18defbfadb96a877d923e4b1c9c3157d530`.
 | Linux SM86 | Fully tested on RTX3060: deep selftest, changed-path, recovery, OFF quality carried/Mirai117, same-session ABBA and unlisted-card stock start | Available |
 | Linux SM89 | RTX4090 smoke-only:12GB/16GB deep, changed-path, one canonical pass per version; no N150 | Available |
 | Linux SM120 (WSL) | Parked:12GB ABBA short TTFT+21.25%, depth10K decode-5.73%, depth32K decode-3.64% vs0.1.3.2; selftests/smoke/recovery/quality passed | Withheld |
-| Windows SM120 | Host, selective CUDA and bridge rebuild; 5090 reference checks pending | Pending |
+| Windows SM120 | Parked: clean12GB ABBA short TTFT+12.94%; both deep/changed-path/OFF quality passed; one clean diagnostic used | Withheld |
 
 The catalog retains v0.1.3.2 for unfinished targets. Windows build-only binaries have corrected profile/component hash bindings and launcher status metadata; final checks include every advertised preset launcher dry-run. No v0.1.4 speed or quality improvement is claimed from build-only coverage.
 
@@ -37,7 +37,7 @@ This remains a draft. Sean publishes at the catalog PR merge commit, merges the 
 
 ## Parked target
 
-Linux SM120 remains on v0.1.3.2 in the catalog after the speed regressions above. Its OFF quality result is120/150 versus119/150 with no worsened cases (HA-02 improved), and both preset deep selftests passed. Those results do not waive the2% performance floor. All ABBA samples are retained for owner review. Native Windows qualification continues independently.
+Linux SM120 remains on v0.1.3.2 in the catalog after the speed regressions above. Its OFF quality result is120/150 versus119/150 with no worsened cases (HA-02 improved), and both preset deep selftests passed. Those results do not waive the2% performance floor. All ABBA samples are retained for owner review. Native Windows is also parked after its clean diagnostic short-TTFT failure.
 
 ## RTX3060 measured packaging comparison
 
@@ -59,3 +59,20 @@ Decode/prefill values are tokens/s; TTFT values are milliseconds (lower is bette
 ## RTX4090 smoke benchmark
 
 One canonical pass per version, v0.1.3.2 → v0.1.4: narrative95.149 →95.957 tokens/s(+0.85%); code157.128 →164.718 tokens/s(+4.83%). Both advertised preset deep selftests and changed-path smoke passed. No full reference-lane, N150 or ABBA claim is made. NUMA0 hugepages were0 during the lane and the original24576 plus Strata4090 service identity/health were restored.
+
+## RTX5090 native Windows — clean12GB ABBA, parked
+
+Both advertised deep selftests, changed-path smoke and OFF quality120/150 versus120/150(zero flips,150single attempts/no retries) passed. The original12GB timing block overlapped package generation and is retained separately as contaminated. One clean diagnostic repeat ran after all host builds/copies/uploads finished, with actual loaded DLL identities and zero Windows5090GPU Engine frames before each arm.
+
+| Metric | v0.1.3.2 | v0.1.4 | Change |
+|---|---:|---:|---:|
+|narrative_decode|125.748|129.778|+3.20%|
+|code_decode|219.578|222.750|+1.44%|
+|prefill_10k|3461.256|3466.998|+0.17%|
+|short_ttft_ms|143.775|162.379|+12.94%|
+|cached_prompt_ttft_ms|239.320|160.542|-32.92%|
+|followup_ttft_ms|252.348|144.419|-42.77%|
+|depth_10k_decode|116.409|114.239|-1.86%|
+|depth_32k_decode|109.910|108.727|-1.08%|
+
+Short TTFT fails the mandatory2% floor; all other seven metrics pass. No further repeat,16GB speed, final promotion or unlisted-card stock start was run. The package is withheld and its catalog row remains on v0.1.3.2. Next owner investigation: short-request setup/variance. Semantic and quality passes do not waive the performance failure.
