@@ -11,7 +11,7 @@ Frozen source: `e7c3a18defbfadb96a877d923e4b1c9c3157d530`.
 | Windows SM86 | Build-verified: checksums, launcher tests, install/update/rollback, every DLL import and native load; no matching hardware run | Available |
 | Windows SM89 | Build-verified: checksums, launcher tests, install/update/rollback, every DLL import and native load; no matching hardware run | Available |
 | Linux SM86 | Fully tested on RTX3060: deep selftest, changed-path, recovery, OFF quality carried/Mirai117, same-session ABBA and unlisted-card stock start | Available |
-| Linux SM89 | Selective CUDA/bridge rebuild; 4090 smoke checks pending | Pending |
+| Linux SM89 | RTX4090 smoke-only:12GB/16GB deep, changed-path, one canonical pass per version; no N150 | Available |
 | Linux SM120 (WSL) | Parked:12GB ABBA short TTFT+21.25%, depth10K decode-5.73%, depth32K decode-3.64% vs0.1.3.2; selftests/smoke/recovery/quality passed | Withheld |
 | Windows SM120 | Host, selective CUDA and bridge rebuild; 5090 reference checks pending | Pending |
 
@@ -55,3 +55,7 @@ One completed ABBA block against v0.1.3.2, default OFF, same card/session. The e
 | depth_32k_decode | 37.924 | 39.139 | +3.20% |
 
 Decode/prefill values are tokens/s; TTFT values are milliseconds (lower is better). Every metric passes the2% no-regression rule. Mirai quality:117/150 vs116, no worsened cases; HA-17 improved. OFF120/150 and P2 CPU render/tokenization proofs carry only with the verified production bytes and effective argv. A fresh public-branch installer with the3060 name removed from its local catalog generated a stock start.sh without a probe flag; startup, reply, effective argv and all five loaded production hashes passed. Final archive hashes and install/update/rollback passed. The historical P2.1 warm-overhead waiver remains bound to its original production proof; it was not needed to clear this ABBA block.
+
+## RTX4090 smoke benchmark
+
+One canonical pass per version, v0.1.3.2 → v0.1.4: narrative95.149 →95.957 tokens/s(+0.85%); code157.128 →164.718 tokens/s(+4.83%). Both advertised preset deep selftests and changed-path smoke passed. No full reference-lane, N150 or ABBA claim is made. NUMA0 hugepages were0 during the lane and the original24576 plus Strata4090 service identity/health were restored.
