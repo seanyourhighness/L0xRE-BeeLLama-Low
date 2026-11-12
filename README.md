@@ -54,6 +54,10 @@ Both runtimes, same card, same benchmark. The 3060 rows are where the 72 tok/s h
 ## Made with L0xRE
 -->
 
+## v0.1.4 release candidate
+
+The [v0.1.4 release notes](docs/V014-RELEASE.md) track the P2 runtime update. Windows SM86 and SM89 packages are build-verified without matching hardware runs. Linux and Windows SM120 qualification is in progress; their installer catalog entries retain v0.1.3.2 until they pass.
+
 ## Install
 
 You need an NVIDIA GPU with 12 GB or more (RTX 30, 40 or 50 series), a recent NVIDIA driver and about 20 GB of free disk. The download is about 11 GB.
