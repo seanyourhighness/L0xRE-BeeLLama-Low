@@ -8,14 +8,14 @@ Frozen source: `e7c3a18defbfadb96a877d923e4b1c9c3157d530`.
 
 | Package | Current coverage | Draft availability |
 |---|---|---|
-| Windows SM86 | Build-verified: checksums, launcher tests, install/update/rollback, every DLL import and native load; no matching hardware run | Available |
-| Windows SM89 | Build-verified: checksums, launcher tests, install/update/rollback, every DLL import and native load; no matching hardware run | Available |
+| Windows SM86 | Build-verified: checksums, launcher tests, install/update/rollback, every DLL import and native load; no matching hardware run | Packaging correction in progress |
+| Windows SM89 | Build-verified: checksums, launcher tests, install/update/rollback, every DLL import and native load; no matching hardware run | Packaging correction in progress |
 | Linux SM86 | Production bytes packaged; GPU reference checks pending | Pending |
 | Linux SM89 | Selective CUDA/bridge rebuild; 4090 smoke checks pending | Pending |
 | Linux SM120 (WSL) | Selective CUDA/bridge rebuild; 5090 reference checks pending | Pending |
 | Windows SM120 | Host, selective CUDA and bridge rebuild; 5090 reference checks pending | Pending |
 
-The catalog retains v0.1.3.2 for unfinished targets. No v0.1.4 speed or quality improvement is claimed from build-only coverage.
+The catalog retains v0.1.3.2 for unfinished targets. Windows build-only binaries were temporarily withdrawn while correcting duplicated profile-hash bindings and launcher status metadata; all runtime checks must pass again before upload. No v0.1.4 speed or quality improvement is claimed from build-only coverage.
 
 ## Default flags
 
