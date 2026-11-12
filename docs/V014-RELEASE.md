@@ -8,14 +8,14 @@ Frozen source: `e7c3a18defbfadb96a877d923e4b1c9c3157d530`.
 
 | Package | Current coverage | Draft availability |
 |---|---|---|
-| Windows SM86 | Build-verified: checksums, launcher tests, install/update/rollback, every DLL import and native load; no matching hardware run | Packaging correction in progress |
-| Windows SM89 | Build-verified: checksums, launcher tests, install/update/rollback, every DLL import and native load; no matching hardware run | Packaging correction in progress |
+| Windows SM86 | Build-verified: checksums, launcher tests, install/update/rollback, every DLL import and native load; no matching hardware run | Available |
+| Windows SM89 | Build-verified: checksums, launcher tests, install/update/rollback, every DLL import and native load; no matching hardware run | Available |
 | Linux SM86 | Production bytes packaged; GPU reference checks pending | Pending |
 | Linux SM89 | Selective CUDA/bridge rebuild; 4090 smoke checks pending | Pending |
 | Linux SM120 (WSL) | Selective CUDA/bridge rebuild; 5090 reference checks pending | Pending |
 | Windows SM120 | Host, selective CUDA and bridge rebuild; 5090 reference checks pending | Pending |
 
-The catalog retains v0.1.3.2 for unfinished targets. Windows build-only binaries were temporarily withdrawn while correcting duplicated profile-hash bindings and launcher status metadata; all runtime checks must pass again before upload. No v0.1.4 speed or quality improvement is claimed from build-only coverage.
+The catalog retains v0.1.3.2 for unfinished targets. Windows build-only binaries have corrected profile/component hash bindings and launcher status metadata; final checks include every advertised preset launcher dry-run. No v0.1.4 speed or quality improvement is claimed from build-only coverage.
 
 ## Default flags
 
@@ -23,7 +23,7 @@ All presets use `--backend-sampling`, `--cache-ram 8192`, `--temp 1.0` (previous
 
 ## Validation and limits
 
-Windows SM86/SM89 carry the new code with build-only qualification. Native launcher tests retain the two known stale preflight/consent failures named in the release plan; the remaining checks pass. No Windows recovery-profile claim is made (existing platform exception).
+Windows SM86/SM89 carry the new code with build-only qualification. Hardware selftest references for the new Windows runtime remain deferred to matching-hardware qualification; a launcher dry-run does not qualify a GPU. Native launcher tests retain the two known stale preflight/consent failures named in the release plan; the remaining checks pass. No Windows recovery-profile claim is made (existing platform exception).
 
 The three Linux packages share the exact production host libraries. A source-archive host rebuild completed, but its three library hashes differ from production; they are not presented as reproducible matches. SM86's CUDA backend and bridge are the promoted incremental builds. SM89/SM120 recompile two CUDA units and the main bridge with their pinned CUDA toolchains; unchanged objects are hash-verified against the retained build witness.
 
