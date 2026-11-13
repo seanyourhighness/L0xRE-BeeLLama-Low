@@ -320,9 +320,9 @@ $gpuRecords
     foreach ($card in $matrix) {
         $selected = Get-InstallPlan $releaseCatalog $card $false ''
         $expected = if ($card.memory_mib -ge 16000 -and $card.arch -ne 'sm86') { '16gb' } else { '12gb' }
-        $releaseTag = [string]$releaseCatalog.release
-        $releaseVersion = $releaseTag -replace '^l0xre-', ''
-        Assert-Install ($releaseTag -and $selected.package.url.Contains("/$releaseTag/") -and $selected.package.filename.StartsWith("L0xRE-$releaseVersion-windows-")) "$releaseTag route points to a legacy or unpublished placeholder"
+        Assert-Install ($selected.package.filename -match '^L0xRE-(v[0-9.]+)-windows-') 'Live package has no release version'
+        $releaseTag = 'l0xre-' + $Matches[1]
+        Assert-Install ($selected.package.url.EndsWith("/$releaseTag/" + $selected.package.filename)) "$releaseTag route points to a legacy or unpublished placeholder"
         Assert-Install ($selected.memory_profile -eq $expected -and $selected.package.launcher_style -eq 'v01') 'Live V0.1 catalog selected the wrong memory profile'
         $expectedQualified = $card.name -eq 'NVIDIA GeForce RTX 5090'
         Assert-Install ($selected.hardware_qualified_for_gpu -eq $expectedQualified) 'Live catalog overstates native Windows hardware validation'

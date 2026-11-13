@@ -54,6 +54,12 @@ Both runtimes, same card, same benchmark. The 3060 rows are where the 72 tok/s h
 ## Made with L0xRE
 -->
 
+## v0.1.4 release candidate
+
+All six packages are staged with verified checksums. Linux sm86 has RTX 3060 production coverage; Linux sm89 keeps its RTX 4090 smoke-only scope. Linux/WSL and native Windows sm120 passed the final 12gb and 16gb gates on RTX 5090. Windows sm86/sm89 remain build-verified without matching hardware claims.
+
+Cached and follow-up requests return their first token sooner; the checkpoint save leaves a short0.1–0.15 second pause just after that token. Small short-prompt TTFT increases are accepted under the recorded v0.1.4 owner waiver. See the [release notes](docs/V014-RELEASE.md) for measured numbers, source patch and coverage limits. Publication remains pending.
+
 ## Install
 
 You need an NVIDIA GPU with 12 GB or more (RTX 30, 40 or 50 series), a recent NVIDIA driver and about 20 GB of free disk. The download is about 11 GB.

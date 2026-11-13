@@ -364,7 +364,8 @@ class PublishedV011CatalogTests(unittest.TestCase):
                     expected = '16gb' if memory >= 16000 and arch != 'sm86' else '12gb'
                     self.assertEqual(plan['memory_profile'], expected)
                     self.assertEqual(plan['package']['launcher_style'], 'v01')
-                    self.assertIn(f"/{RELEASE_CATALOG['release']}/", plan['package']['url'])
+                    package_version = plan['package']['filename'].split('-')[1]
+                    self.assertIn(f'/l0xre-{package_version}/', plan['package']['url'])
                     self.assertRegex(plan['package']['sha256'], r'^[a-f0-9]{64}$')
                     self.assertEqual(plan['hardware_qualified_for_gpu'], qualified)
                     self.assertEqual(installer.select_model_records(RELEASE_CATALOG, plan, True)[-1]['filename'], 'mmproj-Qwen3.8-27B-Q5_K-MIX.gguf')
