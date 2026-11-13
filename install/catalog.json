@@ -5,8 +5,8 @@
       "sm86": {
         "filename": "L0xRE-v0.1.4-linux-sm86.tar.zst",
         "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.4/L0xRE-v0.1.4-linux-sm86.tar.zst",
-        "sha256": "f1204a32b5b1d4188f0e78bd045eb0b1d202949692a107b70fbb62db9970ea49",
-        "bytes": 754420883,
+        "sha256": "dce2a439a4dff7bc99365e8b61d95d269a26f76ad0560fd32b334335f27452ae",
+        "bytes": 754026357,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
@@ -29,13 +29,13 @@
         "gpu_selector_adapter": false,
         "artifact_build_tag": "l0xre-v0.1.4",
         "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "d9103ba6eb16aa4c7a294defa276044782a9f7d839b98649106be1d6a2b1c4c0"
+        "manifest_sha256": "287c57c28467818fc119b2e354b4a417f207e12b4b9990558b6cb32c9ad09272"
       },
       "sm89": {
         "filename": "L0xRE-v0.1.4-linux-sm89.tar.zst",
         "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.4/L0xRE-v0.1.4-linux-sm89.tar.zst",
-        "sha256": "f7cc56a87e2e23e5bb36a57595510b75309f25363dd3088c7c95ebfa6100a751",
-        "bytes": 743126942,
+        "sha256": "d0bfe53382b4f3c9271b8ae08d73d832e9c59e6a5d3065d2af5960a4639412c1",
+        "bytes": 743805763,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
@@ -59,17 +59,17 @@
         "gpu_selector_adapter": false,
         "artifact_build_tag": "l0xre-v0.1.4",
         "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "55d480b984f5a5abaf1146d00791a0b24ade0c20688479b691fda927dabcadaa"
+        "manifest_sha256": "cc2628e756ffe6ed6b39ececb707dd8000792d21d7c9a358287b6769bbe81236"
       },
       "sm120": {
-        "filename": "L0xRE-v0.1.3.2-linux-sm120.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.3.2/L0xRE-v0.1.3.2-linux-sm120.tar.zst",
-        "sha256": "af80bdee8b6549ec9979634bf9a2424f52a08fab8d1b59cbb85eb117d5fcaefa",
-        "bytes": 654185649,
+        "filename": "L0xRE-v0.1.4-linux-sm120.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.4/L0xRE-v0.1.4-linux-sm120.tar.zst",
+        "sha256": "e20f2e282227ce5a334f37361701a7ee531ce15e5ce7875b471127d867b55654",
+        "bytes": 658234006,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.3.2: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
+        "profile": "v0.1.4: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
         "launcher": "tools/universal/v01-launch.py",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -85,19 +85,19 @@
           "NVIDIA GeForce RTX 5090"
         ],
         "hardware_validation_status": "validated_on_recorded_hardware",
-        "validation_scope": "WSL2 RTX5090 envelopes; no separate bare-metal Linux throughput claim",
+        "validation_scope": "Final fixed host bytes; WSL2 RTX5090 12GB and16GB presets; 12GB shortTTFT ownerwaiver recorded; no bare-metal Linux throughput claim",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.1-rc6",
-        "artifact_build_commit": "fa9548f532e0d2cea91385e641a857cd28eb8227",
-        "manifest_sha256": "93ba15e349657b48b8c82191775fbfd5576d2d507b0963dfd5aac29e181bbcb5"
+        "artifact_build_tag": "l0xre-v0.1.4",
+        "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
+        "manifest_sha256": "33aa088405b630b2b1b9a8dc91de29f1e8176873c533869e8170238de03b21ec"
       }
     },
     "windows": {
       "sm86": {
         "filename": "L0xRE-v0.1.4-windows-sm86.zip",
         "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.4/L0xRE-v0.1.4-windows-sm86.zip",
-        "sha256": "fb5445d2da6f460eda7cd377fb823817d416fffbadf9e3bf2845670ae86be3d2",
-        "bytes": 672822960,
+        "sha256": "b897eb4a972446efb7d6bb0cbde1d1f72025a1bc8295dfd351fbfb5191dd4189",
+        "bytes": 672826895,
         "status": "build-verified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
@@ -118,13 +118,13 @@
         "gpu_selector_adapter": false,
         "artifact_build_tag": "l0xre-v0.1.4",
         "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "bdb2ca9b54fa2a3fd12b2b1141431b3e8932ce300949df53ac1da597f819adb8"
+        "manifest_sha256": "7447e7a5f294bd16dece155fd4fa19089c7d84d38bcbc6f298bc11910373f503"
       },
       "sm89": {
         "filename": "L0xRE-v0.1.4-windows-sm89.zip",
         "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.4/L0xRE-v0.1.4-windows-sm89.zip",
-        "sha256": "0473cff5e51496491c8a32ffb601191e812d8ec61b9d99fc7137fcf71c8eee0d",
-        "bytes": 671182163,
+        "sha256": "2ebd4a7702e58c916eb5218beaa9a51176b1fb242722d5400d02744d8752fba3",
+        "bytes": 671185712,
         "status": "build-verified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
@@ -146,17 +146,17 @@
         "gpu_selector_adapter": false,
         "artifact_build_tag": "l0xre-v0.1.4",
         "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "97a9e280f49af0a13642946a974769ca2c3cd3f89dc54e7ed41d22dc995a9817"
+        "manifest_sha256": "206b41d21380098cdc987dd611988abab4af3a9a2e550a603e134b34b8d35715"
       },
       "sm120": {
-        "filename": "L0xRE-v0.1.3.2-windows-sm120.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.3.2/L0xRE-v0.1.3.2-windows-sm120.zip",
-        "sha256": "e04c3107a4a83dba3dde7093f0f345ad4f05f54e60ca8d24ff982f16782cdb8a",
-        "bytes": 704242511,
+        "filename": "L0xRE-v0.1.4-windows-sm120.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.4/L0xRE-v0.1.4-windows-sm120.zip",
+        "sha256": "519d8a2016fececf0f0ca077a3a547301eb95c31e11f5b977d228e8b879e915d",
+        "bytes": 704288430,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.3.2: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
+        "profile": "v0.1.4: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
         "launcher": "l0xre.cmd",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -172,11 +172,11 @@
           "NVIDIA GeForce RTX 5090"
         ],
         "hardware_validation_status": "validated_on_recorded_hardware",
-        "validation_scope": "Native Windows RTX5090; tested12GB/128K and16GB/256K envelopes",
+        "validation_scope": "Final fixed DLL on nativeWindows RTX5090;12GB/16GBpresets accepted withshortTTFTownerwaivers;deep/quality/recovery carried per ownerfastfinish",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.1-rc10",
-        "artifact_build_commit": "58289e61ace3bceef95c5498ebfcab1f7e468808",
-        "manifest_sha256": "8074af5408c7cf23d8b8a5a1a1bcf82f00361034df711e0e1d4dc744d8c97518",
+        "artifact_build_tag": "l0xre-v0.1.4",
+        "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
+        "manifest_sha256": "4798e802a6a2c827b31b6f9feea3e22b878d3ded6be74bf72fe8e0f9f632a056",
         "allocation_recovery_16gb": "Direct owner acceptance of inherited un-reinjected native coverage limitation; NOT a native allocation recovery PASS"
       }
     }
