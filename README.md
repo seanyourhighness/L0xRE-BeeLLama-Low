@@ -24,6 +24,8 @@
 
 **[⬇ Download the latest release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/latest)** · **[Install](#install)** · **[Point your AI agent at it](#let-your-ai-agent-install-it)**
 
+**New in v0.1.5:** the [L0xRE-V2-27b-Low](https://huggingface.co/YourHighnessLA/L0xRE-V2-27b-Low) model. It is the same size and speed as before, but 24% closer to the full model overall and 34% closer on code. Existing installs pick it up with `update`. [Release notes](docs/V015-RELEASE.md)
+
 </div>
 
 ### 1.8× faster than Bonsai with a full 128K context
