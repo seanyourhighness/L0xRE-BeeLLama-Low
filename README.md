@@ -54,11 +54,13 @@ Both runtimes, same card, same benchmark. The 3060 rows are where the 72 tok/s h
 ## Made with L0xRE
 -->
 
-## v0.1.4 release candidate
+## v0.1.5: L0xRE-V2-27b-Low
 
-All six packages are staged with verified checksums. Linux sm86 has RTX 3060 production coverage; Linux sm89 keeps its RTX 4090 smoke-only scope. Linux/WSL and native Windows sm120 passed the final 12gb and 16gb gates on RTX 5090. Windows sm86/sm89 remain build-verified without matching hardware claims.
+v0.1.5 makes **[L0xRE-V2-27b-Low](https://huggingface.co/YourHighnessLA/L0xRE-V2-27b-Low)** the default model. The size and speed are the same as v1, and it is 24% closer to BF16 overall on a closed holdout, 29% closer on agentic text and 34% closer on code. The runtime fast-paths four more projection shapes for it, with no kernel changes.
+- **Coverage:** Linux sm86 is the RTX 3060 production build. Linux sm89 and sm120 and Windows sm120 were smoke-tested on RTX 4090 and 5090. Windows sm86/sm89 are build-verified.
+- **Updating:** `update.sh` / `update.cmd` downloads V2 next to v1 and keeps v1 for rollback.
 
-Cached and follow-up requests return their first token sooner; the checkpoint save leaves a short0.1–0.15 second pause just after that token. Small short-prompt TTFT increases are accepted under the recorded v0.1.4 owner waiver. See the [release notes](docs/V014-RELEASE.md) for measured numbers, source patch and coverage limits. Publication remains pending.
+See the [v0.1.5 release notes](docs/V015-RELEASE.md). The earlier [v0.1.4 notes](docs/V014-RELEASE.md) still describe the runtime speed work.
 
 ## Install
 

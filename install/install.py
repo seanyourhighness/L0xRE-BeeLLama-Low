@@ -241,7 +241,7 @@ def write_launcher(install_dir, runtime, models_dir, plan, vision, port):
     receipt_path = install_dir / "INSTALLATION.json"
     args = [sys.executable, str(runtime / plan["package"]["launcher"]), "serve", "--arch", plan["gpu"]["arch"],
             "--profile", plan.get("launch_profile", "r6"),
-            "-m", str(models_dir / "L0xRE-27b-Low.gguf"), "-md", str(models_dir / "Qwen3.8-27B-DFlash2-Q4_K_M.gguf"),
+            "-m", str(models_dir / plan.get("target_model", "L0xRE-27b-Low.gguf")), "-md", str(models_dir / "Qwen3.8-27B-DFlash2-Q4_K_M.gguf"),
             "--host", "127.0.0.1", "--port", str(port)]
     if plan["package"].get("launcher_style") == "v01":
         index = args.index("--profile")
@@ -383,6 +383,7 @@ def main(argv=None):
     if not options.runtime_only:
         for record in records:
             get_artifact(record, models_dir)
+    plan["target_model"] = catalog["models"]["target"]["filename"]
     script = write_launcher(install_dir, runtime, models_dir, plan, options.vision, options.port)
     print(f"Setup complete. Start: {shlex.quote(str(script))}\nCheck the launcher: {shlex.quote(str(script))} --dry-run\nAPI: http://127.0.0.1:{options.port}/v1")
     if options.runtime_only:

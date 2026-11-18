@@ -25,7 +25,7 @@ foreach ($gpu in $plan.gpus) {
     $row = $raw[0] | ConvertFrom-Csv -Header uuid,name,cc,memory
     if ($row.uuid.Trim() -ne $gpu.uuid -or $row.name.Trim() -ne $gpu.name -or ('sm' + $row.cc.Trim().Replace('.','')) -ne $gpu.arch -or [int]$row.memory.Trim() -lt 12000) { throw 'Selected matched GPU is unavailable or changed.' }
 }
-$models = @{ target = 'L0xRE-27b-Low.gguf'; draft = 'Qwen3.8-27B-DFlash2-Q4_K_M.gguf' }
+$models = @{ target = $(if ($plan.PSObject.Properties['target_model']) { $plan.target_model } else { 'L0xRE-27b-Low.gguf' }); draft = 'Qwen3.8-27B-DFlash2-Q4_K_M.gguf' }
 if ($receipt.vision) { $models.vision = 'mmproj-Qwen3.8-27B-Q8_0.gguf' }
 foreach ($key in $models.Keys) {
     if ((Get-FileHash -LiteralPath (Join-Path $receipt.models_dir $models[$key]) -Algorithm SHA256).Hash.ToLowerInvariant() -ne $profile.model_sha256.$key) { throw ('Pinned model mismatch: ' + $key) }

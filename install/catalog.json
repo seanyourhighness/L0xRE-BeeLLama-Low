@@ -3,14 +3,14 @@
   "packages": {
     "linux": {
       "sm86": {
-        "filename": "L0xRE-v0.1.4-linux-sm86.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.4/L0xRE-v0.1.4-linux-sm86.tar.zst",
-        "sha256": "dce2a439a4dff7bc99365e8b61d95d269a26f76ad0560fd32b334335f27452ae",
-        "bytes": 754026357,
+        "filename": "L0xRE-v0.1.5-linux-sm86.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.5/L0xRE-v0.1.5-linux-sm86.tar.zst",
+        "sha256": "c166b7fdeaa8dba3e20d8874b558d7b0e7b7449d195e86dba4a8fd3903d16a6a",
+        "bytes": 754386158,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.4: 12GB/128K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
+        "profile": "v0.1.5: 12GB/128K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
         "launcher": "tools/universal/v01-launch.py",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -25,21 +25,21 @@
           "NVIDIA GeForce RTX 3060"
         ],
         "hardware_validation_status": "validated_on_recorded_hardware",
-        "validation_scope": "Native Linux RTX3060 headless12GB: deep selftest, changed-path, recovery, OFF quality carried/Mirai117, ABBA within2%",
+        "validation_scope": "v0.1.5: v0.1.4 sm86 + int8 roles 8-11/fused FFN v2 (exact bytes serving RTX 3060 production since 2026-11-15); V2 qualified on RTX 3060: closed holdout, N150, bench.sh within 2%, paired 90K depth",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.4",
+        "artifact_build_tag": "l0xre-v0.1.5",
         "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "287c57c28467818fc119b2e354b4a417f207e12b4b9990558b6cb32c9ad09272"
+        "manifest_sha256": "a392859878f30a91365bbca29fed390c8d920d5766593a243f8e2f9d2752a7c0"
       },
       "sm89": {
-        "filename": "L0xRE-v0.1.4-linux-sm89.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.4/L0xRE-v0.1.4-linux-sm89.tar.zst",
-        "sha256": "d0bfe53382b4f3c9271b8ae08d73d832e9c59e6a5d3065d2af5960a4639412c1",
-        "bytes": 743805763,
+        "filename": "L0xRE-v0.1.5-linux-sm89.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.5/L0xRE-v0.1.5-linux-sm89.tar.zst",
+        "sha256": "c8902fcc6a460f2371dbc78f14611f665ea503a4139e3a06c79e3305727408eb",
+        "bytes": 743421080,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.4: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
+        "profile": "v0.1.5: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
         "launcher": "tools/universal/v01-launch.py",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -55,21 +55,21 @@
           "NVIDIA GeForce RTX 4090"
         ],
         "hardware_validation_status": "validated_on_recorded_hardware",
-        "validation_scope": "Native Linux RTX4090 smoke-only:12GB/16GB deep, changed-path, one canonical pass per version; no N150",
+        "validation_scope": "v0.1.5: RTX 4090 smoke: V2 12GB/16GB and v1 load, mask 4095, 0 fallthroughs, tool call + code; control rebuild matches v0.1.4 code sections",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.4",
+        "artifact_build_tag": "l0xre-v0.1.5",
         "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "cc2628e756ffe6ed6b39ececb707dd8000792d21d7c9a358287b6769bbe81236"
+        "manifest_sha256": "2bf1c6891dc029e6180272cc2a83efb943684909041097cdd491ab42f2a57f3d"
       },
       "sm120": {
-        "filename": "L0xRE-v0.1.4-linux-sm120.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.4/L0xRE-v0.1.4-linux-sm120.tar.zst",
-        "sha256": "e20f2e282227ce5a334f37361701a7ee531ce15e5ce7875b471127d867b55654",
-        "bytes": 658234006,
+        "filename": "L0xRE-v0.1.5-linux-sm120.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.5/L0xRE-v0.1.5-linux-sm120.tar.zst",
+        "sha256": "a9fac03a5af1dfb39c2638a9d16224f97cb019dc22367dd33f349a940039c4f3",
+        "bytes": 658009015,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.4: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
+        "profile": "v0.1.5: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
         "launcher": "tools/universal/v01-launch.py",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -85,23 +85,23 @@
           "NVIDIA GeForce RTX 5090"
         ],
         "hardware_validation_status": "validated_on_recorded_hardware",
-        "validation_scope": "Final fixed host bytes; WSL2 RTX5090 12GB and16GB presets; 12GB shortTTFT ownerwaiver recorded; no bare-metal Linux throughput claim",
+        "validation_scope": "v0.1.5: WSL2 RTX 5090 smoke: V2 12GB/16GB and v1 load, mask 4095, 0 fallthroughs, chat/tool/code; control rebuild matches v0.1.4 code sections",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.4",
+        "artifact_build_tag": "l0xre-v0.1.5",
         "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "33aa088405b630b2b1b9a8dc91de29f1e8176873c533869e8170238de03b21ec"
+        "manifest_sha256": "1d92898e5b4ea6e2f1482e93e707037c336fc3b8f912d34d36e6a63610b2731f"
       }
     },
     "windows": {
       "sm86": {
-        "filename": "L0xRE-v0.1.4-windows-sm86.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.4/L0xRE-v0.1.4-windows-sm86.zip",
-        "sha256": "b897eb4a972446efb7d6bb0cbde1d1f72025a1bc8295dfd351fbfb5191dd4189",
-        "bytes": 672826895,
+        "filename": "L0xRE-v0.1.5-windows-sm86.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.5/L0xRE-v0.1.5-windows-sm86.zip",
+        "sha256": "fb4a22e744d7362a585e8133327b4239597c2c58172ac907e8f2e31024bfa4e6",
+        "bytes": 672829401,
         "status": "build-verified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.4: 12GB/128K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
+        "profile": "v0.1.5: 12GB/128K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
         "launcher": "l0xre.cmd",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -114,21 +114,21 @@
         "certified_gpu_name_contains": "",
         "certified_gpu_names": [],
         "hardware_validation_status": "build-verified; no matching hardware run",
-        "validation_scope": "Windows sm86: archive integrity, every preset launcher dry-run, native tests, real installer lifecycle and all 35 DLL imports/loads; hardware selftest deferred",
+        "validation_scope": "v0.1.5 Windows sm86: build-verified (exports and archive integrity checked); no matching hardware run",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.4",
+        "artifact_build_tag": "l0xre-v0.1.5",
         "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "7447e7a5f294bd16dece155fd4fa19089c7d84d38bcbc6f298bc11910373f503"
+        "manifest_sha256": "e579fc7dadb25d3b89d547e25e7eda3bbdbbfbb274543c88c85af1089684e90f"
       },
       "sm89": {
-        "filename": "L0xRE-v0.1.4-windows-sm89.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.4/L0xRE-v0.1.4-windows-sm89.zip",
-        "sha256": "2ebd4a7702e58c916eb5218beaa9a51176b1fb242722d5400d02744d8752fba3",
-        "bytes": 671185712,
+        "filename": "L0xRE-v0.1.5-windows-sm89.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.5/L0xRE-v0.1.5-windows-sm89.zip",
+        "sha256": "f662fc056371b11a998c76ce8c53dc2bbd2934bade302fd4255a2579d52c2f6f",
+        "bytes": 671189173,
         "status": "build-verified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.4: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
+        "profile": "v0.1.5: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
         "launcher": "l0xre.cmd",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -142,21 +142,21 @@
         "certified_gpu_name_contains": "",
         "certified_gpu_names": [],
         "hardware_validation_status": "build-verified; no matching hardware run",
-        "validation_scope": "Windows sm89: archive integrity, every preset launcher dry-run, native tests, real installer lifecycle and all 35 DLL imports/loads; hardware selftest deferred",
+        "validation_scope": "v0.1.5 Windows sm89: build-verified (exports and archive integrity checked); no matching hardware run",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.4",
+        "artifact_build_tag": "l0xre-v0.1.5",
         "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "206b41d21380098cdc987dd611988abab4af3a9a2e550a603e134b34b8d35715"
+        "manifest_sha256": "56986e6a9624e4c920b7f8782123d8843e0454ef30ea0676e7fee74fdd8f2fab"
       },
       "sm120": {
-        "filename": "L0xRE-v0.1.4-windows-sm120.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.4/L0xRE-v0.1.4-windows-sm120.zip",
-        "sha256": "519d8a2016fececf0f0ca077a3a547301eb95c31e11f5b977d228e8b879e915d",
-        "bytes": 704288430,
+        "filename": "L0xRE-v0.1.5-windows-sm120.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.5/L0xRE-v0.1.5-windows-sm120.zip",
+        "sha256": "f607100c75b989f7bd6bb2a4e3280fb9d3a39c2fe3a771ddf611f3936781009b",
+        "bytes": 704291784,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.4: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
+        "profile": "v0.1.5: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
         "launcher": "l0xre.cmd",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -172,21 +172,21 @@
           "NVIDIA GeForce RTX 5090"
         ],
         "hardware_validation_status": "validated_on_recorded_hardware",
-        "validation_scope": "Final fixed DLL on nativeWindows RTX5090;12GB/16GBpresets accepted withshortTTFTownerwaivers;deep/quality/recovery carried per ownerfastfinish",
+        "validation_scope": "v0.1.5: native Windows RTX 5090 smoke: V2 12GB, mask 4095, all int8 roles 0-11 enqueued, tool call + code",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.4",
+        "artifact_build_tag": "l0xre-v0.1.5",
         "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "4798e802a6a2c827b31b6f9feea3e22b878d3ded6be74bf72fe8e0f9f632a056",
+        "manifest_sha256": "242db69f1d17a4a357904de3aa024522ef2048ac0574b8bc6346839f7573b59d",
         "allocation_recovery_16gb": "Direct owner acceptance of inherited un-reinjected native coverage limitation; NOT a native allocation recovery PASS"
       }
     }
   },
   "models": {
     "target": {
-      "filename": "L0xRE-27b-Low.gguf",
+      "filename": "L0xRE-V2-27b-Low.gguf",
       "bytes": 8619127680,
-      "sha256": "b0849250c633aa93853bf119a877dbdafdd7b1a4ebb672bd6b6a1439906f3543",
-      "url": "https://huggingface.co/YourHighnessLA/L0xRE-27b-Low/resolve/9b74c81c19f8372888c2968b5334f42b0354d8b1/L0xRE-27b-Low.gguf"
+      "sha256": "8eb326fddc73abae8ab26ae1c33fdeafd9d773c2702836a9fed77339bc537459",
+      "url": "https://huggingface.co/YourHighnessLA/L0xRE-V2-27b-Low/resolve/18367e1eda5cd532887ca40ad0007417d95f36b6/L0xRE-V2-27b-Low.gguf"
     },
     "draft": {
       "filename": "Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
@@ -218,7 +218,7 @@
     ],
     "minimum_vram_mib_per_gpu": 12000
   },
-  "release": "l0xre-v0.1.4",
+  "release": "l0xre-v0.1.5",
   "release_source_commit": "6c4c4c392a51304fc6bd276e7ea98ed9f98d0f6c",
   "measured_platforms": [
     "linux/sm86/12gb",
