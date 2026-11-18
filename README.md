@@ -16,7 +16,7 @@
 '================================='
 </pre>
 
-# 72 tok/s code · 128K context · vision
+# 77 tok/s code · 700 tok/s prefill · 128K context<br>on one RTX 3060 12 GB
 
 **L0xRE enables 128K context, vision, fast decode and fast prefill, all at the same time, all on 12 GB, and ALL ON GPU!**
 
@@ -30,16 +30,16 @@
 
 ### 1.8× faster than Bonsai with a full 128K context
 
-Both runtimes, same card, same benchmark. The 3060 rows are where the 72 tok/s headline comes from.
+Both runtimes, same card, same benchmark. The 3060 rows are where the 77 tok/s headline comes from.
 
 | L0xRE vs Ternary Bonsai 2 27B | **L0xRE** | Bonsai | |
 |---|---:|---:|---|
 | Decode at 128K · RTX 4070 Ti | **54 tok/s** | 30 tok/s | **1.8× faster** |
 | Read 128K prompt · RTX 4070 Ti | **883 tok/s** | 714 tok/s | **1.2× faster** |
 | Code decode · RTX 4070 Ti | **118 tok/s** | 86 tok/s | **1.4× faster** |
-| Code decode · RTX 3060 | **72 tok/s** | 54 tok/s | **1.3× faster** |
-| First token · RTX 3060 | **0.23 s** | 0.57 s | **2.5× faster** |
-| Quality (Club-3090 8-pack, /150) | **120** | 108 | **+12** |
+| Code decode · RTX 3060 | **77 tok/s** | 54 tok/s | **1.4× faster** |
+| First token · RTX 3060 | **0.19 s** | 0.57 s | **3.0× faster** |
+| Quality (Club-3090 8-pack, /150) | **121** | 108 | **+13** |
 
 <sub>RTX 3060 12 GB: Linux, headless. RTX 4070 Ti 12 GB: Windows 11, with a display, at the 2048 MiB arena (the numbers in the next table use the 1856 MiB desktop default). Bonsai is shown in its fastest measured configuration. Quality: thinking off, pass@1; L0xRE on the RTX 3060, Bonsai's 108 from Club-3090 on an RTX 5090. Sources and method: [benchmarks](docs/BENCHMARKS.md).</sub>
 
@@ -47,7 +47,7 @@ Both runtimes, same card, same benchmark. The 3060 rows are where the 72 tok/s h
 
 | Card (12 GB) | Story / chat | Code | 128K prompt in | Decode at 128K |
 |---|---:|---:|---:|---:|
-| **RTX 3060**, Linux | ~40 tok/s | ~72 tok/s | ~400 tok/s | 35.9 tok/s |
+| **RTX 3060**, Linux | ~44 tok/s | ~77 tok/s | ~400 tok/s | 35.9 tok/s |
 | **RTX 4070 Ti**, Windows 11 with a display, browser and messaging apps open | ~67 tok/s | ~100–118 tok/s | ~920 tok/s | ~53 tok/s |
 
 <sub>A 12 GB card that drives your monitor automatically leaves room for your desktop apps. Faster cards are faster still. Details: [benchmarks](docs/BENCHMARKS.md).</sub>
