@@ -251,7 +251,8 @@ function Test-InstallCpu {
 
 function Write-InstallLauncher([string]$Root, [string]$Runtime, [string]$ModelRoot, $Plan, [bool]$WithVision, [int]$ListenPort) {
     $receiptPath = Join-Path $Root 'INSTALLATION.json'
-    $target = Join-Path $ModelRoot 'L0xRE-27b-Low.gguf'
+    $targetName = if ($Plan.PSObject.Properties['target_model']) { $Plan.target_model } else { 'L0xRE-27b-Low.gguf' }
+    $target = Join-Path $ModelRoot $targetName
     $draft = Join-Path $ModelRoot 'Qwen3.8-27B-DFlash2-Q4_K_M.gguf'
     if ($Plan.package.launcher_style -eq 'sm120-windows') {
         $parameters = @{ Model = $target; Draft = $draft; BindAddress = '127.0.0.1'; Port = $ListenPort }
@@ -437,6 +438,7 @@ function Invoke-L0xreInstall {
         $plan | Add-Member NoteProperty dual_addon_root $addonRoot
     }
     if (-not $RuntimeOnly) { foreach ($record in $records) { Get-InstallArtifact $record $modelRoot | Out-Null } }
+    $plan | Add-Member -Force NoteProperty target_model $catalog.models.target.filename
     $script = Write-InstallLauncher $root $runtime $modelRoot $plan ([bool]$Vision) $Port
     $startCmd = [IO.Path]::ChangeExtension($script, '.cmd')
     Write-Host "Setup complete. Start: double-click start.cmd in $(Split-Path -Parent $startCmd)"

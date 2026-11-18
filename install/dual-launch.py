@@ -25,7 +25,7 @@ def command_for(receipt, profile):
     args[args.index("--port") + 1] = str(receipt["port"])
     args += ["--split-mode", "layer", "--tensor-split", "1,1", "--device", "CUDA0,CUDA1", "--spec-draft-device", "CUDA0"]
     models = Path(receipt["models_dir"])
-    args += ["-m", str(models / "L0xRE-27b-Low.gguf"), "-md", str(models / "Qwen3.8-27B-DFlash2-Q4_K_M.gguf")]
+    args += ["-m", str(models / receipt.get("target_model", "L0xRE-27b-Low.gguf")), "-md", str(models / "Qwen3.8-27B-DFlash2-Q4_K_M.gguf")]
     if receipt["vision"]:
         args += ["--mmproj", str(models / "mmproj-Qwen3.8-27B-Q8_0.gguf")]
     env = {k: v for k, v in os.environ.items() if not k.startswith(("L0XRE_", "ESCHA_", "GGML_", "LLAMA_ARG_")) and k not in ("LD_PRELOAD", "LD_LIBRARY_PATH", "CUDA_LAUNCH_BLOCKING")}
@@ -73,7 +73,7 @@ def main():
         uuid, name, cc, memory = [s.strip() for s in row]
         if uuid != gpu["uuid"] or name != gpu["name"] or "sm" + cc.replace(".", "") != gpu["arch"] or int(memory) < 12000:
             raise ValueError("Selected matched GPU is unavailable or changed")
-    for key, name in [("target", "L0xRE-27b-Low.gguf"), ("draft", "Qwen3.8-27B-DFlash2-Q4_K_M.gguf"), *([("vision", "mmproj-Qwen3.8-27B-Q8_0.gguf")] if receipt["vision"] else [])]:
+    for key, name in [("target", receipt.get("target_model", "L0xRE-27b-Low.gguf")), ("draft", "Qwen3.8-27B-DFlash2-Q4_K_M.gguf"), *([("vision", "mmproj-Qwen3.8-27B-Q8_0.gguf")] if receipt["vision"] else [])]:
         if sha(Path(receipt["models_dir"]) / name) != profile["model_sha256"][key]:
             raise ValueError("Pinned model mismatch: " + name)
     args, env = command_for(receipt, profile)
