@@ -31,21 +31,28 @@ Both ran on the same RTX 3060 12 GB under native Linux, with the same `bench.sh`
 
 | Metric | L0xRE | Bonsai (best config) | Bonsai configs measured |
 |---|---:|---:|---|
-| Code decode | ~72 tok/s | 54.4 tok/s (MTP, q8 KV) | MTP q4 54.2 · MTP q8 54.4 · pq2 q8 38.4 |
-| Narrative decode | ~40 tok/s | 39.4 tok/s (MTP, q4 KV) | MTP q4 39.4 · MTP q8 39.2 · pq2 q8 38.4 |
-| First token, short prompt | ~0.23 s | 0.57 s (MTP, q4 KV) | MTP q4 0.568 · pq2 q8 0.578 · MTP q8 0.670 |
-| Prefill, ~90K-token prompt | 444 tok/s | 370 tok/s (pq2, q8 KV) | pq2 q8 370.1 · MTP q4 359.8 |
+| Code decode | ~77 tok/s | 54.4 tok/s (MTP, q8 KV) | MTP q4 54.2 · MTP q8 54.4 · pq2 q8 38.4 |
+| Narrative decode | ~44 tok/s | 39.4 tok/s (MTP, q4 KV) | MTP q4 39.4 · MTP q8 39.2 · pq2 q8 38.4 |
+| First token, short prompt | ~0.19 s | 0.57 s (MTP, q4 KV) | MTP q4 0.568 · pq2 q8 0.578 · MTP q8 0.670 |
+| Prefill, ~90K-token prompt | ~480 tok/s | 370 tok/s (pq2, q8 KV) | pq2 q8 370.1 · MTP q4 359.8 |
 
-- **L0xRE code, narrative and first-token numbers** come from repeated `bench.sh` runs on the final v0.1.3 runtime on the 3060 (narrative 40–41, code 69–75, short first token about 230 ms). Code decode at 72 tok/s or above repeated across paired blocks.
-- **The L0xRE 90K prefill number** was measured on v0.1.2 in the same session as the Bonsai runs. v0.1.3 did not change cold prefill (−0.15% vs v0.1.2 in the release gates).
-- Narrative decode is a tie, which is why the README leaves it out.
-- **Quality** is the Club-3090 8-pack, /150, thinking off, pass@1. L0xRE scores 120 (v0.1.3 on the RTX 3060, zero case flips against the v0.1 baseline). Bonsai pq2 scores 108 and Bonsai MTP 102, from Club-3090 discussion #1700, measured on an RTX 5090. With thinking on (two full passes, RTX 5090), L0xRE scores 125/127 and Bonsai 123/118.
+- **L0xRE code, narrative, first-token and 90K prefill numbers** come from two `bench.sh` runs of v0.1.5 with the L0xRE-V2-27b-Low model on the 3060, on 2026-11-18:
+  - code 78.1 and 79.5 tok/s
+  - narrative 43.9 and 45.2 tok/s
+  - short first token 182–200 ms
+  - 10K prefill 718–721 tok/s
+  - 90K prefill 479–482 tok/s
+
+  The v0.1.3 runtime with the v1 model measured code 69–75, narrative 40–41 and first token about 230 ms.
+- **The Bonsai numbers** were measured on the same RTX 3060 in an earlier session, alongside L0xRE v0.1.2, which prefilled 444 tok/s at 90K.
+- Narrative decode is close: L0xRE is about 12% ahead, so the README leaves it out.
+- **Quality** is the Club-3090 8-pack, /150, thinking off, pass@1. L0xRE scores 121 (v0.1.5 with L0xRE-V2-27b-Low on the RTX 3060; v1 scored 120). Bonsai pq2 scores 108 and Bonsai MTP 102, from Club-3090 discussion #1700, measured on an RTX 5090. With thinking on (two full passes, RTX 5090), v1 scored 125/127 and Bonsai 123/118. V2 scored 127 and 125 pass@1 at medium effort with an 8K thinking budget, on an RTX 4090.
 
 ## What to expect on your card
 
 | Card | Story / chat | Code | 128K prompt in | Decode at 128K | Source |
 |---|---:|---:|---:|---:|---|
-| RTX 3060 12 GB, native Linux, headless | ~40 tok/s | ~72 tok/s | ~400 tok/s | 35.9 tok/s | `bench.sh` as above; 128K figures from the shipped v0.1.3 deep selftest (130,048-token prompt, 1,023 tokens generated: 394 tok/s in, 35.9 tok/s out; one run). The v0.1.1 release gate, with a different depth workload, measured 395.6 tok/s in and 32.06 tok/s out (10 runs) |
+| RTX 3060 12 GB, native Linux, headless | ~44 tok/s | ~77 tok/s | ~400 tok/s | 35.9 tok/s | `bench.sh` as above (v0.1.5, V2); 128K figures from the shipped v0.1.3 deep selftest with v1, not re-measured (130,048-token prompt, 1,023 tokens generated: 394 tok/s in, 35.9 tok/s out; one run). The v0.1.1 release gate, with a different depth workload, measured 395.6 tok/s in and 32.06 tok/s out (10 runs) |
 | RTX 4070 Ti 12 GB, native Windows 11, drives the display, with Hermes, a browser and WhatsApp open | ~67 tok/s | ~100–118 tok/s | ~920 tok/s | ~53 tok/s | v0.1.3.1 selftest at the 1856 MiB desktop arena (192-token samples: 66.9 / 102.2; 130,048-token prompt: 921 tok/s in, 53.4 tok/s out); 117.9 tok/s on a 2,048-token code sample ([report](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/issues/13)) |
 
 The 4070 Ti numbers are single runs on a working desktop, not a clean benchmark. The 3060 has no display attached.
