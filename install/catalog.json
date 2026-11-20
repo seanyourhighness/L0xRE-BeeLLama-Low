@@ -14,8 +14,7 @@
         "launcher": "tools/universal/v01-launch.py",
         "launcher_style": "v01",
         "memory_profiles": [
-          "12gb",
-          "16gb"
+          "12gb"
         ],
         "requires_projector": true,
         "projector_model": "vision_v01",
@@ -45,8 +44,7 @@
         "launcher": "tools/universal/v01-launch.py",
         "launcher_style": "v01",
         "memory_profiles": [
-          "12gb",
-          "16gb"
+          "12gb"
         ],
         "requires_projector": true,
         "projector_model": "vision_v01",
@@ -76,8 +74,7 @@
         "launcher": "tools/universal/v01-launch.py",
         "launcher_style": "v01",
         "memory_profiles": [
-          "12gb",
-          "16gb"
+          "12gb"
         ],
         "requires_projector": true,
         "projector_model": "vision_v01",

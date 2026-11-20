@@ -71,7 +71,7 @@ def select_model_records(catalog, plan, vision):
     if sparse:
         if sparse not in catalog['models']:
             raise ValueError('Missing sparse map model record: ' + sparse)
-        records.append(catalog['models'][sparse])
+        records.insert(2, catalog['models'][sparse])   # before the projector, which stays last
     return records
 
 

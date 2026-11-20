@@ -99,7 +99,7 @@ class V01SelectionTests(unittest.TestCase):
         catalog['models']['sparse_map'] = dict(filename='qwen38-dlsa-d2048.l0xmap', bytes=1, sha256='0' * 64, url='https://example.invalid/m')
         plan = dict(package=dict(launcher_style='v01', sparse_map_model='sparse_map'))
         names = [r['filename'] for r in installer.select_model_records(catalog, plan, False)]
-        self.assertEqual(names[-1], 'qwen38-dlsa-d2048.l0xmap')
+        self.assertEqual(names[2], 'qwen38-dlsa-d2048.l0xmap')
         plan['package']['sparse_map_model'] = 'missing'
         with self.assertRaises(ValueError):
             installer.select_model_records(catalog, plan, False)
@@ -371,7 +371,7 @@ class PublishedV011CatalogTests(unittest.TestCase):
             for memory in [12288, 16384, 32768]:
                 with self.subTest(arch=arch, name=name, memory=memory):
                     plan = installer.make_plan(RELEASE_CATALOG, gpu(arch, name, memory))
-                    expected = '16gb' if memory >= 16000 and arch != 'sm86' else '12gb'
+                    expected = '12gb'   # v0.1.6: one qualified 12 GB sparse profile; larger VRAM classes not measured yet (G7)
                     self.assertEqual(plan['memory_profile'], expected)
                     self.assertEqual(plan['package']['launcher_style'], 'v01')
                     package_version = plan['package']['filename'].split('-')[1]
