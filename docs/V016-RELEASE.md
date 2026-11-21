@@ -1,6 +1,6 @@
 # L0xRE v0.1.6 "Sparse"
 
-256K context on a 12 GB card, with long-context retrieval at dense-attention parity.
+256K context on a 12 GB card, with long-context retrieval close to dense attention in the measured tests.
 
 ## What's new
 
@@ -16,8 +16,8 @@
 
 | | dense attention | v0.1.6 |
 | --- | --- | --- |
-| Needle recall, 8 records in real agent transcripts, 16K-192K (RTX 5090 / RTX 4090) | 224 / 224 of 224 | 223 / 223 |
-| Held-out retrieval (code, paths, paraphrased questions), two prompt sets, RTX 5090 | 269 of 288 | 268 |
+| Needle recall, 8 records in real agent transcripts, 16K-192K (RTX 5090 and RTX 3060) | 224 of 224 on each card | 223 of 224 on each card |
+| Held-out retrieval (code, paths, paraphrased questions), two prompt sets, RTX 5090 | 269 of 288 | 268 of 288 |
 | Responses below 8K tokens | | bit-identical to v0.1.6 without the links (logit hashes) |
 
 Speed (prefill, vs the same runtime without the links): RTX 3060 -0.2..+0.1% from 8K to 250K, RTX 4090 -0.4..-0.1%,
@@ -31,8 +31,14 @@ RTX 5090 within 1.6%; decode unchanged. RTX 3060 12 GB: about 800 tok/s prefill 
 | `linux-sm89` | RTX 40 series (the sm86 build) | RTX 4090 |
 | `linux-sm120` | RTX 50 series | RTX 5090 |
 
-**Windows stays on v0.1.5** for this release. The 16gb profile runs the qualified 12 GB profile; larger VRAM classes are
-not measured yet.
+On Linux, cards with more VRAM use the same qualified 12 GB profile. **Windows stays on v0.1.5.**
+
+The RTX 4090 and RTX 5090 passed fresh-install and launch smoke tests with token-for-token agreement against the RC5d kits.
+The RTX 3060 ran the RC5d kit in production and completed kit qualification. The installer package did not have a separate
+RTX 3060 smoke run.
+
+`L0xRE-v0.1.6-source.tar.gz` contains the corresponding runtime and packaging source. Each package records both revisions
+in `BUILD-INFO.json`.
 
 ## Upgrading
 
