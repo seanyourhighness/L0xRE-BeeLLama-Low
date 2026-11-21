@@ -16,26 +16,38 @@
 '================================='
 </pre>
 
-# 256K context · Up to 182 tok/s narrative · 319 tok/s code
+# 256K context · Up to 55 tok/s narrative · 98 tok/s code<br>on one RTX 3060 12 GB
 
 **L0xRE v0.1.6 Sparse adds 256K context on Linux and native Windows.**
 
-<sub>Peak short-prompt decode on one RTX 5090 under native Windows. The runtime also supports 256K context on the RTX 3060 12 GB. [Benchmark method](docs/BENCHMARKS.md#v016-sparse)</sub>
+<sub>Short-prompt decode on native Linux using the transformer essay and Python quicksort prompts. [Benchmark method](docs/BENCHMARKS.md#v016-sparse)</sub>
 
 **[⬇ Download the latest release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/latest)** · **[Install](#install)** · **[Point your AI agent at it](#let-your-ai-agent-install-it)**
 
-**New in v0.1.6:** D-LSA sparse attention and exact-match retrieval links above 8K tokens. The Windows and Linux installers download the sparse map alongside the model. Native RTX 5090 decoded quicksort at 224.5 tok/s after a 261,120-token prompt. Windows SM86 and SM89 are build-verified. [v0.1.6 release notes](docs/V016-RELEASE.md)
+**New in v0.1.6:** D-LSA sparse attention and exact-match retrieval links above 8K tokens. The Windows and Linux installers download the sparse map alongside the model. Windows SM86 and SM89 are build-verified. [v0.1.6 release notes](docs/V016-RELEASE.md)
 
 </div>
 
 ## v0.1.6 decode benchmarks
 
-RTX 5090, native Windows, using the transformer essay and Python quicksort prompts. Rates are in tokens/s.
+### Short-prompt decode by card
+
+| GPU and platform | Narrative (tok/s) | Code (tok/s) | Workload |
+|---|---:|---:|---|
+| **RTX 3060 12 GB · Linux** | **54.7** | **98.4** | Transformer essay and Python quicksort |
+| RTX 3060 12 GB · Linux | 48.5 | 68.5 | Agent story and Python intervals |
+| RTX 4090 · Linux | 105.2 | 132.2 | Agent story and Python intervals |
+| RTX 5090 · WSL2 | 126.7 | 178.4 | Agent story and Python intervals |
+| RTX 5090 · Windows | 181.9 | 318.7 | Transformer essay and Python quicksort |
+
+The essay and quicksort rows share the same prompts. The three agent rows share a separate fixture with thinking enabled. [Prompt lengths and sample counts](docs/BENCHMARKS.md#peak-decode-by-card)
+
+### RTX 5090 decode at depth
+
+The native Windows benchmark added context before the transformer essay and Python quicksort instructions. Rates are in tokens/s.
 
 | Prompt tokens | Narrative decode | Code decode |
 |---:|---:|---:|
-| 25 · peak of five runs | **181.9** | **318.7** |
-| 25 · median of five runs | 181.3 | 318.5 |
 | 32,768 | 120.1 | 235.0 |
 | 65,536 | 128.2 | 205.2 |
 | 131,072 | 122.6 | 233.8 |
