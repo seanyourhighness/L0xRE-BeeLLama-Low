@@ -95,16 +95,16 @@
     },
     "windows": {
       "sm86": {
-        "filename": "L0xRE-v0.1.5-windows-sm86.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.5/L0xRE-v0.1.5-windows-sm86.zip",
-        "sha256": "fb4a22e744d7362a585e8133327b4239597c2c58172ac907e8f2e31024bfa4e6",
-        "bytes": 672829401,
+        "filename": "L0xRE-v0.1.6-windows-sm86.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.6/L0xRE-v0.1.6-windows-sm86.zip",
+        "sha256": "a85dce8c3e86310c5af55f6b72a7b53171822238ff48e9b639cb4930dc7adeff",
+        "bytes": 669689355,
         "status": "build-verified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.5: 12GB/128K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
-        "launcher": "l0xre.cmd",
-        "launcher_style": "v01",
+        "profile": "v0.1.6 Sparse, 12 GB profile, 256K context",
+        "launcher": "start.ps1",
+        "launcher_style": "rc5d-kit",
         "memory_profiles": [
           "12gb"
         ],
@@ -115,26 +115,26 @@
         "certified_gpu_name_contains": "",
         "certified_gpu_names": [],
         "hardware_validation_status": "build-verified; no matching hardware run",
-        "validation_scope": "v0.1.5 Windows sm86: build-verified (exports and archive integrity checked); no matching hardware run",
+        "validation_scope": "Native Windows build, CUDA architecture and archive integrity verified. Inference on matching Windows hardware is pending.",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.5",
-        "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "e579fc7dadb25d3b89d547e25e7eda3bbdbbfbb274543c88c85af1089684e90f"
+        "artifact_build_tag": "l0xre-v0.1.6",
+        "artifact_build_commit": "8486772dd2434e7772774ac8f7cdc53372ade5d1",
+        "manifest_sha256": "e871798950ab451050d4178a7f267d10c64d4ebcf6030b8f11b0603bf06c9e08",
+        "sparse_map_model": "sparse_map"
       },
       "sm89": {
-        "filename": "L0xRE-v0.1.5-windows-sm89.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.5/L0xRE-v0.1.5-windows-sm89.zip",
-        "sha256": "f662fc056371b11a998c76ce8c53dc2bbd2934bade302fd4255a2579d52c2f6f",
-        "bytes": 671189173,
+        "filename": "L0xRE-v0.1.6-windows-sm89.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.6/L0xRE-v0.1.6-windows-sm89.zip",
+        "sha256": "8a0b7e854f7d4044e16216caa8781fb6d141811351b0001bdeff7b0ddb5ad6af",
+        "bytes": 667740204,
         "status": "build-verified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.5: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
-        "launcher": "l0xre.cmd",
-        "launcher_style": "v01",
+        "profile": "v0.1.6 Sparse, 12 GB profile, 256K context",
+        "launcher": "start.ps1",
+        "launcher_style": "rc5d-kit",
         "memory_profiles": [
-          "12gb",
-          "16gb"
+          "12gb"
         ],
         "requires_projector": true,
         "projector_model": "vision_v01",
@@ -143,26 +143,26 @@
         "certified_gpu_name_contains": "",
         "certified_gpu_names": [],
         "hardware_validation_status": "build-verified; no matching hardware run",
-        "validation_scope": "v0.1.5 Windows sm89: build-verified (exports and archive integrity checked); no matching hardware run",
+        "validation_scope": "Native Windows build, CUDA architecture and archive integrity verified. Inference on matching Windows hardware is pending.",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.5",
-        "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "56986e6a9624e4c920b7f8782123d8843e0454ef30ea0676e7fee74fdd8f2fab"
+        "artifact_build_tag": "l0xre-v0.1.6",
+        "artifact_build_commit": "8486772dd2434e7772774ac8f7cdc53372ade5d1",
+        "manifest_sha256": "f1da686beb4f0b31ee1d90165dfef546dab8146e22adfb6937393c8e69bd87ad",
+        "sparse_map_model": "sparse_map"
       },
       "sm120": {
-        "filename": "L0xRE-v0.1.5-windows-sm120.zip",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.5/L0xRE-v0.1.5-windows-sm120.zip",
-        "sha256": "f607100c75b989f7bd6bb2a4e3280fb9d3a39c2fe3a771ddf611f3936781009b",
-        "bytes": 704291784,
+        "filename": "L0xRE-v0.1.6-windows-sm120.zip",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.6/L0xRE-v0.1.6-windows-sm120.zip",
+        "sha256": "4a73a70fed43fd0fc8e3ba32806097358f6ea4bf7c8b9052496ffe7a4457fe15",
+        "bytes": 700868691,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.5: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
-        "launcher": "l0xre.cmd",
-        "launcher_style": "v01",
+        "profile": "v0.1.6 Sparse, 12 GB profile, 256K context",
+        "launcher": "start.ps1",
+        "launcher_style": "rc5d-kit",
         "memory_profiles": [
-          "12gb",
-          "16gb"
+          "12gb"
         ],
         "requires_projector": true,
         "projector_model": "vision_v01",
@@ -173,12 +173,12 @@
           "NVIDIA GeForce RTX 5090"
         ],
         "hardware_validation_status": "validated_on_recorded_hardware",
-        "validation_scope": "v0.1.5: native Windows RTX 5090 smoke: V2 12GB, mask 4095, all int8 roles 0-11 enqueued, tool call + code",
+        "validation_scope": "Native RTX 5090 launch, token correctness, prompt cache, and decode through 261120 prompt tokens. Deep prefill limitations are documented in the release notes.",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.5",
-        "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "242db69f1d17a4a357904de3aa024522ef2048ac0574b8bc6346839f7573b59d",
-        "allocation_recovery_16gb": "Direct owner acceptance of inherited un-reinjected native coverage limitation; NOT a native allocation recovery PASS"
+        "artifact_build_tag": "l0xre-v0.1.6",
+        "artifact_build_commit": "8486772dd2434e7772774ac8f7cdc53372ade5d1",
+        "manifest_sha256": "0e44af1b6113b27e0e3376721b9fccba1858395fa454ee495d9341fc0f4923f6",
+        "sparse_map_model": "sparse_map"
       }
     }
   },
@@ -231,7 +231,6 @@
     "linux/sm86/12gb",
     "linux/sm89/12gb",
     "windows/sm120/12gb",
-    "windows/sm120/16gb",
     "wsl/sm120/12gb"
   ]
 }

@@ -49,6 +49,11 @@ function Get-InstallGpu([string]$Selector) {
 
 function Get-InstallModelRecords($Catalog, $Plan, [bool]$Vision) {
     $records = @($Catalog.models.target, $Catalog.models.draft)
+    if ($Plan.package.PSObject.Properties['sparse_map_model']) {
+        $map = $Catalog.models.PSObject.Properties[$Plan.package.sparse_map_model]
+        if (-not $map) { throw 'Missing sparse map model record.' }
+        $records += $map.Value
+    }
     if ($Vision) {
         $modern = $Plan.package.PSObject.Properties['launcher_style'] -and $Plan.package.launcher_style -eq 'v01'
         $key = if ($Plan.package.PSObject.Properties['projector_model']) { $Plan.package.projector_model }
@@ -66,7 +71,7 @@ function Get-InstallModelRecords($Catalog, $Plan, [bool]$Vision) {
 
 function Get-InstallPlan($Catalog, $SelectedGpu, [bool]$Candidates, [string]$Archive) {
     $entry = $Catalog.packages.windows.PSObject.Properties[$SelectedGpu.arch]
-    if ($SelectedGpu.arch -eq 'sm120' -and $entry -and $entry.Value.launcher_style -ne 'v01' -and ($SelectedGpu.memory_mib -lt 30000 -or -not $SelectedGpu.name.Contains('RTX 5090'))) {
+    if ($SelectedGpu.arch -eq 'sm120' -and $entry -and $entry.Value.launcher_style -notin @('v01', 'rc5d-kit') -and ($SelectedGpu.memory_mib -lt 30000 -or -not $SelectedGpu.name.Contains('RTX 5090'))) {
         $variant = $Catalog.packages.windows.PSObject.Properties['sm120-12gb']
         if ($variant) { $entry = $variant }
     }
@@ -83,7 +88,7 @@ function Get-InstallPlan($Catalog, $SelectedGpu, [bool]$Candidates, [string]$Arc
     if ($package.PSObject.Properties['certified_gpu_names']) {
         $qualified = ($package.status.StartsWith('certified') -and $SelectedGpu.name -in @($package.certified_gpu_names))
     }
-    $launchProfile = 'r6'
+    $launchProfile = if ($package.launcher_style -eq 'rc5d-kit') { '12gb' } else { 'r6' }
     if ($package.PSObject.Properties['launch_profiles']) {
         foreach ($preset in $package.launch_profiles) {
             if ($SelectedGpu.name -eq $preset.gpu_name -and $SelectedGpu.memory_mib -ge $preset.min_memory_mib) {
@@ -109,7 +114,7 @@ function Get-DualInstallPlan($Catalog, [string]$Selectors, [bool]$Candidates, [s
     if ($cards[0].memory_mib -lt 12000 -or $cards[1].memory_mib -lt 12000) { throw 'Dual mode requires at least 12GB VRAM per card.' }
     if (-not $Catalog.PSObject.Properties['dual_addons']) { throw 'This catalog does not contain the experimental dual fast-path add-on.' }
     $plan = Get-InstallPlan $Catalog $cards[0] $true $Archive
-    if ($plan.package.launcher_style -eq 'v01') { throw 'V0.1 supports one GPU per process; select -Gpu instead of -Gpus.' }
+    if ($plan.package.launcher_style -in @('v01', 'rc5d-kit')) { throw 'V0.1 supports one GPU per process; select -Gpu instead of -Gpus.' }
     $plan | Add-Member NoteProperty gpus $cards
     $plan | Add-Member NoteProperty mode 'dual-fast-experimental'
     $plan | Add-Member NoteProperty dual_addon $Catalog.dual_addons.windows
@@ -254,7 +259,13 @@ function Write-InstallLauncher([string]$Root, [string]$Runtime, [string]$ModelRo
     $targetName = if ($Plan.PSObject.Properties['target_model']) { $Plan.target_model } else { 'L0xRE-27b-Low.gguf' }
     $target = Join-Path $ModelRoot $targetName
     $draft = Join-Path $ModelRoot 'Qwen3.8-27B-DFlash2-Q4_K_M.gguf'
-    if ($Plan.package.launcher_style -eq 'sm120-windows') {
+    if ($Plan.package.launcher_style -eq 'rc5d-kit') {
+        $entries = @(('ModelDir = ' + (Quote-InstallString $ModelRoot)), ('Port = ' + $ListenPort))
+        if ($WithVision) { $entries += 'Vision = $true' }
+        $callLines = @(('$serverParameters = @{ ' + ($entries -join '; ') + ' }'),
+            'if ($DryRun) { @{ command = $command; parameters = $serverParameters; gpu = $env:CUDA_VISIBLE_DEVICES } | ConvertTo-Json; return }',
+            '& $command @serverParameters')
+    } elseif ($Plan.package.launcher_style -eq 'sm120-windows') {
         $parameters = @{ Model = $target; Draft = $draft; BindAddress = '127.0.0.1'; Port = $ListenPort }
         # Probe only staged starter packages; released packages reject the flag (see install.py).
         if ($Plan.package.status -eq 'starter') { $parameters.QualificationProbe = $true }
