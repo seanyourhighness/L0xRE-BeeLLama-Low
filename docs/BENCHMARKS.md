@@ -4,16 +4,15 @@
 
 These runs used the v0.1.6 RC5d runtime with L0xRE-V2-27b-Low, DFlash2 and the 12 GB profile. Prefill and decode rates come from the server's prompt and generation timings. [v0.1.6 release notes](V016-RELEASE.md)
 
-### RTX 5090 narrative and code
+### Peak decode by card
 
-The benchmark used the `bench.sh` transformer attention essay and Python quicksort prompts with thinking off, seed 17, temperature 0.6, top-p 0.95 and top-k 20. The short prompts were 25 tokens. Deep runs inserted filler before the same instructions and disabled prompt caching. The 261,120-token rows left 1,024 positions for generation within the 262,144-token context.
+The transformer attention essay and Python quicksort are the short `bench.sh` prompts. Both are 25 tokens here and run with thinking off, seed 17, temperature 0.6, top-p 0.95 and top-k 20. The native Linux RTX 3060 was measured on the running RC5d service. One measured request per prompt yielded 54.71 tok/s for the essay (935 output tokens) and 98.36 tok/s for quicksort (631 output tokens). Quicksort had one warmup. Both requests started with an empty prompt cache. The headline rounds those rates to whole tokens per second. The RTX 5090 Windows peaks are the fastest of five measured requests after three warmups per workload. The essay generated 1,000 tokens per run and quicksort generated 438. The medians were 181.3 tok/s for the essay and 318.5 tok/s for quicksort.
 
-The native Windows short-prompt peaks are the fastest of five measured requests after three warmups per workload. The essay generated 1,000 tokens per run and quicksort generated 438.
+The RTX 3060, Linux RTX 4090 and WSL2 RTX 5090 also ran agent qualification requests for a librarian story and a Python function that merges overlapping intervals. The RTX 3060 peak is from six 192-token responses per prompt (three seeds, two RC5d boots). The RTX 4090 and WSL2 RTX 5090 peaks are from two 192-token responses per prompt (seeds 1000 and 1001), with 2,341 story and 2,345 code prompt tokens. These requests had thinking enabled, and decode includes reasoning tokens.
 
-| Workload | Median (tok/s) | Peak (tok/s) |
-|---|---:|---:|
-| Narrative | 181.3 | 181.9 |
-| Code | 318.5 | 318.7 |
+### RTX 5090 decode at depth
+
+Deep runs inserted filler before the same essay and quicksort instructions and disabled prompt caching. The 261,120-token rows left 1,024 positions for generation within the 262,144-token context.
 
 The depth comparison below uses the first measured result for each case on the same RTX 5090. Native Windows had prior warmups through 128K. The full-depth Windows cases and the WSL2 cases ran with zero warmups. Both platforms produced identical output token IDs in the 14 paired cases.
 
