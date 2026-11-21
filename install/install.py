@@ -67,6 +67,11 @@ def select_model_records(catalog, plan, vision):
         if expected and projector['filename'] != expected:
             raise ValueError('Projector model record does not match the package filename')
         records.append(projector)
+    sparse = plan['package'].get('sparse_map_model')   # v0.1.6+: the D-LSA map, downloaded next to the target model
+    if sparse:
+        if sparse not in catalog['models']:
+            raise ValueError('Missing sparse map model record: ' + sparse)
+        records.insert(2, catalog['models'][sparse])   # before the projector, which stays last
     return records
 
 

@@ -16,21 +16,21 @@
 '================================='
 </pre>
 
-# 77 tok/s code · 700 tok/s prefill · 128K context<br>on one RTX 3060 12 GB
+# 256K context · ~800 tok/s prefill · 30–50 tok/s decode<br>on one RTX 3060 12 GB
 
-**L0xRE enables 128K context, vision, fast decode and fast prefill, all at the same time, all on 12 GB, and ALL ON GPU!**
+**L0xRE v0.1.6 Sparse adds 256K context with vision on Linux.**
 
-<sub>Every model layer runs on the GPU, with no CPU layer offload. Headline numbers: RTX 3060 12 GB, native Linux, headless. Every table below names the card it was measured on.</sub>
+<sub>Every model layer runs on the GPU. Throughput was measured at 32K–250K context on a headless RTX 3060 12 GB running native Linux.</sub>
 
 **[⬇ Download the latest release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/latest)** · **[Install](#install)** · **[Point your AI agent at it](#let-your-ai-agent-install-it)**
 
-**New in v0.1.5:** the [L0xRE-V2-27b-Low](https://huggingface.co/YourHighnessLA/L0xRE-V2-27b-Low) model. It is the same size and speed as before, but 24% closer to the full model overall and 34% closer on code. Existing installs pick it up with `update`. [Release notes](docs/V015-RELEASE.md)
+**New in v0.1.6:** D-LSA sparse attention and exact-match retrieval links above 8K tokens. The Linux updater downloads the sparse map alongside the model. Windows remains on v0.1.5. [v0.1.6 release notes](docs/V016-RELEASE.md)
 
 </div>
 
-### 1.8× faster than Bonsai with a full 128K context
+### v0.1.5 benchmarks at 128K
 
-Both runtimes, same card, same benchmark. The 3060 rows are where the 77 tok/s headline comes from.
+Both runtimes used the same card for each benchmark. The RTX 4070 Ti measured 1.8× faster decode than Bonsai at 128K.
 
 | L0xRE vs Ternary Bonsai 2 27B | **L0xRE** | Bonsai | |
 |---|---:|---:|---|
@@ -43,7 +43,7 @@ Both runtimes, same card, same benchmark. The 3060 rows are where the 77 tok/s h
 
 <sub>RTX 3060 12 GB: Linux, headless. RTX 4070 Ti 12 GB: Windows 11, with a display, at the 2048 MiB arena (the numbers in the next table use the 1856 MiB desktop default). Bonsai is shown in its fastest measured configuration. Quality: thinking off, pass@1; L0xRE on the RTX 3060, Bonsai's 108 from Club-3090 on an RTX 5090. Sources and method: [benchmarks](docs/BENCHMARKS.md).</sub>
 
-## What to expect on your card
+## v0.1.5 throughput by card
 
 | Card (12 GB) | Story / chat | Code | 128K prompt in | Decode at 128K |
 |---|---:|---:|---:|---:|

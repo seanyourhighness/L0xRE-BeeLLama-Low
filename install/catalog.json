@@ -3,14 +3,14 @@
   "packages": {
     "linux": {
       "sm86": {
-        "filename": "L0xRE-v0.1.5-linux-sm86.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.5/L0xRE-v0.1.5-linux-sm86.tar.zst",
-        "sha256": "c166b7fdeaa8dba3e20d8874b558d7b0e7b7449d195e86dba4a8fd3903d16a6a",
-        "bytes": 754386158,
+        "filename": "L0xRE-v0.1.6-linux-sm86.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.6/L0xRE-v0.1.6-linux-sm86.tar.zst",
+        "sha256": "0d94b4e0729a26d761f1c6e59fb0dc088a657c6e67dcc0b09d03297ccb821adf",
+        "bytes": 690285696,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.5: 12GB/128K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
+        "profile": "v0.1.6: 12GB, 256K context (D-LSA sparse attention above 8K, exact-match retrieval links)",
         "launcher": "tools/universal/v01-launch.py",
         "launcher_style": "v01",
         "memory_profiles": [
@@ -25,26 +25,26 @@
           "NVIDIA GeForce RTX 3060"
         ],
         "hardware_validation_status": "validated_on_recorded_hardware",
-        "validation_scope": "v0.1.5: v0.1.4 sm86 + int8 roles 8-11/fused FFN v2 (exact bytes serving RTX 3060 production since 2026-11-15); V2 qualified on RTX 3060: closed holdout, N150, bench.sh within 2%, paired 90K depth",
+        "validation_scope": "v0.1.6: RC5d kit qualified and used in production on RTX 3060 12 GB; installer smoke on the same kit bytes ran on RTX 4090",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.5",
-        "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "a392859878f30a91365bbca29fed390c8d920d5766593a243f8e2f9d2752a7c0"
+        "artifact_build_tag": "l0xre-v0.1.6",
+        "artifact_build_commit": "31b79efe560d1dcf27b184c7acaf5c31a7183340",
+        "manifest_sha256": "f1e80eb0498da58762be4c3ae22de09da777062c41f0210bc3113f077404d8f8",
+        "sparse_map_model": "sparse_map"
       },
       "sm89": {
-        "filename": "L0xRE-v0.1.5-linux-sm89.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.5/L0xRE-v0.1.5-linux-sm89.tar.zst",
-        "sha256": "c8902fcc6a460f2371dbc78f14611f665ea503a4139e3a06c79e3305727408eb",
-        "bytes": 743421080,
+        "filename": "L0xRE-v0.1.6-linux-sm89.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.6/L0xRE-v0.1.6-linux-sm89.tar.zst",
+        "sha256": "ee494dfbea7602d1a2d6f8412fed32bf9d6bff9e367a7d4ecbc0e7bb701ced1f",
+        "bytes": 690285630,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.5: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
+        "profile": "v0.1.6: 12GB, 256K context (D-LSA sparse attention above 8K, exact-match retrieval links)",
         "launcher": "tools/universal/v01-launch.py",
         "launcher_style": "v01",
         "memory_profiles": [
-          "12gb",
-          "16gb"
+          "12gb"
         ],
         "requires_projector": true,
         "projector_model": "vision_v01",
@@ -55,26 +55,26 @@
           "NVIDIA GeForce RTX 4090"
         ],
         "hardware_validation_status": "validated_on_recorded_hardware",
-        "validation_scope": "v0.1.5: RTX 4090 smoke: V2 12GB/16GB and v1 load, mask 4095, 0 fallthroughs, tool call + code; control rebuild matches v0.1.4 code sections",
+        "validation_scope": "v0.1.6: fresh install and launch on RTX 4090; two T3 prompts token-identical to the RC5d sm86 kit",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.5",
-        "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "2bf1c6891dc029e6180272cc2a83efb943684909041097cdd491ab42f2a57f3d"
+        "artifact_build_tag": "l0xre-v0.1.6",
+        "artifact_build_commit": "31b79efe560d1dcf27b184c7acaf5c31a7183340",
+        "manifest_sha256": "5a32233757566bc902f3d2e3548531d9fcf5252feeaa90032fc7618b94c0bc3f",
+        "sparse_map_model": "sparse_map"
       },
       "sm120": {
-        "filename": "L0xRE-v0.1.5-linux-sm120.tar.zst",
-        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.5/L0xRE-v0.1.5-linux-sm120.tar.zst",
-        "sha256": "a9fac03a5af1dfb39c2638a9d16224f97cb019dc22367dd33f349a940039c4f3",
-        "bytes": 658009015,
+        "filename": "L0xRE-v0.1.6-linux-sm120.tar.zst",
+        "url": "https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/download/l0xre-v0.1.6/L0xRE-v0.1.6-linux-sm120.tar.zst",
+        "sha256": "337f2c6becce9e881cc336a70a7ae8ed0a0be2bc275432c37ef52db9bf5edb92",
+        "bytes": 640862802,
         "status": "certified",
         "min_memory_mib": 12000,
         "gpu_name_contains": "",
-        "profile": "v0.1.5: 12GB/128K and16GB/256K; 12GB with a display: 1856 MiB desktop arena (--arena-mib 2048/1920 for more deep-context speed)",
+        "profile": "v0.1.6: 12GB, 256K context (D-LSA sparse attention above 8K, exact-match retrieval links)",
         "launcher": "tools/universal/v01-launch.py",
         "launcher_style": "v01",
         "memory_profiles": [
-          "12gb",
-          "16gb"
+          "12gb"
         ],
         "requires_projector": true,
         "projector_model": "vision_v01",
@@ -85,11 +85,12 @@
           "NVIDIA GeForce RTX 5090"
         ],
         "hardware_validation_status": "validated_on_recorded_hardware",
-        "validation_scope": "v0.1.5: WSL2 RTX 5090 smoke: V2 12GB/16GB and v1 load, mask 4095, 0 fallthroughs, chat/tool/code; control rebuild matches v0.1.4 code sections",
+        "validation_scope": "v0.1.6: fresh install and launch on RTX 5090 under WSL2; three T3 prompts up to 128K token-identical to the RC5d sm120 kit",
         "gpu_selector_adapter": false,
-        "artifact_build_tag": "l0xre-v0.1.5",
-        "artifact_build_commit": "e7c3a18defbfadb96a877d923e4b1c9c3157d530",
-        "manifest_sha256": "1d92898e5b4ea6e2f1482e93e707037c336fc3b8f912d34d36e6a63610b2731f"
+        "artifact_build_tag": "l0xre-v0.1.6",
+        "artifact_build_commit": "31b79efe560d1dcf27b184c7acaf5c31a7183340",
+        "manifest_sha256": "c82a50cd0803b1d90da359ade266fd420d2e25e1517c12630d0bf7eb33be4e92",
+        "sparse_map_model": "sparse_map"
       }
     },
     "windows": {
@@ -208,6 +209,12 @@
       "source_repo": "HermiHg/Qwen3.8-27B-mmproj-Q5_K-MIX-GGUF",
       "source_revision": "dbf78ac52891f19cf175abb8813997267adb0e92",
       "license": "apache-2.0"
+    },
+    "sparse_map": {
+      "filename": "qwen38-dlsa-d2048.l0xmap",
+      "bytes": 6291540,
+      "sha256": "e2c93fe793a1799f31a387d7d5c0513bd241ff305261312b3a7d7756b3682d68",
+      "url": "https://huggingface.co/YourHighnessLA/L0xRE-V2-27b-Low/resolve/54f6a3f9700071a9343d19a166e0e0e4f29cdf7f/qwen38-dlsa-d2048.l0xmap"
     }
   },
   "hardware_target": {
@@ -218,15 +225,13 @@
     ],
     "minimum_vram_mib_per_gpu": 12000
   },
-  "release": "l0xre-v0.1.5",
-  "release_source_commit": "6c4c4c392a51304fc6bd276e7ea98ed9f98d0f6c",
+  "release": "l0xre-v0.1.6",
+  "release_source_commit": "6dde413498bd654fe2fae665a0f4238b3c1e4473",
   "measured_platforms": [
     "linux/sm86/12gb",
     "linux/sm89/12gb",
-    "linux/sm89/16gb",
     "windows/sm120/12gb",
     "windows/sm120/16gb",
-    "wsl/sm120/12gb",
-    "wsl/sm120/16gb"
+    "wsl/sm120/12gb"
   ]
 }

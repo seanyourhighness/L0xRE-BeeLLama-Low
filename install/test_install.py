@@ -94,6 +94,16 @@ class V01SelectionTests(unittest.TestCase):
         legacy = installer.make_plan(CATALOG, gpu())
         self.assertEqual(installer.select_model_records(CATALOG, legacy, True)[-1]['filename'], 'mmproj-Qwen3.8-27B-Q8_0.gguf')
 
+    def test_sparse_map_is_downloaded_with_the_models(self):
+        catalog = json.loads(json.dumps(self.catalog))
+        catalog['models']['sparse_map'] = dict(filename='qwen38-dlsa-d2048.l0xmap', bytes=1, sha256='0' * 64, url='https://example.invalid/m')
+        plan = dict(package=dict(launcher_style='v01', sparse_map_model='sparse_map'))
+        names = [r['filename'] for r in installer.select_model_records(catalog, plan, False)]
+        self.assertEqual(names[2], 'qwen38-dlsa-d2048.l0xmap')
+        plan['package']['sparse_map_model'] = 'missing'
+        with self.assertRaises(ValueError):
+            installer.select_model_records(catalog, plan, False)
+
     def test_projector_mismatch_is_refused_before_download(self):
         plan = installer.make_plan(self.catalog, gpu())
         self.catalog['models']['vision_v01']['filename'] = 'wrong.gguf'
@@ -361,7 +371,7 @@ class PublishedV011CatalogTests(unittest.TestCase):
             for memory in [12288, 16384, 32768]:
                 with self.subTest(arch=arch, name=name, memory=memory):
                     plan = installer.make_plan(RELEASE_CATALOG, gpu(arch, name, memory))
-                    expected = '16gb' if memory >= 16000 and arch != 'sm86' else '12gb'
+                    expected = '12gb'   # v0.1.6: one qualified 12 GB sparse profile; larger VRAM classes not measured yet (G7)
                     self.assertEqual(plan['memory_profile'], expected)
                     self.assertEqual(plan['package']['launcher_style'], 'v01')
                     package_version = plan['package']['filename'].split('-')[1]
