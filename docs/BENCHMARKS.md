@@ -1,6 +1,40 @@
 # L0xRE benchmarks
 
-This page holds the numbers behind the [README](../README.md) tables: where each one comes from and what it does and doesn't show. Unless a row says otherwise, numbers are from the v0.1.3 runtime. Later patch releases changed only the launcher, so the same numbers apply to them.
+## v0.1.6 Sparse
+
+These runs used the v0.1.6 RC5d runtime with L0xRE-V2-27b-Low, DFlash2 and the 12 GB profile. Prefill and decode rates come from the server's prompt and generation timings. [v0.1.6 release notes](V016-RELEASE.md)
+
+### RTX 5090 narrative and code
+
+The benchmark used the `bench.sh` transformer attention essay and Python quicksort prompts with thinking off, seed 17, temperature 0.6, top-p 0.95 and top-k 20. The short prompts were 25 tokens. Deep runs inserted filler before the same instructions and disabled prompt caching. The 261,120-token rows left 1,024 positions for generation within the 262,144-token context.
+
+The native Windows short-prompt peaks are the fastest of five measured requests after three warmups per workload. The essay generated 1,000 tokens per run and quicksort generated 438.
+
+| Workload | Median (tok/s) | Peak (tok/s) |
+|---|---:|---:|
+| Narrative | 181.3 | 181.9 |
+| Code | 318.5 | 318.7 |
+
+The depth comparison below uses the first measured result for each case on the same RTX 5090. Native Windows had prior warmups through 128K. The full-depth Windows cases and the WSL2 cases ran with zero warmups. Both platforms produced identical output token IDs in the 14 paired cases.
+
+| Prompt tokens | Windows narrative | WSL2 narrative | Windows code | WSL2 code |
+|---:|---:|---:|---:|---:|
+| 4,096 | 168.1 | 157.5 | 315.7 | 290.1 |
+| 8,192 | 139.8 | 130.8 | 268.2 | 248.3 |
+| 32,768 | 120.1 | 113.8 | 235.0 | 222.0 |
+| 65,536 | 128.2 | 121.8 | 205.2 | 196.3 |
+| 131,072 | 122.6 | 118.1 | 233.8 | 226.9 |
+| 261,120 | 126.5 | 122.4 | 224.5 | 225.7 |
+
+### Throughput by card
+
+- **RTX 3060, native Linux.** The two RC5d arms of the release qualification averaged 803 tok/s prefill and 54.8 tok/s decode with a 131,072-token prompt and 64 greedy output tokens. At 250,000 prompt tokens, the same sweep measured 795 tok/s prefill and 40.8 tok/s decode.
+- **RTX 4090, native Linux, and RTX 5090, WSL2.** Each ran the release installer's 131,700-token needle smoke test once and generated 372 tokens. The 4090 measured 2,472 tok/s prefill and 136.6 tok/s decode. The 5090 measured 3,662 tok/s prefill and 139.9 tok/s decode.
+- **RTX 5090, native Windows.** The first measured 131,072-token quicksort run generated 480 tokens at 233.8 tok/s after prefill at 3,809 tok/s. At 261,120 prompt tokens it generated 353 tokens at 224.5 tok/s after prefill at 3,697 tok/s. This is the same quicksort workload as in the depth table.
+
+## Historical benchmarks through v0.1.5
+
+These results record earlier runtimes, benchmarks and memory profiles. Each section identifies the version used.
 
 ## L0xRE vs Ternary Bonsai 2 27B on an RTX 4070 Ti 12 GB
 
@@ -45,7 +79,7 @@ Both ran on the same RTX 3060 12 GB under native Linux, with the same `bench.sh`
 
   The v0.1.3 runtime with the v1 model measured code 69–75, narrative 40–41 and first token about 230 ms.
 - **The Bonsai numbers** were measured on the same RTX 3060 in an earlier session, alongside L0xRE v0.1.2, which prefilled 444 tok/s at 90K.
-- Narrative decode is close: L0xRE is about 12% ahead, so the README leaves it out.
+- Narrative decode is close: L0xRE is about 12% ahead, in this comparison.
 - **Quality** is the Club-3090 8-pack, /150, thinking off, pass@1. L0xRE scores 121 (v0.1.5 with L0xRE-V2-27b-Low on the RTX 3060; v1 scored 120). Bonsai pq2 scores 108 and Bonsai MTP 102, from Club-3090 discussion #1700, measured on an RTX 5090. With thinking on (two full passes, RTX 5090), v1 scored 125/127 and Bonsai 123/118. V2 scored 127 and 125 pass@1 at medium effort with an 8K thinking budget, on an RTX 4090.
 
 ## What to expect on your card
@@ -57,7 +91,7 @@ Both ran on the same RTX 3060 12 GB under native Linux, with the same `bench.sh`
 
 The 4070 Ti numbers are single runs on a working desktop, not a clean benchmark. The 3060 has no display attached.
 
-## Why 12 GB cards with a display use a smaller arena
+## Desktop arena in earlier releases
 
 On a 12 GB card that also drives your monitor, L0xRE picks a smaller working memory area (1856 MiB) so the desktop, a browser and messaging apps fit next to it. Short decode does not change. Decode with a full 128K context costs about 2% on the RTX 3060. To trade headroom back for deep-context speed, start with `--arena-mib 2048` or `--arena-mib 1920`.
 
