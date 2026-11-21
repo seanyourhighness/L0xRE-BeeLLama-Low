@@ -25,25 +25,35 @@ RTX 5090 within 1.6%; decode unchanged. RTX 3060 12 GB: about 800 tok/s prefill 
 
 ## Packages
 
-| Package | GPUs | Qualified on |
+| Package | GPUs | Validation |
 | --- | --- | --- |
 | `linux-sm86` | RTX 30 series | RTX 3060 12 GB |
 | `linux-sm89` | RTX 40 series (the sm86 build) | RTX 4090 |
 | `linux-sm120` | RTX 50 series | RTX 5090 |
+| `windows-sm86` | RTX 30 series | Build-verified |
+| `windows-sm89` | RTX 40 series | Build-verified |
+| `windows-sm120` | RTX 50 series | Native RTX 5090 |
 
-On Linux, cards with more VRAM use the same qualified 12 GB profile. **Windows stays on v0.1.5.**
+All six packages use the 12 GB profile, including on cards with more VRAM.
 
-The RTX 4090 and RTX 5090 passed fresh-install and launch smoke tests with token-for-token agreement against the RC5d kits.
+On Linux, the RTX 4090 and RTX 5090 passed fresh-install and launch smoke tests with token-for-token agreement against the RC5d kits.
 The RTX 3060 ran the RC5d kit in production and completed kit qualification. The installer package did not have a separate
 RTX 3060 smoke run.
 
-`L0xRE-v0.1.6-source.tar.gz` contains the corresponding runtime and packaging source. Each package records both revisions
-in `BUILD-INFO.json`.
+### Native Windows performance
+
+On the same RTX 5090, native Windows and Linux under WSL2 produced identical output tokens in all 14 quicksort and essay comparisons. At 261,120 prompt tokens, Windows decoded quicksort at 224.5 tok/s and the essay at 126.5 tok/s. WSL2 measured 225.7 and 122.4 tok/s respectively. These are single measured samples per case. Windows had prior warmups through 128K.
+
+In a separate repeated cold-prompt benchmark, native Windows prefill trailed WSL2 by 3.0% at 64K, 3.6% at 128K and 4.2% at 261,120 tokens. Matching-card inference testing is pending for the Windows SM86 and SM89 builds.
+
+The shared runtime source is in `L0xRE-v0.1.6-source.tar.gz`. The Windows port, exact host tree, CUDA gather change and incremental build recipes are in `L0xRE-v0.1.6-windows-source.tar.gz`. Each Windows ZIP records the runtime base and backend hashes in `BUILD-INFO.json`.
 
 ## Upgrading
 
 `update.sh` (or the installer with `--update`) installs v0.1.6 next to v0.1.5 and downloads the 6 MB map; v0.1.5 is
 kept and `--rollback` returns to it. The installed command lines do not change.
+
+On Windows, stop the server, run `update.cmd` and launch with `start.cmd`. Run `update.cmd -Rollback` to restore the previous installation.
 
 Not available with the sparse runtime: `--control-vector`, `--state-cache-dir`, `--arena-mib`, `--measure-arena`
 (they are rejected with a clear message). `L0XRE_SPARSE_MATCH=0` turns the retrieval links off.

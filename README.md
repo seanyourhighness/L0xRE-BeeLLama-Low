@@ -18,13 +18,13 @@
 
 # 256K context · ~800 tok/s prefill · 30–50 tok/s decode<br>on one RTX 3060 12 GB
 
-**L0xRE v0.1.6 Sparse adds 256K context with vision on Linux.**
+**L0xRE v0.1.6 Sparse adds 256K context on Linux and native Windows.**
 
 <sub>Every model layer runs on the GPU. Throughput was measured at 32K–250K context on a headless RTX 3060 12 GB running native Linux.</sub>
 
 **[⬇ Download the latest release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/latest)** · **[Install](#install)** · **[Point your AI agent at it](#let-your-ai-agent-install-it)**
 
-**New in v0.1.6:** D-LSA sparse attention and exact-match retrieval links above 8K tokens. The Linux updater downloads the sparse map alongside the model. Windows remains on v0.1.5. [v0.1.6 release notes](docs/V016-RELEASE.md)
+**New in v0.1.6:** D-LSA sparse attention and exact-match retrieval links above 8K tokens. The Windows and Linux installers download the sparse map alongside the model. Native RTX 5090 decoded quicksort at 224.5 tok/s after a 261,120-token prompt. Windows SM86 and SM89 are build-verified. [v0.1.6 release notes](docs/V016-RELEASE.md)
 
 </div>
 
@@ -87,7 +87,7 @@ bash install-l0xre.sh --vision
 
 **Use it.** L0xRE serves an OpenAI-compatible API at **`http://127.0.0.1:8080/v1`** with the model name **`L0xRE-27b-Low`**. Point any app or agent that accepts a custom OpenAI endpoint at it.
 
-**Update** with `update.cmd` on Windows or `bash install-l0xre.sh --update` on Linux. **Slow?** Run `doctor` and it tells you why ([how](docs/V0132-RELEASE.md)).
+**Update** with `update.cmd` on Windows or `bash install-l0xre.sh --update` on Linux. **Slow on Linux?** Run `doctor` and it tells you why ([how](docs/V0132-RELEASE.md)).
 
 ## Let your AI agent install it
 
