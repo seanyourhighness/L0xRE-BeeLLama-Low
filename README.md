@@ -16,11 +16,11 @@
 '================================='
 </pre>
 
-# 256K context · ~800 tok/s prefill · 30–50 tok/s decode<br>on one RTX 3060 12 GB
+# 256K context · Up to 182 tok/s narrative · 319 tok/s code
 
 **L0xRE v0.1.6 Sparse adds 256K context on Linux and native Windows.**
 
-<sub>Every model layer runs on the GPU. Throughput was measured at 32K–250K context on a headless RTX 3060 12 GB running native Linux.</sub>
+<sub>Peak short-prompt decode on one RTX 5090 under native Windows. The runtime also supports 256K context on the RTX 3060 12 GB. [Benchmark method](docs/BENCHMARKS.md#v016-sparse)</sub>
 
 **[⬇ Download the latest release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/latest)** · **[Install](#install)** · **[Point your AI agent at it](#let-your-ai-agent-install-it)**
 
@@ -28,29 +28,31 @@
 
 </div>
 
-### v0.1.5 benchmarks at 128K
+## v0.1.6 decode benchmarks
 
-Both runtimes used the same card for each benchmark. The RTX 4070 Ti measured 1.8× faster decode than Bonsai at 128K.
+RTX 5090, native Windows, using the transformer essay and Python quicksort prompts. Rates are in tokens/s.
 
-| L0xRE vs Ternary Bonsai 2 27B | **L0xRE** | Bonsai | |
-|---|---:|---:|---|
-| Decode at 128K · RTX 4070 Ti | **54 tok/s** | 30 tok/s | **1.8× faster** |
-| Read 128K prompt · RTX 4070 Ti | **883 tok/s** | 714 tok/s | **1.2× faster** |
-| Code decode · RTX 4070 Ti | **118 tok/s** | 86 tok/s | **1.4× faster** |
-| Code decode · RTX 3060 | **77 tok/s** | 54 tok/s | **1.4× faster** |
-| First token · RTX 3060 | **0.19 s** | 0.57 s | **3.0× faster** |
-| Quality (Club-3090 8-pack, /150) | **121** | 108 | **+13** |
+| Prompt tokens | Narrative decode | Code decode |
+|---:|---:|---:|
+| 25 · peak of five runs | **181.9** | **318.7** |
+| 25 · median of five runs | 181.3 | 318.5 |
+| 32,768 | 120.1 | 235.0 |
+| 65,536 | 128.2 | 205.2 |
+| 131,072 | 122.6 | 233.8 |
+| 261,120 | 126.5 | 224.5 |
 
-<sub>RTX 3060 12 GB: Linux, headless. RTX 4070 Ti 12 GB: Windows 11, with a display, at the 2048 MiB arena (the numbers in the next table use the 1856 MiB desktop default). Bonsai is shown in its fastest measured configuration. Quality: thinking off, pass@1; L0xRE on the RTX 3060, Bonsai's 108 from Club-3090 on an RTX 5090. Sources and method: [benchmarks](docs/BENCHMARKS.md).</sub>
+Each long-prompt row shows one measured sample per workload. [Method and WSL2 comparison](docs/BENCHMARKS.md#v016-sparse)
 
-## v0.1.5 throughput by card
+## v0.1.6 throughput by card
 
-| Card (12 GB) | Story / chat | Code | 128K prompt in | Decode at 128K |
-|---|---:|---:|---:|---:|
-| **RTX 3060**, Linux | ~44 tok/s | ~77 tok/s | ~400 tok/s | 35.9 tok/s |
-| **RTX 4070 Ti**, Windows 11 with a display, browser and messaging apps open | ~67 tok/s | ~100–118 tok/s | ~920 tok/s | ~53 tok/s |
+| GPU and platform | Prompt tokens | Workload | Prefill (tok/s) | Decode (tok/s) |
+|---|---:|---|---:|---:|
+| RTX 3060 12 GB · Linux | 131,072 | Greedy continuation | 803 | 54.8 |
+| RTX 4090 · Linux | 131,700 | Needle retrieval | 2,472 | 136.6 |
+| RTX 5090 · WSL2 | 131,700 | Needle retrieval | 3,662 | 139.9 |
+| RTX 5090 · Windows | 131,072 | Quicksort | 3,809 | 233.8 |
 
-<sub>A 12 GB card that drives your monitor automatically leaves room for your desktop apps. Faster cards are faster still. Details: [benchmarks](docs/BENCHMARKS.md).</sub>
+Decode varies with the workload. The RTX 4090 and WSL2 RTX 5090 rows use the same needle fixture. [Workloads and sample counts](docs/BENCHMARKS.md#throughput-by-card)
 
 <!-- Add this section back when the example is ready:
 ## Made with L0xRE
