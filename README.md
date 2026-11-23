@@ -18,13 +18,13 @@
 
 # 256K context · Up to 55 tok/s narrative · 98 tok/s code<br>on one RTX 3060 12 GB
 
-**L0xRE v0.1.6.1 (RC5d r2) updates v0.1.6 Sparse on Linux and native Windows.**
+**L0xRE v0.1.6.2 (RC5d r2 + Embedded WebUI) updates v0.1.6 Sparse on Linux and native Windows.**
 
 <sub>Short-prompt decode on native Linux using the transformer essay and Python quicksort prompts. [Benchmark method](docs/BENCHMARKS.md#v016-sparse)</sub>
 
 **[⬇ Download the latest release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/latest)** · **[Install](#install)** · **[Point your AI agent at it](#let-your-ai-agent-install-it)**
 
-**New in v0.1.6.1:** RC5d r2 runtime optimizations (padded Q3 output head, stable 32-bit D-LSA radix top-k across SM86/SM89/SM120, indexed record-copy DFlash2 hook) plus the loop-stopping verification-consistent server chat template. [v0.1.6.1 release notes](docs/V0161-RELEASE.md) · [v0.1.6 release notes](docs/V016-RELEASE.md)
+**New in v0.1.6.2:** Embedded `llama-ui` WebUI enabled by default (`GET /` out of the box), building on v0.1.6.1 RC5d r2 runtime optimizations (padded Q3 output head, stable 32-bit D-LSA radix top-k across SM86/SM89/SM120, indexed record-copy DFlash2 hook) and the loop-stopping verification-consistent chat template. [v0.1.6.2 release notes](docs/V0162-RELEASE.md) · [v0.1.6.1 release notes](docs/V0161-RELEASE.md) · [v0.1.6 release notes](docs/V016-RELEASE.md)
 
 </div>
 
