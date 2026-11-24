@@ -330,7 +330,7 @@ $gpuRecords
         }
         $models = @(Get-InstallModelRecords $releaseCatalog $selected $true)
         Assert-Install ($models[2].filename -eq 'qwen38-dlsa-d2048.l0xmap') 'Missing sparse map'
-        Assert-Install ($models[-1].filename -eq 'mmproj-Qwen3.8-27B-Q5_K-MIX.gguf') 'Live V0.1 catalog selected a legacy projector'
+        Assert-Install ($models[-1].filename -eq 'mmproj-Qwen3.8-27B-Q8_0.gguf') 'Live V0.1 catalog selected a legacy projector'
     }
     Assert-Rejected { Get-InstallPlan $releaseCatalog $eightGb $false '' } 'Live V0.1 catalog accepts an 8GB card'
     Write-Host "WINDOWS_INSTALLER_PASS: $checks checks; native PowerShell $($PSVersionTable.PSVersion)"
