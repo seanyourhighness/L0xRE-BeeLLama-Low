@@ -18,13 +18,13 @@
 
 # 256K context · Up to 55 tok/s narrative · 98 tok/s code<br>on one RTX 3060 12 GB
 
-**L0xRE v0.1.6.3 (On-Demand Vision + 12 GB Desktop Headroom) updates v0.1.6.2 on Linux and native Windows.**
+**L0xRE v0.1.6.4 (Q8 Vision, Branded WebUI & Live Uncensored Toggle) updates v0.1.6.3 on Linux and native Windows.**
 
 <sub>Short-prompt decode on native Linux using the transformer essay and Python quicksort prompts. [Benchmark method](docs/BENCHMARKS.md#v016-sparse)</sub>
 
 **[⬇ Download the latest release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/latest)** · **[Install](#install)** · **[Point your AI agent at it](#let-your-ai-agent-install-it)**
 
-**New in v0.1.6.3:** On-demand vision enabled by default (~582 MiB freed at rest/text turns), `--no-mmproj-offload` fixed in Sparse mode (0 MiB GPU vision overhead on CPU), automatic 12 GB display fallback (`-ub 512`, `L0XRE_SPARSE_CACHE=16384`) plus `start-12gb-lowvram.ps1` / `-LowVram` on Windows (~1.24 GiB saved while keeping 256K context), alongside v0.1.6.2's embedded `llama-ui` WebUI and RC5d r2 runtime optimizations. [v0.1.6.3 release notes](docs/V0163-RELEASE.md) · [v0.1.6.2 release notes](docs/V0162-RELEASE.md) · [v0.1.6.1 release notes](docs/V0161-RELEASE.md) · [v0.1.6 release notes](docs/V016-RELEASE.md)
+**New in v0.1.6.4:** Upgraded default vision projector to `mmproj-Qwen3.8-27B-Q8_0.gguf` (`256..2048` tokens) with Lever 1+2 on-demand VRAM reclaim (~1.15 GiB reclaimed during encoding so 12 GB RTX 3060 fits full Q8_0 at 262,144 sparse context), `l0xre-agent-windowed.jinja` default chat template, dark-terminal branded WebUI + `/props` `l0xre` telemetry, and one-click / one-command Uncensored steering (`./l0xre-uncensored`, `start-uncensored.cmd` / `start-uncensored.ps1`, and live `UNCENSORED:ON/OFF` toggle via `/l0xre/cvec`). [v0.1.6.4 release notes](docs/V0164-RELEASE.md) · [v0.1.6.3 release notes](docs/V0163-RELEASE.md) · [v0.1.6.2 release notes](docs/V0162-RELEASE.md) · [v0.1.6.1 release notes](docs/V0161-RELEASE.md) · [v0.1.6 release notes](docs/V016-RELEASE.md)
 
 </div>
 
