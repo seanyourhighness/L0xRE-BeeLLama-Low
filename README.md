@@ -15,8 +15,9 @@
 |   root@l0xre:~$ decode --truth  |
 '================================='
 </pre>
-# Uncensored On-Demand use the Agent skill /Uncensored or Webui
-# 256K context · ON 12 GB Cards - 3060 98 t/s - 4070 ti 175 t/s 
+# Uncensored On-Demand 
+# 256K context · ON 12 GB Cards 
+# 3060 98 t/s - 4070 ti 175 t/s 
 
 **L0xRE v0.1.6.4 (Q8 Vision, Branded WebUI & Live Uncensored Toggle) updates v0.1.6.3 on Linux and native Windows.**
 
