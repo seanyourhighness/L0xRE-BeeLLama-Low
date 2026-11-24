@@ -109,6 +109,14 @@ Paste this to your AI agent (Claude Code, Codex, Cursor, Hermes or any agent tha
 
 > Install L0xRE on this machine by following https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/blob/main/docs/AGENT-INSTALL.md, then connect yourself to it.
 
+**`/uncensored` slash-command skill (Hermes, DeepSeek Harness, Claude Code, Codex):**
+
+```bash
+npx skills add seanyourhighness/L0xRE-BeeLLama-Low --skill uncensored
+```
+
+Or download `L0xRE-uncensored-skill.tar.gz` / `L0xRE-uncensored-skill.zip` from the [latest release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/latest) (see [skills/uncensored/SKILL.md](skills/uncensored/SKILL.md)). Supports `/uncensored`, `/uncensored on`, `/uncensored off`, and `/uncensored status` at runtime against `/l0xre/cvec`.
+
 ## More
 
 - [Benchmarks and method](docs/BENCHMARKS.md)
