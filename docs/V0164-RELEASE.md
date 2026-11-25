@@ -2,6 +2,8 @@
 
 `L0xRE v0.1.6.4` upgrades `v0.1.6.3` across **Linux (`sm86`, `sm89`, `sm120`)** and **native Windows (`sm86`, `sm89`, `sm120`)** with full Q8_0 vision quality + VRAM reclaim, an agent-windowed template, dark-terminal WebUI branding, and one-click / one-command **Uncensored** steering.
 
+[Chat template hotfix for v0.1.6.4](V0164-CHAT-TEMPLATE-HOTFIX.md)
+
 ## What Changed Since v0.1.6.3
 
 1. **Q8_0 Vision Projector (`256..2048` tokens) + Lever 1+2 Vision VRAM Reclaim**
