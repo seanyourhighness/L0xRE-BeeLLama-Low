@@ -19,13 +19,13 @@
 # 256K context · ON 12 GB Cards 
 # 3060 98 t/s - 4070 ti 175 t/s 
 
-**L0xRE v0.1.6.4 (Q8 Vision, Branded WebUI & Live Uncensored Toggle) updates v0.1.6.3 on Linux and native Windows.**
+**L0xRE v0.1.6.5 (Sparse Defaults, Pooled Prefill & CLOCK Gather) updates v0.1.6.4 on Linux and native Windows.**
 
 <sub>Short-prompt decode on native Linux using the transformer essay and Python quicksort prompts. [Benchmark method](docs/BENCHMARKS.md#v016-sparse)</sub>
 
 **[⬇ Download the latest release](https://github.com/seanyourhighness/L0xRE-BeeLLama-Low/releases/latest)** · **[Install](#install)** · **[Point your AI agent at it](#let-your-ai-agent-install-it)**
 
-**New in v0.1.6.4:** Upgraded default vision projector to `mmproj-Qwen3.8-27B-Q8_0.gguf` (`256..2048` tokens) with Lever 1+2 on-demand VRAM reclaim (~1.15 GiB reclaimed during encoding so 12 GB RTX 3060 fits full Q8_0 at 262,144 sparse context), `l0xre-agent-windowed.jinja` default chat template, dark-terminal branded WebUI + `/props` `l0xre` telemetry, and one-click / one-command Uncensored steering (`./l0xre-uncensored`, `start-uncensored.cmd` / `start-uncensored.ps1`, and live `UNCENSORED:ON/OFF` toggle via `/l0xre/cvec`). [v0.1.6.4 release notes](docs/V0164-RELEASE.md) · [v0.1.6.3 release notes](docs/V0163-RELEASE.md) · [v0.1.6.2 release notes](docs/V0162-RELEASE.md) · [v0.1.6.1 release notes](docs/V0161-RELEASE.md) · [v0.1.6 release notes](docs/V016-RELEASE.md)
+**New in v0.1.6.5:** Promoted the new sparse attention defaults (`tile 256 × top-k 16,384 + 11,648 sink`, `L0XRE_SPARSE_PREFILL_POOLED=1`, `L0XRE_SPARSE_GEN_ANCHOR=1`, and CLOCK unit-cache gather v3), short-append `n - 4` near-end checkpoint retention, image-safe sparse rollback, selective cache invalidation on cuts, sparse mask v2, and runtime generation tuning knobs (`L0XRE_SPARSE_GEN_TOPK`, `GEN_SINK`, `GEN_WIDTH`, `GEN_WINDOW`, `GEN_SINK_AUTO`). Verified on RTX 3060 12 GB (`11,175 MiB` boot VRAM, `55.73` tok/s narrative / `100.17` tok/s code) and RTX 5090 (Linux & Windows). [v0.1.6.5 release notes](docs/V0165-RELEASE.md) · [v0.1.6.4 release notes](docs/V0164-RELEASE.md) · [v0.1.6.3 release notes](docs/V0163-RELEASE.md) · [v0.1.6.2 release notes](docs/V0162-RELEASE.md) · [v0.1.6.1 release notes](docs/V0161-RELEASE.md) · [v0.1.6 release notes](docs/V016-RELEASE.md)
 
 </div>
 
